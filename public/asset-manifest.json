@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "updatedAt": "2026-07-18",
+  "assets": [
+    {
+      "id": "brand-logo",
+      "status": "missing",
+      "path": null,
+      "fallback": "typographic FMS mark",
+      "replacementNotes": "Provide an approved SVG or high-resolution transparent PNG."
+    },
+    {
+      "id": "future-core",
+      "status": "generated",
+      "path": "procedural Three.js scene with CSS poster fallback",
+      "fallback": "CSS geometric poster",
+      "replacementNotes": "No external model or texture is required."
+    },
+    {
+      "id": "portfolio-projects",
+      "status": "missing",
+      "path": null,
+      "fallback": "labelled empty state",
+      "replacementNotes": "Add only owner-approved local images with role, year and evidence-backed result."
+    },
+    {
+      "id": "instagram-media",
+      "status": "missing",
+      "path": null,
+      "fallback": "local abstract cards linking to verified public URLs",
+      "replacementNotes": "Do not hotlink. Add approved local exports with explicit dimensions and alt text."
+    },
+    {
+      "id": "team-portraits",
+      "status": "missing",
+      "path": null,
+      "fallback": "labelled pending block",
+      "replacementNotes": "Publish only people who have approved their name, role and portrait."
+    }
+  ]
+}
