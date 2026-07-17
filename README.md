@@ -40,8 +40,8 @@ If Playwright's pinned browser is not installed, run `npx playwright install chr
 | `/` | `/en` | Home and conversion path |
 | `/services` | `/en/services` | Services index |
 | `/services/[slug]` | `/en/services/[slug]` | Service detail and metadata |
-| `/work` | `/en/work` | Honest portfolio holding state |
-| `/work/[slug]` | `/en/work/[slug]` | Reserved case-study route; returns 404 until verified projects exist |
+| `/work` | `/en/work` | Responsive portfolio index and project archive |
+| `/work/[slug]` | `/en/work/[slug]` | Bilingual project case study with verified role and source notes |
 | `/about` | `/en/about` | Approach and values |
 | `/contact` | `/en/contact` | Validated project enquiry |
 | `/privacy` | `/en/privacy` | Provisional privacy policy |
@@ -54,7 +54,7 @@ All bilingual copy and service data live in `src/content/site.ts`. Route compone
 
 - `docs/content-inventory.md` records verified, proposed and missing business facts.
 - `public/asset-manifest.json` records replaceable assets and their current fallbacks.
-- Portfolio, team, address, phone, email, client, metric and testimonial content is intentionally not invented.
+- Portfolio claims remain limited to the owner-supplied source and what can be verified on each live website; team, address, phone, email, metrics and testimonials are intentionally not invented.
 - Instagram links are normal outbound links. No media is hotlinked and no embed is loaded on the critical path.
 
 Before launch, replace or approve every `missing`, `proposed`, `inferred` or `provisional` item in those files.

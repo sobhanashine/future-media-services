@@ -66,14 +66,14 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         </nav>
 
         <div className="header-actions">
-          <Link
+          <a
             href={languageHref(locale, pathname)}
             className="language-switch"
             hrefLang={locale === "fa" ? "en" : "fa"}
             aria-label={locale === "fa" ? "Switch to English" : "تغییر زبان به فارسی"}
           >
             {content.languageSwitch}
-          </Link>
+          </a>
           <Link href={localePath(locale, "/contact")} className="button button--compact header-cta">
             {content.nav.start}
           </Link>

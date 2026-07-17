@@ -105,10 +105,6 @@ function SignalCore() {
         <icosahedronGeometry args={[1, 1]} />
         <meshStandardMaterial color="#d90a2c" emissive="#d90a2c" emissiveIntensity={0.24} roughness={0.32} metalness={0.34} />
       </mesh>
-      <mesh scale={0.95} rotation={[0.2, -0.15, 0.1]}>
-        <dodecahedronGeometry args={[1, 1]} />
-        <meshBasicMaterial color="#161519" wireframe transparent opacity={0.88} />
-      </mesh>
       <mesh scale={1.08}>
         <icosahedronGeometry args={[1, 2]} />
         <meshStandardMaterial color="#ffffff" transparent opacity={0.08} roughness={0.12} metalness={0.52} />

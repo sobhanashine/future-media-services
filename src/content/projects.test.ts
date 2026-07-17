@@ -1,15 +1,33 @@
 import { describe, expect, it } from "vitest";
-import { additionalProjects, featuredProjects, projectCopy } from "./projects";
+import { additionalProjects, featuredProjects, findProject, projectCopy, projects, projectSlugs } from "./projects";
 
 describe("portfolio content", () => {
   it("keeps every featured project bilingual and linked to a live URL", () => {
     for (const project of featuredProjects) {
       expect(project.url).toMatch(/^https:\/\//);
-      expect(project.image).toMatch(/^\/projects\//);
+      expect(project.images?.desktop).toMatch(/-desktop\.webp$/);
+      expect(project.images?.tablet).toMatch(/-tablet\.webp$/);
+      expect(project.images?.mobile).toMatch(/-mobile\.webp$/);
       expect(projectCopy(project, "fa").title).toBeTruthy();
       expect(projectCopy(project, "en").title).toBeTruthy();
       expect(project.technologies.length).toBeGreaterThan(0);
     }
+  });
+
+  it("gives every project a complete bilingual case-study record", () => {
+    for (const project of projects) {
+      for (const locale of ["fa", "en"] as const) {
+        const copy = projectCopy(project, locale);
+        expect(copy.summary).toBeTruthy();
+        expect(copy.challenge).toBeTruthy();
+        expect(copy.approach).toBeTruthy();
+        expect(copy.highlights.length).toBeGreaterThanOrEqual(4);
+        expect(copy.sourceNote).toBeTruthy();
+      }
+      expect(findProject(project.slug)).toBe(project);
+    }
+
+    expect(new Set(projectSlugs).size).toBe(projects.length);
   });
 
   it("does not duplicate portfolio destinations", () => {

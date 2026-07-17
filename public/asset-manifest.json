@@ -30,11 +30,16 @@
       "path": "public/projects/",
       "source": "live public project homepages",
       "files": [
-        "ofoq.png",
-        "aura-disposable.png",
-        "digimoragheb.png"
+        "ofoq-{desktop,tablet,mobile}.webp",
+        "aura-disposable-{desktop,tablet,mobile}.webp",
+        "digimoragheb-{desktop,tablet,mobile}.webp",
+        "kashiland-{desktop,tablet,mobile}.webp",
+        "paytakhte-ketab-{desktop,tablet,mobile}.webp",
+        "noornegar-{desktop,tablet,mobile}.webp",
+        "jaheshino-{desktop,tablet,mobile}.webp",
+        "sakkou-cowork-{desktop,tablet,mobile}.webp"
       ],
-      "replacementNotes": "Refresh screenshots when the corresponding live site changes materially."
+      "replacementNotes": "Each reachable project uses real desktop, tablet and mobile captures. Refresh all three viewports when a live site changes materially."
     },
     {
       "id": "instagram-media",

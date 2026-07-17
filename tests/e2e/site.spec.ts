@@ -24,7 +24,7 @@ test("primary service to contact flow works", async ({ page }) => {
 
 test("key pages have no serious accessibility violations", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  for (const path of ["/", "/en", "/contact", "/en/services", "/en/work"]) {
+  for (const path of ["/", "/en", "/contact", "/en/services", "/en/work", "/en/work/ofoq"]) {
     await page.goto(path);
     const results = await new AxeBuilder({ page }).analyze();
     expect(results.violations.filter((item) => ["critical", "serious"].includes(item.impact ?? ""))).toEqual([]);
@@ -57,19 +57,67 @@ test("the Future Core satellites orbit automatically", async ({ page }) => {
   expect(firstFrame.equals(secondFrame)).toBe(false);
 });
 
-test("portfolio projects are image-led, bilingual and linked to their live sites", async ({ page }) => {
+test("portfolio projects are responsive, bilingual and linked to complete case studies", async ({ page }) => {
   await page.goto("/en/work");
   await expect(page.getByRole("heading", { name: "OFOQ" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Aura Disposable" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "DigiMoragheb" })).toBeVisible();
   await expect(page.locator(".project-card__media")).toHaveCount(3);
-  await expect(page.locator(".project-card__media").first()).toHaveAttribute("href", "https://ofoq-web.vercel.app");
+  await expect(page.locator(".project-card__media").first()).toHaveAttribute("href", "/en/work/ofoq");
   await expect(page.locator(".project-card img").first()).toHaveJSProperty("complete", true);
+  await page.locator(".project-card__media").first().click();
+  await expect(page).toHaveURL(/\/en\/work\/ofoq$/);
+  await expect(page.getByRole("heading", { level: 1, name: "OFOQ" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "The challenge" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Visit live website" })).toHaveAttribute("href", "https://ofoq-web.vercel.app");
 
   await page.goto("/work");
   await expect(page.getByRole("heading", { name: "افق" })).toBeVisible();
   await expect(page.getByText("فضای کار اشتراکی سکّو", { exact: true })).toBeVisible();
   await expect(page.getByText("فعلاً در دسترس نیست", { exact: true })).toBeVisible();
+});
+
+test("portfolio imagery switches between laptop, tablet and mobile captures", async ({ page }) => {
+  const cases = [
+    { width: 1440, file: "ofoq-desktop.webp", orientation: "landscape" },
+    { width: 900, file: "ofoq-tablet.webp", orientation: "portrait" },
+    { width: 390, file: "ofoq-mobile.webp", orientation: "portrait" },
+  ] as const;
+
+  for (const item of cases) {
+    await page.setViewportSize({ width: item.width, height: 1000 });
+    await page.goto("/en/work");
+    const image = page.locator(".project-card .device-mockup__screen img").first();
+    await expect(image).toHaveJSProperty("complete", true);
+    const currentSrc = await image.evaluate((element: HTMLImageElement) => element.currentSrc);
+    expect(decodeURIComponent(currentSrc)).toContain(item.file);
+    const screen = await page.locator(".project-card .device-mockup__screen").first().boundingBox();
+    expect(screen).not.toBeNull();
+    if (item.orientation === "landscape") {
+      expect(screen!.width).toBeGreaterThan(screen!.height);
+    } else {
+      expect(screen!.height).toBeGreaterThan(screen!.width);
+    }
+  }
+});
+
+test("every portfolio entry has a Persian and English detail page", async ({ request }) => {
+  const slugs = [
+    "ofoq",
+    "aura-disposable",
+    "digimoragheb",
+    "kashiland",
+    "mehrshad-store",
+    "paytakhte-ketab",
+    "noornegar",
+    "jaheshino",
+    "sakkou-cowork",
+  ];
+
+  for (const slug of slugs) {
+    expect((await request.get(`/work/${slug}`)).ok()).toBe(true);
+    expect((await request.get(`/en/work/${slug}`)).ok()).toBe(true);
+  }
 });
 
 test("the contact form is honest when delivery is unconfigured", async ({ page }) => {
@@ -96,11 +144,13 @@ test("technical SEO endpoints and metadata are present", async ({ page, request 
 for (const width of [320, 390, 768, 1440, 2560]) {
   test(`no horizontal overflow at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
-    await page.goto("/");
-    const dimensions = await page.evaluate(() => ({
-      scrollWidth: document.documentElement.scrollWidth,
-      clientWidth: document.documentElement.clientWidth,
-    }));
-    expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth + 1);
+    for (const path of ["/", "/en/work/ofoq"]) {
+      await page.goto(path);
+      const dimensions = await page.evaluate(() => ({
+        scrollWidth: document.documentElement.scrollWidth,
+        clientWidth: document.documentElement.clientWidth,
+      }));
+      expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth + 1);
+    }
   });
 }

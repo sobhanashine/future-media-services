@@ -1,12 +1,12 @@
-import Image from "next/image";
 import Link from "next/link";
+import { ProjectDevice } from "@/components/pages/ProjectDevice";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { additionalProjects, featuredProjects, projectCopy } from "@/content/projects";
 import { localePath, type Locale } from "@/content/site";
 
 const labels = {
   fa: {
-    visit: "مشاهده وب‌سایت",
+    visit: "مشاهده پروژه",
     role: "نقش",
     stack: "فناوری",
     all: "مشاهده همه نمونه‌کارها",
@@ -16,7 +16,7 @@ const labels = {
     unavailable: "فعلاً در دسترس نیست",
   },
   en: {
-    visit: "Visit live website",
+    visit: "View case study",
     role: "Role",
     stack: "Stack",
     all: "View the full portfolio",
@@ -38,27 +38,19 @@ export function ProjectGallery({ locale, showAllLink = false }: { locale: Locale
 
           return (
             <article className={`project-card project-card--${index + 1}`} key={project.slug} data-reveal>
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                href={localePath(locale, `/work/${project.slug}`)}
                 className="project-card__media"
                 aria-label={`${text.visit}: ${content.title}`}
                 data-project-media
               >
-                <Image
-                  src={project.image}
-                  alt={content.imageAlt}
-                  width={1600}
-                  height={1000}
-                  sizes="(max-width: 780px) 100vw, (max-width: 1200px) 76vw, 62vw"
-                />
+                <ProjectDevice project={project} locale={locale} />
                 <span className="project-card__number">P / 0{index + 1}</span>
                 <span className="project-card__visit">
                   {text.visit}
                   <ArrowIcon />
                 </span>
-              </a>
+              </Link>
               <div className="project-card__details">
                 <div className="project-card__heading">
                   <p>{content.descriptor}</p>
@@ -105,21 +97,19 @@ export function ProjectArchive({ locale }: { locale: Locale }) {
       <ol>
         {additionalProjects.map((project, index) => (
           <li key={project.url} data-reveal>
-            {project.available === false ? (
-              <div className="project-archive__unavailable" aria-disabled="true">
-                <span>0{index + 4}</span>
-                <strong>{project.title[locale]}</strong>
-                <small>{project.domain}</small>
-                <em>{text.unavailable}</em>
-              </div>
-            ) : (
-              <a href={project.url} target="_blank" rel="noreferrer">
-                <span>0{index + 4}</span>
-                <strong>{project.title[locale]}</strong>
-                <small>{project.domain}</small>
+            <Link
+              href={localePath(locale, `/work/${project.slug}`)}
+              className={project.available ? undefined : "project-archive__unavailable"}
+            >
+              <span>0{index + 4}</span>
+              <strong>{project.copy[locale].title}</strong>
+              <small>{project.domain}</small>
+              {project.available ? (
                 <ArrowIcon />
-              </a>
-            )}
+              ) : (
+                <em>{text.unavailable}</em>
+              )}
+            </Link>
           </li>
         ))}
       </ol>

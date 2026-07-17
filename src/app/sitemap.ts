@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { projectSlugs } from "@/content/projects";
 import { localePath, serviceSlugs, type Locale } from "@/content/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -18,6 +19,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.8,
+    })),
+    ...projectSlugs.map((slug) => ({
+      url: new URL(localePath(locale, `/work/${slug}`), base).toString(),
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
     })),
   ]);
 }
