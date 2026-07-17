@@ -41,6 +41,27 @@ export function MotionOrchestrator() {
           },
         );
       });
+
+      gsap.utils.toArray<HTMLElement>("[data-project-media]").forEach((media) => {
+        const image = media.querySelector("img");
+        if (!image) return;
+
+        gsap.fromTo(
+          image,
+          { yPercent: -2.5, scale: 1.035 },
+          {
+            yPercent: 2.5,
+            scale: 1.035,
+            ease: "none",
+            scrollTrigger: {
+              trigger: media,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 0.6,
+            },
+          },
+        );
+      });
     });
 
     return () => context.revert();

@@ -12,16 +12,29 @@
     {
       "id": "future-core",
       "status": "generated",
-      "path": "procedural Three.js scene with CSS poster fallback",
-      "fallback": "CSS geometric poster",
+      "path": "procedural Three.js signal engine with three automatic orbital paths",
+      "fallback": "CSS auto-orbit poster, static under reduced motion",
       "replacementNotes": "No external model or texture is required."
     },
     {
       "id": "portfolio-projects",
-      "status": "missing",
-      "path": null,
-      "fallback": "labelled empty state",
-      "replacementNotes": "Add only owner-approved local images with role, year and evidence-backed result."
+      "status": "owner-supplied-source",
+      "path": "src/content/projects.ts",
+      "source": "https://www.mrashineh.ir/#projects",
+      "fallback": "project names, roles, technology and direct live URLs",
+      "replacementNotes": "Keep claims aligned with the source portfolio and do not add outcome metrics without evidence."
+    },
+    {
+      "id": "portfolio-screenshots",
+      "status": "localized",
+      "path": "public/projects/",
+      "source": "live public project homepages",
+      "files": [
+        "ofoq.png",
+        "aura-disposable.png",
+        "digimoragheb.png"
+      ],
+      "replacementNotes": "Refresh screenshots when the corresponding live site changes materially."
     },
     {
       "id": "instagram-media",

@@ -37,22 +37,24 @@ type Copy = {
     servicesBody: string;
     workEyebrow: string;
     workTitle: string;
+    workBody: string;
     processEyebrow: string;
     processTitle: string;
+    processBody: string;
     whyEyebrow: string;
     whyTitle: string;
+    whyBody: string;
     socialEyebrow: string;
     socialTitle: string;
     finalTitle: string;
     finalBody: string;
   };
   services: Service[];
-  process: { title: string; body: string }[];
-  reasons: { title: string; body: string }[];
+  process: { title: string; body: string; output: string }[];
+  reasons: { title: string; body: string; tag: string }[];
   work: {
-    emptyTitle: string;
-    emptyBody: string;
-    emptyLabel: string;
+    title: string;
+    intro: string;
   };
   social: { title: string; body: string; href: string; tag: string }[];
   about: {
@@ -132,11 +134,14 @@ export const copy: Record<Locale, Copy> = {
       servicesTitle: "یک سیستم کامل، نه مجموعه‌ای از خدمات پراکنده.",
       servicesBody: "هر مسیر از مسئله‌ی واقعی کسب‌وکار شروع می‌شود و به خروجی مشخص، قابل استفاده و قابل رشد می‌رسد.",
       workEyebrow: "کارهای منتخب",
-      workTitle: "کیفیت را با مدرک نشان می‌دهیم، نه با عدد ساختگی.",
+      workTitle: "کارهایی که فقط دیده نمی‌شوند؛ واقعاً کار می‌کنند.",
+      workBody: "نمونه‌های منتخب از تجربه‌های واقعی وب؛ با نقش، فناوری و لینک مستقیم به نسخه زنده.",
       processEyebrow: "روش همکاری",
-      processTitle: "از ابهام تا یک تجربه‌ی دیجیتال روشن.",
+      processTitle: "یک مسیر روشن، از مسئله تا رشد.",
+      processBody: "هر ایستگاه یک تصمیم مشخص و یک خروجی قابل بررسی دارد؛ بنابراین هیچ مرحله‌ای در ابهام جلو نمی‌رود.",
       whyEyebrow: "چرا FMS؟",
-      whyTitle: "فکر خلاق و اجرای فنی، پشت یک میز.",
+      whyTitle: "چهار زاویه، یک تیم، یک نتیجه منسجم.",
+      whyBody: "استراتژی، طراحی، ساخت و رشد جدا از هم تصمیم نمی‌گیرند. هر چهار لنز از ابتدا روی یک مسئله متمرکزند.",
       socialEyebrow: "از استودیو",
       socialTitle: "نگاهی کوتاه به فرایند و محتوای FMS.",
       finalTitle: "پروژه‌ی بعدی شما می‌تواند از امروز شروع شود.",
@@ -193,22 +198,21 @@ export const copy: Record<Locale, Copy> = {
       },
     ],
     process: [
-      { title: "کشف", body: "کسب‌وکار، مخاطب، مسئله و معیار موفقیت را دقیق می‌کنیم." },
-      { title: "جهت‌گیری", body: "معماری محتوا، اولویت‌ها و زبان بصری پروژه شکل می‌گیرد." },
-      { title: "ساخت", body: "طراحی، توسعه و موشن در چرخه‌های کوتاه و قابل مشاهده جلو می‌روند." },
-      { title: "اعتبارسنجی", body: "موبایل، دسترسی‌پذیری، سرعت، محتوا و SEO بررسی می‌شوند." },
-      { title: "تحویل و رشد", body: "انتشار، آموزش و مسیر بهبود بعدی مستند و قابل پیگیری می‌شود." },
+      { title: "کشف", body: "کسب‌وکار، مخاطب، مسئله و معیار موفقیت را دقیق می‌کنیم.", output: "خلاصه مسئله" },
+      { title: "جهت‌گیری", body: "معماری محتوا، اولویت‌ها و زبان بصری پروژه شکل می‌گیرد.", output: "نقشه تجربه" },
+      { title: "ساخت", body: "طراحی، توسعه و موشن در چرخه‌های کوتاه و قابل مشاهده جلو می‌روند.", output: "نسخه قابل بررسی" },
+      { title: "اعتبارسنجی", body: "موبایل، دسترسی‌پذیری، سرعت، محتوا و SEO بررسی می‌شوند.", output: "گزارش کیفیت" },
+      { title: "تحویل و رشد", body: "انتشار، آموزش و مسیر بهبود بعدی مستند و قابل پیگیری می‌شود.", output: "انتشار و برنامه رشد" },
     ],
     reasons: [
-      { title: "یک مسیر یکپارچه", body: "استراتژی، ظاهر و اجرا از یک مسئله مشترک شروع می‌شوند." },
-      { title: "راهکار متناسب", body: "ساختار پروژه با نیاز واقعی تعریف می‌شود، نه با یک قالب آماده." },
-      { title: "کیفیت قابل سنجش", body: "ظاهر، سرعت، دسترسی و نتیجه در کنار هم بررسی می‌شوند." },
-      { title: "ارتباط روشن", body: "تصمیم‌ها، وضعیت و قدم بعدی در طول مسیر شفاف باقی می‌مانند." },
+      { title: "یک مسیر یکپارچه", body: "استراتژی، ظاهر و اجرا از یک مسئله مشترک شروع می‌شوند؛ نه از سه brief جدا.", tag: "استراتژی" },
+      { title: "راهکار متناسب", body: "ساختار پروژه با نیاز واقعی تعریف می‌شود، نه با یک قالب آماده یا مد زودگذر.", tag: "طراحی" },
+      { title: "کیفیت قابل سنجش", body: "ظاهر، سرعت، دسترسی و عملکرد فنی در یک چرخه کنترل کیفیت بررسی می‌شوند.", tag: "ساخت" },
+      { title: "ارتباط روشن", body: "تصمیم‌ها، وضعیت و قدم بعدی در طول مسیر شفاف و قابل پیگیری باقی می‌مانند.", tag: "رشد" },
     ],
     work: {
-      emptyTitle: "نمونه‌کارهای تأییدشده در حال آماده‌سازی‌اند.",
-      emptyBody: "تا زمان دریافت تصاویر، نقش دقیق FMS و نتایج قابل استناد، پروژه‌ای به‌عنوان case study منتشر نمی‌کنیم.",
-      emptyLabel: "بدون پروژه یا عدد ساختگی",
+      title: "نمونه‌کارهای منتخب از وب‌سایت‌های واقعی.",
+      intro: "جزئیات پروژه‌ها از پورتفولیوی mrashineh.ir آمده‌اند و هر نمونه به نسخه زنده خودش متصل است. ادعای نتیجه یا عدد تأییدنشده‌ای به آن‌ها اضافه نشده است.",
     },
     social: [
       {
@@ -299,11 +303,14 @@ export const copy: Record<Locale, Copy> = {
       servicesTitle: "One connected system, not a list of disconnected services.",
       servicesBody: "Every engagement starts with a real business problem and moves toward a tangible, usable and scalable outcome.",
       workEyebrow: "Selected work",
-      workTitle: "We show quality with evidence—not invented numbers.",
+      workTitle: "Work that does more than look the part.",
+      workBody: "Selected real-world web experiences, presented with the role, technology and a direct link to the live product.",
       processEyebrow: "How we work",
-      processTitle: "From ambiguity to a clear digital experience.",
+      processTitle: "A clear route from problem to growth.",
+      processBody: "Every stop produces a concrete decision and a reviewable output, so the project never disappears into a black box.",
       whyEyebrow: "Why FMS?",
-      whyTitle: "Creative thinking and technical delivery at one table.",
+      whyTitle: "Four lenses. One team. One coherent result.",
+      whyBody: "Strategy, design, delivery and growth do not make isolated decisions. All four lenses stay focused on the same problem from day one.",
       socialEyebrow: "From the studio",
       socialTitle: "A short look at the thinking and content behind FMS.",
       finalTitle: "Your next project can start today.",
@@ -360,22 +367,21 @@ export const copy: Record<Locale, Copy> = {
       },
     ],
     process: [
-      { title: "Discover", body: "We clarify the business, audience, problem and measure of success." },
-      { title: "Direct", body: "The content architecture, priorities and visual language take shape." },
-      { title: "Build", body: "Design, development and motion progress in short, visible cycles." },
-      { title: "Validate", body: "Mobile, accessibility, performance, content and SEO are tested." },
-      { title: "Launch & grow", body: "Release, handover and the next improvement path are documented." },
+      { title: "Discover", body: "We clarify the business, audience, problem and measure of success.", output: "Problem brief" },
+      { title: "Direct", body: "The content architecture, priorities and visual language take shape.", output: "Experience map" },
+      { title: "Build", body: "Design, development and motion progress in short, visible cycles.", output: "Reviewable release" },
+      { title: "Validate", body: "Mobile, accessibility, performance, content and SEO are tested.", output: "Quality report" },
+      { title: "Launch & grow", body: "Release, handover and the next improvement path are documented.", output: "Launch & growth plan" },
     ],
     reasons: [
-      { title: "One connected path", body: "Strategy, visual design and delivery begin with the same problem." },
-      { title: "A considered solution", body: "The project is shaped around the real need, not a ready-made template." },
-      { title: "Measurable quality", body: "Appearance, speed, accessibility and outcomes are considered together." },
-      { title: "Clear communication", body: "Decisions, status and the next step stay visible throughout the work." },
+      { title: "One connected path", body: "Strategy, visual design and delivery begin with the same problem—not three separate briefs.", tag: "Strategy" },
+      { title: "A considered solution", body: "The project is shaped around the real need, not a ready-made template or a passing trend.", tag: "Design" },
+      { title: "Measurable quality", body: "Appearance, speed, accessibility and technical behaviour share one quality loop.", tag: "Build" },
+      { title: "Clear communication", body: "Decisions, status and the next step stay visible and traceable throughout the work.", tag: "Grow" },
     ],
     work: {
-      emptyTitle: "Verified case studies are being prepared.",
-      emptyBody: "Until imagery, FMS’s precise role and evidence-backed results are approved, we won’t publish a project as a case study.",
-      emptyLabel: "No invented clients or metrics",
+      title: "Selected work from live digital products.",
+      intro: "Project details are sourced from the mrashineh.ir portfolio and every example links to its live website. No unverified metric or outcome has been added.",
     },
     social: [
       {

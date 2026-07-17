@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FutureCoreLoader } from "@/components/canvas/FutureCoreLoader";
 import { JsonLd } from "@/components/layout/JsonLd";
+import { ProjectGallery } from "@/components/pages/ProjectGallery";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { copy, localePath, type Locale } from "@/content/site";
@@ -82,56 +83,76 @@ export function HomePage({ locale }: { locale: Locale }) {
 
       <section className="work-section section-block" id="work">
         <div className="container-shell">
-          <SectionHeading eyebrow={content.sections.workEyebrow} title={content.sections.workTitle} />
-          <div className="work-empty" data-reveal>
-            <div className="work-empty__visual" aria-hidden="true">
-              <span>FMS</span>
-              <i />
-              <b>CASE / PENDING</b>
-            </div>
-            <div className="work-empty__copy">
-              <span className="status-pill">{content.work.emptyLabel}</span>
-              <h3>{content.work.emptyTitle}</h3>
-              <p>{content.work.emptyBody}</p>
-              <Link href={localePath(locale, "/work")} className="text-link">
-                {content.common.viewWork}
-                <ArrowIcon />
-              </Link>
-            </div>
-          </div>
+          <SectionHeading
+            eyebrow={content.sections.workEyebrow}
+            title={content.sections.workTitle}
+            body={content.sections.workBody}
+          />
+          <ProjectGallery locale={locale} showAllLink />
         </div>
       </section>
 
       <section className="section-block container-shell process-section" id="process">
-        <SectionHeading eyebrow={content.sections.processEyebrow} title={content.sections.processTitle} />
-        <ol className="process-list">
-          {content.process.map((step, index) => (
-            <li key={step.title} data-reveal>
-              <span>0{index + 1}</span>
-              <h3>{step.title}</h3>
-              <p>{step.body}</p>
-            </li>
-          ))}
-        </ol>
+        <SectionHeading
+          eyebrow={content.sections.processEyebrow}
+          title={content.sections.processTitle}
+          body={content.sections.processBody}
+        />
+        <div className="process-roadmap">
+          <div className="process-roadmap__legend" aria-hidden="true">
+            <span>FMS / ROUTE</span>
+            <span>01 — 05</span>
+          </div>
+          <ol className="process-list">
+            {content.process.map((step, index) => (
+              <li key={step.title} data-reveal>
+                <div className="process-list__marker" aria-hidden="true">
+                  <span>0{index + 1}</span>
+                  <i />
+                </div>
+                <article>
+                  <p className="process-list__output">{step.output}</p>
+                  <h3>{step.title}</h3>
+                  <p>{step.body}</p>
+                </article>
+              </li>
+            ))}
+          </ol>
+        </div>
       </section>
 
       <section className="why-section">
-        <div className="container-shell why-section__grid">
-          <div className="why-section__title" data-reveal>
+        <div className="container-shell">
+          <header className="why-section__intro" data-reveal>
             <p className="eyebrow eyebrow--light">{content.sections.whyEyebrow}</p>
             <h2>{content.sections.whyTitle}</h2>
-            <div className="why-monogram" aria-hidden="true">F</div>
-          </div>
-          <div className="reason-list">
-            {content.reasons.map((reason, index) => (
-              <article key={reason.title} data-reveal>
-                <span>0{index + 1}</span>
-                <div>
+            <p>{content.sections.whyBody}</p>
+          </header>
+          <div className="why-section__stage">
+            <div className="why-orbit" aria-hidden="true" data-reveal>
+              <span className="why-orbit__ring why-orbit__ring--one" />
+              <span className="why-orbit__ring why-orbit__ring--two" />
+              <span className="why-orbit__axis why-orbit__axis--x" />
+              <span className="why-orbit__axis why-orbit__axis--y" />
+              <strong>FMS</strong>
+              {content.reasons.map((reason, index) => (
+                <b className={`why-orbit__tag why-orbit__tag--${index + 1}`} key={reason.tag}>
+                  {reason.tag}
+                </b>
+              ))}
+            </div>
+            <div className="reason-grid">
+              {content.reasons.map((reason, index) => (
+                <article key={reason.title} data-reveal>
+                  <div>
+                    <span>0{index + 1}</span>
+                    <small>{reason.tag}</small>
+                  </div>
                   <h3>{reason.title}</h3>
                   <p>{reason.body}</p>
-                </div>
-              </article>
-            ))}
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>

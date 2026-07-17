@@ -24,7 +24,7 @@ test("primary service to contact flow works", async ({ page }) => {
 
 test("key pages have no serious accessibility violations", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  for (const path of ["/", "/en", "/contact", "/en/services"]) {
+  for (const path of ["/", "/en", "/contact", "/en/services", "/en/work"]) {
     await page.goto(path);
     const results = await new AxeBuilder({ page }).analyze();
     expect(results.violations.filter((item) => ["critical", "serious"].includes(item.impact ?? ""))).toEqual([]);
@@ -45,6 +45,31 @@ test("reduced motion keeps the static Future Core and skips WebGL", async ({ pag
   await page.goto("/en");
   await expect(page.locator(".future-core__poster")).toBeVisible();
   await expect(page.locator("canvas")).toHaveCount(0);
+});
+
+test("the Future Core satellites orbit automatically", async ({ page }) => {
+  await page.goto("/en");
+  const canvas = page.locator(".future-core canvas");
+  await expect(canvas).toBeVisible();
+  const firstFrame = await canvas.screenshot();
+  await page.waitForTimeout(900);
+  const secondFrame = await canvas.screenshot();
+  expect(firstFrame.equals(secondFrame)).toBe(false);
+});
+
+test("portfolio projects are image-led, bilingual and linked to their live sites", async ({ page }) => {
+  await page.goto("/en/work");
+  await expect(page.getByRole("heading", { name: "OFOQ" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Aura Disposable" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "DigiMoragheb" })).toBeVisible();
+  await expect(page.locator(".project-card__media")).toHaveCount(3);
+  await expect(page.locator(".project-card__media").first()).toHaveAttribute("href", "https://ofoq-web.vercel.app");
+  await expect(page.locator(".project-card img").first()).toHaveJSProperty("complete", true);
+
+  await page.goto("/work");
+  await expect(page.getByRole("heading", { name: "افق" })).toBeVisible();
+  await expect(page.getByText("فضای کار اشتراکی سکّو", { exact: true })).toBeVisible();
+  await expect(page.getByText("فعلاً در دسترس نیست", { exact: true })).toBeVisible();
 });
 
 test("the contact form is honest when delivery is unconfigured", async ({ page }) => {
