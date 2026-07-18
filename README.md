@@ -40,7 +40,7 @@ If Playwright's pinned browser is not installed, run `npx playwright install chr
 | `/` | `/en` | Home and conversion path |
 | `/services` | `/en/services` | Services index |
 | `/services/[slug]` | `/en/services/[slug]` | Service detail and metadata |
-| `/work` | `/en/work` | Responsive portfolio index and project archive |
+| `/work` | `/en/work` | Responsive image-card portfolio with direct links to live websites |
 | `/work/[slug]` | `/en/work/[slug]` | Bilingual project case study with verified role and source notes |
 | `/about` | `/en/about` | Approach and values |
 | `/contact` | `/en/contact` | Validated project enquiry |

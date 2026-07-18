@@ -452,6 +452,7 @@ export const projects: Project[] = [
 
 export const featuredProjects = projects.filter((project) => project.featured);
 export const additionalProjects = projects.filter((project) => !project.featured);
+export const portfolioProjects = projects.filter((project) => project.available && project.images);
 export const projectSlugs = projects.map((project) => project.slug);
 
 export function projectCopy(project: Project, locale: Locale) {

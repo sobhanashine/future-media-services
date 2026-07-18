@@ -57,47 +57,36 @@ test("the Future Core satellites orbit automatically", async ({ page }) => {
   expect(firstFrame.equals(secondFrame)).toBe(false);
 });
 
-test("portfolio projects are responsive, bilingual and linked to complete case studies", async ({ page }) => {
+test("portfolio cards are bilingual image previews linked directly to live websites", async ({ page }) => {
   await page.goto("/en/work");
-  await expect(page.getByRole("heading", { name: "OFOQ" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Aura Disposable" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "DigiMoragheb" })).toBeVisible();
-  await expect(page.locator(".project-card__media")).toHaveCount(3);
-  await expect(page.locator(".project-card__media").first()).toHaveAttribute("href", "/en/work/ofoq");
+  await expect(page.getByRole("link", { name: "Visit website: OFOQ" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Visit website: Aura Disposable" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Visit website: DigiMoragheb" })).toBeVisible();
+  await expect(page.locator(".project-card__media")).toHaveCount(8);
+  await expect(page.locator(".project-card__media").first()).toHaveAttribute("href", "https://ofoq-web.vercel.app");
+  await expect(page.locator(".project-card__media").first()).toHaveAttribute("target", "_blank");
   await expect(page.locator(".project-card img").first()).toHaveJSProperty("complete", true);
-  await page.locator(".project-card__media").first().click();
-  await expect(page).toHaveURL(/\/en\/work\/ofoq$/);
-  await expect(page.getByRole("heading", { level: 1, name: "OFOQ" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "The challenge" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Visit live website" })).toHaveAttribute("href", "https://ofoq-web.vercel.app");
+  await expect(page.locator(".project-card__summary, .project-card__facts, .project-archive")).toHaveCount(0);
 
   await page.goto("/work");
-  await expect(page.getByRole("heading", { name: "افق" })).toBeVisible();
-  await expect(page.getByText("فضای کار اشتراکی سکّو", { exact: true })).toBeVisible();
-  await expect(page.getByText("فعلاً در دسترس نیست", { exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "بازدید از وب‌سایت: افق" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "بازدید از وب‌سایت: فضای کار اشتراکی سکّو" })).toBeVisible();
 });
 
-test("portfolio imagery switches between laptop, tablet and mobile captures", async ({ page }) => {
-  const cases = [
-    { width: 1440, file: "ofoq-desktop.webp", orientation: "landscape" },
-    { width: 900, file: "ofoq-tablet.webp", orientation: "portrait" },
-    { width: 390, file: "ofoq-mobile.webp", orientation: "portrait" },
-  ] as const;
+test("portfolio imagery and cards remain responsive", async ({ page }) => {
+  const widths = [1440, 900, 390] as const;
 
-  for (const item of cases) {
-    await page.setViewportSize({ width: item.width, height: 1000 });
+  for (const width of widths) {
+    await page.setViewportSize({ width, height: 1000 });
     await page.goto("/en/work");
-    const image = page.locator(".project-card .device-mockup__screen img").first();
+    const image = page.locator(".project-card__image img").first();
     await expect(image).toHaveJSProperty("complete", true);
     const currentSrc = await image.evaluate((element: HTMLImageElement) => element.currentSrc);
-    expect(decodeURIComponent(currentSrc)).toContain(item.file);
-    const screen = await page.locator(".project-card .device-mockup__screen").first().boundingBox();
-    expect(screen).not.toBeNull();
-    if (item.orientation === "landscape") {
-      expect(screen!.width).toBeGreaterThan(screen!.height);
-    } else {
-      expect(screen!.height).toBeGreaterThan(screen!.width);
-    }
+    expect(decodeURIComponent(currentSrc)).toContain("ofoq-desktop.webp");
+    const card = await page.locator(".project-card__media").first().boundingBox();
+    expect(card).not.toBeNull();
+    expect(card!.width).toBeGreaterThan(card!.height);
+    expect(card!.width).toBeLessThanOrEqual(width);
   }
 });
 

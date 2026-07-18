@@ -12,6 +12,7 @@ Updated: 2026-07-18
 | Portfolio projects | Owner-supplied source | Three featured builds, five additional live links and one clearly unavailable project sourced from `mrashineh.ir`; no result metrics added | Confirm whether the work should be attributed to FMS, the founder, or both |
 | Portfolio screenshots | Captured from live public sites | Local desktop (1600×1000), tablet (834×1112) and mobile (390×844) WebP captures for eight reachable projects; Mehrshad Store uses a transparent archive state | Refresh when a live project changes materially |
 | Portfolio detail pages | Published with source notes | Nine bilingual case-study routes covering overview, challenge, approach, experience highlights and the published role or an explicit archive limitation | Owner approval for any added performance result or attribution |
+| Portfolio index cards | Published from verified screenshots | Eight responsive image-led cards link directly to the available live websites; the offline archive entry is intentionally omitted | Replace screenshots when a live site changes materially |
 | Team members | Missing | Clearly labelled pending state | Approved names, roles and portraits |
 | Email, phone, address | Missing | Not displayed | Verified contact details |
 | Contact destination | Missing | Development adapter validates without sending | `CONTACT_WEBHOOK_URL` and retention policy |

@@ -135,7 +135,7 @@ export const copy: Record<Locale, Copy> = {
       servicesBody: "هر مسیر از مسئله‌ی واقعی کسب‌وکار شروع می‌شود و به خروجی مشخص، قابل استفاده و قابل رشد می‌رسد.",
       workEyebrow: "کارهای منتخب",
       workTitle: "کارهایی که فقط دیده نمی‌شوند؛ واقعاً کار می‌کنند.",
-      workBody: "نمونه‌های منتخب از تجربه‌های واقعی وب؛ با نقش، فناوری و لینک مستقیم به نسخه زنده.",
+      workBody: "پیش‌نمایش تصویری وب‌سایت‌های واقعی؛ برای بازدید از نسخه زنده روی هر کارت بزنید.",
       processEyebrow: "روش همکاری",
       processTitle: "یک مسیر روشن، از مسئله تا رشد.",
       processBody: "هر ایستگاه یک تصمیم مشخص و یک خروجی قابل بررسی دارد؛ بنابراین هیچ مرحله‌ای در ابهام جلو نمی‌رود.",
@@ -212,7 +212,7 @@ export const copy: Record<Locale, Copy> = {
     ],
     work: {
       title: "نمونه‌کارهای منتخب از وب‌سایت‌های واقعی.",
-      intro: "جزئیات پروژه‌ها از پورتفولیوی mrashineh.ir آمده‌اند و هر نمونه به نسخه زنده خودش متصل است. ادعای نتیجه یا عدد تأییدنشده‌ای به آن‌ها اضافه نشده است.",
+      intro: "هر کارت یک پیش‌نمایش واقعی از وب‌سایت است و شما را مستقیماً به نسخه زنده آن می‌برد.",
     },
     social: [
       {
@@ -304,7 +304,7 @@ export const copy: Record<Locale, Copy> = {
       servicesBody: "Every engagement starts with a real business problem and moves toward a tangible, usable and scalable outcome.",
       workEyebrow: "Selected work",
       workTitle: "Work that does more than look the part.",
-      workBody: "Selected real-world web experiences, presented with the role, technology and a direct link to the live product.",
+      workBody: "Visual previews of real websites. Select any card to visit the live experience.",
       processEyebrow: "How we work",
       processTitle: "A clear route from problem to growth.",
       processBody: "Every stop produces a concrete decision and a reviewable output, so the project never disappears into a black box.",
@@ -381,7 +381,7 @@ export const copy: Record<Locale, Copy> = {
     ],
     work: {
       title: "Selected work from live digital products.",
-      intro: "Project details are sourced from the mrashineh.ir portfolio and every example links to its live website. No unverified metric or outcome has been added.",
+      intro: "Each card is a real website preview and takes you directly to its live experience.",
     },
     social: [
       {

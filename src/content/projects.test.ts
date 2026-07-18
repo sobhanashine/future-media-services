@@ -1,5 +1,13 @@
 import { describe, expect, it } from "vitest";
-import { additionalProjects, featuredProjects, findProject, projectCopy, projects, projectSlugs } from "./projects";
+import {
+  additionalProjects,
+  featuredProjects,
+  findProject,
+  portfolioProjects,
+  projectCopy,
+  projects,
+  projectSlugs,
+} from "./projects";
 
 describe("portfolio content", () => {
   it("keeps every featured project bilingual and linked to a live URL", () => {
@@ -33,5 +41,13 @@ describe("portfolio content", () => {
   it("does not duplicate portfolio destinations", () => {
     const urls = [...featuredProjects, ...additionalProjects].map((project) => project.url);
     expect(new Set(urls).size).toBe(urls.length);
+  });
+
+  it("only puts live projects with verified imagery in the direct-link card grid", () => {
+    expect(portfolioProjects).toHaveLength(8);
+    for (const project of portfolioProjects) {
+      expect(project.available).toBe(true);
+      expect(project.images?.desktop).toBeTruthy();
+    }
   });
 });
