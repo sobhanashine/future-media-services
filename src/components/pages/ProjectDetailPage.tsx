@@ -13,14 +13,14 @@ const labels = {
     challenge: "مسئله",
     approach: "رویکرد",
     highlights: "نکات کلیدی تجربه",
-    role: "نقش منتشرشده",
+    role: "نقش پروژه",
     status: "وضعیت",
     statusLive: "فعال",
     statusArchive: "آرشیوی / خارج از دسترس",
     focus: "فناوری / تمرکز",
     domain: "دامنه",
     responsive: "سه نمای واقعی از همان وب‌سایت: لپ‌تاپ، تبلت و موبایل.",
-    evidence: "یادداشت منبع",
+    evidence: "رکورد Future Media Services",
     next: "پروژه بعدی",
   },
   en: {
@@ -31,14 +31,14 @@ const labels = {
     challenge: "The challenge",
     approach: "The approach",
     highlights: "Experience highlights",
-    role: "Published role",
+    role: "Project role",
     status: "Status",
     statusLive: "Live",
     statusArchive: "Archived / unavailable",
     focus: "Technology / focus",
     domain: "Domain",
     responsive: "Three real views of the same website: laptop, tablet and mobile.",
-    evidence: "Source note",
+    evidence: "Future Media Services record",
     next: "Next project",
   },
 } satisfies Record<Locale, Record<string, string>>;
@@ -76,7 +76,10 @@ export function ProjectDetailPage({ project, locale }: { project: Project; local
         </div>
       </header>
 
-      <section className="project-detail__device-stage" aria-label={text.responsive}>
+      <section
+        className={`project-detail__device-stage${project.images ? " project-detail__device-stage--composite" : ""}`}
+        aria-label={text.responsive}
+      >
         <div className="container-shell">
           <ProjectDevice project={project} locale={locale} priority />
           <p>{text.responsive}</p>

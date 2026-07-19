@@ -40,8 +40,8 @@ If Playwright's pinned browser is not installed, run `npx playwright install chr
 | `/` | `/en` | Home and conversion path |
 | `/services` | `/en/services` | Services index |
 | `/services/[slug]` | `/en/services/[slug]` | Service detail and metadata |
-| `/work` | `/en/work` | Responsive image-card portfolio with direct links to live websites |
-| `/work/[slug]` | `/en/work/[slug]` | Bilingual project case study with verified role and source notes |
+| `/work` | `/en/work` | Responsive three-device portfolio cards with direct live links |
+| `/work/[slug]` | `/en/work/[slug]` | Bilingual project case study with verified Future Media Services records |
 | `/about` | `/en/about` | Approach and values |
 | `/contact` | `/en/contact` | Validated project enquiry |
 | `/privacy` | `/en/privacy` | Provisional privacy policy |
@@ -54,10 +54,12 @@ All bilingual copy and service data live in `src/content/site.ts`. Route compone
 
 - `docs/content-inventory.md` records verified, proposed and missing business facts.
 - `public/asset-manifest.json` records replaceable assets and their current fallbacks.
-- Portfolio claims remain limited to the owner-supplied source and what can be verified on each live website; team, address, phone, email, metrics and testimonials are intentionally not invented.
+- Portfolio claims remain limited to the owner-provided CV, Future Media Services project records and what can be verified on each live website; team, address, phone, email, metrics and testimonials are intentionally not invented.
 - Instagram links are normal outbound links. No media is hotlinked and no embed is loaded on the critical path.
 
 Before launch, replace or approve every `missing`, `proposed`, `inferred` or `provisional` item in those files.
+
+Run `npm run assets:portfolio` after replacing any desktop, tablet or mobile project capture. The generator composites the refreshed captures into the supplied device mockup used by the portfolio cards.
 
 ## Contact delivery
 

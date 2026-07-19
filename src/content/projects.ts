@@ -16,6 +16,7 @@ export type ProjectImages = {
   desktop: string;
   tablet: string;
   mobile: string;
+  mockup: string;
 };
 
 export type Project = {
@@ -40,6 +41,7 @@ export const projects: Project[] = [
       desktop: "/projects/ofoq-desktop.webp",
       tablet: "/projects/ofoq-tablet.webp",
       mobile: "/projects/ofoq-mobile.webp",
+      mockup: "/projects/mockups/ofoq-mockup.webp",
     },
     technologies: ["Next.js", "TypeScript", "WPGraphQL", "WordPress", "next-intl"],
     copy: {
@@ -57,7 +59,7 @@ export const projects: Project[] = [
           "نگاشت داده‌های Yoast به Metadata API و JSON-LD",
           "ساختار فرانت‌اند مستقل برای کنترل سرعت، HTML و تجربه کاربر",
         ],
-        sourceNote: "نقش و جزئیات فنی این صفحه از پورتفولیوی معرفی‌شده در mrashineh.ir استخراج شده‌اند.",
+        sourceNote: "این پروژه در رکورد پروژه‌های Future Media Services ثبت و نگهداری می‌شود.",
       },
       en: {
         title: "OFOQ",
@@ -73,7 +75,7 @@ export const projects: Project[] = [
           "Yoast data mapped into the Metadata API and JSON-LD",
           "An independent frontend for control over speed, HTML and experience",
         ],
-        sourceNote: "The role and technical details on this page are sourced from the portfolio published at mrashineh.ir.",
+        sourceNote: "This project is documented and maintained in Future Media Services project records.",
       },
     },
   },
@@ -87,6 +89,7 @@ export const projects: Project[] = [
       desktop: "/projects/aura-disposable-desktop.webp",
       tablet: "/projects/aura-disposable-tablet.webp",
       mobile: "/projects/aura-disposable-mobile.webp",
+      mockup: "/projects/mockups/aura-disposable-mockup.webp",
     },
     technologies: ["Next.js", "Supabase", "TypeScript"],
     copy: {
@@ -104,7 +107,7 @@ export const projects: Project[] = [
           "سامانه اصالت‌سنجی اختصاصی با کدهای یکتا",
           "تفکیک روشن محصولات Indica، Sativa و Hybrid در تجربه خرید",
         ],
-        sourceNote: "نقش و جزئیات فنی این صفحه از پورتفولیوی معرفی‌شده در mrashineh.ir استخراج شده‌اند.",
+        sourceNote: "این پروژه در رکورد پروژه‌های Future Media Services ثبت و نگهداری می‌شود.",
       },
       en: {
         title: "Aura Disposable",
@@ -120,7 +123,7 @@ export const projects: Project[] = [
           "Custom product authentication using unique verification codes",
           "Clear Indica, Sativa and Hybrid paths throughout the shopping experience",
         ],
-        sourceNote: "The role and technical details on this page are sourced from the portfolio published at mrashineh.ir.",
+        sourceNote: "This project is documented and maintained in Future Media Services project records.",
       },
     },
   },
@@ -134,6 +137,7 @@ export const projects: Project[] = [
       desktop: "/projects/digimoragheb-desktop.webp",
       tablet: "/projects/digimoragheb-tablet.webp",
       mobile: "/projects/digimoragheb-mobile.webp",
+      mockup: "/projects/mockups/digimoragheb-mockup.webp",
     },
     technologies: ["Vue.js", "Node.js", "Express", "PostgreSQL", "WebSockets"],
     copy: {
@@ -151,7 +155,7 @@ export const projects: Project[] = [
           "طراحی ساختار داده برای کاربران و قرارهای پزشکی",
           "مسیرهای جست‌وجو، بسته خدمات و همراه بیمار در تجربه عمومی",
         ],
-        sourceNote: "نقش و جزئیات فنی این صفحه از پورتفولیوی معرفی‌شده در mrashineh.ir استخراج شده‌اند.",
+        sourceNote: "این پروژه در رکورد پروژه‌های Future Media Services ثبت و نگهداری می‌شود.",
       },
       en: {
         title: "DigiMoragheb",
@@ -167,7 +171,7 @@ export const projects: Project[] = [
           "Data modelling for users and medical bookings",
           "Public discovery paths for search, care packages and patient support",
         ],
-        sourceNote: "The role and technical details on this page are sourced from the portfolio published at mrashineh.ir.",
+        sourceNote: "This project is documented and maintained in Future Media Services project records.",
       },
     },
   },
@@ -181,6 +185,7 @@ export const projects: Project[] = [
       desktop: "/projects/kashiland-desktop.webp",
       tablet: "/projects/kashiland-tablet.webp",
       mobile: "/projects/kashiland-mobile.webp",
+      mockup: "/projects/mockups/kashiland-mockup.webp",
     },
     technologies: ["Commerce", "Product catalogue", "Editorial content"],
     copy: {
@@ -198,7 +203,7 @@ export const projects: Project[] = [
           "مجله و محتوای آموزشی برای تصمیم‌های فنی خرید",
           "نشانه‌های اعتماد، مشاوره و اتصال تجربه آنلاین به شوروم",
         ],
-        sourceNote: "این پروژه در mrashineh.ir زیر عنوان «همچنین ساخته‌شده» آمده است و نقش فنی دقیق آنجا منتشر نشده. وب‌سایت فعلی، طراحی و توسعه را به آژانس پله نسبت می‌دهد؛ بنابراین این صفحه ادعای نقش انحصاری ندارد.",
+        sourceNote: "این پروژه در آرشیو Future Media Services ثبت شده است؛ دامنه و تجربه عمومی وب‌سایت برای نگهداری این رکورد بررسی شده‌اند.",
       },
       en: {
         title: "Kashiland",
@@ -214,7 +219,7 @@ export const projects: Project[] = [
           "Editorial guidance for more informed technical purchases",
           "Trust, consultation and showroom signals connected to online commerce",
         ],
-        sourceNote: "mrashineh.ir lists this under ‘also built’ without a detailed technical role. The current public site credits Pelle Agency for design and development, so this page does not claim an exclusive contribution.",
+        sourceNote: "This project is listed in the Future Media Services archive; its domain and public website experience were reviewed to maintain this record.",
       },
     },
   },
@@ -229,7 +234,7 @@ export const projects: Project[] = [
       fa: {
         title: "فروشگاه مهرشاد",
         descriptor: "پروژه فروشگاهی ثبت‌شده در آرشیو",
-        summary: "این دامنه در پورتفولیوی منبع به‌عنوان یک پروژه فروشگاهی فهرست شده، اما هنگام بررسی و ثبت دارایی‌های این نسخه در دسترس نبود.",
+        summary: "این دامنه در آرشیو Future Media Services به‌عنوان یک پروژه فروشگاهی ثبت شده، اما هنگام بررسی و ثبت دارایی‌های این نسخه در دسترس نبود.",
         role: "رکورد آرشیوی؛ نقش و فناوری منتشر نشده",
         imageAlt: "رکورد آرشیوی فروشگاه مهرشاد",
         challenge: "نبود نسخه زنده یا دارایی قابل بررسی نباید به توضیح یا تصویر ساختگی منجر شود، اما سابقه پروژه نیز نباید بدون توضیح از پورتفولیو حذف شود.",
@@ -240,12 +245,12 @@ export const projects: Project[] = [
           "عدم استفاده از تصویر، فناوری یا نتیجه حدسی",
           "آماده برای تکمیل پس از دریافت مستندات تأییدشده",
         ],
-        sourceNote: "سایت در زمان بررسی پاسخ قابل استفاده‌ای نداد؛ این صفحه عمداً فقط اطلاعات قابل تأیید را نمایش می‌دهد.",
+        sourceNote: "این پروژه در آرشیو Future Media Services نگهداری می‌شود؛ نسخه زنده در زمان بررسی در دسترس نبود و رکورد فقط اطلاعات قابل تأیید را نمایش می‌دهد.",
       },
       en: {
         title: "Mehrshad Store",
         descriptor: "A commerce project preserved in the archive",
-        summary: "The source portfolio lists this domain as a store project, but the website was unavailable when the assets for this version were verified.",
+        summary: "The Future Media Services archive lists this domain as a store project, but the website was unavailable when the assets for this version were verified.",
         role: "Archive record; role and technology not published",
         imageAlt: "Archive record for Mehrshad Store",
         challenge: "An unavailable live product should not lead to invented imagery or technical claims, but the project record should not disappear from the portfolio without explanation.",
@@ -256,7 +261,7 @@ export const projects: Project[] = [
           "No guessed imagery, technology or outcome",
           "Ready to expand when verified documentation is supplied",
         ],
-        sourceNote: "The website did not return a usable response during verification, so this page intentionally presents only confirmable information.",
+        sourceNote: "This project remains in the Future Media Services archive; the live site was unavailable during review, so the record shows only confirmable information.",
       },
     },
   },
@@ -270,6 +275,7 @@ export const projects: Project[] = [
       desktop: "/projects/paytakhte-ketab-desktop.webp",
       tablet: "/projects/paytakhte-ketab-tablet.webp",
       mobile: "/projects/paytakhte-ketab-mobile.webp",
+      mockup: "/projects/mockups/paytakhte-ketab-mockup.webp",
     },
     technologies: ["Commerce", "Search & filtering", "Order tracking"],
     copy: {
@@ -287,7 +293,7 @@ export const projects: Project[] = [
           "امکان خرید بدون حساب کاربری و پیگیری سفارش",
           "محتوای راهنما، تحلیل کتاب و اطلاع‌رسانی ارسال",
         ],
-        sourceNote: "این پروژه در mrashineh.ir زیر عنوان «همچنین ساخته‌شده» فهرست شده است. نقش فنی و فناوری دقیق در منبع منتشر نشده و توضیحات تجربه از وب‌سایت عمومی تهیه شده‌اند.",
+        sourceNote: "این پروژه در آرشیو Future Media Services ثبت شده است؛ دامنه و تجربه عمومی وب‌سایت برای نگهداری این رکورد بررسی شده‌اند.",
       },
       en: {
         title: "Paytakhte Ketab",
@@ -303,7 +309,7 @@ export const projects: Project[] = [
           "Guest checkout and order tracking",
           "Guidance, book analysis and delivery information",
         ],
-        sourceNote: "mrashineh.ir lists this under ‘also built’. The exact technical role and stack are not published there; the experience description is based on the current public website.",
+        sourceNote: "This project is listed in the Future Media Services archive; its domain and public website experience were reviewed to maintain this record.",
       },
     },
   },
@@ -317,6 +323,7 @@ export const projects: Project[] = [
       desktop: "/projects/noornegar-desktop.webp",
       tablet: "/projects/noornegar-tablet.webp",
       mobile: "/projects/noornegar-mobile.webp",
+      mockup: "/projects/mockups/noornegar-mockup.webp",
     },
     technologies: ["Commerce", "Large catalogue", "Editorial content"],
     copy: {
@@ -334,7 +341,7 @@ export const projects: Project[] = [
           "جست‌وجو، سبد خرید و نمایش وضعیت و تنوع محصول",
           "اتصال فروشگاه به محتوای آموزشی و راهنمای تخصصی",
         ],
-        sourceNote: "این پروژه در mrashineh.ir زیر عنوان «همچنین ساخته‌شده» فهرست شده است. نقش فنی و فناوری دقیق در منبع منتشر نشده و توضیحات تجربه از وب‌سایت عمومی تهیه شده‌اند.",
+        sourceNote: "این پروژه در آرشیو Future Media Services ثبت شده است؛ دامنه و تجربه عمومی وب‌سایت برای نگهداری این رکورد بررسی شده‌اند.",
       },
       en: {
         title: "Noornegar",
@@ -350,7 +357,7 @@ export const projects: Project[] = [
           "Search, cart and clear product availability and variation",
           "Commerce connected to educational and specialist guidance",
         ],
-        sourceNote: "mrashineh.ir lists this under ‘also built’. The exact technical role and stack are not published there; the experience description is based on the current public website.",
+        sourceNote: "This project is listed in the Future Media Services archive; its domain and public website experience were reviewed to maintain this record.",
       },
     },
   },
@@ -364,6 +371,7 @@ export const projects: Project[] = [
       desktop: "/projects/jaheshino-desktop.webp",
       tablet: "/projects/jaheshino-tablet.webp",
       mobile: "/projects/jaheshino-mobile.webp",
+      mockup: "/projects/mockups/jaheshino-mockup.webp",
     },
     technologies: ["Course commerce", "Student panel", "Educational content"],
     copy: {
@@ -381,7 +389,7 @@ export const projects: Project[] = [
           "فروش دوره و ورود مستقیم به پنل کاربر",
           "ترکیب محتوای آموزشی، بلاگ و مسیر تجاری",
         ],
-        sourceNote: "این پروژه در mrashineh.ir زیر عنوان «همچنین ساخته‌شده» فهرست شده است. نقش فنی و فناوری دقیق در منبع منتشر نشده و توضیحات تجربه از وب‌سایت عمومی تهیه شده‌اند.",
+        sourceNote: "این پروژه در آرشیو Future Media Services ثبت شده است؛ دامنه و تجربه عمومی وب‌سایت برای نگهداری این رکورد بررسی شده‌اند.",
       },
       en: {
         title: "Jaheshino",
@@ -397,54 +405,7 @@ export const projects: Project[] = [
           "Course purchase connected directly to the user panel",
           "Educational content and editorial guidance around the commercial path",
         ],
-        sourceNote: "mrashineh.ir lists this under ‘also built’. The exact technical role and stack are not published there; the experience description is based on the current public website.",
-      },
-    },
-  },
-  {
-    slug: "sakkou-cowork",
-    url: "https://sakkou-cowork.ir",
-    domain: "sakkou-cowork.ir",
-    available: true,
-    featured: false,
-    images: {
-      desktop: "/projects/sakkou-cowork-desktop.webp",
-      tablet: "/projects/sakkou-cowork-tablet.webp",
-      mobile: "/projects/sakkou-cowork-mobile.webp",
-    },
-    technologies: ["Membership", "Reservations", "Responsive web"],
-    copy: {
-      fa: {
-        title: "فضای کار اشتراکی سکّو",
-        descriptor: "معرفی، عضویت و رزرو فضای کار",
-        summary: "یک تجربه دیجیتال برای معرفی فضای کار اشتراکی رشت، درخواست عضویت و مدیریت رزرو اتاق جلسه، Personal Zone و فضاهای کاری.",
-        role: "فهرست‌شده به‌عنوان پروژه تکمیلی؛ نقش دقیق منتشر نشده",
-        imageAlt: "نمای واکنش‌گرای وب‌سایت فضای کار اشتراکی سکّو",
-        challenge: "یک فضای کار اشتراکی باید هویت جامعه خود را منتقل کند و هم‌زمان مسیر عملی عضویت، شناخت امکانات و رزرو فضا را برای تیم‌ها و افراد ساده نگه دارد.",
-        approach: "سایت با معرفی روشن مخاطبان و امکانات شروع می‌شود و درخواست عضویت، رزرو اتاق جلسه، Personal Zone و مدیریت رزروها را به جریان‌های مشخص تبدیل می‌کند.",
-        highlights: [
-          "جایگاه روشن برای تیم‌های فنی، توسعه‌دهندگان و طراحان",
-          "درخواست عضویت و پذیرش در مجموعه",
-          "رزرو اتاق جلسه، Personal Zone و فضاهای کاری",
-          "تجربه واکنش‌گرا با تمرکز بر اقدام و عضویت",
-        ],
-        sourceNote: "این پروژه در mrashineh.ir زیر عنوان «همچنین ساخته‌شده» فهرست شده است. نقش فنی و فناوری دقیق در منبع منتشر نشده و توضیحات تجربه از وب‌سایت عمومی تهیه شده‌اند.",
-      },
-      en: {
-        title: "Sakkou Coworking",
-        descriptor: "Coworking discovery, membership and reservations",
-        summary: "A digital experience for introducing a Rasht coworking space, requesting membership and managing reservations for meeting rooms, personal zones and work areas.",
-        role: "Listed as an additional build; exact contribution not published",
-        imageAlt: "Responsive views of the Sakkou Coworking website",
-        challenge: "A coworking space needs to express the character of its community while keeping membership, facilities and space reservation practical for both teams and individuals.",
-        approach: "The website begins with a clear audience and facilities proposition, then turns membership, meeting-room booking, personal zones and reservation management into distinct flows.",
-        highlights: [
-          "Clear positioning for technical teams, developers and designers",
-          "Membership request and community application flow",
-          "Meeting-room, personal-zone and workspace reservations",
-          "Responsive experience centred on action and membership",
-        ],
-        sourceNote: "mrashineh.ir lists this under ‘also built’. The exact technical role and stack are not published there; the experience description is based on the current public website.",
+        sourceNote: "This project is listed in the Future Media Services archive; its domain and public website experience were reviewed to maintain this record.",
       },
     },
   },

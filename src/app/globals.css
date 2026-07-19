@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  --font-app: var(--font-geist-sans), system-ui, sans-serif;
   --signal: #d90a2c;
   --signal-dark: #b80021;
   --ink: #161519;
@@ -33,13 +34,13 @@ body {
   min-width: 320px;
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-app);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
 body.font-fa {
-  font-family: "Vazirmatn Variable", var(--font-geist-sans), sans-serif;
+  --font-app: "Vazirmatn Variable", var(--font-geist-sans), sans-serif;
 }
 
 body[data-menu-open="true"] {
@@ -97,7 +98,7 @@ a {
 .eyebrow {
   margin: 0;
   color: var(--signal);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.74rem;
   font-weight: 730;
   letter-spacing: 0.14em;
@@ -195,9 +196,11 @@ a {
 .text-link,
 .card-link {
   display: inline-flex;
+  min-height: 2.75rem;
   align-items: center;
   gap: 0.75rem;
   color: var(--ink);
+  padding-block: 0.5rem;
   font-size: 0.9rem;
   font-weight: 720;
 }
@@ -225,8 +228,17 @@ a {
   z-index: 100;
   height: var(--header-height);
   border-block-end: 1px solid rgba(22, 21, 25, 0.1);
+  background: transparent;
+  isolation: isolate;
+}
+
+.site-header::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
   background: color-mix(in srgb, var(--paper) 88%, transparent);
   backdrop-filter: blur(18px);
+  content: "";
 }
 
 .site-header__inner {
@@ -241,7 +253,7 @@ a {
   width: max-content;
   align-items: center;
   gap: 0.65rem;
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 1.2rem;
   font-weight: 860;
   letter-spacing: -0.05em;
@@ -276,6 +288,9 @@ a {
 
 .desktop-nav a {
   position: relative;
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
   padding-block: 0.7rem;
 }
 
@@ -290,8 +305,13 @@ a {
   transition: transform 180ms ease;
 }
 
-.desktop-nav a:hover::after {
+.desktop-nav a:hover::after,
+.desktop-nav a[aria-current="page"]::after {
   transform: scaleX(1);
+}
+
+.desktop-nav a[aria-current="page"] {
+  color: var(--signal);
 }
 
 .header-actions {
@@ -308,7 +328,7 @@ a {
   place-items: center;
   border: 1px solid var(--line);
   border-radius: 999px;
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.75rem;
   font-weight: 760;
   transition: border-color 180ms ease, color 180ms ease;
@@ -385,9 +405,13 @@ a {
 
 .mobile-menu nav a span {
   color: var(--signal);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.66rem;
   letter-spacing: 0.12em;
+}
+
+.mobile-menu nav a[aria-current="page"] {
+  color: var(--signal);
 }
 
 .mobile-menu > p {
@@ -465,7 +489,7 @@ a {
   display: flex;
   justify-content: space-between;
   color: var(--muted);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -596,7 +620,7 @@ a {
   display: flex;
   justify-content: space-between;
   color: var(--muted);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -629,7 +653,7 @@ a {
 
 .capability-strip b {
   color: var(--signal);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.62rem;
 }
 
@@ -715,7 +739,7 @@ a {
   display: flex;
   justify-content: space-between;
   color: var(--muted);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.67rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -759,7 +783,7 @@ a {
 .project-gallery {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1rem, 2.5vw, 2rem);
+  gap: clamp(1.25rem, 3vw, 2.5rem);
 }
 
 .project-card {
@@ -772,13 +796,13 @@ a {
 
 .project-card__media {
   position: relative;
-  display: block;
+  display: grid;
   overflow: hidden;
-  aspect-ratio: 16 / 11;
+  grid-template-rows: auto minmax(5.8rem, auto);
   border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
   border-radius: clamp(1rem, 2vw, 1.5rem);
-  background: var(--ink);
-  color: var(--white);
+  background: var(--white);
+  color: var(--ink);
   box-shadow: 0 1.2rem 3rem rgba(22, 21, 25, 0.1);
   isolation: isolate;
   transform: translateZ(0);
@@ -788,20 +812,6 @@ a {
     border-color 220ms ease;
 }
 
-.project-card__media::before {
-  position: absolute;
-  z-index: 5;
-  width: 45%;
-  height: 180%;
-  inset-block-start: -42%;
-  inset-inline-start: -60%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent);
-  content: "";
-  pointer-events: none;
-  transform: rotate(14deg);
-  transition: inset-inline-start 800ms var(--ease-out);
-}
-
 .project-card__media:hover,
 .project-card__media:focus-visible {
   border-color: color-mix(in srgb, var(--signal) 48%, transparent);
@@ -809,111 +819,66 @@ a {
   transform: translateY(-0.45rem);
 }
 
-.project-card__media:hover::before,
-.project-card__media:focus-visible::before {
-  inset-inline-start: 125%;
-}
-
-.project-card__browser {
-  position: absolute;
-  z-index: 3;
-  inset: 0 0 auto;
-  display: flex;
-  height: clamp(2.1rem, 4vw, 2.7rem);
-  align-items: center;
-  gap: 0.38rem;
-  border-block-end: 1px solid rgba(255, 255, 255, 0.1);
-  background: color-mix(in srgb, var(--ink) 94%, white);
-  padding-inline: clamp(0.8rem, 2vw, 1.1rem);
-}
-
-.project-card__browser i {
-  width: 0.42rem;
-  height: 0.42rem;
-  flex: 0 0 auto;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.project-card__browser i:first-child {
-  background: var(--signal);
-}
-
-.project-card__browser small {
+.project-card__stage {
+  position: relative;
   overflow: hidden;
-  margin-inline-start: auto;
-  color: rgba(255, 255, 255, 0.46);
-  font-family: var(--font-geist-sans), sans-serif;
-  font-size: 0.6rem;
-  letter-spacing: 0.04em;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  aspect-ratio: 2400 / 1714;
+  background: #eceef0;
 }
 
-.project-card__image {
-  position: absolute;
-  z-index: 0;
-  inset: clamp(2.1rem, 4vw, 2.7rem) 0 0;
-  overflow: hidden;
-  background: var(--paper-strong);
-}
-
-.project-card__image img {
+.project-card__stage img {
   object-fit: cover;
-  object-position: top;
-  transition: filter 500ms ease;
+  object-position: center;
+  transition:
+    filter 500ms ease,
+    transform 700ms var(--ease-out);
 }
 
-.project-card__media:hover .project-card__image img,
-.project-card__media:focus-visible .project-card__image img {
-  filter: saturate(1.08) contrast(1.025);
+.project-card__media:hover .project-card__stage img,
+.project-card__media:focus-visible .project-card__stage img {
+  filter: saturate(1.08) contrast(1.02);
+  transform: scale(1.012);
 }
 
-.project-card__shade {
-  position: absolute;
-  z-index: 1;
-  inset: 42% 0 0;
-  background: linear-gradient(to bottom, transparent, rgba(10, 10, 12, 0.9));
-  pointer-events: none;
-}
-
-.project-card__index,
-.project-card__identity,
-.project-card__visit {
-  position: absolute;
-  z-index: 2;
+.project-card__footer {
+  display: grid;
+  min-width: 0;
+  min-height: clamp(5.8rem, 9vw, 7.2rem);
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(0.8rem, 2vw, 1.25rem);
+  border-block-start: 1px solid var(--line);
+  padding: clamp(1rem, 2.5vw, 1.6rem);
 }
 
 .project-card__index {
-  inset-block-start: clamp(3rem, 6vw, 4.2rem);
-  inset-inline-start: clamp(0.8rem, 2vw, 1.2rem);
   display: grid;
   width: 2.2rem;
   height: 2.2rem;
   place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.42);
+  border: 1px solid var(--line);
   border-radius: 50%;
-  background: rgba(22, 21, 25, 0.48);
-  font-family: var(--font-geist-sans), sans-serif;
+  color: var(--muted);
+  font-family: var(--font-app);
   font-size: 0.58rem;
   font-weight: 760;
   letter-spacing: 0.08em;
-  backdrop-filter: blur(12px);
 }
 
 .project-card__identity {
-  inset-inline-start: clamp(1rem, 3vw, 1.8rem);
-  inset-block-end: clamp(1rem, 3vw, 1.6rem);
   display: grid;
-  max-width: calc(100% - 11rem);
-  gap: 0.35rem;
+  min-width: 0;
+  gap: 0.25rem;
 }
 
 .project-card__identity strong {
-  font-size: clamp(1.45rem, 3.2vw, 3rem);
+  overflow: hidden;
+  font-size: clamp(1.25rem, 2.6vw, 2.25rem);
   font-weight: 760;
   letter-spacing: -0.045em;
   line-height: 1.05;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 [dir="rtl"] .project-card__identity strong {
@@ -922,10 +887,13 @@ a {
 }
 
 .project-card__identity small {
-  color: rgba(255, 255, 255, 0.6);
-  font-family: var(--font-geist-sans), sans-serif;
-  font-size: 0.63rem;
+  overflow: hidden;
+  color: var(--muted);
+  font-family: var(--font-app);
+  font-size: 0.62rem;
   letter-spacing: 0.04em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .device-mockup {
@@ -998,6 +966,20 @@ a {
   content: "";
 }
 
+.device-mockup--composite {
+  overflow: hidden;
+  aspect-ratio: 2400 / 1714;
+  padding-block-end: 0;
+  border-radius: 0.5rem;
+  filter: drop-shadow(0 2rem 4.5rem rgba(22, 21, 25, 0.16));
+}
+
+.device-mockup--composite img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .device-mockup--archive {
   display: grid;
   overflow: hidden;
@@ -1021,7 +1003,7 @@ a {
 .device-mockup--archive span,
 .device-mockup--archive small {
   color: rgba(255, 255, 255, 0.5);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.66rem;
   font-weight: 720;
   letter-spacing: 0.14em;
@@ -1033,14 +1015,14 @@ a {
 }
 
 .project-card__visit {
-  inset-inline-end: clamp(1rem, 3vw, 1.6rem);
-  inset-block-end: clamp(1rem, 3vw, 1.6rem);
   display: inline-flex;
   min-height: 2.7rem;
   align-items: center;
   gap: 0.6rem;
+  border: 1px solid var(--signal);
   border-radius: 999px;
   background: var(--signal);
+  color: var(--white);
   padding: 0.68rem 0.9rem;
   font-size: 0.68rem;
   font-weight: 740;
@@ -1052,8 +1034,9 @@ a {
 
 .project-card__media:hover .project-card__visit,
 .project-card__media:focus-visible .project-card__visit {
-  background: var(--white);
-  color: var(--ink);
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--white);
   transform: translateY(-0.2rem);
 }
 
@@ -1076,7 +1059,7 @@ a {
   border-block-end: 1px solid var(--line);
   color: var(--muted);
   padding: 0.2rem 0 1.2rem;
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.62rem;
   font-weight: 750;
   letter-spacing: 0.12em;
@@ -1120,7 +1103,7 @@ a {
 
 .process-list__marker span {
   color: var(--signal);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.64rem;
   font-weight: 790;
 }
@@ -1157,7 +1140,7 @@ a {
 .process-list__output {
   margin: 0;
   color: var(--signal) !important;
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.63rem !important;
   font-weight: 760;
   letter-spacing: 0.04em;
@@ -1241,7 +1224,7 @@ a {
   place-items: center;
   border-radius: 50%;
   background: var(--signal);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 1.35rem;
   letter-spacing: -0.05em;
   transform: translate(-50%, -50%);
@@ -1286,7 +1269,7 @@ a {
   border-radius: 999px;
   background: var(--ink);
   padding: 0.5rem 0.75rem;
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.62rem;
   font-weight: 720;
   letter-spacing: 0.06em;
@@ -1330,7 +1313,7 @@ a {
   display: flex;
   justify-content: space-between;
   color: rgba(255, 255, 255, 0.58);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.63rem;
   font-weight: 720;
   letter-spacing: 0.07em;
@@ -1412,7 +1395,7 @@ a {
 .social-card__visual b {
   position: relative;
   z-index: 2;
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
 }
 
 .social-card__visual span {
@@ -1548,7 +1531,7 @@ a {
 .service-list > a > span,
 .service-list > a > div small {
   color: var(--muted);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.66rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -1577,9 +1560,11 @@ a {
 
 .back-link {
   display: inline-flex;
+  min-height: 2.75rem;
   align-items: center;
   gap: 0.7rem;
   color: var(--muted);
+  padding-block: 0.5rem;
   font-size: 0.82rem;
 }
 
@@ -1664,7 +1649,7 @@ a {
 
 .service-detail__body li span {
   color: var(--signal);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.64rem;
 }
 
@@ -1680,7 +1665,7 @@ a {
 
 .service-detail__cta span {
   color: rgba(255, 255, 255, 0.46);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.62rem;
   letter-spacing: 0.12em;
 }
@@ -1705,7 +1690,7 @@ a {
 .work-hold > div {
   display: flex;
   color: var(--paper-strong);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: clamp(5rem, 13vw, 13rem);
   font-weight: 900;
   letter-spacing: -0.12em;
@@ -1742,7 +1727,7 @@ a {
   margin-block: 3rem clamp(4rem, 8vw, 7rem);
   color: var(--muted);
   padding-block: 0.85rem;
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.64rem;
   font-weight: 720;
   letter-spacing: 0.12em;
@@ -1812,6 +1797,11 @@ a {
   width: min(88%, 68rem);
 }
 
+.project-detail__device-stage--composite > div {
+  min-height: 0;
+  padding-block: clamp(2.5rem, 5vw, 5rem) 1.75rem;
+}
+
 .project-detail__device-stage > div > p {
   width: 100%;
   margin: 1.5rem 0 0;
@@ -1849,7 +1839,7 @@ a {
 .project-detail__body dt,
 .project-detail__source > span {
   color: var(--signal);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.63rem;
   font-weight: 760;
   letter-spacing: 0.1em;
@@ -1914,7 +1904,7 @@ a {
 
 .project-detail__story li span {
   color: var(--signal);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.66rem;
   font-weight: 760;
 }
@@ -1956,7 +1946,7 @@ a {
 
 .project-next > span {
   grid-column: 1 / -1;
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.68rem;
   font-weight: 730;
   letter-spacing: 0.13em;
@@ -1990,7 +1980,7 @@ a {
 
 .about-statement > span {
   color: var(--signal);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.68rem;
   font-weight: 750;
   letter-spacing: 0.14em;
@@ -2028,7 +2018,7 @@ a {
 
 .values-section article > span {
   color: var(--signal);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.65rem;
 }
 
@@ -2087,7 +2077,7 @@ a {
 
 .privacy-list article > span {
   color: var(--signal);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.65rem;
 }
 
@@ -2233,7 +2223,7 @@ a {
 
 .contact-note span {
   color: var(--signal);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.6rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -2266,7 +2256,7 @@ a {
   width: max-content;
   align-items: center;
   gap: 0.8rem;
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 2.4rem;
   font-weight: 900;
   letter-spacing: -0.08em;
@@ -2289,13 +2279,19 @@ a {
   justify-content: space-between;
   gap: 2rem;
   color: rgba(255, 255, 255, 0.48);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: 0.67rem;
 }
 
 .site-footer__bottom > div {
   display: flex;
   gap: 1.5rem;
+}
+
+.site-footer__bottom a {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
 }
 
 /* Error and loading */
@@ -2309,7 +2305,7 @@ a {
 
 .state-page span {
   color: var(--signal);
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-app);
   font-size: clamp(7rem, 20vw, 18rem);
   font-weight: 900;
   letter-spacing: -0.1em;
@@ -2355,6 +2351,15 @@ a {
   .project-detail__device-stage .device-mockup {
     width: min(66%, 35rem);
     padding-block-end: 0;
+  }
+
+  .project-detail__device-stage .device-mockup--composite {
+    width: min(94%, 46rem);
+  }
+
+  .project-detail__device-stage--composite > div {
+    min-height: 0;
+    padding-block: clamp(2rem, 5vw, 3.5rem) 1.5rem;
   }
 
   .device-mockup__screen {
@@ -2529,14 +2534,6 @@ a {
     grid-column: auto;
   }
 
-  .project-card__media {
-    aspect-ratio: 4 / 3;
-  }
-
-  .project-card__identity {
-    max-width: calc(100% - 8rem);
-  }
-
   .project-detail__device-stage > div {
     min-height: clamp(37rem, 174vw, 49rem);
     padding: 3.5rem 1rem 2.5rem;
@@ -2545,6 +2542,15 @@ a {
   .device-mockup,
   .project-detail__device-stage .device-mockup {
     width: min(78%, 20rem);
+  }
+
+  .project-detail__device-stage .device-mockup--composite {
+    width: min(96%, 24rem);
+  }
+
+  .project-detail__device-stage--composite > div {
+    min-height: 0;
+    padding: 2rem 1rem 1.25rem;
   }
 
   .device-mockup__screen {
@@ -2564,11 +2570,6 @@ a {
     border-width: 0.55rem;
     border-radius: 2.25rem;
     padding: 1rem;
-  }
-
-  .project-card__visit {
-    inset-inline-end: 0.75rem;
-    inset-block-end: 0.75rem;
   }
 
   .why-section__stage {
@@ -2730,12 +2731,7 @@ a {
     font-size: 0.8rem;
   }
 
-  .project-card__identity {
-    max-width: calc(100% - 5.5rem);
-  }
-
-  .project-card__identity small,
-  .project-card__browser small {
+  .project-card__identity small {
     display: none;
   }
 

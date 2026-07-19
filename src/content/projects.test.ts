@@ -16,6 +16,7 @@ describe("portfolio content", () => {
       expect(project.images?.desktop).toMatch(/-desktop\.webp$/);
       expect(project.images?.tablet).toMatch(/-tablet\.webp$/);
       expect(project.images?.mobile).toMatch(/-mobile\.webp$/);
+      expect(project.images?.mockup).toMatch(/\/mockups\/.+-mockup\.webp$/);
       expect(projectCopy(project, "fa").title).toBeTruthy();
       expect(projectCopy(project, "en").title).toBeTruthy();
       expect(project.technologies.length).toBeGreaterThan(0);
@@ -44,10 +45,20 @@ describe("portfolio content", () => {
   });
 
   it("only puts live projects with verified imagery in the direct-link card grid", () => {
-    expect(portfolioProjects).toHaveLength(8);
+    expect(portfolioProjects).toHaveLength(7);
     for (const project of portfolioProjects) {
       expect(project.available).toBe(true);
       expect(project.images?.desktop).toBeTruthy();
+      expect(project.images?.mobile).toBeTruthy();
+      expect(project.images?.mockup).toBeTruthy();
+    }
+  });
+
+  it("uses Future Media Services records and excludes the removed coworking project", () => {
+    expect(projectSlugs).not.toContain("sakkou-cowork");
+    for (const project of projects) {
+      expect(project.copy.en.sourceNote).toContain("Future Media Services");
+      expect(project.copy.fa.sourceNote).toContain("Future Media Services");
     }
   });
 });

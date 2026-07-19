@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-18",
+  "updatedAt": "2026-07-19",
   "assets": [
     {
       "id": "brand-logo",
@@ -18,17 +18,17 @@
     },
     {
       "id": "portfolio-projects",
-      "status": "owner-supplied-source",
+      "status": "owner-verified",
       "path": "src/content/projects.ts",
-      "source": "https://www.mrashineh.ir/#projects",
+      "source": "owner-provided CV and Future Media Services project records",
       "fallback": "project names, roles, technology and direct live URLs",
-      "replacementNotes": "Keep claims aligned with the source portfolio and do not add outcome metrics without evidence."
+      "replacementNotes": "Keep claims aligned with the owner-provided CV and Future Media Services records; do not add outcome metrics without evidence."
     },
     {
       "id": "portfolio-screenshots",
       "status": "localized",
       "path": "public/projects/",
-      "source": "live public project homepages",
+      "source": "live public project homepages and the owner-provided 89927 device mockup",
       "files": [
         "ofoq-{desktop,tablet,mobile}.webp",
         "aura-disposable-{desktop,tablet,mobile}.webp",
@@ -37,9 +37,10 @@
         "paytakhte-ketab-{desktop,tablet,mobile}.webp",
         "noornegar-{desktop,tablet,mobile}.webp",
         "jaheshino-{desktop,tablet,mobile}.webp",
-        "sakkou-cowork-{desktop,tablet,mobile}.webp"
+        "mockups/{ofoq,aura-disposable,digimoragheb,kashiland,paytakhte-ketab,noornegar,jaheshino}-mockup.webp",
+        "mockups/device-template.jpg"
       ],
-      "replacementNotes": "Each reachable project uses real desktop, tablet and mobile captures. Refresh all three viewports when a live site changes materially."
+      "replacementNotes": "Each reachable project uses real desktop, tablet and mobile captures composited into the supplied device artwork. Run npm run assets:portfolio after refreshing captures."
     },
     {
       "id": "instagram-media",
