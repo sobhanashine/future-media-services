@@ -26,22 +26,14 @@ export function ProjectDevice({
   }
 
   return (
-    <div className="device-mockup">
-      <div className="device-mockup__screen">
-        <picture>
-          <source media="(max-width: 780px)" srcSet={project.images.mobile} />
-          <source media="(max-width: 1060px)" srcSet={project.images.tablet} />
-          <Image
-            src={project.images.desktop}
-            alt={content.imageAlt}
-            fill
-            priority={priority}
-            sizes="(max-width: 780px) 78vw, (max-width: 1060px) 68vw, (max-width: 1440px) 64vw, 58rem"
-          />
-        </picture>
-      </div>
-      <span className="device-mockup__camera" aria-hidden="true" />
-      <span className="device-mockup__base" aria-hidden="true" />
+    <div className="device-mockup device-mockup--composite">
+      <Image
+        src={project.images.mockup}
+        alt={content.imageAlt}
+        fill
+        priority={priority}
+        sizes="(max-width: 780px) 92vw, (max-width: 1060px) 86vw, (max-width: 1440px) 76vw, 68rem"
+      />
     </div>
   );
 }

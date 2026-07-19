@@ -2,7 +2,10 @@ import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
   testDir: "./tests/e2e",
-  fullyParallel: true,
+  // This suite exercises one Next.js production server across locale switches,
+  // WebGL, and form navigation. Running its single spec in parallel intermittently
+  // causes Next client transitions to lose their fallback state.
+  fullyParallel: false,
   retries: process.env.CI ? 2 : 0,
   reporter: [["list"], ["html", { open: "never" }]],
   use: {

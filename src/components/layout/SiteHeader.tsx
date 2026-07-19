@@ -58,11 +58,16 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         </Link>
 
         <nav className="desktop-nav" aria-label={locale === "fa" ? "پیمایش اصلی" : "Main navigation"}>
-          {links.map(([label, href]) => (
-            <Link key={href} href={localePath(locale, href)}>
-              {label}
-            </Link>
-          ))}
+          {links.map(([label, href]) => {
+            const linkHref = localePath(locale, href);
+            const isCurrent = pathname === linkHref || pathname.startsWith(`${linkHref}/`);
+
+            return (
+              <Link key={href} href={linkHref} aria-current={isCurrent ? "page" : undefined}>
+                {label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="header-actions">
@@ -93,18 +98,24 @@ export function SiteHeader({ locale }: { locale: Locale }) {
 
       <div id="mobile-menu" className="mobile-menu" data-open={open} aria-hidden={!open}>
         <nav aria-label={locale === "fa" ? "پیمایش موبایل" : "Mobile navigation"}>
-          {links.map(([label, href], index) => (
-            <Link
-              key={href}
-              ref={index === 0 ? firstLinkRef : undefined}
-              href={localePath(locale, href)}
-              tabIndex={open ? 0 : -1}
-              onClick={() => setOpen(false)}
-            >
-              <span>0{index + 1}</span>
-              {label}
-            </Link>
-          ))}
+          {links.map(([label, href], index) => {
+            const linkHref = localePath(locale, href);
+            const isCurrent = pathname === linkHref || pathname.startsWith(`${linkHref}/`);
+
+            return (
+              <Link
+                key={href}
+                ref={index === 0 ? firstLinkRef : undefined}
+                href={linkHref}
+                aria-current={isCurrent ? "page" : undefined}
+                tabIndex={open ? 0 : -1}
+                onClick={() => setOpen(false)}
+              >
+                <span>0{index + 1}</span>
+                {label}
+              </Link>
+            );
+          })}
         </nav>
         <p>{content.common.footerLine}</p>
       </div>

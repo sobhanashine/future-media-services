@@ -17,6 +17,7 @@ const labels = {
 
 function ProjectCard({ project, locale, index }: { project: Project; locale: Locale; index: number }) {
   const content = projectCopy(project, locale);
+  const text = labels[locale];
 
   if (!project.images) return null;
 
@@ -27,46 +28,39 @@ function ProjectCard({ project, locale, index }: { project: Project; locale: Loc
         target="_blank"
         rel="noreferrer"
         className="project-card__media"
-        aria-label={`${textFor(locale).visit}: ${content.title}`}
+        aria-label={`${text.visit}: ${content.title}`}
         data-project-media
       >
-        <span className="project-card__browser" aria-hidden="true">
-          <i />
-          <i />
-          <i />
-          <small>{project.domain}</small>
-        </span>
-        <span className="project-card__image">
+        <span className="project-card__stage">
           <Image
-            src={project.images.desktop}
+            src={project.images.mockup}
             alt={content.imageAlt}
             fill
-            sizes="(max-width: 760px) calc(100vw - 2rem), (max-width: 1200px) 50vw, 44rem"
+            loading={index === 0 ? "eager" : "lazy"}
+            sizes="(max-width: 780px) 94vw, (max-width: 1200px) 46vw, 76rem"
           />
         </span>
-        <span className="project-card__shade" aria-hidden="true" />
-        <span className="project-card__index" aria-hidden="true">
-          {String(index + 1).padStart(2, "0")}
-        </span>
-        <span className="project-card__identity">
-          <strong>{content.title}</strong>
-          <small>{project.domain}</small>
-        </span>
-        <span className="project-card__visit" aria-hidden="true">
-          {textFor(locale).visit}
-          <ArrowIcon />
+
+        <span className="project-card__footer">
+          <span className="project-card__index" aria-hidden="true">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <span className="project-card__identity">
+            <strong>{content.title}</strong>
+            <small>{project.domain}</small>
+          </span>
+          <span className="project-card__visit" aria-hidden="true">
+            {text.visit}
+            <ArrowIcon />
+          </span>
         </span>
       </a>
     </article>
   );
 }
 
-function textFor(locale: Locale) {
-  return labels[locale];
-}
-
 export function ProjectGallery({ locale, showAllLink = false }: { locale: Locale; showAllLink?: boolean }) {
-  const text = textFor(locale);
+  const text = labels[locale];
   const displayedProjects = showAllLink ? featuredProjects : portfolioProjects;
 
   return (

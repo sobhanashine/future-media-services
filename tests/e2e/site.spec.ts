@@ -62,7 +62,7 @@ test("portfolio cards are bilingual image previews linked directly to live websi
   await expect(page.getByRole("link", { name: "Visit website: OFOQ" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Visit website: Aura Disposable" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Visit website: DigiMoragheb" })).toBeVisible();
-  await expect(page.locator(".project-card__media")).toHaveCount(8);
+  await expect(page.locator(".project-card__media")).toHaveCount(7);
   await expect(page.locator(".project-card__media").first()).toHaveAttribute("href", "https://ofoq-web.vercel.app");
   await expect(page.locator(".project-card__media").first()).toHaveAttribute("target", "_blank");
   await expect(page.locator(".project-card img").first()).toHaveJSProperty("complete", true);
@@ -70,7 +70,8 @@ test("portfolio cards are bilingual image previews linked directly to live websi
 
   await page.goto("/work");
   await expect(page.getByRole("link", { name: "بازدید از وب‌سایت: افق" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "بازدید از وب‌سایت: فضای کار اشتراکی سکّو" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "بازدید از وب‌سایت: نورنگار" })).toBeVisible();
+  await expect(page.getByText(/سکّو|سکو/)).toHaveCount(0);
 });
 
 test("portfolio imagery and cards remain responsive", async ({ page }) => {
@@ -79,10 +80,10 @@ test("portfolio imagery and cards remain responsive", async ({ page }) => {
   for (const width of widths) {
     await page.setViewportSize({ width, height: 1000 });
     await page.goto("/en/work");
-    const image = page.locator(".project-card__image img").first();
-    await expect(image).toHaveJSProperty("complete", true);
-    const currentSrc = await image.evaluate((element: HTMLImageElement) => element.currentSrc);
-    expect(decodeURIComponent(currentSrc)).toContain("ofoq-desktop.webp");
+    const mockupImage = page.locator(".project-card__stage img").first();
+    await expect(mockupImage).toHaveJSProperty("complete", true);
+    const mockupSrc = await mockupImage.evaluate((element: HTMLImageElement) => element.currentSrc);
+    expect(decodeURIComponent(mockupSrc)).toContain("ofoq-mockup.webp");
     const card = await page.locator(".project-card__media").first().boundingBox();
     expect(card).not.toBeNull();
     expect(card!.width).toBeGreaterThan(card!.height);
@@ -100,13 +101,14 @@ test("every portfolio entry has a Persian and English detail page", async ({ req
     "paytakhte-ketab",
     "noornegar",
     "jaheshino",
-    "sakkou-cowork",
   ];
 
   for (const slug of slugs) {
     expect((await request.get(`/work/${slug}`)).ok()).toBe(true);
     expect((await request.get(`/en/work/${slug}`)).ok()).toBe(true);
   }
+
+  expect((await request.get("/work/sakkou-cowork")).status()).toBe(404);
 });
 
 test("the contact form is honest when delivery is unconfigured", async ({ page }) => {

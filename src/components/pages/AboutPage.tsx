@@ -25,11 +25,6 @@ export function AboutPage({ locale }: { locale: Locale }) {
           </article>
         ))}
       </section>
-      <section className="team-placeholder container-shell" data-reveal>
-        <p className="eyebrow">{locale === "fa" ? "تیم" : "The team"}</p>
-        <h2>{locale === "fa" ? "نام و تصویر اعضا پس از تأیید منتشر می‌شود." : "Names and portraits will be published after approval."}</h2>
-        <span className="status-pill">{content.common.pending}</span>
-      </section>
     </>
   );
 }
