@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ProjectDevice } from "@/components/pages/ProjectDevice";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { projects, type Project } from "@/content/projects";
-import { localePath, type Locale } from "@/content/site";
+import { formatIndex, localePath, type Locale } from "@/content/site";
 
 const labels = {
   fa: {
@@ -58,7 +58,7 @@ export function ProjectDetailPage({ project, locale }: { project: Project; local
           {text.back}
         </Link>
         <div className="project-detail__index" aria-hidden="true" data-hero-reveal>
-          <span>CASE / {String(projectIndex + 1).padStart(2, "0")}</span>
+          <span>CASE / {formatIndex(projectIndex + 1, locale)}</span>
           <span>{project.domain}</span>
         </div>
         <p className="eyebrow" data-hero-reveal>{content.descriptor}</p>
@@ -110,26 +110,26 @@ export function ProjectDetailPage({ project, locale }: { project: Project; local
 
         <div className="project-detail__story">
           <section data-reveal>
-            <p className="eyebrow">01 / {text.overview}</p>
+            <p className="eyebrow">{formatIndex(1, locale)} / {text.overview}</p>
             <h2>{content.summary}</h2>
           </section>
           <section data-reveal>
-            <p className="eyebrow">02 / {text.challenge}</p>
+            <p className="eyebrow">{formatIndex(2, locale)} / {text.challenge}</p>
             <h2>{text.challenge}</h2>
             <p>{content.challenge}</p>
           </section>
           <section data-reveal>
-            <p className="eyebrow">03 / {text.approach}</p>
+            <p className="eyebrow">{formatIndex(3, locale)} / {text.approach}</p>
             <h2>{text.approach}</h2>
             <p>{content.approach}</p>
           </section>
           <section data-reveal>
-            <p className="eyebrow">04 / {text.highlights}</p>
+            <p className="eyebrow">{formatIndex(4, locale)} / {text.highlights}</p>
             <h2>{text.highlights}</h2>
             <ul>
               {content.highlights.map((highlight, index) => (
                 <li key={highlight}>
-                  <span>0{index + 1}</span>
+                  <span>{formatIndex(index + 1, locale)}</span>
                   {highlight}
                 </li>
               ))}

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { copy, localePath, type Locale } from "@/content/site";
+import { copy, formatIndex, localePath, type Locale } from "@/content/site";
 
 function languageHref(locale: Locale, pathname: string) {
   if (locale === "fa") {
@@ -111,7 +111,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
                 tabIndex={open ? 0 : -1}
                 onClick={() => setOpen(false)}
               >
-                <span>0{index + 1}</span>
+                <span>{formatIndex(index + 1, locale)}</span>
                 {label}
               </Link>
             );

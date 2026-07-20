@@ -1,5 +1,5 @@
 import { PageIntro } from "@/components/ui/PageIntro";
-import { copy, type Locale } from "@/content/site";
+import { copy, formatIndex, type Locale } from "@/content/site";
 
 export function AboutPage({ locale }: { locale: Locale }) {
   const content = copy[locale];
@@ -19,7 +19,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
       <section className="values-section container-shell">
         {content.about.values.map((value, index) => (
           <article key={value.title} data-reveal>
-            <span>0{index + 1}</span>
+            <span>{formatIndex(index + 1, locale)}</span>
             <h2>{value.title}</h2>
             <p>{value.body}</p>
           </article>

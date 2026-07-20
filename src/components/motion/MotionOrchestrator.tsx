@@ -62,6 +62,37 @@ export function MotionOrchestrator() {
           },
         );
       });
+
+      const processRoute = document.querySelector<HTMLOListElement>("[data-process-route]");
+      if (processRoute) {
+        const markers = processRoute.querySelectorAll<HTMLElement>(".process-list__marker");
+        const cards = processRoute.querySelectorAll<HTMLElement>("article");
+
+        ScrollTrigger.create({
+          trigger: processRoute,
+          start: "top 78%",
+          once: true,
+          onEnter: () => {
+            processRoute.classList.add("is-route-animated");
+            gsap.timeline()
+              .fromTo(markers, { autoAlpha: 0, scale: 0.55 }, {
+                autoAlpha: 1,
+                scale: 1,
+                duration: 0.46,
+                stagger: 0.13,
+                ease: "back.out(1.7)",
+              }, 0.16)
+              .fromTo(cards, { autoAlpha: 0, y: 26 }, {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.62,
+                stagger: 0.11,
+                ease: "power3.out",
+                clearProps: "transform,opacity,visibility",
+              }, 0.3);
+          },
+        });
+      }
     });
 
     return () => context.revert();

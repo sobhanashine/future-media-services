@@ -13,6 +13,16 @@ test("Persian and English home experiences are reachable", async ({ page }) => {
   await expect(page.getByRole("heading", { level: 1 })).toContainText("future");
 });
 
+test("visible counters use the active locale numeral system", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator(".capability-strip b").first()).toHaveText("۰۱");
+  await expect(page.locator(".process-roadmap__legend span").last()).toHaveText("۰۱ — ۰۵");
+
+  await page.goto("/en");
+  await expect(page.locator(".capability-strip b").first()).toHaveText("01");
+  await expect(page.locator(".process-roadmap__legend span").last()).toHaveText("01 — 05");
+});
+
 test("primary service to contact flow works", async ({ page }) => {
   await page.goto("/en/services");
   await page.getByRole("link", { name: /Website design & development/ }).click();
@@ -96,6 +106,39 @@ test("portfolio imagery and cards remain responsive", async ({ page }) => {
     expect(card!.width).toBeGreaterThan(card!.height);
     expect(card!.width).toBeLessThanOrEqual(width);
   }
+});
+
+test("compact portfolio controls keep the arrow centered in its circle", async ({ page }) => {
+  for (const width of [390, 900]) {
+    await page.setViewportSize({ width, height: 1000 });
+    await page.goto("/en/work");
+    const control = page.locator(".project-card__visit").first();
+    const metrics = await control.evaluate((element) => {
+      const button = element.getBoundingClientRect();
+      const icon = element.querySelector("span")?.getBoundingClientRect();
+
+      return {
+        width: button.width,
+        height: button.height,
+        borderRadius: getComputedStyle(element).borderRadius,
+        iconOffsetX: icon ? (icon.left + icon.width / 2) - (button.left + button.width / 2) : null,
+        iconOffsetY: icon ? (icon.top + icon.height / 2) - (button.top + button.height / 2) : null,
+      };
+    });
+
+    expect(metrics.width).toBe(44);
+    expect(metrics.height).toBe(44);
+    expect(metrics.borderRadius).toBe("50%");
+    expect(metrics.iconOffsetX).toBe(0);
+    expect(metrics.iconOffsetY).toBe(0);
+  }
+});
+
+test("the FMS route draws as its steps enter view", async ({ page }) => {
+  await page.goto("/en");
+  const route = page.locator("[data-process-route]");
+  await route.scrollIntoViewIfNeeded();
+  await expect(route).toHaveClass(/is-route-animated/);
 });
 
 test("every portfolio entry has a Persian and English detail page", async ({ request }) => {

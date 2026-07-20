@@ -1,5 +1,16 @@
 export type Locale = "fa" | "en";
 
+export function formatNumber(value: number, locale: Locale, options?: Intl.NumberFormatOptions) {
+  return new Intl.NumberFormat(locale === "fa" ? "fa-IR" : "en-US", {
+    useGrouping: false,
+    ...options,
+  }).format(value);
+}
+
+export function formatIndex(value: number, locale: Locale) {
+  return formatNumber(value, locale, { minimumIntegerDigits: 2 });
+}
+
 export type Service = {
   slug: string;
   title: string;

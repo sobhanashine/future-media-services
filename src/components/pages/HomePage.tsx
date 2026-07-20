@@ -4,7 +4,7 @@ import { JsonLd } from "@/components/layout/JsonLd";
 import { ProjectGallery } from "@/components/pages/ProjectGallery";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { copy, localePath, type Locale } from "@/content/site";
+import { copy, formatIndex, formatNumber, localePath, type Locale } from "@/content/site";
 import { organizationJsonLd } from "@/lib/metadata";
 
 export function HomePage({ locale }: { locale: Locale }) {
@@ -36,7 +36,7 @@ export function HomePage({ locale }: { locale: Locale }) {
           <FutureCoreLoader label={content.hero.canvasLabel} />
         </div>
         <div className="hero__index" aria-hidden="true">
-          <span>FMS / 26</span>
+          <span>FMS / {formatNumber(26, locale)}</span>
           <span>SCROLL ↓</span>
         </div>
       </section>
@@ -45,7 +45,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         <div className="container-shell">
           {content.capabilityStrip.map((item, index) => (
             <span key={item}>
-              <b>0{index + 1}</b>
+              <b>{formatIndex(index + 1, locale)}</b>
               {item}
             </span>
           ))}
@@ -68,7 +68,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             >
               <div className="service-card__top">
                 <span>{service.label}</span>
-                <b>0{index + 1}</b>
+                <b>{formatIndex(index + 1, locale)}</b>
               </div>
               <h3>{service.title}</h3>
               <p>{service.summary}</p>
@@ -101,13 +101,13 @@ export function HomePage({ locale }: { locale: Locale }) {
         <div className="process-roadmap">
           <div className="process-roadmap__legend" aria-hidden="true">
             <span>FMS / ROUTE</span>
-            <span>01 — 05</span>
+            <span>{formatIndex(1, locale)} — {formatIndex(content.process.length, locale)}</span>
           </div>
-          <ol className="process-list">
+          <ol className="process-list" data-process-route>
             {content.process.map((step, index) => (
-              <li key={step.title} data-reveal>
+              <li key={step.title} data-process-step>
                 <div className="process-list__marker" aria-hidden="true">
-                  <span>0{index + 1}</span>
+                  <span>{formatIndex(index + 1, locale)}</span>
                   <i />
                 </div>
                 <article>
@@ -145,7 +145,7 @@ export function HomePage({ locale }: { locale: Locale }) {
               {content.reasons.map((reason, index) => (
                 <article key={reason.title} data-reveal>
                   <div>
-                    <span>0{index + 1}</span>
+                    <span>{formatIndex(index + 1, locale)}</span>
                     <small>{reason.tag}</small>
                   </div>
                   <h3>{reason.title}</h3>
