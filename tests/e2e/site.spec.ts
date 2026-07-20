@@ -27,6 +27,10 @@ test("website service exposes three plans and a phone-only CTA", async ({ page }
   await page.goto("/en/services");
   await page.getByRole("link", { name: /Website design & development/ }).click();
   await expect(page).toHaveURL(/\/en\/services\/web-development/);
+  const websiteHero = page.locator(".service-detail__hero-media img");
+  await expect(websiteHero).toBeVisible();
+  await expect(websiteHero).toHaveJSProperty("complete", true);
+  expect(decodeURIComponent(await websiteHero.getAttribute("src") ?? "")).toContain("web-development-hero.webp");
   await expect(page.locator(".pricing-plan")).toHaveCount(3);
   await expect(page.getByRole("heading", { name: "Personal" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Corporate" })).toBeVisible();
@@ -40,6 +44,10 @@ test("Instagram management stays local and exposes all three monthly plans", asy
   await expect(instagramService).toHaveAttribute("href", "/services/instagram-management");
   await instagramService.click();
   await expect(page).toHaveURL(/\/services\/instagram-management$/);
+  const instagramHero = page.locator(".service-detail__hero-media img");
+  await expect(instagramHero).toBeVisible();
+  await expect(instagramHero).toHaveJSProperty("complete", true);
+  expect(decodeURIComponent(await instagramHero.getAttribute("src") ?? "")).toContain("instagram-management-hero.webp");
   await expect(page.locator(".pricing-plan")).toHaveCount(3);
   await expect(page.getByRole("heading", { name: "اقتصادی", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "نقره‌ای", exact: true })).toBeVisible();
@@ -49,6 +57,40 @@ test("Instagram management stays local and exposes all three monthly plans", asy
   await expect(page.getByText("۱۶.۴", { exact: true })).toBeVisible();
   await expect(page.getByText("خدمات مشترک در هر سه پلن")).toBeVisible();
   await expect(page.locator('a[href*="faratar.agency"]')).toHaveCount(0);
+});
+
+test("mobile pricing plans use a readable horizontal snap rail", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+
+  for (const path of ["/services/web-development", "/en/services/instagram-management"]) {
+    await page.goto(path);
+    await expect(page.locator(".pricing-plans__hint")).toBeVisible();
+    const rail = page.locator(".pricing-plans");
+    const metrics = await rail.evaluate((element) => {
+      const firstCard = element.querySelector(".pricing-plan")?.getBoundingClientRect();
+      const styles = getComputedStyle(element);
+      return {
+        clientWidth: element.clientWidth,
+        scrollWidth: element.scrollWidth,
+        firstCardWidth: firstCard?.width ?? 0,
+        overflowX: styles.overflowX,
+        scrollSnapType: styles.scrollSnapType,
+      };
+    });
+
+    expect(metrics.scrollWidth).toBeGreaterThan(metrics.clientWidth);
+    expect(metrics.firstCardWidth).toBeLessThan(metrics.clientWidth);
+    expect(metrics.firstCardWidth).toBeGreaterThan(metrics.clientWidth * 0.8);
+    expect(metrics.overflowX).toBe("auto");
+    expect(metrics.scrollSnapType).toContain("mandatory");
+
+    await rail.evaluate((element) => {
+      const amount = element.clientWidth;
+      element.scrollLeft = getComputedStyle(element).direction === "rtl" ? -amount : amount;
+    });
+    await page.waitForTimeout(100);
+    expect(Math.abs(await rail.evaluate((element) => element.scrollLeft))).toBeGreaterThan(0);
+  }
 });
 
 test("key pages have no serious accessibility violations", async ({ page }) => {
@@ -199,7 +241,7 @@ test("technical SEO endpoints and metadata are present", async ({ page, request 
 for (const width of [320, 390, 768, 1440, 2560]) {
   test(`no horizontal overflow at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
-    for (const path of ["/", "/en/work/ofoq"]) {
+    for (const path of ["/", "/en/work/ofoq", "/services/instagram-management"]) {
       await page.goto(path);
       const dimensions = await page.evaluate(() => ({
         scrollWidth: document.documentElement.scrollWidth,

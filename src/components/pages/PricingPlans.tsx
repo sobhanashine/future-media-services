@@ -14,45 +14,52 @@ export function PricingPlans({
   labels?: PricingCopy;
 }) {
   const text = labels ?? copy[locale].pricing;
+  const hintId = `${labelledBy ?? "pricing-plans"}-swipe-hint`;
 
   return (
-    <div className="pricing-plans" aria-labelledby={labelledBy}>
-      {plans.map((plan, index) => (
-        <article className="pricing-plan" data-featured={plan.featured || undefined} data-reveal key={plan.name}>
-          <header>
-            <div>
-              <span>{formatIndex(index + 1, locale)}</span>
-              {plan.featured && <small>{text.featured}</small>}
+    <>
+      <p className="pricing-plans__hint" id={hintId}>
+        <span aria-hidden="true">↔</span>
+        {locale === "fa" ? "برای مقایسه پلن‌ها افقی ورق بزنید" : "Swipe horizontally to compare plans"}
+      </p>
+      <div className="pricing-plans" aria-labelledby={labelledBy} aria-describedby={hintId}>
+        {plans.map((plan, index) => (
+          <article className="pricing-plan" data-featured={plan.featured || undefined} data-reveal key={plan.name}>
+            <header>
+              <div>
+                <span>{formatIndex(index + 1, locale)}</span>
+                {plan.featured && <small>{text.featured}</small>}
+              </div>
+              <p>{plan.audience}</p>
+              <h3>{plan.name}</h3>
+            </header>
+            <div className="pricing-plan__price">
+              <small>{text.from}</small>
+              <strong>{plan.price}</strong>
+              <span>{plan.unit}</span>
             </div>
-            <p>{plan.audience}</p>
-            <h3>{plan.name}</h3>
-          </header>
-          <div className="pricing-plan__price">
-            <small>{text.from}</small>
-            <strong>{plan.price}</strong>
-            <span>{plan.unit}</span>
-          </div>
-          <p className="pricing-plan__description">{plan.description}</p>
-          <div className="pricing-plan__scope">
-            <div>
-              <span>{text.includes}</span>
-              <b>{plan.timeline}</b>
+            <p className="pricing-plan__description">{plan.description}</p>
+            <div className="pricing-plan__scope">
+              <div>
+                <span>{text.includes}</span>
+                <b>{plan.timeline}</b>
+              </div>
+              <ul>
+                {plan.features.map((feature) => (
+                  <li key={feature}>
+                    <span aria-hidden="true">+</span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul>
-              {plan.features.map((feature) => (
-                <li key={feature}>
-                  <span aria-hidden="true">+</span>
-                  {feature}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <a href={phoneHref} className="button pricing-plan__cta">
-            {copy[locale].nav.start}
-            <ArrowIcon />
-          </a>
-        </article>
-      ))}
-    </div>
+            <a href={phoneHref} className="button pricing-plan__cta">
+              {copy[locale].nav.start}
+              <ArrowIcon />
+            </a>
+          </article>
+        ))}
+      </div>
+    </>
   );
 }
