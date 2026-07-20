@@ -37,6 +37,10 @@ export type Service = {
   title: string;
   label: string;
   summary: string;
+  heroImage: {
+    src: string;
+    alt: string;
+  };
   problem: string;
   deliverables: string[];
   plans?: PricingPlan[];
@@ -222,6 +226,10 @@ export const copy: Record<Locale, Copy> = {
         label: "طراحی + توسعه",
         title: "طراحی و توسعه وب‌سایت",
         summary: "طراحی UI/UX اختصاصی و توسعه سریع با Next.js و WordPress Headless؛ برای سایت شخصی، شرکتی و فروشگاهی.",
+        heroImage: {
+          src: "/images/services/web-development-hero.webp",
+          alt: "ساختاری ماژولار از لایه‌های شیشه‌ای و فلزی برای نمایش معماری یک وب‌سایت Headless",
+        },
         problem: "قالب‌های آماده معمولاً برند را شبیه دیگران نشان می‌دهند و با رشد محتوا یا فروش، خیلی زود به محدودیت می‌رسند.",
         deliverables: ["طراحی UI/UX اختصاصی", "توسعه Next.js", "WordPress Headless", "SEO فنی و کنترل کیفیت"],
         plans: [
@@ -281,6 +289,10 @@ export const copy: Record<Locale, Copy> = {
         label: "محتوا + مدیریت",
         title: "مدیریت محتوای اینستاگرام",
         summary: "برنامه‌ریزی، طراحی پست و استوری، ساخت ریلز و مدیریت منظم صفحه در سه پلن ماهانه.",
+        heroImage: {
+          src: "/images/services/instagram-management-hero.webp",
+          alt: "میز برنامه‌ریزی محتوا با دوربین، قاب‌های پست و استوری و مسیر انتشار منظم",
+        },
         problem: "تولید پراکنده و بدون تقویم، زبان بصری و گزارش منظم، زمان می‌گیرد اما الزاماً به رشد پایدار صفحه تبدیل نمی‌شود.",
         deliverables: ["تقویم محتوایی", "پست، استوری و ریلز", "هویت بصری صفحه", "گزارش ماهانه"],
         pricing: {
@@ -471,6 +483,10 @@ export const copy: Record<Locale, Copy> = {
         label: "Design + build",
         title: "Website design & development",
         summary: "Custom UI/UX and fast development with Next.js and headless WordPress, for personal, corporate and commerce websites.",
+        heroImage: {
+          src: "/images/services/web-development-hero.webp",
+          alt: "A modular glass-and-metal structure representing a headless website architecture",
+        },
         problem: "Ready-made templates often make brands look interchangeable and become restrictive as content or commerce needs grow.",
         deliverables: ["Custom UI/UX design", "Next.js development", "Headless WordPress", "Technical SEO & quality assurance"],
         plans: [
@@ -530,6 +546,10 @@ export const copy: Record<Locale, Copy> = {
         label: "Content + management",
         title: "Instagram content management",
         summary: "Planning, post and story design, reel production and consistent page management across three monthly plans.",
+        heroImage: {
+          src: "/images/services/instagram-management-hero.webp",
+          alt: "A content planning desk with a camera, post and story frames, and an organized publishing route",
+        },
         problem: "Publishing without a calendar, visual language or regular reporting consumes time without necessarily creating durable growth.",
         deliverables: ["Content calendar", "Posts, stories and reels", "Page visual identity", "Monthly reporting"],
         pricing: {

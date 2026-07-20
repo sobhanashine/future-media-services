@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { JsonLd } from "@/components/layout/JsonLd";
 import { PricingPlans } from "@/components/pages/PricingPlans";
@@ -27,10 +28,21 @@ export function ServiceDetailPage({ locale, service }: { locale: Locale; service
           <span aria-hidden="true">←</span>
           {content.common.allServices}
         </Link>
-        <header>
-          <p className="eyebrow" data-hero-reveal>{service.label}</p>
-          <h1 data-hero-reveal>{service.title}</h1>
-          <p data-hero-reveal>{service.summary}</p>
+        <header className="service-detail__hero">
+          <div className="service-detail__hero-copy">
+            <p className="eyebrow" data-hero-reveal>{service.label}</p>
+            <h1 data-hero-reveal>{service.title}</h1>
+            <p data-hero-reveal>{service.summary}</p>
+          </div>
+          <figure className="service-detail__hero-media" data-hero-reveal>
+            <Image
+              src={service.heroImage.src}
+              alt={service.heroImage.alt}
+              fill
+              sizes="(max-width: 780px) calc(100vw - 2.2rem), 44vw"
+              preload
+            />
+          </figure>
         </header>
         <div className="service-detail__body">
           <section data-reveal>

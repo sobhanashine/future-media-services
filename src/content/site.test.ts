@@ -14,6 +14,18 @@ describe("bilingual content model", () => {
     }
   });
 
+  it("keeps service hero assets aligned with localized descriptions", () => {
+    for (const slug of serviceSlugs) {
+      const faService = findService("fa", slug);
+      const enService = findService("en", slug);
+
+      expect(faService?.heroImage.src).toBe(enService?.heroImage.src);
+      expect(faService?.heroImage.src).toMatch(/^\/images\/services\/.+\.webp$/);
+      expect(faService?.heroImage.alt).toBeTruthy();
+      expect(enService?.heroImage.alt).toBeTruthy();
+    }
+  });
+
   it("keeps three website plans aligned across locales", () => {
     const faPlans = copy.fa.services.find((service) => service.slug === "web-development")?.plans;
     const enPlans = copy.en.services.find((service) => service.slug === "web-development")?.plans;
