@@ -40,19 +40,26 @@ test("the content survives without JavaScript", async ({ browser }) => {
   await context.close();
 });
 
-test("reduced motion keeps the static Future Core and skips WebGL", async ({ page }) => {
+test("reduced motion keeps the hero copy and skips WebGL", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/en");
-  await expect(page.locator(".future-core__poster")).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   await expect(page.locator("canvas")).toHaveCount(0);
 });
 
-test("the Future Core satellites orbit automatically", async ({ page }) => {
+test("the hero wing sculpture responds to drag", async ({ page }) => {
   await page.goto("/en");
   const canvas = page.locator(".future-core canvas");
   await expect(canvas).toBeVisible();
   const firstFrame = await canvas.screenshot();
-  await page.waitForTimeout(900);
+  const bounds = await canvas.boundingBox();
+  if (!bounds) throw new Error("Hero canvas has no bounding box");
+
+  await page.mouse.move(bounds.x + bounds.width * 0.68, bounds.y + bounds.height * 0.52);
+  await page.mouse.down();
+  await page.mouse.move(bounds.x + bounds.width * 0.82, bounds.y + bounds.height * 0.44, { steps: 8 });
+  await page.mouse.up();
+  await page.waitForTimeout(700);
   const secondFrame = await canvas.screenshot();
   expect(firstFrame.equals(secondFrame)).toBe(false);
 });

@@ -67,17 +67,7 @@ export function FutureCoreLoader({ label }: { label: string }) {
 
   return (
     <div ref={wrapperRef} className="future-core" role="img" aria-label={label}>
-      <div className="future-core__poster" aria-hidden="true">
-        <span className="poster-orbit poster-orbit--one"><i /></span>
-        <span className="poster-orbit poster-orbit--two"><i /></span>
-        <span className="poster-orbit poster-orbit--three"><i /></span>
-        <span className="poster-center" />
-      </div>
       {enabled ? <FutureCoreCanvas active={active} compact={compact} /> : null}
-      <div className="future-core__caption" aria-hidden="true">
-        <span>SIGNAL / ENGINE</span>
-        <span>AUTO / ORBIT</span>
-      </div>
     </div>
   );
 }

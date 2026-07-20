@@ -121,7 +121,7 @@ export const copy: Record<Locale, Copy> = {
       body: "استراتژی، طراحی، توسعه وب و محتوای دیجیتال را در یک مسیر روشن کنار هم می‌آوریم تا برند شما متفاوت دیده شود و آماده‌ی رشد باشد.",
       primary: "شروع یک پروژه",
       secondary: "دیدن مسیر کار",
-      canvasLabel: "تصویر سه‌بعدی انتزاعی از هسته آینده؛ نمادی از پیوند استراتژی، طراحی و تکنولوژی.",
+      canvasLabel: "مجسمه‌ی سه‌بعدی بال‌ها؛ نمادی از حرکت، بلندپروازی و حرکت رو به آینده.",
     },
     capabilityStrip: [
       "تجربه دیجیتال",
@@ -295,7 +295,7 @@ export const copy: Record<Locale, Copy> = {
       body: "We bring strategy, design, web development and digital content into one clear process—helping your brand stand apart and stay ready to grow.",
       primary: "Start a project",
       secondary: "See how we work",
-      canvasLabel: "An abstract three-dimensional future core, representing the connection between strategy, design and technology.",
+      canvasLabel: "A three-dimensional wing sculpture, representing motion, ambition, and forward momentum.",
     },
     capabilityStrip: ["Digital experiences", "Modern web", "SEO & growth", "Visual content"],
     sections: {
