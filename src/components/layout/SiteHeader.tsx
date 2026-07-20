@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { BrandIdentity } from "@/components/layout/BrandIdentity";
 import { copy, formatIndex, localePath, type Locale } from "@/content/site";
 import { phoneHref } from "@/lib/contact";
 
@@ -53,9 +54,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
           className="brand-mark"
           aria-label={locale === "fa" ? "خانه FMS" : "FMS home"}
         >
-          <span className="brand-mark__signal" aria-hidden="true" />
-          <span>FMS</span>
-          <small>Future Media Services</small>
+          <BrandIdentity descriptor />
         </Link>
 
         <nav className="desktop-nav" aria-label={locale === "fa" ? "پیمایش اصلی" : "Main navigation"}>

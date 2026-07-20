@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandIdentity } from "@/components/layout/BrandIdentity";
 import { copy, localePath, type Locale } from "@/content/site";
 import { phoneHref } from "@/lib/contact";
 
@@ -8,9 +9,12 @@ export function SiteFooter({ locale }: { locale: Locale }) {
   return (
     <footer className="site-footer">
       <div className="site-footer__top container-shell">
-        <Link href={localePath(locale)} className="footer-brand">
-          <span className="brand-mark__signal" aria-hidden="true" />
-          FMS
+        <Link
+          href={localePath(locale)}
+          className="footer-brand"
+          aria-label={locale === "fa" ? "خانه FMS" : "FMS home"}
+        >
+          <BrandIdentity />
         </Link>
         <p>{content.common.footerLine}</p>
         <a href={phoneHref} className="text-link">
