@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { featuredProjects, portfolioProjects, projectCopy, type Project } from "@/content/projects";
-import { localePath, type Locale } from "@/content/site";
+import { formatIndex, localePath, type Locale } from "@/content/site";
 
 const labels = {
   fa: {
@@ -43,7 +43,7 @@ function ProjectCard({ project, locale, index }: { project: Project; locale: Loc
 
         <span className="project-card__footer">
           <span className="project-card__index" aria-hidden="true">
-            {String(index + 1).padStart(2, "0")}
+            {formatIndex(index + 1, locale)}
           </span>
           <span className="project-card__identity">
             <strong>{content.title}</strong>

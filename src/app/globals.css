@@ -959,6 +959,31 @@ a {
   transform: translateY(-0.2rem);
 }
 
+@media (max-width: 1060px) {
+  .project-card__visit {
+    position: relative;
+    display: inline-block;
+    width: 2.75rem;
+    min-height: 2.75rem;
+    border-radius: 50%;
+    padding: 0;
+    font-size: 0;
+    line-height: 1;
+  }
+
+  .project-card__visit > span {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    display: grid;
+    width: 1em;
+    height: 1em;
+    place-items: center;
+    font-size: 0.86rem;
+    line-height: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
 .portfolio-footer {
   display: flex;
   justify-content: flex-end;
@@ -1001,8 +1026,30 @@ a {
   content: "";
 }
 
+.process-list::after {
+  position: absolute;
+  height: 2px;
+  inset: 3.1rem 10% auto;
+  background: var(--signal);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.process-list.is-route-animated::after {
+  animation: process-route-draw 1.15s var(--ease-out) forwards;
+}
+
 [dir="rtl"] .process-list::before {
   background: linear-gradient(270deg, var(--signal), color-mix(in srgb, var(--signal) 30%, var(--line)));
+}
+
+[dir="rtl"] .process-list::after {
+  transform-origin: right center;
+}
+
+@keyframes process-route-draw {
+  to { transform: scaleX(1); }
 }
 
 .process-list li {
@@ -2322,6 +2369,19 @@ a {
     inset-inline-start: 2.63rem;
   }
 
+  .process-list::after {
+    width: 2px;
+    height: auto;
+    inset-block: 2.8rem;
+    inset-inline-start: 2.63rem;
+    transform: scaleY(0);
+    transform-origin: center top;
+  }
+
+  .process-list.is-route-animated::after {
+    animation-name: process-route-draw-vertical;
+  }
+
   .process-list li {
     display: grid;
     grid-template-columns: 3rem 1fr;
@@ -2637,19 +2697,6 @@ a {
     padding: 1.4rem;
   }
 
-  .project-card__visit {
-    width: 2.75rem;
-    min-height: 2.75rem;
-    justify-content: center;
-    padding-inline: 0.85rem;
-    font-size: 0;
-  }
-
-  .project-card__visit > span {
-    flex: 0 0 auto;
-    font-size: 0.8rem;
-  }
-
   .project-card__identity small {
     display: none;
   }
@@ -2696,6 +2743,10 @@ a {
     flex-direction: column;
     justify-content: center;
   }
+}
+
+@keyframes process-route-draw-vertical {
+  to { transform: scaleY(1); }
 }
 
 /* Typography system: quiet UI, readable body copy, and a more measured display scale. */

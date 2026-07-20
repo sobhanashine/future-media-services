@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { JsonLd } from "@/components/layout/JsonLd";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
-import { copy, localePath, type Locale, type Service } from "@/content/site";
+import { copy, formatIndex, localePath, type Locale, type Service } from "@/content/site";
 
 export function ServiceDetailPage({ locale, service }: { locale: Locale; service: Service }) {
   const content = copy[locale];
@@ -38,7 +38,7 @@ export function ServiceDetailPage({ locale, service }: { locale: Locale; service
             <p className="eyebrow">{locale === "fa" ? "خروجی‌های قابل تعریف" : "Possible deliverables"}</p>
             <ul>
               {service.deliverables.map((item, index) => (
-                <li key={item}><span>0{index + 1}</span>{item}</li>
+                <li key={item}><span>{formatIndex(index + 1, locale)}</span>{item}</li>
               ))}
             </ul>
           </section>

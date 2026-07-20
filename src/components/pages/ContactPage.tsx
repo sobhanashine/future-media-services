@@ -1,6 +1,6 @@
 import { ContactForm } from "@/components/pages/ContactForm";
 import { PageIntro } from "@/components/ui/PageIntro";
-import { copy, type Locale } from "@/content/site";
+import { copy, formatIndex, type Locale } from "@/content/site";
 
 export function ContactPage({ locale }: { locale: Locale }) {
   const content = copy[locale];
@@ -23,7 +23,7 @@ export function ContactPage({ locale }: { locale: Locale }) {
             @future.m.services <span aria-hidden="true">↗</span>
           </a>
           <div className="contact-note">
-            <span>NOTE / 01</span>
+            <span>NOTE / {formatIndex(1, locale)}</span>
             <p>{locale === "fa" ? "ایمیل، تلفن و آدرس تا زمان تأیید مالک در سایت نمایش داده نمی‌شوند." : "Email, phone and address remain unpublished until the owner verifies them."}</p>
           </div>
         </aside>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { PageIntro } from "@/components/ui/PageIntro";
-import { copy, localePath, type Locale } from "@/content/site";
+import { copy, formatIndex, localePath, type Locale } from "@/content/site";
 
 export function ServicesPage({ locale }: { locale: Locale }) {
   const content = copy[locale];
@@ -16,7 +16,7 @@ export function ServicesPage({ locale }: { locale: Locale }) {
         <div className="service-list">
           {content.services.map((service, index) => (
             <Link key={service.slug} href={localePath(locale, `/services/${service.slug}`)} data-reveal>
-              <span>0{index + 1}</span>
+              <span>{formatIndex(index + 1, locale)}</span>
               <div>
                 <small>{service.label}</small>
                 <h2>{service.title}</h2>
