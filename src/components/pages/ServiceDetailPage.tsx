@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { JsonLd } from "@/components/layout/JsonLd";
+import { PricingPlans } from "@/components/pages/PricingPlans";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { copy, formatIndex, localePath, type Locale, type Service } from "@/content/site";
+import { phoneHref } from "@/lib/contact";
 
 export function ServiceDetailPage({ locale, service }: { locale: Locale; service: Service }) {
   const content = copy[locale];
+  const pricingCopy = service.pricing ?? content.pricing;
   const serviceUrl = `https://futuremservices.com${localePath(locale, `/services/${service.slug}`)}`;
 
   return (
@@ -43,15 +46,39 @@ export function ServiceDetailPage({ locale, service }: { locale: Locale; service
             </ul>
           </section>
         </div>
+        {service.plans && (
+          <section className="service-detail__pricing" aria-labelledby="service-pricing-title">
+            <header className="pricing-section__intro" data-reveal>
+              <p className="eyebrow">{pricingCopy.eyebrow}</p>
+              <h2 id="service-pricing-title">{pricingCopy.title}</h2>
+              <p>{pricingCopy.body}</p>
+            </header>
+            <PricingPlans locale={locale} plans={service.plans} labelledBy="service-pricing-title" labels={pricingCopy} />
+            {service.sharedPlanFeatures && service.sharedPlanTitle && (
+              <div className="shared-plan-features" data-reveal>
+                <h3>{service.sharedPlanTitle}</h3>
+                <ul>
+                  {service.sharedPlanFeatures.map((feature) => (
+                    <li key={feature}>
+                      <span aria-hidden="true">+</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <p className="pricing-disclaimer" data-reveal>{pricingCopy.disclaimer}</p>
+          </section>
+        )}
         <aside className="service-detail__cta" data-reveal>
           <div>
             <span>FMS / {service.slug.toUpperCase()}</span>
-            <h2>{locale === "fa" ? "این مسیر برای پروژه شما مناسب است؟" : "Is this the right path for your project?"}</h2>
+            <h2>{locale === "fa" ? "برای انتخاب پلن مناسب تماس بگیرید." : "Call to choose the right plan."}</h2>
           </div>
-          <Link href={localePath(locale, "/contact")} className="button button--light">
+          <a href={phoneHref} className="button button--light">
             {content.nav.start}
             <ArrowIcon />
-          </Link>
+          </a>
         </aside>
       </article>
     </>

@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { copy, localePath, type Locale } from "@/content/site";
+import { copy, type Locale } from "@/content/site";
+import { phoneHref } from "@/lib/contact";
 
 export function PageIntro({
   locale,
@@ -18,10 +18,10 @@ export function PageIntro({
       <h1 data-hero-reveal>{title}</h1>
       <div className="page-intro__footer" data-hero-reveal>
         <p>{body}</p>
-        <Link className="button button--outline" href={localePath(locale, "/contact")}>
+        <a className="button button--outline" href={phoneHref}>
           {copy[locale].nav.start}
           <span aria-hidden="true">↗</span>
-        </Link>
+        </a>
       </div>
     </section>
   );

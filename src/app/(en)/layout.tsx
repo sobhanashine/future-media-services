@@ -6,8 +6,8 @@ import { createMetadata } from "@/lib/metadata";
 
 export const metadata = createMetadata(
   "en",
-  "Future Media Services | Strategy, design and digital products",
-  "Future Media Services brings strategy, design, web development, SEO and digital content into one clear path for ambitious brands.",
+  "Future Media Services | Next.js and headless WordPress websites",
+  "Custom personal, corporate and commerce websites built with Next.js and headless WordPress, plus specialist Instagram content management.",
 );
 
 export default function EnglishRootLayout({ children }: { children: React.ReactNode }) {

@@ -11,6 +11,27 @@ export function formatIndex(value: number, locale: Locale) {
   return formatNumber(value, locale, { minimumIntegerDigits: 2 });
 }
 
+export type PricingPlan = {
+  name: string;
+  audience: string;
+  price: string;
+  unit: string;
+  timeline: string;
+  description: string;
+  features: string[];
+  featured?: boolean;
+};
+
+export type PricingCopy = {
+  eyebrow: string;
+  title: string;
+  body: string;
+  from: string;
+  includes: string;
+  featured: string;
+  disclaimer: string;
+};
+
 export type Service = {
   slug: string;
   title: string;
@@ -18,6 +39,10 @@ export type Service = {
   summary: string;
   problem: string;
   deliverables: string[];
+  plans?: PricingPlan[];
+  pricing?: PricingCopy;
+  sharedPlanTitle?: string;
+  sharedPlanFeatures?: string[];
 };
 
 type Copy = {
@@ -61,6 +86,7 @@ type Copy = {
     finalBody: string;
   };
   services: Service[];
+  pricing: PricingCopy;
   process: { title: string; body: string; output: string }[];
   reasons: { title: string; body: string; tag: string }[];
   work: {
@@ -104,13 +130,45 @@ type Copy = {
 };
 
 const sharedServiceSlugs = [
-  "digital-strategy",
-  "ui-ux-design",
   "web-development",
-  "commerce-cms",
-  "seo-growth",
-  "visual-content",
+  "instagram-management",
 ] as const;
+
+const faInstagramSharedFeatures = [
+  "افزایش آمار و بازدید در Insights",
+  "تنظیم بیو متناسب با پیج",
+  "طراحی گرافیکی هایلایت‌ها",
+  "طراحی استوری موشن",
+  "گزارش ماهانه",
+  "طراحی کاور و بک ریلز",
+  "سناریونویسی اختصاصی و ترندمحور",
+  "پشتیبانی از ساعت ۹ تا ۱۶",
+  "طراحی بنر تخفیف یا مسابقه در ماه",
+  "قرارداد رسمی",
+  "بازیابی اکانت در صورت فراموشی",
+  "ساخت حساب بیزینسی در صورت نیاز",
+  "طراحی لوگوفونت",
+  "صداگذاری واقعی برای برخی ریلزها بدون AI",
+  "محتوایابی و ادیت از منابع معتبر در صورت نیاز",
+];
+
+const enInstagramSharedFeatures = [
+  "Insights and view growth",
+  "Profile-specific bio setup",
+  "Graphic highlight design",
+  "Motion story design",
+  "Monthly report",
+  "Reel cover and back-cover design",
+  "Original and trend-led scripting",
+  "Support from 09:00 to 16:00",
+  "One monthly promotion or competition banner",
+  "Formal contract",
+  "Account recovery when credentials are forgotten",
+  "Business account setup when needed",
+  "Logotype design",
+  "Human voice-over on selected reels without AI",
+  "Content research and editing from reputable sources when needed",
+];
 
 export const copy: Record<Locale, Copy> = {
   fa: {
@@ -121,29 +179,29 @@ export const copy: Record<Locale, Copy> = {
       work: "نمونه‌کارها",
       about: "درباره ما",
       contact: "تماس",
-      start: "شروع پروژه",
+      start: "تماس تلفنی",
       menu: "بازکردن منو",
       close: "بستن منو",
     },
     hero: {
-      eyebrow: "استراتژی · طراحی · تکنولوژی",
+      eyebrow: "طراحی · Next.js · WordPress Headless",
       title: "آینده‌ی برند شما،",
       accent: "از همین‌جا ساخته می‌شود.",
-      body: "استراتژی، طراحی، توسعه وب و محتوای دیجیتال را در یک مسیر روشن کنار هم می‌آوریم تا برند شما متفاوت دیده شود و آماده‌ی رشد باشد.",
-      primary: "شروع یک پروژه",
+      body: "وب‌سایت اختصاصی شما را طراحی و با Next.js و WordPress Headless می‌سازیم؛ از سایت شخصی تا شرکتی و فروشگاه آنلاین.",
+      primary: "تماس بگیرید",
       secondary: "دیدن مسیر کار",
       canvasLabel: "مجسمه‌ی سه‌بعدی بال‌ها؛ نمادی از حرکت، بلندپروازی و حرکت رو به آینده.",
     },
     capabilityStrip: [
-      "تجربه دیجیتال",
-      "توسعه وب مدرن",
-      "SEO و رشد",
-      "محتوای بصری",
+      "طراحی اختصاصی وب",
+      "Next.js مدرن",
+      "WordPress Headless",
+      "مدیریت محتوای اینستاگرام",
     ],
     sections: {
       servicesEyebrow: "آنچه می‌سازیم",
-      servicesTitle: "یک سیستم کامل، نه مجموعه‌ای از خدمات پراکنده.",
-      servicesBody: "هر مسیر از مسئله‌ی واقعی کسب‌وکار شروع می‌شود و به خروجی مشخص، قابل استفاده و قابل رشد می‌رسد.",
+      servicesTitle: "دو خدمت مشخص، با مسیر و خروجی روشن.",
+      servicesBody: "برای طراحی و توسعه وب‌سایت و مدیریت محتوای اینستاگرام، پلن مشخص و مسیر اجرای روشن دارید.",
       workEyebrow: "کارهای منتخب",
       workTitle: "کارهایی که فقط دیده نمی‌شوند؛ واقعاً کار می‌کنند.",
       workBody: "پیش‌نمایش تصویری وب‌سایت‌های واقعی؛ برای بازدید از نسخه زنده روی هر کارت بزنید.",
@@ -156,58 +214,138 @@ export const copy: Record<Locale, Copy> = {
       socialEyebrow: "از استودیو",
       socialTitle: "نگاهی کوتاه به فرایند و محتوای FMS.",
       finalTitle: "پروژه‌ی بعدی شما می‌تواند از امروز شروع شود.",
-      finalBody: "مسئله، هدف و زمان‌بندی‌تان را بگویید؛ قدم بعدی را شفاف با هم مشخص می‌کنیم.",
+      finalBody: "برای انتخاب پلن و برآورد دقیق پروژه، مستقیم تماس بگیرید. فرم یا پیام واسطی در کار نیست.",
     },
     services: [
       {
         slug: sharedServiceSlugs[0],
-        label: "مسیر",
-        title: "استراتژی دیجیتال و هویت برند",
-        summary: "تعریف جایگاه، پیام و نقشه‌ی حرکت پیش از شروع طراحی و تولید.",
-        problem: "وقتی پیام، مخاطب یا اولویت‌ها روشن نیستند، حتی اجرای خوب هم به نتیجه‌ی منسجم نمی‌رسد.",
-        deliverables: ["جلسه کشف", "معماری پیام", "جهت‌گیری بصری", "نقشه راه اجرایی"],
+        label: "طراحی + توسعه",
+        title: "طراحی و توسعه وب‌سایت",
+        summary: "طراحی UI/UX اختصاصی و توسعه سریع با Next.js و WordPress Headless؛ برای سایت شخصی، شرکتی و فروشگاهی.",
+        problem: "قالب‌های آماده معمولاً برند را شبیه دیگران نشان می‌دهند و با رشد محتوا یا فروش، خیلی زود به محدودیت می‌رسند.",
+        deliverables: ["طراحی UI/UX اختصاصی", "توسعه Next.js", "WordPress Headless", "SEO فنی و کنترل کیفیت"],
+        plans: [
+          {
+            name: "شخصی",
+            audience: "برای متخصصان، فریلنسرها و برندهای شخصی",
+            price: "۴۵",
+            unit: "میلیون تومان",
+            timeline: "۲ تا ۴ هفته",
+            description: "یک حضور حرفه‌ای و مستقل برای معرفی شما، خدمات و نمونه‌کارها.",
+            features: [
+              "طراحی اختصاصی تا ۵ صفحه",
+              "Next.js سریع و واکنش‌گرا",
+              "WordPress Headless برای مدیریت محتوا",
+              "بلاگ یا آرشیو نمونه‌کار",
+              "SEO فنی پایه و اتصال ابزارهای گوگل",
+              "آموزش پنل و ۳۰ روز پشتیبانی",
+            ],
+          },
+          {
+            name: "شرکتی",
+            audience: "برای شرکت‌ها و کسب‌وکارهای خدماتی",
+            price: "۸۵",
+            unit: "میلیون تومان",
+            timeline: "۴ تا ۷ هفته",
+            description: "وب‌سایتی چندبخشی برای معرفی خدمات، اعتبار برند و تبدیل بازدیدکننده به تماس.",
+            features: [
+              "طراحی UI/UX اختصاصی تا ۱۰ صفحه",
+              "Next.js + WordPress Headless",
+              "ساختار دو زبانه فارسی و انگلیسی",
+              "خدمات، نمونه‌کار، بلاگ و اعضای تیم",
+              "موشن هدفمند، SEO فنی و آنالیتیکس",
+              "آموزش پنل و ۶۰ روز پشتیبانی",
+            ],
+            featured: true,
+          },
+          {
+            name: "فروشگاهی",
+            audience: "برای برندهای محصول‌محور و فروش آنلاین",
+            price: "۱۶۵",
+            unit: "میلیون تومان",
+            timeline: "۸ تا ۱۲ هفته",
+            description: "فروشگاه Headless اختصاصی با تجربه خرید سریع و مدیریت کامل محصولات در وردپرس.",
+            features: [
+              "طراحی اختصاصی مسیر خرید و صفحات محصول",
+              "Next.js + WooCommerce Headless",
+              "سبد خرید، تسویه‌حساب و درگاه پرداخت",
+              "دسته‌بندی، جست‌وجو و فیلتر محصولات",
+              "حساب کاربری، سفارش‌ها و پیام‌های سیستمی",
+              "آموزش پنل و ۹۰ روز پشتیبانی",
+            ],
+          },
+        ],
       },
       {
         slug: sharedServiceSlugs[1],
-        label: "تجربه",
-        title: "طراحی UI/UX",
-        summary: "تجربه‌های ساده، متمایز و دسترس‌پذیر برای وب و محصولات دیجیتال.",
-        problem: "رابط‌های شلوغ و مسیرهای مبهم، اعتماد و تبدیل را پیش از شکل‌گرفتن از بین می‌برند.",
-        deliverables: ["تحقیق و جریان کاربر", "وایرفریم", "طراحی رابط", "پروتوتایپ و سیستم طراحی"],
-      },
-      {
-        slug: sharedServiceSlugs[2],
-        label: "ساخت",
-        title: "طراحی و توسعه وب‌سایت",
-        summary: "وب‌سایت‌های سریع، واکنش‌گرا و آماده‌ی توسعه با فناوری مدرن.",
-        problem: "سایت قدیمی یا کند، فاصله‌ای مستقیم میان کیفیت واقعی برند و چیزی که مخاطب می‌بیند می‌سازد.",
-        deliverables: ["معماری فنی", "توسعه واکنش‌گرا", "موشن هدفمند", "SEO و کنترل کیفیت"],
-      },
-      {
-        slug: sharedServiceSlugs[3],
-        label: "تجارت",
-        title: "فروشگاه و راهکارهای CMS",
-        summary: "زیرساخت محتوایی و فروشگاهی که تیم شما بتواند واقعاً مدیریت کند.",
-        problem: "ابزار نامتناسب، ویرایش محتوا و توسعه فروش را پرهزینه و وابسته می‌کند.",
-        deliverables: ["انتخاب پلتفرم", "معماری کاتالوگ", "تجربه خرید", "آموزش مدیریت محتوا"],
-      },
-      {
-        slug: sharedServiceSlugs[4],
-        label: "رشد",
-        title: "SEO، بهینه‌سازی و رشد",
-        summary: "بهبود ساختار، سرعت و محتوای سایت برای دیده‌شدن پایدارتر.",
-        problem: "بدون پایه فنی و محتوای درست، هزینه جذب بالا می‌رود و فرصت جست‌وجوی ارگانیک از دست می‌رود.",
-        deliverables: ["ممیزی فنی", "تحقیق ساختار محتوا", "بهینه‌سازی صفحات", "چارچوب سنجش"],
-      },
-      {
-        slug: sharedServiceSlugs[5],
-        label: "روایت",
-        title: "ویدیو و محتوای شبکه‌های اجتماعی",
-        summary: "محتوای بصری منسجم که پیام برند را واضح و قابل دنبال‌کردن می‌کند.",
-        problem: "انتشار پراکنده و بدون زبان بصری، حتی با تولید مداوم هم تصویر واحدی از برند نمی‌سازد.",
-        deliverables: ["ایده و سناریو", "فیلم‌برداری", "تدوین", "قالب محتوای تکرارشونده"],
+        label: "محتوا + مدیریت",
+        title: "مدیریت محتوای اینستاگرام",
+        summary: "برنامه‌ریزی، طراحی پست و استوری، ساخت ریلز و مدیریت منظم صفحه در سه پلن ماهانه.",
+        problem: "تولید پراکنده و بدون تقویم، زبان بصری و گزارش منظم، زمان می‌گیرد اما الزاماً به رشد پایدار صفحه تبدیل نمی‌شود.",
+        deliverables: ["تقویم محتوایی", "پست، استوری و ریلز", "هویت بصری صفحه", "گزارش ماهانه"],
+        pricing: {
+          eyebrow: "پلن‌های مدیریت اینستاگرام",
+          title: "سه سطح برای مدیریت منظم محتوا.",
+          body: "تفاوت پلن‌ها در تعداد پست و استوری ماهانه است؛ خدمات پایه مدیریت، طراحی، گزارش‌دهی و پشتیبانی در هر سه سطح ارائه می‌شوند.",
+          from: "هزینه ماهانه",
+          includes: "حجم محتوای ماهانه",
+          featured: "پیشنهادی",
+          disclaimer: "مبالغ ماهانه‌اند. نوع ریلز، جزئیات تولید و اطلاعات لازم برای اجرا پیش از عقد قرارداد در تماس اولیه مشخص می‌شوند.",
+        },
+        sharedPlanTitle: "خدمات مشترک در هر سه پلن",
+        sharedPlanFeatures: faInstagramSharedFeatures,
+        plans: [
+          {
+            name: "اقتصادی",
+            audience: "مناسب کسب‌وکارهای کوچک",
+            price: "۸.۵",
+            unit: "میلیون تومان",
+            timeline: "ماهانه",
+            description: "حجم پایه برای حفظ انتشار منظم و ساخت یک زبان بصری یکپارچه.",
+            features: [
+              "۸ پست در ماه؛ ریلز به انتخاب شما",
+              "۳۰ تا ۵۲ استوری در ماه، متناسب با نیاز پیج",
+            ],
+          },
+          {
+            name: "نقره‌ای",
+            audience: "مناسب کسب‌وکارهای متوسط",
+            price: "۱۱.۷",
+            unit: "میلیون تومان",
+            timeline: "ماهانه",
+            description: "انتشار پرتعدادتر برای کسب‌وکارهایی که به حضور محتوایی فعال‌تری نیاز دارند.",
+            features: [
+              "۱۲ پست در ماه؛ ریلز به انتخاب شما",
+              "۶۰ تا ۸۰ استوری در ماه، متناسب با نیاز پیج",
+            ],
+          },
+          {
+            name: "طلایی",
+            audience: "مناسب کسب‌وکارهای بزرگ",
+            price: "۱۶.۴",
+            unit: "میلیون تومان",
+            timeline: "ماهانه",
+            description: "بیشترین حجم انتشار، همراه با توزیع محتوا در کانال‌های تکمیلی برند.",
+            features: [
+              "۱۶ پست در ماه؛ ریلز به انتخاب شما",
+              "۱۲۰ استوری در ماه",
+              "ثبت مکان کسب‌وکار در گوگل‌مپ، بلد و نشان",
+              "انتشار محتوا در کانال آپارات یا یوتیوب",
+            ],
+            featured: true,
+          },
+        ],
       },
     ],
+    pricing: {
+      eyebrow: "پلن‌های طراحی سایت",
+      title: "یک زیرساخت؛ سه مقیاس برای شروع.",
+      body: "هر سه پلن با طراحی اختصاصی، Next.js و مدیریت محتوا از طریق WordPress Headless ساخته می‌شوند. تفاوت در گستره، قابلیت‌ها و زمان اجراست.",
+      from: "شروع از",
+      includes: "شامل",
+      featured: "پیشنهاد FMS",
+      disclaimer: "قیمت‌ها شروع پروژه را نشان می‌دهند. هزینه دامنه، هاست، سرویس‌های پولی و امکانات خارج از محدوده پس از تماس جداگانه برآورد می‌شود.",
+    },
     process: [
       { title: "کشف", body: "کسب‌وکار، مخاطب، مسئله و معیار موفقیت را دقیق می‌کنیم.", output: "خلاصه مسئله" },
       { title: "جهت‌گیری", body: "معماری محتوا، اولویت‌ها و زبان بصری پروژه شکل می‌گیرد.", output: "نقشه تجربه" },
@@ -257,20 +395,20 @@ export const copy: Record<Locale, Copy> = {
       ],
     },
     contact: {
-      eyebrow: "شروع پروژه",
-      title: "از مسئله‌ای که می‌خواهید حل کنید شروع کنیم.",
-      intro: "چند خط درباره کسب‌وکار، هدف و زمان‌بندی بنویسید. این فرم در نسخه فعلی فقط پس از اتصال مقصد تأییدشده پیام ارسال می‌کند.",
-      directTitle: "ترجیح می‌دهید مستقیم گفتگو کنیم؟",
-      directBody: "فعلاً تنها کانال عمومی تأییدشده، صفحه رسمی اینستاگرام FMS است.",
+      eyebrow: "تماس مستقیم",
+      title: "برای شروع پروژه، مستقیم تماس بگیرید.",
+      intro: "فرم شروع پروژه حذف شده است. برای بررسی نیاز، انتخاب پلن و برآورد دقیق فقط با شماره زیر تماس بگیرید.",
+      directTitle: "یک گفت‌وگوی کوتاه، قبل از هر تصمیم.",
+      directBody: "در تماس اولیه درباره نوع سایت، محتوای موجود، زمان‌بندی و امکانات ضروری صحبت می‌کنیم.",
     },
     privacy: {
       eyebrow: "حریم خصوصی",
-      title: "اطلاعات پروژه باید با همان دقت خود پروژه نگهداری شود.",
-      intro: "این متن سیاست موقت نسخه پیش‌نمایش است و پیش از انتشار نهایی باید با فرایند واقعی نگهداری داده تطبیق داده شود.",
+      title: "این وب‌سایت فرم پروژه یا داده تماس ذخیره نمی‌کند.",
+      intro: "شروع همکاری فقط از طریق تماس تلفنی انجام می‌شود و هیچ فرم درخواست پروژه‌ای در سایت وجود ندارد.",
       items: [
-        { title: "چه داده‌ای دریافت می‌شود؟", body: "فقط اطلاعاتی که خودتان در فرم پروژه وارد می‌کنید؛ شامل نام، راه ارتباطی و توضیح پروژه." },
-        { title: "برای چه استفاده می‌شود؟", body: "برای بررسی درخواست، پاسخ‌گویی و هماهنگی درباره همان پروژه." },
-        { title: "چه چیزی ثبت نمی‌شود؟", body: "مقادیر حساس فرم در لاگ برنامه نوشته نمی‌شوند و سایت از embed سنگین شبکه‌های اجتماعی استفاده نمی‌کند." },
+        { title: "فرم پروژه وجود ندارد", body: "نام، شماره، بودجه یا توضیحات پروژه از طریق این وب‌سایت دریافت و ذخیره نمی‌شود." },
+        { title: "لینک تماس چه می‌کند؟", body: "انتخاب شماره تلفن فقط شماره‌گیر دستگاه شما را باز می‌کند؛ خود سایت اطلاعات تماس را ثبت نمی‌کند." },
+        { title: "لینک‌های بیرونی", body: "لینک اینستاگرام یک سرویس مستقل است و استفاده از آن تابع سیاست حریم خصوصی همان سرویس است." },
       ],
     },
     common: {
@@ -278,12 +416,12 @@ export const copy: Record<Locale, Copy> = {
       allServices: "همه خدمات",
       viewWork: "نمونه‌کارها",
       pending: "در انتظار محتوای تأییدشده",
-      projectPrompt: "پروژه‌ام را توضیح می‌دهم",
+      projectPrompt: "تماس بگیرید",
       back: "بازگشت",
       notFound: "این صفحه پیدا نشد.",
       notFoundBody: "ممکن است آدرس تغییر کرده باشد یا محتوا هنوز منتشر نشده باشد.",
       home: "بازگشت به خانه",
-      footerLine: "استراتژی، طراحی و تکنولوژی برای آینده‌ی برندها.",
+      footerLine: "طراحی و توسعه وب با Next.js و WordPress Headless.",
       rights: "تمام حقوق محفوظ است.",
     },
   },
@@ -295,24 +433,24 @@ export const copy: Record<Locale, Copy> = {
       work: "Work",
       about: "About",
       contact: "Contact",
-      start: "Start a project",
+      start: "Call to discuss",
       menu: "Open menu",
       close: "Close menu",
     },
     hero: {
-      eyebrow: "Strategy · Design · Technology",
+      eyebrow: "Design · Next.js · Headless WordPress",
       title: "Your brand’s future",
       accent: "starts taking shape here.",
-      body: "We bring strategy, design, web development and digital content into one clear process—helping your brand stand apart and stay ready to grow.",
-      primary: "Start a project",
+      body: "We design and build custom websites with Next.js and headless WordPress—from personal portfolios to corporate sites and online stores.",
+      primary: "Call now",
       secondary: "See how we work",
       canvasLabel: "A three-dimensional wing sculpture, representing motion, ambition, and forward momentum.",
     },
-    capabilityStrip: ["Digital experiences", "Modern web", "SEO & growth", "Visual content"],
+    capabilityStrip: ["Custom web design", "Modern Next.js", "Headless WordPress", "Instagram content management"],
     sections: {
       servicesEyebrow: "What we build",
-      servicesTitle: "One connected system, not a list of disconnected services.",
-      servicesBody: "Every engagement starts with a real business problem and moves toward a tangible, usable and scalable outcome.",
+      servicesTitle: "Two focused services, each with a clear route.",
+      servicesBody: "Website design, development and Instagram content management each have a clear plan and delivery path.",
       workEyebrow: "Selected work",
       workTitle: "Work that does more than look the part.",
       workBody: "Visual previews of real websites. Select any card to visit the live experience.",
@@ -325,58 +463,138 @@ export const copy: Record<Locale, Copy> = {
       socialEyebrow: "From the studio",
       socialTitle: "A short look at the thinking and content behind FMS.",
       finalTitle: "Your next project can start today.",
-      finalBody: "Tell us the problem, the goal and your timing. We’ll make the next step clear together.",
+      finalBody: "Call directly to choose a plan and receive an exact project estimate. There is no form or message intermediary.",
     },
     services: [
       {
         slug: sharedServiceSlugs[0],
-        label: "Direction",
-        title: "Digital strategy & brand direction",
-        summary: "Define positioning, messaging and the path forward before production begins.",
-        problem: "When the message, audience or priorities are unclear, even strong execution struggles to produce a coherent result.",
-        deliverables: ["Discovery", "Messaging architecture", "Visual direction", "Delivery roadmap"],
+        label: "Design + build",
+        title: "Website design & development",
+        summary: "Custom UI/UX and fast development with Next.js and headless WordPress, for personal, corporate and commerce websites.",
+        problem: "Ready-made templates often make brands look interchangeable and become restrictive as content or commerce needs grow.",
+        deliverables: ["Custom UI/UX design", "Next.js development", "Headless WordPress", "Technical SEO & quality assurance"],
+        plans: [
+          {
+            name: "Personal",
+            audience: "For experts, freelancers and personal brands",
+            price: "45M",
+            unit: "toman",
+            timeline: "2–4 weeks",
+            description: "A polished, independent home for your profile, services and selected work.",
+            features: [
+              "Custom design for up to 5 pages",
+              "Fast, responsive Next.js frontend",
+              "Headless WordPress content management",
+              "Blog or portfolio archive",
+              "Core technical SEO and Google tools",
+              "CMS training and 30 days of support",
+            ],
+          },
+          {
+            name: "Corporate",
+            audience: "For companies and service businesses",
+            price: "85M",
+            unit: "toman",
+            timeline: "4–7 weeks",
+            description: "A multi-section website built to explain services, strengthen credibility and turn visits into calls.",
+            features: [
+              "Custom UI/UX for up to 10 pages",
+              "Next.js + headless WordPress",
+              "Persian and English structure",
+              "Services, work, blog and team content",
+              "Purposeful motion, technical SEO and analytics",
+              "CMS training and 60 days of support",
+            ],
+            featured: true,
+          },
+          {
+            name: "Commerce",
+            audience: "For product brands and online retail",
+            price: "165M",
+            unit: "toman",
+            timeline: "8–12 weeks",
+            description: "A custom headless shop with a fast buying experience and complete product control in WordPress.",
+            features: [
+              "Custom purchase journey and product pages",
+              "Next.js + headless WooCommerce",
+              "Cart, checkout and payment gateway",
+              "Product categories, search and filters",
+              "Customer account, orders and system messages",
+              "CMS training and 90 days of support",
+            ],
+          },
+        ],
       },
       {
         slug: sharedServiceSlugs[1],
-        label: "Experience",
-        title: "UI/UX design",
-        summary: "Clear, distinctive and accessible experiences for the web and digital products.",
-        problem: "Cluttered interfaces and unclear journeys erode trust and conversion before either has time to form.",
-        deliverables: ["Research & user flows", "Wireframes", "Interface design", "Prototype & design system"],
-      },
-      {
-        slug: sharedServiceSlugs[2],
-        label: "Build",
-        title: "Website design & development",
-        summary: "Fast, responsive websites built on a modern, maintainable foundation.",
-        problem: "A slow or dated site creates a direct gap between the quality of your brand and what your audience experiences.",
-        deliverables: ["Technical architecture", "Responsive development", "Purposeful motion", "SEO & quality assurance"],
-      },
-      {
-        slug: sharedServiceSlugs[3],
-        label: "Commerce",
-        title: "Commerce & CMS solutions",
-        summary: "Content and commerce foundations your team can actually operate.",
-        problem: "The wrong platform makes content updates and commercial growth expensive and dependent.",
-        deliverables: ["Platform selection", "Catalogue architecture", "Purchase experience", "Content training"],
-      },
-      {
-        slug: sharedServiceSlugs[4],
-        label: "Growth",
-        title: "SEO, optimisation & growth",
-        summary: "Improve structure, speed and content for more durable discoverability.",
-        problem: "Without sound technical and content foundations, acquisition costs rise and organic search opportunities disappear.",
-        deliverables: ["Technical audit", "Content structure research", "Page optimisation", "Measurement framework"],
-      },
-      {
-        slug: sharedServiceSlugs[5],
-        label: "Story",
-        title: "Video & social content",
-        summary: "A coherent visual language that makes your brand easier to recognise and follow.",
-        problem: "Publishing without a consistent visual language rarely builds a unified picture of the brand.",
-        deliverables: ["Concept & script", "Production", "Editing", "Repeatable content formats"],
+        label: "Content + management",
+        title: "Instagram content management",
+        summary: "Planning, post and story design, reel production and consistent page management across three monthly plans.",
+        problem: "Publishing without a calendar, visual language or regular reporting consumes time without necessarily creating durable growth.",
+        deliverables: ["Content calendar", "Posts, stories and reels", "Page visual identity", "Monthly reporting"],
+        pricing: {
+          eyebrow: "Instagram management plans",
+          title: "Three levels for consistent content management.",
+          body: "Plans differ by monthly post and story volume. Core management, design, reporting and support services are included at every level.",
+          from: "Monthly fee",
+          includes: "Monthly content volume",
+          featured: "Recommended",
+          disclaimer: "Fees are monthly. Reel formats, production details and required inputs are confirmed during the initial call before the contract is signed.",
+        },
+        sharedPlanTitle: "Included in all three plans",
+        sharedPlanFeatures: enInstagramSharedFeatures,
+        plans: [
+          {
+            name: "Economic",
+            audience: "For small businesses",
+            price: "8.5M",
+            unit: "toman",
+            timeline: "monthly",
+            description: "A foundational volume for consistent publishing and a coherent visual language.",
+            features: [
+              "8 posts per month; reels can be selected",
+              "30–52 stories per month, based on page needs",
+            ],
+          },
+          {
+            name: "Silver",
+            audience: "For medium-sized businesses",
+            price: "11.7M",
+            unit: "toman",
+            timeline: "monthly",
+            description: "A higher publishing cadence for businesses that need a more active content presence.",
+            features: [
+              "12 posts per month; reels can be selected",
+              "60–80 stories per month, based on page needs",
+            ],
+          },
+          {
+            name: "Gold",
+            audience: "For large businesses",
+            price: "16.4M",
+            unit: "toman",
+            timeline: "monthly",
+            description: "The highest publishing volume with distribution across additional brand channels.",
+            features: [
+              "16 posts per month; reels can be selected",
+              "120 stories per month",
+              "Business location registration on Google Maps, Balad and Neshan",
+              "Content publishing to an Aparat or YouTube channel",
+            ],
+            featured: true,
+          },
+        ],
       },
     ],
+    pricing: {
+      eyebrow: "Website plans",
+      title: "One foundation. Three scales to begin.",
+      body: "Every plan combines custom design, Next.js and content management through headless WordPress. Scope, capabilities and delivery time change with each tier.",
+      from: "Starting from",
+      includes: "Included",
+      featured: "FMS recommendation",
+      disclaimer: "Prices indicate the starting project scope. Domain, hosting, paid services and out-of-scope features are estimated separately after a call.",
+    },
     process: [
       { title: "Discover", body: "We clarify the business, audience, problem and measure of success.", output: "Problem brief" },
       { title: "Direct", body: "The content architecture, priorities and visual language take shape.", output: "Experience map" },
@@ -426,20 +644,20 @@ export const copy: Record<Locale, Copy> = {
       ],
     },
     contact: {
-      eyebrow: "Start a project",
-      title: "Let’s begin with the problem you want to solve.",
-      intro: "Share a few lines about your business, goal and timing. This preview only sends messages after a verified destination is configured.",
-      directTitle: "Prefer a direct conversation?",
-      directBody: "For now, the FMS Instagram profile is the only verified public contact channel.",
+      eyebrow: "Direct contact",
+      title: "To start a project, call directly.",
+      intro: "The project form has been removed. Call the number below to discuss the need, choose a plan and receive an exact estimate.",
+      directTitle: "One short conversation before any decision.",
+      directBody: "The first call covers the type of site, available content, timing and essential capabilities.",
     },
     privacy: {
       eyebrow: "Privacy",
-      title: "Project information deserves the same care as the project itself.",
-      intro: "This is a temporary preview policy and must be aligned with the final data-handling process before launch.",
+      title: "This website does not store project forms or contact details.",
+      intro: "New projects begin by phone only. There is no project enquiry form on the website.",
       items: [
-        { title: "What is collected?", body: "Only the information you enter in the project form, including your name, contact route and project description." },
-        { title: "How is it used?", body: "To review the enquiry, reply and coordinate around that specific project." },
-        { title: "What is not logged?", body: "Sensitive form values are not written to application logs, and the site does not load heavy social embeds." },
+        { title: "No project form", body: "The website does not collect or store names, phone numbers, budgets or project descriptions." },
+        { title: "What does the call link do?", body: "Selecting the phone number only opens your device dialler. The website does not record the call details." },
+        { title: "External links", body: "Instagram is an independent service, and its own privacy policy applies when you visit it." },
       ],
     },
     common: {
@@ -447,12 +665,12 @@ export const copy: Record<Locale, Copy> = {
       allServices: "All services",
       viewWork: "View work",
       pending: "Awaiting verified content",
-      projectPrompt: "Tell us about your project",
+      projectPrompt: "Call now",
       back: "Back",
       notFound: "This page could not be found.",
       notFoundBody: "The address may have changed, or the content may not be published yet.",
       home: "Back home",
-      footerLine: "Strategy, design and technology for what comes next.",
+      footerLine: "Web design and development with Next.js and headless WordPress.",
       rights: "All rights reserved.",
     },
   },

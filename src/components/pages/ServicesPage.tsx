@@ -1,13 +1,15 @@
-import Link from "next/link";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
+import { PricingPlans } from "@/components/pages/PricingPlans";
+import { ServiceLink } from "@/components/pages/ServiceLink";
 import { PageIntro } from "@/components/ui/PageIntro";
-import { copy, formatIndex, localePath, type Locale } from "@/content/site";
+import { copy, formatIndex, type Locale } from "@/content/site";
 
 export function ServicesPage({ locale }: { locale: Locale }) {
   const content = copy[locale];
+  const websitePlans = content.services.find((service) => service.slug === "web-development")?.plans ?? [];
   const intro = locale === "fa"
-    ? "از تصمیم‌های اولیه تا محصولی که در دست مخاطب قرار می‌گیرد، هر خدمت جای مشخصی در یک مسیر متصل دارد."
-    : "From the earliest decision to the experience in your audience’s hands, each service has a clear role in one connected path.";
+    ? "برای طراحی و توسعه وب‌سایت و مدیریت محتوای اینستاگرام، پلن‌ها و جزئیات هر خدمت را همین‌جا بررسی کنید."
+    : "Review the plans and details for website design, development and Instagram content management directly on this site.";
 
   return (
     <>
@@ -15,7 +17,7 @@ export function ServicesPage({ locale }: { locale: Locale }) {
       <section className="inner-section container-shell">
         <div className="service-list">
           {content.services.map((service, index) => (
-            <Link key={service.slug} href={localePath(locale, `/services/${service.slug}`)} data-reveal>
+            <ServiceLink key={service.slug} locale={locale} service={service}>
               <span>{formatIndex(index + 1, locale)}</span>
               <div>
                 <small>{service.label}</small>
@@ -23,9 +25,18 @@ export function ServicesPage({ locale }: { locale: Locale }) {
                 <p>{service.summary}</p>
               </div>
               <ArrowIcon />
-            </Link>
+            </ServiceLink>
           ))}
         </div>
+      </section>
+      <section className="pricing-section inner-pricing container-shell" id="pricing" aria-labelledby="services-pricing-title">
+        <header className="pricing-section__intro" data-reveal>
+          <p className="eyebrow">{content.pricing.eyebrow}</p>
+          <h2 id="services-pricing-title">{content.pricing.title}</h2>
+          <p>{content.pricing.body}</p>
+        </header>
+        <PricingPlans locale={locale} plans={websitePlans} labelledBy="services-pricing-title" />
+        <p className="pricing-disclaimer" data-reveal>{content.pricing.disclaimer}</p>
       </section>
     </>
   );

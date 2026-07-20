@@ -1,14 +1,17 @@
-import Link from "next/link";
 import { FutureCoreLoader } from "@/components/canvas/FutureCoreLoader";
 import { JsonLd } from "@/components/layout/JsonLd";
+import { PricingPlans } from "@/components/pages/PricingPlans";
 import { ProjectGallery } from "@/components/pages/ProjectGallery";
+import { ServiceLink } from "@/components/pages/ServiceLink";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { copy, formatIndex, formatNumber, localePath, type Locale } from "@/content/site";
+import { copy, formatIndex, formatNumber, type Locale } from "@/content/site";
+import { phoneHref } from "@/lib/contact";
 import { organizationJsonLd } from "@/lib/metadata";
 
 export function HomePage({ locale }: { locale: Locale }) {
   const content = copy[locale];
+  const websitePlans = content.services.find((service) => service.slug === "web-development")?.plans ?? [];
 
   return (
     <>
@@ -22,10 +25,10 @@ export function HomePage({ locale }: { locale: Locale }) {
           </h1>
           <p className="hero__body" data-hero-reveal>{content.hero.body}</p>
           <div className="hero__actions" data-hero-reveal>
-            <Link href={localePath(locale, "/contact")} className="button">
+            <a href={phoneHref} className="button">
               {content.hero.primary}
               <ArrowIcon />
-            </Link>
+            </a>
             <a href="#process" className="button button--ghost">
               {content.hero.secondary}
               <span aria-hidden="true">↓</span>
@@ -60,11 +63,11 @@ export function HomePage({ locale }: { locale: Locale }) {
         />
         <div className="services-grid">
           {content.services.map((service, index) => (
-            <Link
+            <ServiceLink
               key={service.slug}
-              href={localePath(locale, `/services/${service.slug}`)}
+              locale={locale}
+              service={service}
               className="service-card"
-              data-reveal
             >
               <div className="service-card__top">
                 <span>{service.label}</span>
@@ -76,9 +79,19 @@ export function HomePage({ locale }: { locale: Locale }) {
                 {content.common.explore}
                 <ArrowIcon />
               </span>
-            </Link>
+            </ServiceLink>
           ))}
         </div>
+      </section>
+
+      <section className="pricing-section section-block container-shell" id="pricing">
+        <SectionHeading
+          eyebrow={content.pricing.eyebrow}
+          title={content.pricing.title}
+          body={content.pricing.body}
+        />
+        <PricingPlans locale={locale} plans={websitePlans} />
+        <p className="pricing-disclaimer" data-reveal>{content.pricing.disclaimer}</p>
       </section>
 
       <section className="work-section section-block" id="work">
@@ -180,10 +193,10 @@ export function HomePage({ locale }: { locale: Locale }) {
           <h2>{content.sections.finalTitle}</h2>
           <div>
             <p>{content.sections.finalBody}</p>
-            <Link href={localePath(locale, "/contact")} className="button button--light">
+            <a href={phoneHref} className="button button--light">
               {content.common.projectPrompt}
               <ArrowIcon />
-            </Link>
+            </a>
           </div>
         </div>
       </section>
