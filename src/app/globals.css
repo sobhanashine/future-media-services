@@ -18,6 +18,10 @@
   --shadow-soft: 0 24px 70px rgba(22, 21, 25, 0.09);
   --header-height: 5.25rem;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --weight-body: 430;
+  --weight-ui: 560;
+  --weight-label: 620;
+  --weight-display: 650;
 }
 
 * {
@@ -35,12 +39,17 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-app);
+  font-weight: var(--weight-body);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
 body.font-fa {
   --font-app: "Vazirmatn Variable", var(--font-geist-sans), sans-serif;
+  --weight-body: 450;
+  --weight-ui: 570;
+  --weight-label: 630;
+  --weight-display: 670;
 }
 
 body[data-menu-open="true"] {
@@ -2777,6 +2786,222 @@ a {
     align-items: flex-start;
     flex-direction: column;
     justify-content: center;
+  }
+}
+
+/* Typography system: quiet UI, readable body copy, and a more measured display scale. */
+.eyebrow,
+.status-pill,
+.service-card__top,
+.project-card__index,
+.project-card__visit,
+.process-roadmap__legend,
+.process-list__marker span,
+.process-list__output,
+.reason-grid article > div,
+.why-orbit__tag,
+.service-list > a > span,
+.service-list > a > div small,
+.project-detail__index,
+.project-detail__body dt,
+.project-detail__source > span,
+.project-detail__story li span,
+.project-next > span,
+.about-statement > span,
+.contact-note span {
+  font-weight: var(--weight-label);
+}
+
+.button,
+.text-link,
+.card-link,
+.desktop-nav,
+.language-switch,
+.capability-strip span,
+.contact-form label > span {
+  font-weight: var(--weight-ui);
+}
+
+.brand-mark,
+.footer-brand {
+  font-weight: 700;
+}
+
+.hero h1,
+.section-heading h2,
+.why-section__intro h2,
+.final-cta h2,
+.page-intro h1,
+.service-detail > header h1,
+.service-detail__body h2,
+.service-detail__cta h2,
+.project-detail__hero h1,
+.project-detail__story h2,
+.project-next strong,
+.about-statement blockquote,
+.team-placeholder h2,
+.privacy-list h2,
+.contact-section aside h2,
+.state-page h1 {
+  font-weight: var(--weight-display);
+}
+
+.hero h1 {
+  font-size: clamp(2.75rem, 6.1vw, 6.4rem);
+  letter-spacing: -0.065em;
+  line-height: 0.96;
+}
+
+[dir="rtl"] .hero h1 {
+  font-weight: 680;
+  letter-spacing: -0.04em;
+  line-height: 1.16;
+}
+
+.section-heading h2,
+.project-detail__story h2 {
+  font-size: clamp(2.1rem, 4.25vw, 4.6rem);
+  letter-spacing: -0.052em;
+}
+
+.service-card h3,
+.service-list h2,
+.project-card__identity strong,
+.process-list h3,
+.reason-grid h3,
+.social-card h3,
+.values-section h2,
+.device-mockup--archive strong {
+  font-weight: var(--weight-display);
+}
+
+.work-hold h2 {
+  font-weight: var(--weight-ui);
+}
+
+.service-card h3 {
+  font-size: clamp(1.38rem, 2.05vw, 1.95rem);
+}
+
+.project-card__identity strong {
+  font-size: clamp(1.16rem, 2.2vw, 2rem);
+}
+
+.why-section__intro h2,
+.final-cta h2,
+.page-intro h1,
+.service-detail > header h1,
+.project-next strong {
+  font-size: clamp(2.7rem, 6.5vw, 6.8rem);
+  letter-spacing: -0.065em;
+}
+
+.project-detail__hero h1 {
+  font-size: clamp(3rem, 8.5vw, 8.8rem);
+  letter-spacing: -0.072em;
+}
+
+.service-detail__body h2,
+.service-detail__cta h2,
+.about-statement blockquote,
+.team-placeholder h2,
+.privacy-list h2,
+.contact-section aside h2,
+.state-page h1 {
+  font-size: clamp(1.9rem, 3.4vw, 3.7rem);
+}
+
+.hero__body,
+.section-heading > div > p,
+.page-intro__footer p,
+.project-detail__lead > p,
+.project-detail__story section > p:not(.eyebrow),
+.service-detail > header > p:last-child {
+  font-size: clamp(1rem, 0.9vw + 0.74rem, 1.16rem);
+  line-height: 1.88;
+}
+
+.footer-brand,
+.work-hold > div,
+.state-page span {
+  font-weight: 700;
+}
+
+@media (max-width: 780px) {
+  .hero h1,
+  [dir="rtl"] .hero h1 {
+    font-size: clamp(2.45rem, 11.5vw, 4.65rem);
+    line-height: 1.12;
+  }
+
+  .section-heading h2,
+  .project-detail__story h2 {
+    font-size: clamp(2rem, 9.5vw, 3.5rem);
+  }
+
+  .why-section__intro h2,
+  .final-cta h2,
+  .page-intro h1,
+  .service-detail > header h1,
+  .project-next strong {
+    font-size: clamp(2.55rem, 11.5vw, 4.75rem);
+    line-height: 1.1;
+  }
+
+  .project-detail__hero h1 {
+    font-size: clamp(2.8rem, 13vw, 5.4rem);
+    line-height: 0.95;
+  }
+}
+
+@media (max-width: 520px) {
+  .eyebrow,
+  .status-pill,
+  .service-card__top,
+  .project-card__identity small,
+  .project-detail__index,
+  .contact-note span {
+    font-size: 0.68rem;
+  }
+
+  .button,
+  .text-link,
+  .card-link,
+  .capability-strip span {
+    font-size: 0.88rem;
+  }
+
+  .hero h1,
+  [dir="rtl"] .hero h1 {
+    font-size: clamp(2.35rem, 11.3vw, 3.5rem);
+    letter-spacing: -0.035em;
+  }
+
+  .section-heading h2,
+  .project-detail__story h2 {
+    font-size: clamp(1.92rem, 9.2vw, 2.85rem);
+  }
+
+  .why-section__intro h2,
+  .final-cta h2,
+  .page-intro h1,
+  .service-detail > header h1,
+  .project-next strong {
+    font-size: clamp(2.3rem, 10.8vw, 3.45rem);
+  }
+
+  .project-detail__hero h1 {
+    font-size: clamp(2.6rem, 12.5vw, 4rem);
+  }
+
+  .hero__body,
+  .section-heading > div > p,
+  .page-intro__footer p,
+  .project-detail__lead > p,
+  .project-detail__story section > p:not(.eyebrow),
+  .service-detail > header > p:last-child {
+    font-size: 1rem;
+    line-height: 1.9;
   }
 }
 
