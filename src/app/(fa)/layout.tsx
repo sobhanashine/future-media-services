@@ -6,8 +6,8 @@ import { createMetadata } from "@/lib/metadata";
 
 export const metadata = createMetadata(
   "fa",
-  "فیوچر مدیا سرویس | طراحی، توسعه وب و خدمات دیجیتال",
-  "فیوچر مدیا سرویس با ترکیب استراتژی، طراحی UI/UX، توسعه وب، SEO و محتوای دیجیتال، تجربه‌ای مدرن و نتیجه‌محور برای برندها می‌سازد.",
+  "فیوچر مدیا سرویس | طراحی سایت با Next.js و WordPress Headless",
+  "طراحی و توسعه سایت‌های شخصی، شرکتی و فروشگاهی با Next.js و WordPress Headless، به‌همراه دسترسی به مدیریت تخصصی محتوای اینستاگرام.",
 );
 
 export default function PersianRootLayout({ children }: { children: React.ReactNode }) {

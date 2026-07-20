@@ -43,8 +43,8 @@ If Playwright's pinned browser is not installed, run `npx playwright install chr
 | `/work` | `/en/work` | Responsive three-device portfolio cards with direct live links |
 | `/work/[slug]` | `/en/work/[slug]` | Bilingual project case study with verified Future Media Services records |
 | `/about` | `/en/about` | Approach and values |
-| `/contact` | `/en/contact` | Validated project enquiry |
-| `/privacy` | `/en/privacy` | Provisional privacy policy |
+| `/contact` | `/en/contact` | Phone-only project contact |
+| `/privacy` | `/en/privacy` | Privacy notice for phone and external links |
 
 The app also generates `sitemap.xml`, `robots.txt`, localized Open Graph images and localized not-found states. The 3D experience has its own immediate static fallback.
 
@@ -54,23 +54,18 @@ All bilingual copy and service data live in `src/content/site.ts`. Route compone
 
 - `docs/content-inventory.md` records verified, proposed and missing business facts.
 - `public/asset-manifest.json` records replaceable assets and their current fallbacks.
-- Portfolio claims remain limited to the owner-provided CV, Future Media Services project records and what can be verified on each live website; team, address, phone, email, metrics and testimonials are intentionally not invented.
+- Portfolio claims remain limited to the owner-provided CV, Future Media Services project records and what can be verified on each live website; team, address, email, metrics and testimonials are intentionally not invented.
 - Instagram links are normal outbound links. No media is hotlinked and no embed is loaded on the critical path.
 
 Before launch, replace or approve every `missing`, `proposed`, `inferred` or `provisional` item in those files.
 
 Run `npm run assets:portfolio` after replacing any desktop, tablet or mobile project capture. The generator composites the refreshed captures into the supplied device mockup used by the portfolio cards.
 
-## Contact delivery
+## Phone-only contact
 
-The Server Action validates all fields with Zod, uses a honeypot, prevents rapid duplicate submissions per runtime instance and never logs form values.
+Project forms and their delivery backend have been removed. Project CTAs are call buttons whose shared `tel:` target opens the device dialler; the number itself is not displayed. The website does not collect names, budgets or project descriptions.
 
-Set `CONTACT_WEBHOOK_URL` to a verified HTTPS endpoint that accepts JSON. Without it:
-
-- development validates the form and clearly reports that no message was sent;
-- production returns an honest unavailable message and points users to the verified Instagram profile.
-
-The in-memory rate limiter is a lightweight first layer, not a distributed production rate limiter. Replace it with a shared store at deployment if the hosting topology uses multiple instances.
+Instagram content management has its own local bilingual service route with Economic, Silver and Gold monthly plans. The current package quantities and inclusions were adapted from the owner-provided reference and are maintained in the typed content model.
 
 ## Motion and 3D
 
@@ -88,9 +83,9 @@ GSAP reveal motion is a progressive enhancement. Native scrolling remains unchan
 ## Deployment and rollback
 
 1. Run lint, typecheck, unit tests, production build and Playwright checks.
-2. Configure `NEXT_PUBLIC_SITE_URL` and the verified contact delivery endpoint.
+2. Configure `NEXT_PUBLIC_SITE_URL`.
 3. Review the content inventory and asset manifest with the owner.
 4. Deploy a preview and re-run browser checks against the preview URL.
 5. Promote the verified deployment and retain the previous deployment as the rollback target.
 
-No production deployment is considered complete until contact details, form destination, privacy policy, logo and launch assets are owner-approved.
+No production deployment is considered complete until the phone number, pricing, privacy notice, favicon and launch assets are owner-approved.

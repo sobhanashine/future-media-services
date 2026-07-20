@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { copy, formatIndex, localePath, type Locale } from "@/content/site";
+import { phoneHref } from "@/lib/contact";
 
 function languageHref(locale: Locale, pathname: string) {
   if (locale === "fa") {
@@ -79,9 +80,9 @@ export function SiteHeader({ locale }: { locale: Locale }) {
           >
             {content.languageSwitch}
           </a>
-          <Link href={localePath(locale, "/contact")} className="button button--compact header-cta">
+          <a href={phoneHref} className="button button--compact header-cta">
             {content.nav.start}
-          </Link>
+          </a>
           <button
             type="button"
             className="menu-toggle"

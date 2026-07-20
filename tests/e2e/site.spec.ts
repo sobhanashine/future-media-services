@@ -23,18 +23,37 @@ test("visible counters use the active locale numeral system", async ({ page }) =
   await expect(page.locator(".process-roadmap__legend span").last()).toHaveText("01 — 05");
 });
 
-test("primary service to contact flow works", async ({ page }) => {
+test("website service exposes three plans and a phone-only CTA", async ({ page }) => {
   await page.goto("/en/services");
   await page.getByRole("link", { name: /Website design & development/ }).click();
   await expect(page).toHaveURL(/\/en\/services\/web-development/);
-  await page.getByRole("link", { name: "Start a project" }).last().click();
-  await expect(page).toHaveURL(/\/en\/contact/);
-  await expect(page.getByLabel("Full name")).toBeVisible();
+  await expect(page.locator(".pricing-plan")).toHaveCount(3);
+  await expect(page.getByRole("heading", { name: "Personal" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Corporate" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Commerce", exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: /Call to discuss/ }).last()).toHaveAttribute("href", /^tel:/);
+});
+
+test("Instagram management stays local and exposes all three monthly plans", async ({ page }) => {
+  await page.goto("/services");
+  const instagramService = page.getByRole("link", { name: /مدیریت محتوای اینستاگرام/ });
+  await expect(instagramService).toHaveAttribute("href", "/services/instagram-management");
+  await instagramService.click();
+  await expect(page).toHaveURL(/\/services\/instagram-management$/);
+  await expect(page.locator(".pricing-plan")).toHaveCount(3);
+  await expect(page.getByRole("heading", { name: "اقتصادی", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "نقره‌ای", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "طلایی", exact: true })).toBeVisible();
+  await expect(page.getByText("۸.۵", { exact: true })).toBeVisible();
+  await expect(page.getByText("۱۱.۷", { exact: true })).toBeVisible();
+  await expect(page.getByText("۱۶.۴", { exact: true })).toBeVisible();
+  await expect(page.getByText("خدمات مشترک در هر سه پلن")).toBeVisible();
+  await expect(page.locator('a[href*="faratar.agency"]')).toHaveCount(0);
 });
 
 test("key pages have no serious accessibility violations", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  for (const path of ["/", "/en", "/contact", "/en/services", "/en/work", "/en/work/ofoq"]) {
+  for (const path of ["/", "/en", "/contact", "/en/services", "/services/instagram-management", "/en/work", "/en/work/ofoq"]) {
     await page.goto(path);
     const results = await new AxeBuilder({ page }).analyze();
     expect(results.violations.filter((item) => ["critical", "serious"].includes(item.impact ?? ""))).toEqual([]);
@@ -46,7 +65,7 @@ test("the content survives without JavaScript", async ({ browser }) => {
   const page = await context.newPage();
   await page.goto("http://127.0.0.1:3107/");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("آینده");
-  await expect(page.getByRole("link", { name: "شروع یک پروژه" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "تماس بگیرید" }).first()).toBeVisible();
   await context.close();
 });
 
@@ -161,15 +180,10 @@ test("every portfolio entry has a Persian and English detail page", async ({ req
   expect((await request.get("/work/sakkou-cowork")).status()).toBe(404);
 });
 
-test("the contact form is honest when delivery is unconfigured", async ({ page }) => {
+test("contact page has no form and uses the verified call number", async ({ page }) => {
   await page.goto("/en/contact");
-  await page.getByLabel("Full name").fill("Preview Visitor");
-  await page.getByLabel("Email, phone or contact handle").fill("visitor@example.com");
-  await page.getByRole("combobox", { name: /^Service/ }).selectOption("web-development");
-  await page.getByLabel("Tell us about the project, problem and goal").fill("We need a clear bilingual website for a growing service business.");
-  await page.getByLabel(/I agree/).check();
-  await page.getByRole("button", { name: "Send enquiry" }).click();
-  await expect(page.getByText(/delivery channel is not active yet/i)).toBeVisible();
+  await expect(page.locator("form")).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Call to discuss" }).last()).toHaveAttribute("href", /^tel:/);
 });
 
 test("technical SEO endpoints and metadata are present", async ({ page, request }) => {

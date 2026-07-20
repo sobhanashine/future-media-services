@@ -14,6 +14,26 @@ describe("bilingual content model", () => {
     }
   });
 
+  it("keeps three website plans aligned across locales", () => {
+    const faPlans = copy.fa.services.find((service) => service.slug === "web-development")?.plans;
+    const enPlans = copy.en.services.find((service) => service.slug === "web-development")?.plans;
+
+    expect(faPlans).toHaveLength(3);
+    expect(enPlans).toHaveLength(3);
+    expect(faPlans?.map((plan) => plan.featured)).toEqual(enPlans?.map((plan) => plan.featured));
+  });
+
+  it("keeps three Instagram plans local and aligned across locales", () => {
+    const faService = copy.fa.services.find((service) => service.slug === "instagram-management");
+    const enService = copy.en.services.find((service) => service.slug === "instagram-management");
+
+    expect(faService?.plans).toHaveLength(3);
+    expect(enService?.plans).toHaveLength(3);
+    expect(faService?.sharedPlanFeatures).toHaveLength(15);
+    expect(enService?.sharedPlanFeatures).toHaveLength(15);
+    expect(faService?.plans?.map((plan) => plan.featured)).toEqual(enService?.plans?.map((plan) => plan.featured));
+  });
+
   it("generates stable locale paths", () => {
     expect(localePath("fa", "/contact")).toBe("/contact");
     expect(localePath("en", "/contact")).toBe("/en/contact");
