@@ -2,9 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { JsonLd } from "@/components/layout/JsonLd";
 import { PricingPlans } from "@/components/pages/PricingPlans";
-import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { copy, formatIndex, localePath, type Locale, type Service } from "@/content/site";
-import { phoneHref } from "@/lib/contact";
+import { phoneDisplay, phoneHref } from "@/lib/contact";
 
 export function ServiceDetailPage({ locale, service }: { locale: Locale; service: Service }) {
   const content = copy[locale];
@@ -100,14 +99,29 @@ export function ServiceDetailPage({ locale, service }: { locale: Locale; service
             <p className="pricing-disclaimer" data-reveal>{pricingCopy.disclaimer}</p>
           </section>
         )}
-        <aside className="service-detail__cta" data-reveal>
-          <div>
-            <span>FMS / {service.slug.toUpperCase()}</span>
-            <h2>{locale === "fa" ? "برای انتخاب پلن مناسب تماس بگیرید." : "Call to choose the right plan."}</h2>
+        <aside className="service-detail__cta" aria-labelledby="service-cta-title" data-reveal>
+          <div className="service-detail__cta-copy">
+            <div className="service-detail__cta-meta">
+              <span>FMS / {service.slug.toUpperCase()}</span>
+              <span>{locale === "fa" ? "قدم بعدی" : "Next step"}</span>
+            </div>
+            <h2 id="service-cta-title">
+              {locale === "fa" ? "پلن مناسب را با یک تماس انتخاب کنید." : "Choose the right plan with one call."}
+            </h2>
+            <p>
+              {locale === "fa"
+                ? "نیاز پروژه، زمان‌بندی و برآورد اولیه را مستقیم و بدون فرم بررسی می‌کنیم."
+                : "We will discuss your needs, timeline and initial estimate directly, with no form in between."}
+            </p>
           </div>
-          <a href={phoneHref} className="button button--light">
-            {content.nav.start}
-            <ArrowIcon />
+          <a
+            href={phoneHref}
+            className="service-detail__cta-call"
+            aria-label={locale === "fa" ? `تماس مستقیم با شماره ${phoneDisplay.fa}` : `Call ${phoneDisplay.en}`}
+          >
+            <span>{locale === "fa" ? "تماس مستقیم" : "Direct call"}</span>
+            <strong dir="ltr">{phoneDisplay[locale]}</strong>
+            <span className="service-detail__cta-arrow" aria-hidden="true">↗</span>
           </a>
         </aside>
       </article>
