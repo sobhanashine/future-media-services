@@ -1,6 +1,6 @@
 import { FutureCoreLoader } from "@/components/canvas/FutureCoreLoader";
 import { JsonLd } from "@/components/layout/JsonLd";
-import { PricingPlans } from "@/components/pages/PricingPlans";
+import { FaqSection } from "@/components/pages/FaqSection";
 import { ProjectGallery } from "@/components/pages/ProjectGallery";
 import { ServiceLink } from "@/components/pages/ServiceLink";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
@@ -11,7 +11,6 @@ import { organizationJsonLd } from "@/lib/metadata";
 
 export function HomePage({ locale }: { locale: Locale }) {
   const content = copy[locale];
-  const websitePlans = content.services.find((service) => service.slug === "web-development")?.plans ?? [];
 
   return (
     <>
@@ -82,16 +81,6 @@ export function HomePage({ locale }: { locale: Locale }) {
             </ServiceLink>
           ))}
         </div>
-      </section>
-
-      <section className="pricing-section section-block container-shell" id="pricing">
-        <SectionHeading
-          eyebrow={content.pricing.eyebrow}
-          title={content.pricing.title}
-          body={content.pricing.body}
-        />
-        <PricingPlans locale={locale} plans={websitePlans} />
-        <p className="pricing-disclaimer" data-reveal>{content.pricing.disclaimer}</p>
       </section>
 
       <section className="work-section section-block" id="work">
@@ -186,6 +175,8 @@ export function HomePage({ locale }: { locale: Locale }) {
           ))}
         </div>
       </section>
+
+      <FaqSection locale={locale} limit={4} />
 
       <section className="final-cta">
         <div className="container-shell" data-reveal>

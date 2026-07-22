@@ -19,6 +19,7 @@ export type PricingPlan = {
   timeline: string;
   description: string;
   features: string[];
+  paymentNote?: string;
   featured?: boolean;
 };
 
@@ -43,6 +44,9 @@ export type Service = {
   };
   problem: string;
   deliverables: string[];
+  overview: string;
+  workflow: { title: string; body: string }[];
+  idealFor: string[];
   plans?: PricingPlan[];
   pricing?: PricingCopy;
   sharedPlanTitle?: string;
@@ -57,6 +61,7 @@ type Copy = {
     work: string;
     about: string;
     contact: string;
+    faq: string;
     start: string;
     menu: string;
     close: string;
@@ -117,6 +122,14 @@ type Copy = {
     title: string;
     intro: string;
     items: { title: string; body: string }[];
+  };
+  faq: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    allLabel: string;
+    moreLabel: string;
+    items: { question: string; answer: string }[];
   };
   common: {
     explore: string;
@@ -183,6 +196,7 @@ export const copy: Record<Locale, Copy> = {
       work: "نمونه‌کارها",
       about: "درباره ما",
       contact: "تماس",
+      faq: "سوالات متداول",
       start: "تماس تلفنی",
       menu: "بازکردن منو",
       close: "بستن منو",
@@ -232,6 +246,13 @@ export const copy: Record<Locale, Copy> = {
         },
         problem: "قالب‌های آماده معمولاً برند را شبیه دیگران نشان می‌دهند و با رشد محتوا یا فروش، خیلی زود به محدودیت می‌رسند.",
         deliverables: ["طراحی UI/UX اختصاصی", "توسعه Next.js", "WordPress Headless", "SEO فنی و کنترل کیفیت"],
+        overview: "وب‌سایت را فقط به‌عنوان چند صفحه تحویل نمی‌دهیم؛ مسیر ورود کاربر، محتوای ضروری و نقطه تماس را کنار هویت بصری برند طراحی می‌کنیم تا نسخه نهایی از روز اول آماده استفاده و رشد باشد.",
+        workflow: [
+          { title: "تعریف مسیر", body: "هدف سایت، مخاطب، صفحات ضروری و اولویت‌های محتوا را پیش از طراحی مشخص می‌کنیم." },
+          { title: "طراحی و ساخت", body: "رابط اختصاصی را به‌صورت واکنش‌گرا طراحی و با Next.js و WordPress Headless توسعه می‌دهیم." },
+          { title: "کنترل و تحویل", body: "موبایل، سرعت، SEO فنی و محتوا بررسی می‌شود؛ سپس پنل و مسیر ادامه کار را تحویل می‌دهیم." },
+        ],
+        idealFor: ["برند شخصی یا کسب‌وکاری که به یک حضور حرفه‌ای نیاز دارد", "شرکتی که می‌خواهد خدمات و نمونه‌کارهایش را شفاف‌تر ارائه کند", "فروشگاهی که مسیر خرید سریع و قابل‌اعتماد می‌خواهد"],
         plans: [
           {
             name: "شخصی",
@@ -240,6 +261,7 @@ export const copy: Record<Locale, Copy> = {
             unit: "میلیون تومان",
             timeline: "۲ تا ۴ هفته",
             description: "یک حضور حرفه‌ای و مستقل برای معرفی شما، خدمات و نمونه‌کارها.",
+            paymentNote: "امکان پرداخت قسطی؛ برای هماهنگی با ما تماس بگیرید.",
             features: [
               "طراحی اختصاصی تا ۵ صفحه",
               "Next.js سریع و واکنش‌گرا",
@@ -256,6 +278,7 @@ export const copy: Record<Locale, Copy> = {
             unit: "میلیون تومان",
             timeline: "۴ تا ۷ هفته",
             description: "وب‌سایتی چندبخشی برای معرفی خدمات، اعتبار برند و تبدیل بازدیدکننده به تماس.",
+            paymentNote: "امکان پرداخت قسطی؛ برای هماهنگی با ما تماس بگیرید.",
             features: [
               "طراحی UI/UX اختصاصی تا ۱۰ صفحه",
               "Next.js + WordPress Headless",
@@ -273,6 +296,7 @@ export const copy: Record<Locale, Copy> = {
             unit: "میلیون تومان",
             timeline: "۸ تا ۱۲ هفته",
             description: "فروشگاه Headless اختصاصی با تجربه خرید سریع و مدیریت کامل محصولات در وردپرس.",
+            paymentNote: "امکان پرداخت قسطی؛ برای هماهنگی با ما تماس بگیرید.",
             features: [
               "طراحی اختصاصی مسیر خرید و صفحات محصول",
               "Next.js + WooCommerce Headless",
@@ -295,6 +319,13 @@ export const copy: Record<Locale, Copy> = {
         },
         problem: "تولید پراکنده و بدون تقویم، زبان بصری و گزارش منظم، زمان می‌گیرد اما الزاماً به رشد پایدار صفحه تبدیل نمی‌شود.",
         deliverables: ["تقویم محتوایی", "پست، استوری و ریلز", "هویت بصری صفحه", "گزارش ماهانه"],
+        overview: "مدیریت محتوا با یک تقویم واقعی شروع می‌شود؛ سپس موضوع، فرمت، طراحی و زمان انتشار را در یک ریتم ثابت جلو می‌بریم تا صفحه هم برای مخاطب قابل‌تشخیص باشد و هم برای تیم شما قابل‌پیگیری.",
+        workflow: [
+          { title: "شناخت صفحه", body: "هدف، مخاطب، لحن و وضعیت فعلی صفحه را مرور می‌کنیم تا تقویم متناسب با کسب‌وکار شما شکل بگیرد." },
+          { title: "تولید و انتشار", body: "سناریو، طراحی و آماده‌سازی پست، استوری و ریلز مطابق پلن انتخابی پیش می‌رود." },
+          { title: "گزارش و بهبود", body: "در پایان هر ماه، روند انتشار و داده‌های قابل‌دسترسی را مرور می‌کنیم و برای ماه بعد جهت می‌دهیم." },
+        ],
+        idealFor: ["کسب‌وکاری که انتشار منظم و هویت بصری یکپارچه می‌خواهد", "تیمی که می‌خواهد تولید محتوا را با یک تقویم مشخص پیش ببرد", "برندی که به گزارش ماهانه و ارتباط روشن نیاز دارد"],
         pricing: {
           eyebrow: "پلن‌های مدیریت اینستاگرام",
           title: "سه سطح برای مدیریت منظم محتوا.",
@@ -423,6 +454,21 @@ export const copy: Record<Locale, Copy> = {
         { title: "لینک‌های بیرونی", body: "لینک اینستاگرام یک سرویس مستقل است و استفاده از آن تابع سیاست حریم خصوصی همان سرویس است." },
       ],
     },
+    faq: {
+      eyebrow: "پاسخ‌های کوتاه و روشن",
+      title: "پیش از شروع همکاری، این‌ها را بدانید.",
+      intro: "اگر پاسخ موردنظر شما این‌جا نیست، در یک تماس کوتاه درباره جزئیات پروژه صحبت می‌کنیم.",
+      allLabel: "سوالات متداول",
+      moreLabel: "دیدن همه سوالات",
+      items: [
+        { question: "برای شروع پروژه چه کار کنیم؟", answer: "برای شروع، مستقیم تماس بگیرید. در همان گفت‌وگوی اولیه درباره نوع خدمت، محتوای موجود، زمان‌بندی و امکانات ضروری صحبت می‌کنیم." },
+        { question: "طراحی سایت چقدر زمان می‌برد؟", answer: "بسته به گستره پروژه، زمان اجرای پلن‌های وب‌سایت از حدود ۲ تا ۱۲ هفته متغیر است. زمان‌بندی دقیق پس از مشخص‌شدن محتوا و امکانات پروژه تعیین می‌شود." },
+        { question: "آیا برای تمام پلن‌های طراحی سایت امکان پرداخت قسطی وجود دارد؟", answer: "بله. برای هر سه پلن طراحی سایت امکان پرداخت قسطی وجود دارد. برای هماهنگی شرایط پرداخت، مستقیم با ما تماس بگیرید." },
+        { question: "بعد از تحویل سایت، خودمان می‌توانیم محتوا را تغییر دهیم؟", answer: "بله. برای سایت‌های Headless WordPress، پنل مدیریت محتوا و آموزش استفاده از آن در محدوده هر پلن ارائه می‌شود." },
+        { question: "مدیریت اینستاگرام شامل چه چیزهایی است؟", answer: "تقویم محتوایی، طراحی پست و استوری، ساخت ریلز، هویت بصری صفحه و گزارش ماهانه؛ حجم انتشار بر اساس پلن انتخابی شما تعیین می‌شود." },
+        { question: "هزینه نهایی چه زمانی مشخص می‌شود؟", answer: "قیمت‌های سایت نقطه شروع هستند. پس از تماس و مشخص‌شدن محدوده، محتوا و امکانات لازم، برآورد نهایی و شفاف ارائه می‌شود." },
+      ],
+    },
     common: {
       explore: "مشاهده جزئیات",
       allServices: "همه خدمات",
@@ -445,6 +491,7 @@ export const copy: Record<Locale, Copy> = {
       work: "Work",
       about: "About",
       contact: "Contact",
+      faq: "FAQs",
       start: "Call to discuss",
       menu: "Open menu",
       close: "Close menu",
@@ -489,6 +536,13 @@ export const copy: Record<Locale, Copy> = {
         },
         problem: "Ready-made templates often make brands look interchangeable and become restrictive as content or commerce needs grow.",
         deliverables: ["Custom UI/UX design", "Next.js development", "Headless WordPress", "Technical SEO & quality assurance"],
+        overview: "We do not treat a website as a bundle of pages. We design the visitor journey, essential content and contact moments alongside the visual identity, so the finished site is ready to use and grow from day one.",
+        workflow: [
+          { title: "Define the route", body: "We clarify the site's purpose, audience, essential pages and content priorities before design begins." },
+          { title: "Design and build", body: "The custom responsive interface is designed and developed with Next.js and headless WordPress." },
+          { title: "Check and hand over", body: "We review mobile, performance, technical SEO and content, then hand over the CMS and next-step guidance." },
+        ],
+        idealFor: ["A personal brand or business that needs a credible digital home", "A company that wants to explain its services and work more clearly", "A shop that needs a fast, trustworthy buying journey"],
         plans: [
           {
             name: "Personal",
@@ -497,6 +551,7 @@ export const copy: Record<Locale, Copy> = {
             unit: "toman",
             timeline: "2–4 weeks",
             description: "A polished, independent home for your profile, services and selected work.",
+            paymentNote: "Installment payment is available; call us to arrange it.",
             features: [
               "Custom design for up to 5 pages",
               "Fast, responsive Next.js frontend",
@@ -513,6 +568,7 @@ export const copy: Record<Locale, Copy> = {
             unit: "toman",
             timeline: "4–7 weeks",
             description: "A multi-section website built to explain services, strengthen credibility and turn visits into calls.",
+            paymentNote: "Installment payment is available; call us to arrange it.",
             features: [
               "Custom UI/UX for up to 10 pages",
               "Next.js + headless WordPress",
@@ -530,6 +586,7 @@ export const copy: Record<Locale, Copy> = {
             unit: "toman",
             timeline: "8–12 weeks",
             description: "A custom headless shop with a fast buying experience and complete product control in WordPress.",
+            paymentNote: "Installment payment is available; call us to arrange it.",
             features: [
               "Custom purchase journey and product pages",
               "Next.js + headless WooCommerce",
@@ -552,6 +609,13 @@ export const copy: Record<Locale, Copy> = {
         },
         problem: "Publishing without a calendar, visual language or regular reporting consumes time without necessarily creating durable growth.",
         deliverables: ["Content calendar", "Posts, stories and reels", "Page visual identity", "Monthly reporting"],
+        overview: "Content management starts with a real calendar. We then move topic, format, design and publishing time through a steady rhythm, making the page recognizable to its audience and trackable for your team.",
+        workflow: [
+          { title: "Understand the page", body: "We review the goal, audience, tone and current state of the account to shape a calendar that fits the business." },
+          { title: "Create and publish", body: "Scripts, design and production for posts, stories and reels move forward according to the chosen plan." },
+          { title: "Report and improve", body: "At the end of each month, we review the publishing rhythm and available data, then set direction for the next one." },
+        ],
+        idealFor: ["A business that needs consistent publishing and a unified visual identity", "A team that wants to work from a defined content calendar", "A brand that needs monthly reporting and clear communication"],
         pricing: {
           eyebrow: "Instagram management plans",
           title: "Three levels for consistent content management.",
@@ -678,6 +742,21 @@ export const copy: Record<Locale, Copy> = {
         { title: "No project form", body: "The website does not collect or store names, phone numbers, budgets or project descriptions." },
         { title: "What does the call link do?", body: "Selecting the phone number only opens your device dialler. The website does not record the call details." },
         { title: "External links", body: "Instagram is an independent service, and its own privacy policy applies when you visit it." },
+      ],
+    },
+    faq: {
+      eyebrow: "Clear, short answers",
+      title: "What to know before we begin.",
+      intro: "If your question is not answered here, we can discuss the project details in a short call.",
+      allLabel: "Frequently asked questions",
+      moreLabel: "View all questions",
+      items: [
+        { question: "How do we start a project?", answer: "Call us directly. In the first conversation, we cover the service, available content, timing and essential capabilities." },
+        { question: "How long does a website take?", answer: "Website plans typically take about 2 to 12 weeks, depending on scope. The final schedule is set once content and required capabilities are clear." },
+        { question: "Is installment payment available for every website plan?", answer: "Yes. Installment payment is available for all three website plans. Call us directly to arrange the payment terms." },
+        { question: "Can we update the website content after handover?", answer: "Yes. Headless WordPress websites include a content-management panel and training within the scope of each plan." },
+        { question: "What does Instagram management include?", answer: "A content calendar, post and story design, reel production, page visual identity and monthly reporting. Publishing volume is based on the selected plan." },
+        { question: "When is the final cost confirmed?", answer: "Website prices are starting points. Once the scope, content and required capabilities are clear in a call, we provide a transparent final estimate." },
       ],
     },
     common: {

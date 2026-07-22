@@ -26,6 +26,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
         <span>© {new Date().getFullYear()} Future Media Services. {content.common.rights}</span>
         <div>
           <Link href={localePath(locale, "/privacy")}>{locale === "fa" ? "حریم خصوصی" : "Privacy"}</Link>
+          <Link href={localePath(locale, "/faq")}>{content.nav.faq}</Link>
           <a href="https://www.instagram.com/future.m.services/" target="_blank" rel="noreferrer">
             Instagram
           </a>

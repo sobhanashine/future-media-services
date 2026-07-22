@@ -5,7 +5,7 @@ import { localePath, serviceSlugs, type Locale } from "@/content/site";
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://futuremservices.com";
   const locales: Locale[] = ["fa", "en"];
-  const staticPaths = ["", "/services", "/work", "/about", "/contact", "/privacy"];
+  const staticPaths = ["", "/services", "/work", "/about", "/faq", "/contact", "/privacy"];
 
   return locales.flatMap((locale) => [
     ...staticPaths.map((path) => ({

@@ -39,6 +39,7 @@ export function PricingPlans({
               <span>{plan.unit}</span>
             </div>
             <p className="pricing-plan__description">{plan.description}</p>
+            {plan.paymentNote && <a href={phoneHref} className="pricing-plan__payment-note">{plan.paymentNote}</a>}
             <div className="pricing-plan__scope">
               <div>
                 <span>{text.includes}</span>

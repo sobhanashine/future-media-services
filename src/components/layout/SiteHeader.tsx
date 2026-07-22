@@ -43,6 +43,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
     [content.nav.services, "/services"],
     [content.nav.work, "/work"],
     [content.nav.about, "/about"],
+    [content.nav.faq, "/faq"],
     [content.nav.contact, "/contact"],
   ] as const;
 

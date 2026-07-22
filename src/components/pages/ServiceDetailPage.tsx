@@ -58,6 +58,24 @@ export function ServiceDetailPage({ locale, service }: { locale: Locale; service
             </ul>
           </section>
         </div>
+        <section className="service-detail__content" data-reveal>
+          <div>
+            <p className="eyebrow">{locale === "fa" ? "رویکرد اجرا" : "How it comes together"}</p>
+            <h2>{service.overview}</h2>
+          </div>
+          <ol>
+            {service.workflow.map((step, index) => (
+              <li key={step.title}>
+                <span>{formatIndex(index + 1, locale)}</span>
+                <div><h3>{step.title}</h3><p>{step.body}</p></div>
+              </li>
+            ))}
+          </ol>
+        </section>
+        <section className="service-detail__fit" data-reveal>
+          <p className="eyebrow">{locale === "fa" ? "این خدمت برای چه کسانی مناسب است؟" : "Who this is for"}</p>
+          <ul>{service.idealFor.map((item) => <li key={item}>{item}</li>)}</ul>
+        </section>
         {service.plans && (
           <section className="service-detail__pricing" aria-labelledby="service-pricing-title">
             <header className="pricing-section__intro" data-reveal>
