@@ -17,19 +17,36 @@ test("Persian and English home experiences are reachable", async ({ page }) => {
   await expect(page.getByRole("heading", { level: 1 })).toContainText("future");
 });
 
-test("visible counters use the active locale numeral system", async ({ page }) => {
+test("the mobile menu contains navigation without the technical footer line", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
-  await expect(page.locator(".capability-strip b").first()).toHaveText("۰۱");
+  await page.getByRole("button", { name: "بازکردن منو" }).click();
+
+  await expect(page.locator(".mobile-menu")).toHaveAttribute("data-open", "true");
+  await expect(page.locator(".mobile-menu p")).toHaveCount(0);
+});
+
+test("the footer provides direct contact and complete site navigation", async ({ page }) => {
+  await page.goto("/");
+  const footer = page.locator(".site-footer");
+
+  await expect(footer.getByText("دیزاین اختصاصی وب‌سایت، برای برندهایی که می‌خواهند متفاوت دیده شوند.")).toBeVisible();
+  await expect(footer.getByRole("link", { name: "تماس تلفنی" })).toHaveAttribute("href", /^tel:/);
+  await expect(footer.getByRole("link", { name: "همه خدمات" })).toHaveAttribute("href", "/services");
+  await expect(footer.getByRole("link", { name: "نمونه‌کارها" })).toHaveAttribute("href", "/work");
+});
+
+test("process counters use the active locale numeral system", async ({ page }) => {
+  await page.goto("/");
   await expect(page.locator(".process-roadmap__legend span").last()).toHaveText("۰۱ — ۰۵");
 
   await page.goto("/en");
-  await expect(page.locator(".capability-strip b").first()).toHaveText("01");
   await expect(page.locator(".process-roadmap__legend span").last()).toHaveText("01 — 05");
 });
 
 test("website service exposes three plans and a phone-only CTA", async ({ page }) => {
   await page.goto("/en/services");
-  await page.getByRole("link", { name: /Website design & development/ }).click();
+  await page.locator(".service-list").getByRole("link", { name: /Website design & development/ }).click();
   await expect(page).toHaveURL(/\/en\/services\/web-development/);
   const websiteHero = page.locator(".service-detail__hero-media img");
   await expect(websiteHero).toBeVisible();
@@ -44,7 +61,7 @@ test("website service exposes three plans and a phone-only CTA", async ({ page }
 
 test("Instagram management stays local and exposes all three monthly plans", async ({ page }) => {
   await page.goto("/services");
-  const instagramService = page.getByRole("link", { name: /مدیریت محتوای اینستاگرام/ });
+  const instagramService = page.locator(".service-list").getByRole("link", { name: /مدیریت محتوای اینستاگرام/ });
   await expect(instagramService).toHaveAttribute("href", "/services/instagram-management");
   await instagramService.click();
   await expect(page).toHaveURL(/\/services\/instagram-management$/);
@@ -97,6 +114,38 @@ test("mobile pricing plans use a readable horizontal snap rail", async ({ page }
   }
 });
 
+test("mobile studio cards use a horizontal snap rail", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+
+  const rail = page.locator(".social-grid");
+  await rail.scrollIntoViewIfNeeded();
+  const metrics = await rail.evaluate((element) => {
+    const firstCard = element.querySelector(".social-card")?.getBoundingClientRect();
+    const styles = getComputedStyle(element);
+    return {
+      clientWidth: element.clientWidth,
+      scrollWidth: element.scrollWidth,
+      firstCardWidth: firstCard?.width ?? 0,
+      overflowX: styles.overflowX,
+      scrollSnapType: styles.scrollSnapType,
+    };
+  });
+
+  expect(metrics.scrollWidth).toBeGreaterThan(metrics.clientWidth);
+  expect(metrics.firstCardWidth).toBeLessThan(metrics.clientWidth);
+  expect(metrics.firstCardWidth).toBeGreaterThan(metrics.clientWidth * 0.75);
+  expect(metrics.overflowX).toBe("auto");
+  expect(metrics.scrollSnapType).toContain("mandatory");
+
+  await rail.evaluate((element) => {
+    const amount = element.clientWidth;
+    element.scrollLeft = getComputedStyle(element).direction === "rtl" ? -amount : amount;
+  });
+  await page.waitForTimeout(100);
+  expect(Math.abs(await rail.evaluate((element) => element.scrollLeft))).toBeGreaterThan(0);
+});
+
 test("key pages have no serious accessibility violations", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   for (const path of ["/", "/en", "/contact", "/en/services", "/services/instagram-management", "/en/work", "/en/work/ofoq"]) {
@@ -115,28 +164,25 @@ test("the content survives without JavaScript", async ({ browser }) => {
   await context.close();
 });
 
-test("reduced motion keeps the hero copy and skips WebGL", async ({ page }) => {
+test("reduced motion keeps the text-only hero visible", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/en");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  await expect(page.locator(".hero--type-only")).toBeVisible();
   await expect(page.locator("canvas")).toHaveCount(0);
 });
 
-test("the hero wing sculpture responds to drag", async ({ page }) => {
-  await page.goto("/en");
-  const canvas = page.locator(".future-core canvas");
-  await expect(canvas).toBeVisible();
-  const firstFrame = await canvas.screenshot();
-  const bounds = await canvas.boundingBox();
-  if (!bounds) throw new Error("Hero canvas has no bounding box");
-
-  await page.mouse.move(bounds.x + bounds.width * 0.68, bounds.y + bounds.height * 0.52);
-  await page.mouse.down();
-  await page.mouse.move(bounds.x + bounds.width * 0.82, bounds.y + bounds.height * 0.44, { steps: 8 });
-  await page.mouse.up();
-  await page.waitForTimeout(700);
-  const secondFrame = await canvas.screenshot();
-  expect(firstFrame.equals(secondFrame)).toBe(false);
+test("the Persian hero contains only the approved text instead of visual media", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator(".hero .eyebrow")).toHaveText("دیزاین اختصاصی · برای برند شما");
+  await expect(page.locator(".hero h1")).toHaveText("آینده‌ی برند شما،از همین‌جا ساخته می‌شود.");
+  await expect(page.locator(".hero__body")).toHaveText("برای برند شما وب‌سایتی اختصاصی طراحی می‌کنیم؛ با هویت بصری منسجم، تجربه‌ای روان و جزئیاتی که ماندگار می‌شوند.");
+  await expect(page.locator(".future-core, .future-core canvas")).toHaveCount(0);
+  await expect(page.locator(".capability-strip")).toHaveCount(0);
+  await expect(page.locator(".hero img")).toHaveCount(0);
+  await expect(page.locator(".hero a, .hero button")).toHaveCount(2);
+  await expect(page.locator(".hero a").first()).toHaveAttribute("href", /^tel:/);
+  await expect(page.locator(".hero a").last()).toHaveAttribute("href", "#services");
 });
 
 test("portfolio cards are bilingual image previews linked directly to live websites", async ({ page }) => {

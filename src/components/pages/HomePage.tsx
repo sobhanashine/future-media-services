@@ -1,11 +1,10 @@
-import { FutureCoreLoader } from "@/components/canvas/FutureCoreLoader";
 import { JsonLd } from "@/components/layout/JsonLd";
 import { FaqSection } from "@/components/pages/FaqSection";
 import { ProjectGallery } from "@/components/pages/ProjectGallery";
 import { ServiceLink } from "@/components/pages/ServiceLink";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { copy, formatIndex, formatNumber, type Locale } from "@/content/site";
+import { copy, formatIndex, type Locale } from "@/content/site";
 import { phoneHref } from "@/lib/contact";
 import { organizationJsonLd } from "@/lib/metadata";
 
@@ -15,7 +14,7 @@ export function HomePage({ locale }: { locale: Locale }) {
   return (
     <>
       <JsonLd data={organizationJsonLd} />
-      <section className="hero container-shell">
+      <section className="hero hero--type-only container-shell">
         <div className="hero__copy">
           <p className="eyebrow" data-hero-reveal>{content.hero.eyebrow}</p>
           <h1 data-hero-reveal>
@@ -28,31 +27,13 @@ export function HomePage({ locale }: { locale: Locale }) {
               {content.hero.primary}
               <ArrowIcon />
             </a>
-            <a href="#process" className="button button--ghost">
+            <a href="#services" className="button button--ghost">
               {content.hero.secondary}
               <span aria-hidden="true">↓</span>
             </a>
           </div>
         </div>
-        <div className="hero__visual" data-hero-reveal>
-          <FutureCoreLoader label={content.hero.canvasLabel} />
-        </div>
-        <div className="hero__index" aria-hidden="true">
-          <span>FMS / {formatNumber(26, locale)}</span>
-          <span>SCROLL ↓</span>
-        </div>
       </section>
-
-      <div className="capability-strip" aria-label={locale === "fa" ? "توانمندی‌ها" : "Capabilities"}>
-        <div className="container-shell">
-          {content.capabilityStrip.map((item, index) => (
-            <span key={item}>
-              <b>{formatIndex(index + 1, locale)}</b>
-              {item}
-            </span>
-          ))}
-        </div>
-      </div>
 
       <section className="section-block container-shell" id="services">
         <SectionHeading

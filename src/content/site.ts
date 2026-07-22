@@ -75,7 +75,6 @@ type Copy = {
     secondary: string;
     canvasLabel: string;
   };
-  capabilityStrip: string[];
   sections: {
     servicesEyebrow: string;
     servicesTitle: string;
@@ -202,20 +201,14 @@ export const copy: Record<Locale, Copy> = {
       close: "بستن منو",
     },
     hero: {
-      eyebrow: "طراحی · Next.js · WordPress Headless",
+      eyebrow: "دیزاین اختصاصی · برای برند شما",
       title: "آینده‌ی برند شما،",
       accent: "از همین‌جا ساخته می‌شود.",
-      body: "وب‌سایت اختصاصی شما را طراحی و با Next.js و WordPress Headless می‌سازیم؛ از سایت شخصی تا شرکتی و فروشگاه آنلاین.",
+      body: "برای برند شما وب‌سایتی اختصاصی طراحی می‌کنیم؛ با هویت بصری منسجم، تجربه‌ای روان و جزئیاتی که ماندگار می‌شوند.",
       primary: "تماس بگیرید",
-      secondary: "دیدن مسیر کار",
+      secondary: "مشاهده خدمات",
       canvasLabel: "مجسمه‌ی سه‌بعدی بال‌ها؛ نمادی از حرکت، بلندپروازی و حرکت رو به آینده.",
     },
-    capabilityStrip: [
-      "طراحی اختصاصی وب",
-      "Next.js مدرن",
-      "WordPress Headless",
-      "مدیریت محتوای اینستاگرام",
-    ],
     sections: {
       servicesEyebrow: "آنچه می‌سازیم",
       servicesTitle: "دو خدمت مشخص، با مسیر و خروجی روشن.",
@@ -479,7 +472,7 @@ export const copy: Record<Locale, Copy> = {
       notFound: "این صفحه پیدا نشد.",
       notFoundBody: "ممکن است آدرس تغییر کرده باشد یا محتوا هنوز منتشر نشده باشد.",
       home: "بازگشت به خانه",
-      footerLine: "طراحی و توسعه وب با Next.js و WordPress Headless.",
+      footerLine: "دیزاین اختصاصی وب‌سایت، برای برندهایی که می‌خواهند متفاوت دیده شوند.",
       rights: "تمام حقوق محفوظ است.",
     },
   },
@@ -497,15 +490,14 @@ export const copy: Record<Locale, Copy> = {
       close: "Close menu",
     },
     hero: {
-      eyebrow: "Design · Next.js · Headless WordPress",
+      eyebrow: "Custom design · For your brand",
       title: "Your brand’s future",
       accent: "starts taking shape here.",
-      body: "We design and build custom websites with Next.js and headless WordPress—from personal portfolios to corporate sites and online stores.",
+      body: "We design a distinctive website for your brand—with a clear visual identity, an effortless experience, and details people remember.",
       primary: "Call now",
-      secondary: "See how we work",
+      secondary: "Explore services",
       canvasLabel: "A three-dimensional wing sculpture, representing motion, ambition, and forward momentum.",
     },
-    capabilityStrip: ["Custom web design", "Modern Next.js", "Headless WordPress", "Instagram content management"],
     sections: {
       servicesEyebrow: "What we build",
       servicesTitle: "Two focused services, each with a clear route.",
@@ -769,7 +761,7 @@ export const copy: Record<Locale, Copy> = {
       notFound: "This page could not be found.",
       notFoundBody: "The address may have changed, or the content may not be published yet.",
       home: "Back home",
-      footerLine: "Web design and development with Next.js and headless WordPress.",
+      footerLine: "Custom websites for brands that want to be seen differently.",
       rights: "All rights reserved.",
     },
   },

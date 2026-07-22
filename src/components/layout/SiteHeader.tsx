@@ -118,7 +118,6 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             );
           })}
         </nav>
-        <p>{content.common.footerLine}</p>
       </div>
     </header>
   );
