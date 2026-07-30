@@ -5,8 +5,6 @@ import { PersianBlogPostPage } from "@/components/pages/PersianBlogPostPage";
 import { findPersianBlogPost, persianBlogSlugs } from "@/content/blog";
 import { createPersianOnlyMetadata, siteUrl } from "@/lib/metadata";
 
-export const dynamicParams = false;
-
 export function generateStaticParams() {
   return persianBlogSlugs.map((slug) => ({ slug }));
 }
