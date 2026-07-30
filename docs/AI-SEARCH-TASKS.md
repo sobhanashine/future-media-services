@@ -19,7 +19,8 @@ This improves crawlability and extractability for ChatGPT search, Gemini/Google 
 
 - [ ] Verify indexing and brand queries in Google Search Console and Bing Webmaster Tools.
 - [ ] Check `futuremservices.ir` in Google, Bing and Brave for the target service queries.
-- [ ] Publish genuinely useful bilingual guides answering customer questions about website planning, headless WordPress, Next.js and Instagram content management.
+- [x] Publish genuinely useful Persian guides answering customer questions about website planning, headless WordPress and Next.js; continue expanding the cluster with human review.
 - [ ] Earn independent mentions from relevant industry sites, profiles and communities; do not manufacture reviews, awards or client claims.
+- [x] Refresh `public/llms.txt` for the current Persian blog routes and machine-readable content.
 - [ ] Refresh `public/llms.txt` and `public/pricing.md` whenever approved pricing, routes or public claims change.
 - [ ] Re-check AI visibility monthly across ChatGPT, Gemini, Claude and Perplexity and record the cited sources and competitors.

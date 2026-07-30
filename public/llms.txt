@@ -7,6 +7,9 @@
 - [Persian home](https://futuremservices.ir/): فارسی، راست‌به‌چپ
 - [English home](https://futuremservices.ir/en): English, left-to-right
 - [Persian services](https://futuremservices.ir/services/): Website design/development and Instagram content management
+- [Persian blog](https://futuremservices.ir/blog/): Persian guides about website design, SEO and content
+- [Persian blog: custom websites for service businesses](https://futuremservices.ir/blog/custom-website-for-service-businesses/)
+- [Persian blog: Next.js or WordPress Headless](https://futuremservices.ir/blog/nextjs-or-wordpress-headless/)
 - [English services](https://futuremservices.ir/en/services/): Website design/development and Instagram content management
 - [Persian work](https://futuremservices.ir/work/): Verified portfolio records and live project links
 - [English work](https://futuremservices.ir/en/work/): Verified portfolio records and live project links

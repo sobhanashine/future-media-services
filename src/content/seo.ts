@@ -28,6 +28,10 @@ export const persianSeoMetadata = {
     title: "حریم خصوصی | Future Media Services",
     description: "سیاست حریم خصوصی Future Media Services درباره تماس تلفنی، فرم پروژه و لینک‌های خارجی.",
   },
+  blog: {
+    title: "بلاگ فارسی طراحی سایت و SEO | Future Media Services",
+    description: "راهنماهای فارسی درباره طراحی سایت اختصاصی، Next.js، WordPress Headless، SEO و مدیریت محتوای اینستاگرام با منابع قابل بررسی.",
+  },
 } as const;
 
 export const persianSeoGuide = {

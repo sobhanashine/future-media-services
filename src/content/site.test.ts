@@ -59,6 +59,8 @@ describe("bilingual content model", () => {
     for (const path of ["/", "/services", "/services/web-development", "/work/ofoq", "/about", "/faq", "/contact", "/privacy"]) {
       expect(switchLocalePath("fa", path)).toBe(path === "/" ? "/en" : `/en${path}`);
     }
+    expect(switchLocalePath("fa", "/blog")).toBe("/en");
+    expect(switchLocalePath("fa", "/blog/nextjs-or-wordpress-headless")).toBe("/en");
 
     for (const path of ["/en", "/en/services", "/en/services/web-development", "/en/work/ofoq", "/en/about", "/en/faq", "/en/contact", "/en/privacy"]) {
       expect(switchLocalePath("en", path)).toBe(path.replace(/^\/en/, "") || "/");

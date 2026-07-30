@@ -1,6 +1,6 @@
 # Future Media Services content inventory
 
-Updated: 2026-07-20
+Updated: 2026-07-30
 
 | Item | Status | Current handling | Required before launch |
 | --- | --- | --- | --- |
@@ -22,5 +22,6 @@ Updated: 2026-07-20
 | Iran/UK operating claim | Inferred, unapproved | Not shown as a factual claim | Owner confirmation |
 | Favicon | Generated for this site | Abstract wing/signal mark in the FMS palette | Owner visual approval |
 | Privacy policy | Updated for phone-only contact | States that the site does not collect project-form data | Legal/owner review |
+| Persian blog | Published | Two answer-led articles with dates, author, FAQs, official sources and internal service links | Human review and two-post weekly publishing cadence |
 
 No client, award, office, team member, testimonial, metric or project result has been fabricated in the interface. Project roles and technology details are limited to the owner-provided CV, Future Media Services project records and confirmable public website behavior.

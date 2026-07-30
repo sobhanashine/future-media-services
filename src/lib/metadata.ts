@@ -44,6 +44,39 @@ export function createMetadata(
   };
 }
 
+export function createPersianOnlyMetadata(title: string, description: string, path = ""): Metadata {
+  const canonical = new URL(path || "/", siteUrl).toString();
+  const socialImage = new URL("/opengraph-image", siteUrl).toString();
+
+  return {
+    title,
+    description,
+    metadataBase: new URL(siteUrl),
+    alternates: {
+      canonical,
+      languages: {
+        fa: canonical,
+        "x-default": canonical,
+      },
+    },
+    openGraph: {
+      type: "article",
+      locale: "fa_IR",
+      title,
+      description,
+      url: canonical,
+      siteName: "Future Media Services",
+      images: [{ url: socialImage, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [socialImage],
+    },
+  };
+}
+
 export const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",

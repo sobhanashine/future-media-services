@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { persianBlogPosts } from "@/content/blog";
 import { projectSlugs } from "@/content/projects";
 import { localePath, serviceSlugs, type Locale } from "@/content/site";
 import { siteUrl } from "@/lib/metadata";
@@ -8,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = ["", "/services", "/work", "/about", "/faq", "/contact", "/privacy"];
   const agentFiles = ["/llms.txt", "/pricing.md", "/pricing-fa.md"];
 
-  return [
+  const entries = [
     ...locales.flatMap((locale) => [
       ...staticPaths.map((path) => ({
         url: new URL(localePath(locale, path), siteUrl).toString(),
@@ -34,6 +35,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.5,
+    })),
+  ];
+
+  return [
+    ...entries,
+    {
+      url: new URL("/blog", siteUrl).toString(),
+      lastModified: persianBlogPosts[0]?.updatedAt,
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
+    },
+    ...persianBlogPosts.map((post) => ({
+      url: new URL(`/blog/${post.slug}`, siteUrl).toString(),
+      lastModified: post.updatedAt,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
     })),
   ];
 }

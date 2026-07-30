@@ -30,9 +30,10 @@ export function SiteHeader({ locale }: { locale: Locale }) {
     };
   }, [open]);
 
-  const links = [
+  const links: ReadonlyArray<readonly [string, string]> = [
     [content.nav.services, "/services"],
     [content.nav.work, "/work"],
+    ...(locale === "fa" ? [[content.nav.blog, "/blog"] as const] : []),
     [content.nav.about, "/about"],
     [content.nav.faq, "/faq"],
     [content.nav.contact, "/contact"],

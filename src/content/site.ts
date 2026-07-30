@@ -60,6 +60,7 @@ type Copy = {
   nav: {
     services: string;
     work: string;
+    blog: string;
     about: string;
     contact: string;
     faq: string;
@@ -217,6 +218,7 @@ export const copy: Record<Locale, Copy> = {
     nav: {
       services: "خدمات",
       work: "نمونه‌کارها",
+      blog: "بلاگ",
       about: "درباره ما",
       contact: "تماس",
       faq: "سوالات متداول",
@@ -531,6 +533,7 @@ export const copy: Record<Locale, Copy> = {
     nav: {
       services: "Services",
       work: "Work",
+      blog: "Blog",
       about: "About",
       contact: "Contact",
       faq: "FAQs",
@@ -848,7 +851,7 @@ export function localePath(locale: Locale, path = "") {
 
 export function switchLocalePath(locale: Locale, pathname: string) {
   if (locale === "fa") {
-    return pathname === "/" ? "/en" : `/en${pathname}`;
+    return pathname === "/" || pathname.startsWith("/blog") ? "/en" : `/en${pathname}`;
   }
 
   const withoutLocale = pathname.replace(/^\/en(?=\/|$)/, "");
