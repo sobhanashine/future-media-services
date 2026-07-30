@@ -6,14 +6,23 @@ import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { copy, formatIndex, type Locale } from "@/content/site";
 import { phoneHref } from "@/lib/contact";
-import { organizationJsonLd } from "@/lib/metadata";
 
 export function HomePage({ locale }: { locale: Locale }) {
   const content = copy[locale];
 
   return (
     <>
-      <JsonLd data={organizationJsonLd} />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: content.faq.items.slice(0, 4).map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: { "@type": "Answer", text: item.answer },
+          })),
+        }}
+      />
       <section className="hero hero--type-only container-shell">
         <div className="hero__copy">
           <p className="eyebrow" data-hero-reveal>{content.hero.eyebrow}</p>

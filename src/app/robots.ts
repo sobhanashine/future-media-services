@@ -1,9 +1,22 @@
 import type { MetadataRoute } from "next";
+import { siteUrl } from "@/lib/metadata";
 
 export default function robots(): MetadataRoute.Robots {
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://futuremservices.com";
+  const aiCrawlers = [
+    "GPTBot",
+    "ChatGPT-User",
+    "PerplexityBot",
+    "ClaudeBot",
+    "anthropic-ai",
+    "Google-Extended",
+    "Bingbot",
+  ];
+
   return {
-    rules: { userAgent: "*", allow: "/" },
-    sitemap: `${base}/sitemap.xml`,
+    rules: [
+      { userAgent: "*", allow: "/" },
+      ...aiCrawlers.map((userAgent) => ({ userAgent, allow: "/" })),
+    ],
+    sitemap: `${siteUrl}/sitemap.xml`,
   };
 }

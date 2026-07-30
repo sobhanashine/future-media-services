@@ -2,12 +2,13 @@ import { GeistSans } from "geist/font/sans";
 import "@fontsource-variable/vazirmatn";
 import "../globals.css";
 import { SiteFrame } from "@/components/layout/SiteFrame";
+import { persianSeoMetadata } from "@/content/seo";
 import { createMetadata } from "@/lib/metadata";
 
 export const metadata = createMetadata(
   "fa",
-  "فیوچر مدیا سرویس | طراحی سایت با Next.js و WordPress Headless",
-  "طراحی و توسعه سایت‌های شخصی، شرکتی و فروشگاهی با Next.js و WordPress Headless، به‌همراه دسترسی به مدیریت تخصصی محتوای اینستاگرام.",
+  persianSeoMetadata.home.title,
+  persianSeoMetadata.home.description,
 );
 
 export default function PersianRootLayout({ children }: { children: React.ReactNode }) {

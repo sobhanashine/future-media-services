@@ -13,7 +13,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
           <Link
             href={localePath(locale)}
             className="footer-brand"
-            aria-label={locale === "fa" ? "خانه FMS" : "FMS home"}
+            aria-label={content.common.homeAria}
           >
             <BrandIdentity />
           </Link>
@@ -24,7 +24,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
           </a>
         </div>
 
-        <nav className="site-footer__nav" aria-label={locale === "fa" ? "پیمایش پایین صفحه" : "Footer navigation"}>
+        <nav className="site-footer__nav" aria-label={content.common.footerNavAria}>
           <section>
             <h2>{content.nav.services}</h2>
             <Link href={localePath(locale, "/services")}>{content.common.allServices}</Link>
@@ -46,7 +46,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
       <div className="site-footer__bottom container-shell">
         <span>© {new Date().getFullYear()} Future Media Services. {content.common.rights}</span>
         <div>
-          <Link href={localePath(locale, "/privacy")}>{locale === "fa" ? "حریم خصوصی" : "Privacy"}</Link>
+          <Link href={localePath(locale, "/privacy")}>{content.common.privacy}</Link>
           <Link href={localePath(locale, "/faq")}>{content.nav.faq}</Link>
           <a href="https://www.instagram.com/future.m.services/" target="_blank" rel="noreferrer">
             Instagram

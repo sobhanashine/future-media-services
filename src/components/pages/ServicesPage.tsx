@@ -1,4 +1,6 @@
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
+import { PersianSeoGuide } from "@/components/pages/PersianSeoGuide";
+import { persianSeoMetadata } from "@/content/seo";
 import { PricingPlans } from "@/components/pages/PricingPlans";
 import { ServiceLink } from "@/components/pages/ServiceLink";
 import { PageIntro } from "@/components/ui/PageIntro";
@@ -7,13 +9,16 @@ import { copy, formatIndex, type Locale } from "@/content/site";
 export function ServicesPage({ locale }: { locale: Locale }) {
   const content = copy[locale];
   const websitePlans = content.services.find((service) => service.slug === "web-development")?.plans ?? [];
-  const intro = locale === "fa"
-    ? "برای طراحی و توسعه وب‌سایت و مدیریت محتوای اینستاگرام، پلن‌ها و جزئیات هر خدمت را همین‌جا بررسی کنید."
-    : "Review the plans and details for website design, development and Instagram content management directly on this site.";
+  const intro = content.sections.servicesPageIntro;
 
   return (
     <>
-      <PageIntro locale={locale} eyebrow={content.nav.services} title={content.sections.servicesTitle} body={intro} />
+      <PageIntro
+        locale={locale}
+        eyebrow={content.nav.services}
+        title={locale === "fa" ? persianSeoMetadata.services.heading : content.sections.servicesTitle}
+        body={intro}
+      />
       <section className="inner-section container-shell">
         <div className="service-list">
           {content.services.map((service, index) => (
@@ -38,6 +43,7 @@ export function ServicesPage({ locale }: { locale: Locale }) {
         <PricingPlans locale={locale} plans={websitePlans} labelledBy="services-pricing-title" />
         <p className="pricing-disclaimer" data-reveal>{content.pricing.disclaimer}</p>
       </section>
+      {locale === "fa" ? <PersianSeoGuide /> : null}
     </>
   );
 }

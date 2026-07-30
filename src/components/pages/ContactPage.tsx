@@ -17,31 +17,25 @@ export function ContactPage({ locale }: { locale: Locale }) {
       <section className="contact-section contact-section--call container-shell" id="call">
         <div className="call-panel" data-reveal>
           <div className="call-panel__top">
-            <span>{locale === "fa" ? "فقط تماس تلفنی" : "Phone calls only"}</span>
+            <span>{content.contact.phoneOnlyLabel}</span>
             <span>FMS / DIRECT</span>
           </div>
-          <p>{locale === "fa" ? "برای مشاوره و شروع پروژه تماس بگیرید" : "Call to discuss and start a project"}</p>
+          <p>{content.contact.callPrompt}</p>
           <a href={phoneHref} className="button button--light call-panel__button">
             {content.nav.start}
             <ArrowIcon />
           </a>
           <small>
-            {locale === "fa"
-              ? "انتخاب شماره، تماس را در تلفن شما باز می‌کند. پیامک و فرم آنلاین برای شروع پروژه فعال نیست."
-              : "Selecting the number opens a call on your device. SMS and online project forms are not used."}
+            {content.contact.callDisclaimer}
           </small>
         </div>
         <aside data-reveal>
-          <p className="eyebrow">{locale === "fa" ? "پیش از تماس" : "Before the call"}</p>
+          <p className="eyebrow">{content.contact.beforeCallLabel}</p>
           <h2>{content.contact.directTitle}</h2>
           <p>{content.contact.directBody}</p>
           <div className="contact-note">
             <span>NOTE / {formatIndex(1, locale)}</span>
-            <p>
-              {locale === "fa"
-                ? "اگر نوع سایت، تعداد زبان‌ها، محتوای آماده و زمان تقریبی مدنظرتان را بدانید، برآورد اولیه دقیق‌تر خواهد بود."
-                : "An initial estimate is more precise if you know the site type, languages, available content and preferred timing."}
-            </p>
+            <p>{content.contact.estimateNote}</p>
           </div>
         </aside>
       </section>

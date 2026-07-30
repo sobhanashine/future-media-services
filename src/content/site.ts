@@ -31,6 +31,7 @@ export type PricingCopy = {
   includes: string;
   featured: string;
   disclaimer: string;
+  swipeHint: string;
 };
 
 export type Service = {
@@ -85,6 +86,7 @@ type Copy = {
     processEyebrow: string;
     processTitle: string;
     processBody: string;
+    servicesPageIntro: string;
     whyEyebrow: string;
     whyTitle: string;
     whyBody: string;
@@ -113,6 +115,11 @@ type Copy = {
     eyebrow: string;
     title: string;
     intro: string;
+    phoneOnlyLabel: string;
+    callPrompt: string;
+    callDisclaimer: string;
+    beforeCallLabel: string;
+    estimateNote: string;
     directTitle: string;
     directBody: string;
   };
@@ -128,7 +135,16 @@ type Copy = {
     intro: string;
     allLabel: string;
     moreLabel: string;
+    contactPrompt: string;
+    contactTitle: string;
     items: { question: string; answer: string }[];
+  };
+  serviceDetail: {
+    problem: string;
+    deliverables: string;
+    approach: string;
+    idealFor: string;
+    ctaTitle: string;
   };
   common: {
     explore: string;
@@ -140,6 +156,14 @@ type Copy = {
     notFound: string;
     notFoundBody: string;
     home: string;
+    skipToContent: string;
+    privacy: string;
+    homeAria: string;
+    mainNavAria: string;
+    mobileNavAria: string;
+    footerNavAria: string;
+    switchToEnglishAria: string;
+    switchToPersianAria: string;
     footerLine: string;
     rights: string;
   };
@@ -204,7 +228,7 @@ export const copy: Record<Locale, Copy> = {
       eyebrow: "دیزاین اختصاصی · برای برند شما",
       title: "آینده‌ی برند شما،",
       accent: "از همین‌جا ساخته می‌شود.",
-      body: "برای برند شما وب‌سایتی اختصاصی طراحی می‌کنیم؛ با هویت بصری منسجم، تجربه‌ای روان و جزئیاتی که ماندگار می‌شوند.",
+      body: "برای برند شما طراحی سایت اختصاصی انجام می‌دهیم؛ با هویت بصری منسجم، تجربه‌ای روان و جزئیاتی که ماندگار می‌شوند.",
       primary: "تماس بگیرید",
       secondary: "مشاهده خدمات",
       canvasLabel: "مجسمه‌ی سه‌بعدی بال‌ها؛ نمادی از حرکت، بلندپروازی و حرکت رو به آینده.",
@@ -219,6 +243,7 @@ export const copy: Record<Locale, Copy> = {
       processEyebrow: "روش همکاری",
       processTitle: "یک مسیر روشن، از مسئله تا رشد.",
       processBody: "هر ایستگاه یک تصمیم مشخص و یک خروجی قابل بررسی دارد؛ بنابراین هیچ مرحله‌ای در ابهام جلو نمی‌رود.",
+      servicesPageIntro: "برای طراحی و توسعه وب‌سایت و مدیریت محتوای اینستاگرام، پلن‌ها و جزئیات هر خدمت را همین‌جا بررسی کنید.",
       whyEyebrow: "چرا FMS؟",
       whyTitle: "چهار زاویه، یک تیم، یک نتیجه منسجم.",
       whyBody: "استراتژی، طراحی، ساخت و رشد جدا از هم تصمیم نمی‌گیرند. هر چهار لنز از ابتدا روی یک مسئله متمرکزند.",
@@ -327,6 +352,7 @@ export const copy: Record<Locale, Copy> = {
           includes: "حجم محتوای ماهانه",
           featured: "پیشنهادی",
           disclaimer: "مبالغ ماهانه‌اند. نوع ریلز، جزئیات تولید و اطلاعات لازم برای اجرا پیش از عقد قرارداد در تماس اولیه مشخص می‌شوند.",
+          swipeHint: "برای مقایسه پلن‌ها افقی ورق بزنید",
         },
         sharedPlanTitle: "خدمات مشترک در هر سه پلن",
         sharedPlanFeatures: faInstagramSharedFeatures,
@@ -381,6 +407,7 @@ export const copy: Record<Locale, Copy> = {
       includes: "شامل",
       featured: "پیشنهاد FMS",
       disclaimer: "قیمت‌ها شروع پروژه را نشان می‌دهند. هزینه دامنه، هاست، سرویس‌های پولی و امکانات خارج از محدوده پس از تماس جداگانه برآورد می‌شود.",
+      swipeHint: "برای مقایسه پلن‌ها افقی ورق بزنید",
     },
     process: [
       { title: "کشف", body: "کسب‌وکار، مخاطب، مسئله و معیار موفقیت را دقیق می‌کنیم.", output: "خلاصه مسئله" },
@@ -434,6 +461,11 @@ export const copy: Record<Locale, Copy> = {
       eyebrow: "تماس مستقیم",
       title: "برای شروع پروژه، مستقیم تماس بگیرید.",
       intro: "فرم شروع پروژه حذف شده است. برای بررسی نیاز، انتخاب پلن و برآورد دقیق فقط با شماره زیر تماس بگیرید.",
+      phoneOnlyLabel: "فقط تماس تلفنی",
+      callPrompt: "برای مشاوره و شروع پروژه تماس بگیرید",
+      callDisclaimer: "انتخاب شماره، تماس را در تلفن شما باز می‌کند. پیامک و فرم آنلاین برای شروع پروژه فعال نیست.",
+      beforeCallLabel: "پیش از تماس",
+      estimateNote: "اگر نوع سایت، تعداد زبان‌ها، محتوای آماده و زمان تقریبی مدنظرتان را بدانید، برآورد اولیه دقیق‌تر خواهد بود.",
       directTitle: "یک گفت‌وگوی کوتاه، قبل از هر تصمیم.",
       directBody: "در تماس اولیه درباره نوع سایت، محتوای موجود، زمان‌بندی و امکانات ضروری صحبت می‌کنیم.",
     },
@@ -453,6 +485,8 @@ export const copy: Record<Locale, Copy> = {
       intro: "اگر پاسخ موردنظر شما این‌جا نیست، در یک تماس کوتاه درباره جزئیات پروژه صحبت می‌کنیم.",
       allLabel: "سوالات متداول",
       moreLabel: "دیدن همه سوالات",
+      contactPrompt: "پاسخ موردنظر را پیدا نکردید؟",
+      contactTitle: "برای بررسی دقیق شرایط پروژه، تماس بگیرید.",
       items: [
         { question: "برای شروع پروژه چه کار کنیم؟", answer: "برای شروع، مستقیم تماس بگیرید. در همان گفت‌وگوی اولیه درباره نوع خدمت، محتوای موجود، زمان‌بندی و امکانات ضروری صحبت می‌کنیم." },
         { question: "طراحی سایت چقدر زمان می‌برد؟", answer: "بسته به گستره پروژه، زمان اجرای پلن‌های وب‌سایت از حدود ۲ تا ۱۲ هفته متغیر است. زمان‌بندی دقیق پس از مشخص‌شدن محتوا و امکانات پروژه تعیین می‌شود." },
@@ -461,6 +495,13 @@ export const copy: Record<Locale, Copy> = {
         { question: "مدیریت اینستاگرام شامل چه چیزهایی است؟", answer: "تقویم محتوایی، طراحی پست و استوری، ساخت ریلز، هویت بصری صفحه و گزارش ماهانه؛ حجم انتشار بر اساس پلن انتخابی شما تعیین می‌شود." },
         { question: "هزینه نهایی چه زمانی مشخص می‌شود؟", answer: "قیمت‌های سایت نقطه شروع هستند. پس از تماس و مشخص‌شدن محدوده، محتوا و امکانات لازم، برآورد نهایی و شفاف ارائه می‌شود." },
       ],
+    },
+    serviceDetail: {
+      problem: "مسئله",
+      deliverables: "خروجی‌های قابل تعریف",
+      approach: "رویکرد اجرا",
+      idealFor: "این خدمت برای چه کسانی مناسب است؟",
+      ctaTitle: "برای انتخاب پلن مناسب، تماس بگیرید.",
     },
     common: {
       explore: "مشاهده جزئیات",
@@ -472,6 +513,14 @@ export const copy: Record<Locale, Copy> = {
       notFound: "این صفحه پیدا نشد.",
       notFoundBody: "ممکن است آدرس تغییر کرده باشد یا محتوا هنوز منتشر نشده باشد.",
       home: "بازگشت به خانه",
+      skipToContent: "رفتن به محتوای اصلی",
+      privacy: "حریم خصوصی",
+      homeAria: "خانه FMS",
+      mainNavAria: "پیمایش اصلی",
+      mobileNavAria: "پیمایش موبایل",
+      footerNavAria: "پیمایش پایین صفحه",
+      switchToEnglishAria: "Switch to English",
+      switchToPersianAria: "تغییر زبان به فارسی",
       footerLine: "دیزاین اختصاصی وب‌سایت، برای برندهایی که می‌خواهند متفاوت دیده شوند.",
       rights: "تمام حقوق محفوظ است.",
     },
@@ -508,6 +557,7 @@ export const copy: Record<Locale, Copy> = {
       processEyebrow: "How we work",
       processTitle: "A clear route from problem to growth.",
       processBody: "Every stop produces a concrete decision and a reviewable output, so the project never disappears into a black box.",
+      servicesPageIntro: "Review the plans and details for website design, development and Instagram content management directly on this site.",
       whyEyebrow: "Why FMS?",
       whyTitle: "Four lenses. One team. One coherent result.",
       whyBody: "Strategy, design, delivery and growth do not make isolated decisions. All four lenses stay focused on the same problem from day one.",
@@ -616,6 +666,7 @@ export const copy: Record<Locale, Copy> = {
           includes: "Monthly content volume",
           featured: "Recommended",
           disclaimer: "Fees are monthly. Reel formats, production details and required inputs are confirmed during the initial call before the contract is signed.",
+          swipeHint: "Swipe horizontally to compare plans",
         },
         sharedPlanTitle: "Included in all three plans",
         sharedPlanFeatures: enInstagramSharedFeatures,
@@ -670,6 +721,7 @@ export const copy: Record<Locale, Copy> = {
       includes: "Included",
       featured: "FMS recommendation",
       disclaimer: "Prices indicate the starting project scope. Domain, hosting, paid services and out-of-scope features are estimated separately after a call.",
+      swipeHint: "Swipe horizontally to compare plans",
     },
     process: [
       { title: "Discover", body: "We clarify the business, audience, problem and measure of success.", output: "Problem brief" },
@@ -723,6 +775,11 @@ export const copy: Record<Locale, Copy> = {
       eyebrow: "Direct contact",
       title: "To start a project, call directly.",
       intro: "The project form has been removed. Call the number below to discuss the need, choose a plan and receive an exact estimate.",
+      phoneOnlyLabel: "Phone calls only",
+      callPrompt: "Call to discuss and start a project",
+      callDisclaimer: "Selecting the number opens a call on your device. SMS and online project forms are not used.",
+      beforeCallLabel: "Before the call",
+      estimateNote: "An initial estimate is more precise if you know the site type, languages, available content and preferred timing.",
       directTitle: "One short conversation before any decision.",
       directBody: "The first call covers the type of site, available content, timing and essential capabilities.",
     },
@@ -742,6 +799,8 @@ export const copy: Record<Locale, Copy> = {
       intro: "If your question is not answered here, we can discuss the project details in a short call.",
       allLabel: "Frequently asked questions",
       moreLabel: "View all questions",
+      contactPrompt: "Did not find the answer you need?",
+      contactTitle: "Call to discuss the project details precisely.",
       items: [
         { question: "How do we start a project?", answer: "Call us directly. In the first conversation, we cover the service, available content, timing and essential capabilities." },
         { question: "How long does a website take?", answer: "Website plans typically take about 2 to 12 weeks, depending on scope. The final schedule is set once content and required capabilities are clear." },
@@ -750,6 +809,13 @@ export const copy: Record<Locale, Copy> = {
         { question: "What does Instagram management include?", answer: "A content calendar, post and story design, reel production, page visual identity and monthly reporting. Publishing volume is based on the selected plan." },
         { question: "When is the final cost confirmed?", answer: "Website prices are starting points. Once the scope, content and required capabilities are clear in a call, we provide a transparent final estimate." },
       ],
+    },
+    serviceDetail: {
+      problem: "The problem",
+      deliverables: "Possible deliverables",
+      approach: "How it comes together",
+      idealFor: "Who this is for",
+      ctaTitle: "Call to choose the right plan.",
     },
     common: {
       explore: "Explore service",
@@ -761,6 +827,14 @@ export const copy: Record<Locale, Copy> = {
       notFound: "This page could not be found.",
       notFoundBody: "The address may have changed, or the content may not be published yet.",
       home: "Back home",
+      skipToContent: "Skip to main content",
+      privacy: "Privacy",
+      homeAria: "FMS home",
+      mainNavAria: "Main navigation",
+      mobileNavAria: "Mobile navigation",
+      footerNavAria: "Footer navigation",
+      switchToEnglishAria: "Switch to English",
+      switchToPersianAria: "تغییر زبان به فارسی",
       footerLine: "Custom websites for brands that want to be seen differently.",
       rights: "All rights reserved.",
     },
@@ -770,6 +844,15 @@ export const copy: Record<Locale, Copy> = {
 export function localePath(locale: Locale, path = "") {
   const cleanPath = !path || path === "/" ? "" : path.startsWith("/") ? path : `/${path}`;
   return locale === "en" ? `/en${cleanPath}` : cleanPath || "/";
+}
+
+export function switchLocalePath(locale: Locale, pathname: string) {
+  if (locale === "fa") {
+    return pathname === "/" ? "/en" : `/en${pathname}`;
+  }
+
+  const withoutLocale = pathname.replace(/^\/en(?=\/|$)/, "");
+  return withoutLocale || "/";
 }
 
 export function findService(locale: Locale, slug: string) {

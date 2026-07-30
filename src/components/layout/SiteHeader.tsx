@@ -4,17 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { BrandIdentity } from "@/components/layout/BrandIdentity";
-import { copy, formatIndex, localePath, type Locale } from "@/content/site";
+import { copy, formatIndex, localePath, switchLocalePath, type Locale } from "@/content/site";
 import { phoneHref } from "@/lib/contact";
-
-function languageHref(locale: Locale, pathname: string) {
-  if (locale === "fa") {
-    return pathname === "/" ? "/en" : `/en${pathname}`;
-  }
-
-  const withoutLocale = pathname.replace(/^\/en(?=\/|$)/, "");
-  return withoutLocale || "/";
-}
 
 export function SiteHeader({ locale }: { locale: Locale }) {
   const content = copy[locale];
@@ -53,12 +44,12 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         <Link
           href={localePath(locale)}
           className="brand-mark"
-          aria-label={locale === "fa" ? "خانه FMS" : "FMS home"}
+          aria-label={content.common.homeAria}
         >
           <BrandIdentity descriptor />
         </Link>
 
-        <nav className="desktop-nav" aria-label={locale === "fa" ? "پیمایش اصلی" : "Main navigation"}>
+        <nav className="desktop-nav" aria-label={content.common.mainNavAria}>
           {links.map(([label, href]) => {
             const linkHref = localePath(locale, href);
             const isCurrent = pathname === linkHref || pathname.startsWith(`${linkHref}/`);
@@ -73,10 +64,10 @@ export function SiteHeader({ locale }: { locale: Locale }) {
 
         <div className="header-actions">
           <a
-            href={languageHref(locale, pathname)}
+            href={switchLocalePath(locale, pathname)}
             className="language-switch"
             hrefLang={locale === "fa" ? "en" : "fa"}
-            aria-label={locale === "fa" ? "Switch to English" : "تغییر زبان به فارسی"}
+            aria-label={locale === "fa" ? content.common.switchToEnglishAria : content.common.switchToPersianAria}
           >
             {content.languageSwitch}
           </a>
@@ -98,7 +89,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
       </div>
 
       <div id="mobile-menu" className="mobile-menu" data-open={open} aria-hidden={!open}>
-        <nav aria-label={locale === "fa" ? "پیمایش موبایل" : "Mobile navigation"}>
+        <nav aria-label={content.common.mobileNavAria}>
           {links.map(([label, href], index) => {
             const linkHref = localePath(locale, href);
             const isCurrent = pathname === linkHref || pathname.startsWith(`${linkHref}/`);

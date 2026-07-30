@@ -1900,6 +1900,75 @@ a {
   color: var(--muted);
 }
 
+.persian-seo-guide {
+  border-block-start: 1px solid var(--line);
+  padding-block: clamp(4rem, 8vw, 8rem);
+}
+
+.persian-seo-guide > header {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: 2rem;
+  align-items: end;
+  margin-block-end: 3rem;
+}
+
+.persian-seo-guide > header .eyebrow {
+  grid-column: 1 / -1;
+}
+
+.persian-seo-guide h2 {
+  max-width: 12ch;
+  margin: 0;
+  font-size: clamp(2.3rem, 4.8vw, 5.4rem);
+  font-weight: var(--weight-display);
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+}
+
+.persian-seo-guide > header > p:last-child {
+  max-width: 38rem;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.95;
+}
+
+.persian-seo-guide__grid {
+  display: grid;
+  border-block-start: 1px solid var(--line);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.persian-seo-guide__grid article {
+  min-height: 15rem;
+  border-block-end: 1px solid var(--line);
+  padding: 2rem 1.5rem 2rem 0;
+}
+
+.persian-seo-guide__grid article:nth-child(odd) {
+  border-inline-end: 1px solid var(--line);
+  padding-inline-end: 1.5rem;
+}
+
+.persian-seo-guide__grid article:nth-child(even) {
+  padding-inline-start: 1.5rem;
+}
+
+.persian-seo-guide h3 {
+  max-width: 22ch;
+  margin: 0 0 1rem;
+  font-size: clamp(1.25rem, 2vw, 1.8rem);
+  font-weight: var(--weight-display);
+  line-height: 1.35;
+}
+
+.persian-seo-guide__grid p {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.9;
+}
+
 .service-detail {
   padding-block: 4rem clamp(2.5rem, 5vw, 5rem);
 }
@@ -2960,6 +3029,23 @@ a {
   .services-grid,
   .values-section {
     grid-template-columns: 1fr;
+  }
+
+  .persian-seo-guide > header,
+  .persian-seo-guide__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .persian-seo-guide > header {
+    gap: 1.4rem;
+  }
+
+  .persian-seo-guide__grid article,
+  .persian-seo-guide__grid article:nth-child(odd),
+  .persian-seo-guide__grid article:nth-child(even) {
+    min-height: auto;
+    border-inline-end: 0;
+    padding-inline: 0;
   }
 
   .social-grid {

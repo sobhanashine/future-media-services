@@ -24,8 +24,8 @@ export function FaqPage({ locale }: { locale: Locale }) {
       <FaqSection locale={locale} />
       <section className="faq-contact container-shell" data-reveal>
         <div>
-          <p>{locale === "fa" ? "پاسخ موردنظر را پیدا نکردید؟" : "Did not find the answer you need?"}</p>
-          <h2>{locale === "fa" ? "برای بررسی دقیق شرایط پروژه، تماس بگیرید." : "Call to discuss the project details precisely."}</h2>
+          <p>{content.faq.contactPrompt}</p>
+          <h2>{content.faq.contactTitle}</h2>
         </div>
         <a href={phoneHref} className="button button--light">{content.nav.start}</a>
       </section>

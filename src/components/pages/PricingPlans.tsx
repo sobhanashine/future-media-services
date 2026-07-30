@@ -20,7 +20,7 @@ export function PricingPlans({
     <>
       <p className="pricing-plans__hint" id={hintId}>
         <span aria-hidden="true">↔</span>
-        {locale === "fa" ? "برای مقایسه پلن‌ها افقی ورق بزنید" : "Swipe horizontally to compare plans"}
+        {text.swipeHint}
       </p>
       <div className="pricing-plans" aria-labelledby={labelledBy} aria-describedby={hintId}>
         {plans.map((plan, index) => (
