@@ -1,5 +1,6 @@
 import { JsonLd } from "@/components/layout/JsonLd";
 import { FaqSection } from "@/components/pages/FaqSection";
+import { BlogPreview } from "@/components/pages/BlogPreview";
 import { ProjectGallery } from "@/components/pages/ProjectGallery";
 import { ServiceLink } from "@/components/pages/ServiceLink";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
@@ -165,6 +166,8 @@ export function HomePage({ locale }: { locale: Locale }) {
           ))}
         </div>
       </section>
+
+      {locale === "fa" ? <BlogPreview /> : null}
 
       <FaqSection locale={locale} limit={4} />
 

@@ -1,5 +1,4 @@
 import { GeistSans } from "geist/font/sans";
-import "@fontsource-variable/vazirmatn";
 import "../globals.css";
 import { SiteFrame } from "@/components/layout/SiteFrame";
 import { createMetadata } from "@/lib/metadata";

@@ -1,15 +1,14 @@
 import Link from "next/link";
-import { PageIntro } from "@/components/ui/PageIntro";
+import { BlogCard, BlogVisual } from "@/components/pages/BlogCard";
 import { persianBlogPosts } from "@/content/blog";
 import { persianSeoMetadata } from "@/content/seo";
-import { localePath } from "@/content/site";
+import { formatIndex, localePath } from "@/content/site";
 import { JsonLd } from "@/components/layout/JsonLd";
 
-function formatDate(value: string) {
-  return new Intl.DateTimeFormat("fa-IR", { dateStyle: "long" }).format(new Date(`${value}T12:00:00+03:30`));
-}
-
 export function PersianBlogPage() {
+  const posts = [...persianBlogPosts].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+  const [featuredPost, ...archivePosts] = posts;
+
   return (
     <>
       <JsonLd
@@ -30,30 +29,56 @@ export function PersianBlogPage() {
           },
         }}
       />
-      <PageIntro
-        locale="fa"
-        eyebrow="بلاگ فارسی FMS"
-        title="راهنماهایی برای تصمیم‌های بهتر در وب و محتوا."
-        body="مقاله‌های فارسی FMS درباره طراحی سایت اختصاصی، Next.js، WordPress Headless، SEO و مدیریت محتوای اینستاگرام؛ با پاسخ روشن، منابع قابل بررسی و مسیر بعدی مشخص."
-      />
-      <section className="blog-list container-shell inner-section" aria-label="مقاله‌های فارسی">
-        <div className="blog-list__grid">
-          {persianBlogPosts.map((post, index) => (
-            <article className="blog-card" key={post.slug} data-reveal>
-              <div className="blog-card__topline">
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <span>{post.category}</span>
-              </div>
-              <h2>{post.title}</h2>
-              <p>{post.excerpt}</p>
-              <div className="blog-card__meta">
-                <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
-                <span>{post.readingTime} دقیقه مطالعه</span>
-              </div>
-              <Link className="card-link" href={localePath("fa", `/blog/${post.slug}`)}>
-                مطالعه مقاله <span aria-hidden="true">↗</span>
+      <section className="blog-archive-hero" aria-labelledby="blog-page-title">
+        <div className="container-shell blog-archive-hero__inner">
+          <div className="blog-archive-hero__copy" data-hero-reveal>
+            <p className="eyebrow eyebrow--light">FMS / FIELD NOTES / ۱۴۰۵</p>
+            <h1 id="blog-page-title">راهنماهایی برای تصمیم‌های بهتر در وب و محتوا.</h1>
+            <p>مقاله‌های فارسی FMS برای وقتی که قبل از اجرا، به یک نگاه روشن‌تر درباره طراحی سایت، معماری وب، SEO و محتوا نیاز دارید.</p>
+          </div>
+          <div className="blog-archive-hero__signal" data-hero-reveal>
+            <span className="blog-archive-hero__signal-line" />
+            <strong>{formatIndex(posts.length, "fa")}</strong>
+            <span>یادداشت منتشرشده</span>
+          </div>
+        </div>
+      </section>
+
+      {featuredPost ? (
+        <section className="blog-feature container-shell" aria-labelledby="featured-blog-title">
+          <div className="blog-feature__visual" data-reveal>
+            <BlogVisual post={featuredPost} index={1} />
+          </div>
+          <div className="blog-feature__content" data-reveal>
+            <div className="blog-feature__meta">
+              <span>یادداشت منتخب</span>
+              <span>{featuredPost.category}</span>
+            </div>
+            <h2 id="featured-blog-title">
+              <Link href={localePath("fa", `/blog/${featuredPost.slug}`)}>{featuredPost.title}</Link>
+            </h2>
+            <p>{featuredPost.excerpt}</p>
+            <div className="blog-feature__footer">
+              <span>{featuredPost.readingTime} دقیقه مطالعه</span>
+              <Link className="button button--outline" href={localePath("fa", `/blog/${featuredPost.slug}`)}>
+                شروع مطالعه <span aria-hidden="true">↗</span>
               </Link>
-            </article>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      <section className="blog-archive container-shell" aria-labelledby="blog-archive-title">
+        <header className="blog-archive__heading" data-reveal>
+          <div>
+            <p className="eyebrow">آرشیو نوشته‌ها</p>
+            <h2 id="blog-archive-title">موضوع را انتخاب کنید، بعد عمیق‌تر بخوانید.</h2>
+          </div>
+          <p>هر نوشته با مثال، چک‌لیست و منابع قابل بررسی نوشته شده تا یک قدم واقعی از آن بردارید.</p>
+        </header>
+        <div className="blog-archive__grid">
+          {archivePosts.map((post, index) => (
+            <BlogCard key={post.slug} post={post} index={index + 2} locale="fa" />
           ))}
         </div>
       </section>
