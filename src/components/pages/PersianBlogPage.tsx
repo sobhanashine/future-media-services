@@ -4,6 +4,7 @@ import { persianBlogPosts } from "@/content/blog";
 import { persianSeoMetadata } from "@/content/seo";
 import { formatIndex, localePath } from "@/content/site";
 import { JsonLd } from "@/components/layout/JsonLd";
+import { siteUrl } from "@/lib/metadata";
 
 export function PersianBlogPage() {
   const posts = [...persianBlogPosts].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
@@ -23,7 +24,7 @@ export function PersianBlogPage() {
             itemListElement: persianBlogPosts.map((post, index) => ({
               "@type": "ListItem",
               position: index + 1,
-              url: `/blog/${post.slug}`,
+              url: new URL(`/blog/${post.slug}`, siteUrl).toString(),
               name: post.title,
             })),
           },

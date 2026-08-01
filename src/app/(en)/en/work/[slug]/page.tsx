@@ -4,8 +4,6 @@ import { ProjectDetailPage } from "@/components/pages/ProjectDetailPage";
 import { findProject, projectSlugs } from "@/content/projects";
 import { createMetadata } from "@/lib/metadata";
 
-export const dynamicParams = false;
-
 export function generateStaticParams() {
   return projectSlugs.map((slug) => ({ slug }));
 }

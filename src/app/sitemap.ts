@@ -7,35 +7,25 @@ import { siteUrl } from "@/lib/metadata";
 export default function sitemap(): MetadataRoute.Sitemap {
   const locales: Locale[] = ["fa", "en"];
   const staticPaths = ["", "/services", "/work", "/about", "/faq", "/contact", "/privacy"];
-  const agentFiles = ["/llms.txt", "/pricing.md", "/pricing-fa.md"];
 
   const entries = [
     ...locales.flatMap((locale) => [
       ...staticPaths.map((path) => ({
         url: new URL(localePath(locale, path), siteUrl).toString(),
-        lastModified: new Date(),
         changeFrequency: path === "" ? "weekly" as const : "monthly" as const,
         priority: path === "" ? 1 : 0.7,
       })),
       ...serviceSlugs.map((slug) => ({
         url: new URL(localePath(locale, `/services/${slug}`), siteUrl).toString(),
-        lastModified: new Date(),
         changeFrequency: "monthly" as const,
         priority: 0.8,
       })),
       ...projectSlugs.map((slug) => ({
         url: new URL(localePath(locale, `/work/${slug}`), siteUrl).toString(),
-        lastModified: new Date(),
         changeFrequency: "monthly" as const,
         priority: 0.75,
       })),
     ]),
-    ...agentFiles.map((path) => ({
-      url: new URL(path, siteUrl).toString(),
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.5,
-    })),
   ];
 
   return [

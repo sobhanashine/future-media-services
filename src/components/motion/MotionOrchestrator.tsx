@@ -11,18 +11,21 @@ export function MotionOrchestrator() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const context = gsap.context(() => {
-      gsap.fromTo(
-        "[data-hero-reveal]",
-        { y: 28, autoAlpha: 0 },
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: 0.85,
-          stagger: 0.09,
-          ease: "power3.out",
-          clearProps: "transform,opacity,visibility",
-        },
-      );
+      const heroRevealElements = gsap.utils.toArray<HTMLElement>("[data-hero-reveal]");
+      if (heroRevealElements.length > 0) {
+        gsap.fromTo(
+          heroRevealElements,
+          { y: 28, autoAlpha: 0 },
+          {
+            y: 0,
+            autoAlpha: 1,
+            duration: 0.85,
+            stagger: 0.09,
+            ease: "power3.out",
+            clearProps: "transform,opacity,visibility",
+          },
+        );
+      }
 
       gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((element) => {
         gsap.fromTo(

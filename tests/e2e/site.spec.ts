@@ -176,7 +176,7 @@ test("the Persian hero contains only the approved text instead of visual media",
   await page.goto("/");
   await expect(page.locator(".hero .eyebrow")).toHaveText("دیزاین اختصاصی · برای برند شما");
   await expect(page.locator(".hero h1")).toHaveText("آینده‌ی برند شما،از همین‌جا ساخته می‌شود.");
-  await expect(page.locator(".hero__body")).toHaveText("برای برند شما وب‌سایتی اختصاصی طراحی می‌کنیم؛ با هویت بصری منسجم، تجربه‌ای روان و جزئیاتی که ماندگار می‌شوند.");
+  await expect(page.locator(".hero__body")).toHaveText("برای برند شما طراحی سایت اختصاصی انجام می‌دهیم؛ با هویت بصری منسجم، تجربه‌ای روان و جزئیاتی که ماندگار می‌شوند.");
   await expect(page.locator(".future-core, .future-core canvas")).toHaveCount(0);
   await expect(page.locator(".capability-strip")).toHaveCount(0);
   await expect(page.locator(".hero img")).toHaveCount(0);
