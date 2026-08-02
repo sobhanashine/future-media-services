@@ -3834,6 +3834,7 @@ a {
 
 @media (max-width: 780px) {
   .hero--type-only {
+    min-height: calc(100svh - var(--header-height));
     padding-block: clamp(4rem, 9vh, 5rem);
   }
 
