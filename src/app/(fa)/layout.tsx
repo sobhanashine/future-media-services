@@ -7,9 +7,7 @@ import { createMetadata } from "@/lib/metadata";
 const yekanBakh = localFont({
   src: [
     { path: "../fonts/yekan-bakh/YekanBakh-Regular.woff2", weight: "400", style: "normal" },
-    { path: "../fonts/yekan-bakh/YekanBakh-SemiBold.woff2", weight: "600", style: "normal" },
     { path: "../fonts/yekan-bakh/YekanBakh-Bold.woff2", weight: "700", style: "normal" },
-    { path: "../fonts/yekan-bakh/YekanBakh-ExtraBold.woff2", weight: "800", style: "normal" },
   ],
   variable: "--font-yekan-bakh",
   display: "swap",
