@@ -592,14 +592,11 @@ a {
   inset: auto auto -0.12em 0;
   background: currentColor;
   content: "";
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: hero-accent-line 1.15s 0.7s var(--ease-out) both;
+  transform: scaleX(1);
 }
 
 [dir="rtl"] .hero--type-only h1 strong::after {
   inset-inline: auto 0;
-  transform-origin: right;
 }
 
 @media (max-width: 780px) {
@@ -612,10 +609,6 @@ a {
 }
 
 @keyframes hero-eyebrow-mark {
-  to { transform: scaleX(1); }
-}
-
-@keyframes hero-accent-line {
   to { transform: scaleX(1); }
 }
 
