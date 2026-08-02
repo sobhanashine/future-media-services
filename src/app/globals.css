@@ -46,7 +46,7 @@ body {
 }
 
 body.font-fa {
-  --font-app: var(--font-yekan-bakh), var(--font-geist-sans), Arial, sans-serif;
+  --font-app: var(--font-yekan-bakh), Arial, sans-serif;
   --weight-body: 400;
   --weight-ui: 600;
   --weight-label: 600;
@@ -587,15 +587,20 @@ a {
 
 .hero--type-only h1 strong::after {
   position: absolute;
-  width: 0;
+  width: 100%;
   height: 0.12em;
   inset: auto auto -0.12em 0;
   background: currentColor;
   content: "";
+  transform: scaleX(0);
+  transform-origin: left;
   animation: hero-accent-line 1.15s 0.7s var(--ease-out) both;
 }
 
-[dir="rtl"] .hero--type-only h1 strong::after { inset-inline: auto 0; }
+[dir="rtl"] .hero--type-only h1 strong::after {
+  inset-inline: auto 0;
+  transform-origin: right;
+}
 
 @media (max-width: 780px) {
   .hero--type-only h1,
@@ -611,7 +616,7 @@ a {
 }
 
 @keyframes hero-accent-line {
-  to { width: 100%; }
+  to { transform: scaleX(1); }
 }
 
 .hero__index {

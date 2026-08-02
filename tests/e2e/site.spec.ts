@@ -9,7 +9,7 @@ test("Persian and English home experiences are reachable", async ({ page }) => {
   const brandImages = page.locator(".brand-symbol img");
   await expect(brandImages).toHaveCount(2);
   await expect(brandImages.first()).toHaveJSProperty("complete", true);
-  expect(decodeURIComponent(await brandImages.first().getAttribute("src") ?? "")).toMatch(/icon(?:\.[^/]+)?\.png/);
+  expect(decodeURIComponent(await brandImages.first().getAttribute("src") ?? "")).toMatch(/brand-mark(?:\.[^/]+)?\.webp/);
 
   await page.getByRole("link", { name: "Switch to English" }).click();
   await expect(page).toHaveURL(/\/en$/);

@@ -1,15 +1,15 @@
 import Image from "next/image";
-import favicon from "@/app/icon.png";
+import brandMark from "@/app/brand-mark.webp";
 
 export function BrandIdentity({ descriptor = false }: { descriptor?: boolean }) {
   return (
     <>
       <span className="brand-symbol" aria-hidden="true">
         <Image
-          src={favicon}
+          src={brandMark}
           alt=""
           className="brand-symbol__image"
-          sizes="64px"
+          unoptimized
         />
       </span>
       <span className="brand-wordmark">FMS</span>

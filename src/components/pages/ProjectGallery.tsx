@@ -36,8 +36,7 @@ function ProjectCard({ project, locale, index }: { project: Project; locale: Loc
             src={project.images.mockup}
             alt={content.imageAlt}
             fill
-            loading={index === 0 ? "eager" : "lazy"}
-            sizes="(max-width: 780px) 94vw, (max-width: 1200px) 46vw, 76rem"
+            sizes="(max-width: 780px) 76vw, (max-width: 1200px) 46vw, 76rem"
           />
         </span>
 
