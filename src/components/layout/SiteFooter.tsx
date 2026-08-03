@@ -22,6 +22,21 @@ export function SiteFooter({ locale }: { locale: Locale }) {
             {content.nav.start}
             <span aria-hidden="true">↗</span>
           </a>
+          <a
+            href="https://www.instagram.com/future.m.services/"
+            className="site-footer__social"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={
+              locale === "fa"
+                ? "صفحه اینستاگرام Future Media Services"
+                : "Future Media Services on Instagram"
+            }
+          >
+            <span>Instagram</span>
+            <span dir="ltr">@future.m.services</span>
+            <span aria-hidden="true">↗</span>
+          </a>
         </div>
 
         <nav className="site-footer__nav" aria-label={content.common.footerNavAria}>
@@ -49,9 +64,6 @@ export function SiteFooter({ locale }: { locale: Locale }) {
         <div>
           <Link href={localePath(locale, "/privacy")}>{content.common.privacy}</Link>
           <Link href={localePath(locale, "/faq")}>{content.nav.faq}</Link>
-          <a href="https://www.instagram.com/future.m.services/" target="_blank" rel="noreferrer">
-            Instagram
-          </a>
         </div>
       </div>
     </footer>
