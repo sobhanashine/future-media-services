@@ -33,8 +33,8 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "ofoq",
-    url: "https://ofoq-web.vercel.app",
-    domain: "ofoq-web.vercel.app",
+    url: "https://ofoq-web.sobhan-ashineh1.workers.dev",
+    domain: "ofoq-web.sobhan-ashineh1.workers.dev",
     available: true,
     featured: true,
     images: {
