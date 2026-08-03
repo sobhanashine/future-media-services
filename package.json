@@ -4,8 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "opennextjs-cloudflare build && npm run prepare:cloudflare-assets",
+    "build:next": "next build --webpack",
+    "build:cloudflare": "npm run build",
+    "prepare:cloudflare-assets": "node scripts/prepare-cloudflare-assets.mjs",
     "start": "next start",
+    "preview": "npm run build && opennextjs-cloudflare preview",
+    "deploy": "npm run build && opennextjs-cloudflare deploy --keep-vars",
+    "upload": "npm run build && opennextjs-cloudflare upload --keep-vars",
     "lint": "eslint .",
     "assets:portfolio": "node scripts/generate-portfolio-mockups.mjs",
     "typecheck": "tsc --noEmit",
@@ -22,7 +28,7 @@
     "@react-three/fiber": "^9.6.1",
     "geist": "^1.7.2",
     "gsap": "^3.15.0",
-    "next": "16.2.10",
+    "next": "16.2.11",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "three": "^0.185.1"
@@ -36,11 +42,13 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@opennextjs/cloudflare": "1.20.2",
     "eslint": "^9",
-    "eslint-config-next": "16.2.10",
+    "eslint-config-next": "16.2.11",
     "jsdom": "^29.1.1",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.10",
+    "wrangler": "4.118.0"
   }
 }
