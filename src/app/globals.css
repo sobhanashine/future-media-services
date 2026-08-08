@@ -2908,6 +2908,21 @@ a {
   margin-block-start: 0.5rem;
 }
 
+.call-panel__phone {
+  width: max-content;
+  margin-block-start: 1.25rem;
+  color: var(--white);
+  font-family: var(--font-app);
+  font-size: clamp(1.1rem, 2.2vw, 1.65rem);
+  font-weight: 720;
+  letter-spacing: 0.03em;
+}
+
+.call-panel__phone:hover,
+.call-panel__phone:focus-visible {
+  color: var(--signal);
+}
+
 .call-panel > small {
   max-width: 38rem;
   margin-block-start: 2rem;
@@ -2952,6 +2967,66 @@ a {
   color: var(--muted);
   font-size: 0.8rem;
   line-height: 1.7;
+}
+
+.contact-related {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.7fr);
+  gap: clamp(2rem, 8vw, 9rem);
+  border-block-start: 1px solid var(--line);
+  padding-block: clamp(3rem, 7vw, 7rem) clamp(6rem, 11vw, 11rem);
+}
+
+.contact-related h2 {
+  max-width: 44rem;
+  margin: 1.5rem 0 1rem;
+  font-size: clamp(2rem, 4vw, 4.2rem);
+  line-height: 1.08;
+}
+
+.contact-related > div > p:not(.eyebrow) {
+  max-width: 42rem;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.contact-related__links {
+  display: grid;
+  align-content: start;
+  gap: 0.7rem;
+}
+
+.contact-related__links a {
+  display: flex;
+  min-height: 3.5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-block-end: 1px solid var(--line);
+  color: var(--ink);
+  font-weight: 680;
+  padding-block: 0.85rem;
+}
+
+.contact-related__links a:hover,
+.contact-related__links a:focus-visible {
+  color: var(--signal);
+}
+
+.project-card__details {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-block-start: 0.9rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.project-card__details:hover,
+.project-card__details:focus-visible {
+  color: var(--signal);
 }
 
 /* Footer */
@@ -3020,7 +3095,7 @@ a {
 }
 
 .site-footer__social span:first-child {
-  color: var(--signal);
+  color: rgba(255, 255, 255, 0.84);
   font-size: 0.68rem;
   font-weight: var(--weight-label);
   letter-spacing: 0.12em;
@@ -3624,6 +3699,10 @@ a {
 
   .contact-section aside {
     margin-block-start: 2rem;
+  }
+
+  .contact-related {
+    grid-template-columns: 1fr;
   }
 
   .site-footer__top {

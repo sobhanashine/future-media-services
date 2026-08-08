@@ -7,10 +7,12 @@ import { formatIndex, localePath, type Locale } from "@/content/site";
 const labels = {
   fa: {
     visit: "بازدید از وب‌سایت",
+    details: "مشاهده جزئیات پروژه",
     all: "مشاهده همه نمونه‌کارها",
   },
   en: {
     visit: "Visit website",
+    details: "View project details",
     all: "View all projects",
   },
 } satisfies Record<Locale, Record<string, string>>;
@@ -54,6 +56,10 @@ function ProjectCard({ project, locale, index }: { project: Project; locale: Loc
           </span>
         </span>
       </a>
+      <Link href={localePath(locale, `/work/${project.slug}`)} className="project-card__details">
+        {text.details}
+        <ArrowIcon />
+      </Link>
     </article>
   );
 }
