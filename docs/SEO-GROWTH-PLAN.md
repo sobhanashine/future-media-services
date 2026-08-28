@@ -61,4 +61,4 @@ Property: `sc-domain:futuremservices.ir`
 
 ## وضعیت و وابستگی‌ها
 
-کد و build در شاخهٔ `codex/seo-growth-sprint` آماده و اعتبارسنجی شده‌اند. deployment عمومی، submit sitemap و درخواست crawl در این مرحله انجام‌شده محسوب نمی‌شوند؛ چون به احراز هویت Cloudflare و وضعیت زندهٔ سایت وابسته‌اند. پایش هفتگی Search Console برای شنبه‌ها ساعت ۱۰:۰۰ به وقت تهران تنظیم می‌شود.
+کد و build در شاخهٔ `codex/seo-growth-sprint` آماده و اعتبارسنجی شده‌اند. نسخهٔ `6aedc921-2026-4e14-8f5d-fd9df0c3d50d` روی Cloudflare منتشر و روی دامنهٔ اصلی بررسی شد. sitemap پس از انتشار دوباره در Search Console ثبت و دانلود شد؛ هر دو مقالهٔ جدید در وضعیت `Discovered - currently not indexed` قرار دارند و باید در پایش‌های بعدی دنبال شوند. پایش هفتگی Search Console برای شنبه‌ها ساعت ۱۰:۰۰ به وقت تهران تنظیم شده است.
