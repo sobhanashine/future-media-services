@@ -13,6 +13,32 @@ interface WorkerExecutionContext {
 
 const PRERENDER_ASSET_PREFIX = "/__opennext_prerender";
 
+export function getCanonicalRedirectResponse(request: Request): Response | null {
+  if (request.method !== "GET" && request.method !== "HEAD") return null;
+
+  const url = new URL(request.url);
+  const isPersianLocaleAlias = url.pathname === "/fa" || url.pathname.startsWith("/fa/");
+  const shouldUseHttps = url.protocol === "http:";
+  const shouldRemoveTrailingSlash =
+    !isPersianLocaleAlias &&
+    !url.pathname.includes(".") &&
+    url.pathname.length > 1 &&
+    url.pathname.endsWith("/");
+
+  if (!shouldUseHttps && !shouldRemoveTrailingSlash) return null;
+
+  const canonicalUrl = new URL(url);
+  canonicalUrl.protocol = "https:";
+  if (shouldRemoveTrailingSlash) {
+    canonicalUrl.pathname = canonicalUrl.pathname.replace(/\/+$/, "") || "/";
+  }
+
+  return new Response(null, {
+    status: 308,
+    headers: { location: canonicalUrl.toString() },
+  });
+}
+
 function getPrerenderRoute(pathname: string): { locale: "fa" | "en"; route: string } {
   const normalizedPath = pathname.replace(/\/+$/, "") || "/";
   const segments = normalizedPath.split("/").filter(Boolean);
@@ -135,6 +161,9 @@ const cloudflareWorker = {
     env: CloudflareEnv,
     ctx: WorkerExecutionContext,
   ): Promise<Response> {
+    const canonicalRedirect = getCanonicalRedirectResponse(request);
+    if (canonicalRedirect) return canonicalRedirect;
+
     const staticAssetResponse = await getStaticAssetResponse(request, env);
     if (staticAssetResponse) return staticAssetResponse;
 
