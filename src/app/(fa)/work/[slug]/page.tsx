@@ -13,7 +13,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const project = findProject(slug);
   if (!project) return {};
   const content = project.copy.fa;
-  return createMetadata("fa", `${content.title} | نمونه‌کار FMS`, content.summary, `/work/${slug}`);
+  return createMetadata(
+    "fa",
+    content.seo?.title ?? `${content.title} | نمونه‌کار FMS`,
+    content.seo?.description ?? content.summary,
+    `/work/${slug}`,
+  );
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {

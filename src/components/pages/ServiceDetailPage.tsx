@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { JsonLd } from "@/components/layout/JsonLd";
 import { PricingPlans } from "@/components/pages/PricingPlans";
+import { relatedBlogPosts } from "@/content/blog";
 import { copy, formatIndex, localePath, type Locale, type Service } from "@/content/site";
 import { phoneHref } from "@/lib/contact";
 import { siteUrl } from "@/lib/metadata";
@@ -10,6 +11,9 @@ export function ServiceDetailPage({ locale, service }: { locale: Locale; service
   const content = copy[locale];
   const pricingCopy = service.pricing ?? content.pricing;
   const serviceUrl = new URL(localePath(locale, `/services/${service.slug}`), siteUrl).toString();
+  const relatedGuides = locale === "fa"
+    ? relatedBlogPosts(`/services/${service.slug}`)
+    : [];
 
   return (
     <>
@@ -98,6 +102,19 @@ export function ServiceDetailPage({ locale, service }: { locale: Locale; service
               </div>
             )}
             <p className="pricing-disclaimer" data-reveal>{pricingCopy.disclaimer}</p>
+          </section>
+        )}
+        {relatedGuides.length > 0 && (
+          <section className="service-detail__fit blog-post__related" aria-labelledby="service-related-guides-title" data-reveal>
+            <p className="eyebrow">دانش‌نامه</p>
+            <h2 id="service-related-guides-title">راهنماهای مرتبط</h2>
+            <nav aria-labelledby="service-related-guides-title">
+              {relatedGuides.map((post) => (
+                <Link key={post.slug} href={localePath("fa", `/blog/${post.slug}`)}>
+                  {post.title} <span aria-hidden="true">↗</span>
+                </Link>
+              ))}
+            </nav>
           </section>
         )}
         <aside className="service-detail__cta" aria-labelledby="service-cta-title" data-reveal>

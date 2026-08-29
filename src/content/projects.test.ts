@@ -44,6 +44,19 @@ describe("portfolio content", () => {
     expect(new Set(urls).size).toBe(urls.length);
   });
 
+  it("uses case-study metadata for search queries that look navigational", () => {
+    const paytakhte = findProject("paytakhte-ketab")?.copy.fa.seo;
+    const jaheshino = findProject("jaheshino")?.copy.fa.seo;
+
+    expect(paytakhte?.title).toContain("مطالعه موردی طراحی فروشگاه آنلاین");
+    expect(jaheshino?.title).toContain("مطالعه موردی طراحی پلتفرم آموزشی");
+    for (const metadata of [paytakhte, jaheshino]) {
+      expect(metadata?.title.length).toBeLessThanOrEqual(60);
+      expect(metadata?.description.length).toBeGreaterThanOrEqual(100);
+      expect(metadata?.description.length).toBeLessThanOrEqual(160);
+    }
+  });
+
   it("only puts live projects with verified imagery in the direct-link card grid", () => {
     expect(portfolioProjects).toHaveLength(7);
     for (const project of portfolioProjects) {
