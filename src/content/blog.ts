@@ -846,6 +846,12 @@ export const persianBlogPosts: BlogPost[] = [
 
 export const persianBlogSlugs = persianBlogPosts.map((post) => post.slug);
 
+export function relatedBlogPosts(servicePath: string, limit = 3) {
+  return persianBlogPosts
+    .filter((post) => post.relatedServicePath === servicePath)
+    .slice(0, limit);
+}
+
 export function findPersianBlogPost(slug: string) {
   return persianBlogPosts.find((post) => post.slug === slug);
 }
