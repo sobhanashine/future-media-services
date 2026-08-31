@@ -15,7 +15,9 @@ describe("Persian blog search snippets", () => {
     const instagramGuides = relatedBlogPosts("/services/instagram-management");
 
     expect(webGuides).toHaveLength(3);
-    expect(webGuides[0]?.slug).toBe("nextjs-canonical-url-guide");
+    expect(webGuides.map((post) => post.updatedAt)).toEqual(
+      webGuides.map((post) => post.updatedAt).toSorted().toReversed(),
+    );
     expect(instagramGuides.map((post) => post.slug)).toContain("instagram-content-calendar-guide");
     for (const post of [...webGuides, ...instagramGuides]) {
       expect(post.relatedServicePath).toMatch(/^\/services\//);
