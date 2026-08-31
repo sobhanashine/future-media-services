@@ -8,6 +8,7 @@
 - [English home](https://futuremservices.ir/en): English, left-to-right
 - [Persian services](https://futuremservices.ir/services/): Website design/development and Instagram content management
 - [Persian blog](https://futuremservices.ir/blog/): Persian guides about website design, SEO and content
+- [Persian blog: previewing content in WordPress Headless](https://futuremservices.ir/blog/wordpress-headless-content-preview-guide/)
 - [Persian blog: optimizing Core Web Vitals in Next.js](https://futuremservices.ir/blog/nextjs-core-web-vitals-optimization-guide/)
 - [Persian blog: canonical URLs in Next.js App Router](https://futuremservices.ir/blog/nextjs-canonical-url-guide/)
 - [Persian blog: custom websites for service businesses](https://futuremservices.ir/blog/custom-website-for-service-businesses/)
