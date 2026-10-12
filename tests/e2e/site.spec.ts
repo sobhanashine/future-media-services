@@ -185,13 +185,13 @@ test("the Persian hero contains only the approved text instead of visual media",
   await expect(page.locator(".hero a").last()).toHaveAttribute("href", "#services");
 });
 
-test("portfolio cards are bilingual image previews linked directly to live websites", async ({ page }) => {
+test("portfolio cards are bilingual image previews linked directly to project websites", async ({ page }) => {
   await page.goto("/en/work");
   await expect(page.getByRole("link", { name: "Visit website: OFOQ" })).toBeVisible();
   await expect(page.getByRole("link", { name: "View project details" }).first()).toHaveAttribute("href", "/en/work/ofoq");
   await expect(page.getByRole("link", { name: "Visit website: Aura Disposable" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Visit website: DigiMoragheb" })).toBeVisible();
-  await expect(page.locator(".project-card__media")).toHaveCount(7);
+  await expect(page.locator(".project-card__media")).toHaveCount(10);
   await expect(page.locator(".project-card__media").first()).toHaveAttribute("href", "https://ofoq-web.sobhan-ashineh1.workers.dev");
   await expect(page.locator(".project-card__media").first()).toHaveAttribute("target", "_blank");
   await expect(page.locator(".project-card img").first()).toHaveJSProperty("complete", true);
@@ -258,6 +258,9 @@ test("every portfolio entry has a Persian and English detail page", async ({ req
     "ofoq",
     "aura-disposable",
     "digimoragheb",
+    "ermetes",
+    "nafis-teb",
+    "karats-diamond",
     "kashiland",
     "mehrshad-store",
     "paytakhte-ketab",

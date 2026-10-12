@@ -10,7 +10,7 @@ import {
 } from "./projects";
 
 describe("portfolio content", () => {
-  it("keeps every featured project bilingual and linked to a live URL", () => {
+  it("keeps every featured project bilingual and linked to a project URL", () => {
     for (const project of featuredProjects) {
       expect(project.url).toMatch(/^https:\/\//);
       expect(project.images?.desktop).toMatch(/-desktop\.webp$/);
@@ -57,8 +57,8 @@ describe("portfolio content", () => {
     }
   });
 
-  it("only puts live projects with verified imagery in the direct-link card grid", () => {
-    expect(portfolioProjects).toHaveLength(7);
+  it("only puts project destinations with imagery in the direct-link card grid", () => {
+    expect(portfolioProjects).toHaveLength(10);
     for (const project of portfolioProjects) {
       expect(project.available).toBe(true);
       expect(project.images?.desktop).toBeTruthy();

@@ -8,6 +8,8 @@ const labels = {
   fa: {
     back: "بازگشت به نمونه‌کارها",
     live: "مشاهده وب‌سایت زنده",
+    demo: "مشاهده دموی پروژه",
+    website: "مشاهده وب‌سایت",
     unavailable: "نسخه زنده فعلاً در دسترس نیست",
     overview: "معرفی پروژه",
     challenge: "مسئله",
@@ -16,6 +18,8 @@ const labels = {
     role: "نقش پروژه",
     status: "وضعیت",
     statusLive: "فعال",
+    statusDemo: "دموی آنلاین",
+    statusPreview: "پیش‌نمایش طراحی",
     statusArchive: "آرشیوی / خارج از دسترس",
     focus: "فناوری / تمرکز",
     domain: "دامنه",
@@ -26,6 +30,8 @@ const labels = {
   en: {
     back: "Back to all work",
     live: "Visit live website",
+    demo: "View project demo",
+    website: "Visit website",
     unavailable: "The live website is currently unavailable",
     overview: "Project overview",
     challenge: "The challenge",
@@ -34,6 +40,8 @@ const labels = {
     role: "Project role",
     status: "Status",
     statusLive: "Live",
+    statusDemo: "Live demo",
+    statusPreview: "Design preview",
     statusArchive: "Archived / unavailable",
     focus: "Technology / focus",
     domain: "Domain",
@@ -49,6 +57,16 @@ export function ProjectDetailPage({ project, locale }: { project: Project; local
   const projectIndex = projects.findIndex((item) => item.slug === project.slug);
   const nextProject = projects[(projectIndex + 1) % projects.length];
   const nextContent = nextProject.copy[locale];
+  const actionLabel = project.status === "demo"
+    ? text.demo
+    : project.status === "preview" ? text.website : text.live;
+  const statusKey = project.available ? project.status ?? "live" : "archive";
+  const statusLabel = {
+    live: text.statusLive,
+    demo: text.statusDemo,
+    preview: text.statusPreview,
+    archive: text.statusArchive,
+  }[statusKey];
 
   return (
     <article className="project-detail">
@@ -67,7 +85,7 @@ export function ProjectDetailPage({ project, locale }: { project: Project; local
           <p>{content.summary}</p>
           {project.available ? (
             <a className="button" href={project.url} target="_blank" rel="noreferrer">
-              {text.live}
+              {actionLabel}
               <ArrowIcon />
             </a>
           ) : (
@@ -95,7 +113,7 @@ export function ProjectDetailPage({ project, locale }: { project: Project; local
             </div>
             <div>
               <dt>{text.status}</dt>
-              <dd>{project.available ? text.statusLive : text.statusArchive}</dd>
+              <dd>{statusLabel}</dd>
             </div>
             <div>
               <dt>{text.focus}</dt>
