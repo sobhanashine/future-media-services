@@ -1,14 +1,11 @@
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
-import { PersianSeoGuide } from "@/components/pages/PersianSeoGuide";
 import { persianSeoMetadata } from "@/content/seo";
-import { PricingPlans } from "@/components/pages/PricingPlans";
 import { ServiceLink } from "@/components/pages/ServiceLink";
 import { PageIntro } from "@/components/ui/PageIntro";
 import { copy, formatIndex, type Locale } from "@/content/site";
 
 export function ServicesPage({ locale }: { locale: Locale }) {
   const content = copy[locale];
-  const websitePlans = content.services.find((service) => service.slug === "web-development")?.plans ?? [];
   const intro = content.sections.servicesPageIntro;
 
   return (
@@ -34,16 +31,6 @@ export function ServicesPage({ locale }: { locale: Locale }) {
           ))}
         </div>
       </section>
-      <section className="pricing-section inner-pricing container-shell" id="pricing" aria-labelledby="services-pricing-title">
-        <header className="pricing-section__intro" data-reveal>
-          <p className="eyebrow">{content.pricing.eyebrow}</p>
-          <h2 id="services-pricing-title">{content.pricing.title}</h2>
-          <p>{content.pricing.body}</p>
-        </header>
-        <PricingPlans locale={locale} plans={websitePlans} labelledBy="services-pricing-title" />
-        <p className="pricing-disclaimer" data-reveal>{content.pricing.disclaimer}</p>
-      </section>
-      {locale === "fa" ? <PersianSeoGuide /> : null}
     </>
   );
 }
