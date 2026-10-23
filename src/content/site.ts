@@ -362,7 +362,7 @@ export const copy: Record<Locale, Copy> = {
           {
             name: "اقتصادی",
             audience: "مناسب کسب‌وکارهای کوچک",
-            price: "۸.۵",
+            price: "۱۰",
             unit: "میلیون تومان",
             timeline: "ماهانه",
             description: "حجم پایه برای حفظ انتشار منظم و ساخت یک زبان بصری یکپارچه.",
@@ -374,7 +374,7 @@ export const copy: Record<Locale, Copy> = {
           {
             name: "نقره‌ای",
             audience: "مناسب کسب‌وکارهای متوسط",
-            price: "۱۱.۷",
+            price: "۱۳",
             unit: "میلیون تومان",
             timeline: "ماهانه",
             description: "انتشار پرتعدادتر برای کسب‌وکارهایی که به حضور محتوایی فعال‌تری نیاز دارند.",
@@ -386,7 +386,7 @@ export const copy: Record<Locale, Copy> = {
           {
             name: "طلایی",
             audience: "مناسب کسب‌وکارهای بزرگ",
-            price: "۱۶.۴",
+            price: "۱۷",
             unit: "میلیون تومان",
             timeline: "ماهانه",
             description: "بیشترین حجم انتشار، همراه با توزیع محتوا در کانال‌های تکمیلی برند.",
@@ -677,7 +677,7 @@ export const copy: Record<Locale, Copy> = {
           {
             name: "Economic",
             audience: "For small businesses",
-            price: "8.5M",
+            price: "10M",
             unit: "toman",
             timeline: "monthly",
             description: "A foundational volume for consistent publishing and a coherent visual language.",
@@ -689,7 +689,7 @@ export const copy: Record<Locale, Copy> = {
           {
             name: "Silver",
             audience: "For medium-sized businesses",
-            price: "11.7M",
+            price: "13M",
             unit: "toman",
             timeline: "monthly",
             description: "A higher publishing cadence for businesses that need a more active content presence.",
@@ -701,7 +701,7 @@ export const copy: Record<Locale, Copy> = {
           {
             name: "Gold",
             audience: "For large businesses",
-            price: "16.4M",
+            price: "17M",
             unit: "toman",
             timeline: "monthly",
             description: "The highest publishing volume with distribution across additional brand channels.",
