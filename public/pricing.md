@@ -1,6 +1,6 @@
 # Future Media Services pricing
 
-Last reviewed: 2026-07-30
+Last reviewed: 2026-10-23
 
 These are starting scopes, not fixed quotations. Final scope, timing, domain, hosting, paid services and out-of-scope features are confirmed during a phone call. Installment payment is available for website plans by arrangement.
 
@@ -37,19 +37,19 @@ All plans include content planning, page-specific visual direction, design, repo
 
 ### Economic
 
-- Monthly price: 8.5 million toman
+- Monthly price: 10 million toman
 - Audience: Small businesses
 - Volume: 8 posts per month; 30–52 stories per month based on page needs.
 
 ### Silver
 
-- Monthly price: 11.7 million toman
+- Monthly price: 13 million toman
 - Audience: Medium-sized businesses
 - Volume: 12 posts per month; 60–80 stories per month based on page needs.
 
 ### Gold
 
-- Monthly price: 16.4 million toman
+- Monthly price: 17 million toman
 - Audience: Large businesses
 - Volume: 16 posts per month; 120 stories per month.
 - Additional scope: Business location registration on Google Maps, Balad and Neshan; publishing to an Aparat or YouTube channel.

@@ -73,9 +73,9 @@ test("Instagram management stays local and exposes all three monthly plans", asy
   await expect(page.getByRole("heading", { name: "اقتصادی", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "نقره‌ای", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "طلایی", exact: true })).toBeVisible();
-  await expect(page.getByText("۸.۵", { exact: true })).toBeVisible();
-  await expect(page.getByText("۱۱.۷", { exact: true })).toBeVisible();
-  await expect(page.getByText("۱۶.۴", { exact: true })).toBeVisible();
+  await expect(page.getByText("۱۰", { exact: true })).toBeVisible();
+  await expect(page.getByText("۱۳", { exact: true })).toBeVisible();
+  await expect(page.getByText("۱۷", { exact: true })).toBeVisible();
   await expect(page.getByText("خدمات مشترک در هر سه پلن")).toBeVisible();
   await expect(page.locator('a[href*="faratar.agency"]')).toHaveCount(0);
 });
