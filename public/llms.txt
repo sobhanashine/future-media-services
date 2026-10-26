@@ -8,6 +8,7 @@
 - [English home](https://futuremservices.ir/en): English, left-to-right
 - [Persian services](https://futuremservices.ir/services/): Website design/development and Instagram content management
 - [Persian blog](https://futuremservices.ir/blog/): Persian guides about website design, SEO and content
+- [Persian blog: images in WordPress Headless and Next.js](https://futuremservices.ir/blog/wordpress-headless-images-nextjs-guide/)
 - [Persian blog: corporate website contact form guide](https://futuremservices.ir/blog/corporate-website-contact-form-guide/)
 - [Persian blog: multilingual corporate website design guide](https://futuremservices.ir/blog/multilingual-corporate-website-guide/)
 - [Persian blog: previewing content in WordPress Headless](https://futuremservices.ir/blog/wordpress-headless-content-preview-guide/)
