@@ -6,27 +6,27 @@
 
 - [Persian home](https://futuremservices.ir/): فارسی، راست‌به‌چپ
 - [English home](https://futuremservices.ir/en): English, left-to-right
-- [Persian services](https://futuremservices.ir/services/): Website design/development and Instagram content management
-- [Persian blog](https://futuremservices.ir/blog/): Persian guides about website design, SEO and content
-- [Persian blog: corporate website contact form guide](https://futuremservices.ir/blog/corporate-website-contact-form-guide/)
-- [Persian blog: multilingual corporate website design guide](https://futuremservices.ir/blog/multilingual-corporate-website-guide/)
-- [Persian blog: previewing content in WordPress Headless](https://futuremservices.ir/blog/wordpress-headless-content-preview-guide/)
-- [Persian blog: optimizing Core Web Vitals in Next.js](https://futuremservices.ir/blog/nextjs-core-web-vitals-optimization-guide/)
-- [Persian blog: canonical URLs in Next.js App Router](https://futuremservices.ir/blog/nextjs-canonical-url-guide/)
-- [Persian blog: custom websites for service businesses](https://futuremservices.ir/blog/custom-website-for-service-businesses/)
-- [Persian blog: custom ecommerce website or ready-made template](https://futuremservices.ir/blog/custom-ecommerce-website-or-ready-made-template/)
-- [Persian blog: Next.js or WordPress Headless](https://futuremservices.ir/blog/nextjs-or-wordpress-headless/)
-- [Persian blog: Next.js technical SEO pre-launch checklist](https://futuremservices.ir/blog/nextjs-technical-seo-pre-launch-checklist/)
-- [Persian blog: corporate website handover checklist](https://futuremservices.ir/blog/corporate-website-handover-checklist/)
-- [Persian blog: Instagram content calendar guide](https://futuremservices.ir/blog/instagram-content-calendar-guide/)
-- [English services](https://futuremservices.ir/en/services/): Website design/development and Instagram content management
-- [Persian work](https://futuremservices.ir/work/): Verified portfolio records and live project links
-- [English work](https://futuremservices.ir/en/work/): Verified portfolio records and live project links
-- [FAQs](https://futuremservices.ir/faq/): Persian project, timing, payment and service answers
-- [English FAQs](https://futuremservices.ir/en/faq/): English project, timing, payment and service answers
+- [Persian services](https://futuremservices.ir/services): Website design/development and Instagram content management
+- [Persian blog](https://futuremservices.ir/blog): Persian guides about website design, SEO and content
+- [Persian blog: corporate website contact form guide](https://futuremservices.ir/blog/corporate-website-contact-form-guide)
+- [Persian blog: multilingual corporate website design guide](https://futuremservices.ir/blog/multilingual-corporate-website-guide)
+- [Persian blog: previewing content in WordPress Headless](https://futuremservices.ir/blog/wordpress-headless-content-preview-guide)
+- [Persian blog: optimizing Core Web Vitals in Next.js](https://futuremservices.ir/blog/nextjs-core-web-vitals-optimization-guide)
+- [Persian blog: canonical URLs in Next.js App Router](https://futuremservices.ir/blog/nextjs-canonical-url-guide)
+- [Persian blog: custom websites for service businesses](https://futuremservices.ir/blog/custom-website-for-service-businesses)
+- [Persian blog: custom ecommerce website or ready-made template](https://futuremservices.ir/blog/custom-ecommerce-website-or-ready-made-template)
+- [Persian blog: Next.js or WordPress Headless](https://futuremservices.ir/blog/nextjs-or-wordpress-headless)
+- [Persian blog: Next.js technical SEO pre-launch checklist](https://futuremservices.ir/blog/nextjs-technical-seo-pre-launch-checklist)
+- [Persian blog: corporate website handover checklist](https://futuremservices.ir/blog/corporate-website-handover-checklist)
+- [Persian blog: Instagram content calendar guide](https://futuremservices.ir/blog/instagram-content-calendar-guide)
+- [English services](https://futuremservices.ir/en/services): Website design/development and Instagram content management
+- [Persian work](https://futuremservices.ir/work): Verified portfolio records and live project links
+- [English work](https://futuremservices.ir/en/work): Verified portfolio records and live project links
+- [FAQs](https://futuremservices.ir/faq): Persian project, timing, payment and service answers
+- [English FAQs](https://futuremservices.ir/en/faq): English project, timing, payment and service answers
 - [Persian pricing](https://futuremservices.ir/pricing-fa.md): Machine-readable Persian starting scopes and monthly plans
 - [Pricing](https://futuremservices.ir/pricing.md): Machine-readable English starting scopes and monthly plans
-- [Phone contact](https://futuremservices.ir/contact/): Project consultation is phone-only
+- [Phone contact](https://futuremservices.ir/contact): Project consultation is phone-only
 
 ## What FMS offers
 
@@ -34,15 +34,15 @@
 
 FMS designs and develops custom personal, corporate and commerce websites with responsive UI/UX, Next.js, headless WordPress, technical SEO and quality assurance. Website plans include personal, corporate and commerce starting scopes; final scope and estimate are confirmed by phone.
 
-- [Website service details in Persian](https://futuremservices.ir/services/web-development/)
-- [Website service details in English](https://futuremservices.ir/en/services/web-development/)
+- [Website service details in Persian](https://futuremservices.ir/services/web-development)
+- [Website service details in English](https://futuremservices.ir/en/services/web-development)
 
 ### Instagram content management
 
 FMS provides content calendars, post and story design, reel production, page visual identity and monthly reporting through Economic, Silver and Gold monthly plans. Publishing volume and production details are confirmed during the initial call.
 
-- [Instagram service details in Persian](https://futuremservices.ir/services/instagram-management/)
-- [Instagram service details in English](https://futuremservices.ir/en/services/instagram-management/)
+- [Instagram service details in Persian](https://futuremservices.ir/services/instagram-management)
+- [Instagram service details in English](https://futuremservices.ir/en/services/instagram-management)
 
 ## Pricing summary
 
