@@ -6,6 +6,8 @@ test("Persian and English home experiences are reachable", async ({ page }) => {
   await expect(page.locator("html")).toHaveAttribute("lang", "fa");
   await expect(page.locator("html")).toHaveAttribute("dir", "rtl");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("آینده");
+  await expect(page.locator(".project-gallery--featured").getByRole("link", { name: "بازدید از وب‌سایت: سیمون فود" }))
+    .toHaveAttribute("href", "https://simonefood.ir");
   const brandImages = page.locator(".brand-symbol img");
   await expect(brandImages).toHaveCount(2);
   await expect(brandImages.first()).toHaveJSProperty("complete", true);
@@ -191,7 +193,11 @@ test("portfolio cards are bilingual image previews linked directly to project we
   await expect(page.getByRole("link", { name: "View project details" }).first()).toHaveAttribute("href", "/en/work/ofoq");
   await expect(page.getByRole("link", { name: "Visit website: Aura Disposable" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Visit website: DigiMoragheb" })).toBeVisible();
-  await expect(page.locator(".project-card__media")).toHaveCount(10);
+  const simone = page.getByRole("link", { name: "Visit website: Simone Food" });
+  await expect(simone).toHaveAttribute("href", "https://simonefood.ir");
+  await expect(page.locator(".project-card").filter({ has: simone }).getByRole("link", { name: "View project details" }))
+    .toHaveAttribute("href", "/en/work/simone-food");
+  await expect(page.locator(".project-card__media")).toHaveCount(11);
   await expect(page.locator(".project-card__media").first()).toHaveAttribute("href", "https://ofoq-web.sobhan-ashineh1.workers.dev");
   await expect(page.locator(".project-card__media").first()).toHaveAttribute("target", "_blank");
   await expect(page.locator(".project-card img").first()).toHaveJSProperty("complete", true);
@@ -200,6 +206,7 @@ test("portfolio cards are bilingual image previews linked directly to project we
   await page.goto("/work");
   await expect(page.getByRole("link", { name: "بازدید از وب‌سایت: افق" })).toBeVisible();
   await expect(page.getByRole("link", { name: "بازدید از وب‌سایت: نورنگار" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "بازدید از وب‌سایت: سیمون فود" })).toHaveAttribute("href", "https://simonefood.ir");
   await expect(page.getByText(/سکّو|سکو/)).toHaveCount(0);
 });
 
@@ -217,6 +224,12 @@ test("portfolio imagery and cards remain responsive", async ({ page }) => {
     expect(card).not.toBeNull();
     expect(card!.width).toBeGreaterThan(card!.height);
     expect(card!.width).toBeLessThanOrEqual(width);
+
+    const simonePreview = page.getByRole("link", { name: "Visit website: Simone Food" }).locator("img");
+    await simonePreview.scrollIntoViewIfNeeded();
+    await expect.poll(() => simonePreview.evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThan(0);
+    const simoneSrc = await simonePreview.evaluate((image: HTMLImageElement) => image.currentSrc);
+    expect(decodeURIComponent(simoneSrc)).toContain("simone-food-mockup.webp");
   }
 });
 
@@ -261,6 +274,7 @@ test("every portfolio entry has a Persian and English detail page", async ({ req
     "ermetes",
     "nafis-teb",
     "karats-diamond",
+    "simone-food",
     "kashiland",
     "mehrshad-store",
     "paytakhte-ketab",
@@ -286,8 +300,11 @@ test("technical SEO endpoints and metadata are present", async ({ page, request 
   await page.goto("/en/services/web-development");
   await expect(page).toHaveTitle(/Website design & development/);
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /\/en\/services\/web-development$/);
-  const sitemap = await request.get("/sitemap.xml");
-  expect(await sitemap.text()).toContain("/en/services/web-development");
+  const sitemap = await (await request.get("/sitemap.xml")).text();
+  expect(sitemap).toContain("/en/services/web-development");
+  const sitemapPaths = Array.from(sitemap.matchAll(/<loc>([^<]+)<\/loc>/g), ([, url]) => new URL(url).pathname);
+  expect(sitemapPaths).toContain("/work/simone-food");
+  expect(sitemapPaths).toContain("/en/work/simone-food");
   const robots = await request.get("/robots.txt");
   expect(await robots.text()).toContain("Sitemap:");
 });
