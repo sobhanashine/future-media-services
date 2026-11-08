@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import type { BlogPost } from "@/content/blog";
 import { formatIndex, localePath, type Locale } from "@/content/site";
 
@@ -47,7 +48,7 @@ export function BlogCard({
           <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
           <span>{post.readingTime} دقیقه مطالعه</span>
           <Link className="card-link" href={localePath(locale, `/blog/${post.slug}`)}>
-            مطالعه مقاله <span aria-hidden="true">↗</span>
+            مطالعه مقاله <ArrowIcon />
           </Link>
         </div>
       </div>

@@ -39,7 +39,7 @@ export function HomePage({ locale }: { locale: Locale }) {
             </a>
             <a href="#services" className="button button--ghost">
               {content.hero.secondary}
-              <span aria-hidden="true">↓</span>
+              <ArrowIcon direction="down" />
             </a>
           </div>
         </div>

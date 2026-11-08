@@ -1,4 +1,5 @@
 import { copy, type Locale } from "@/content/site";
+import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { phoneHref } from "@/lib/contact";
 
 export function PageIntro({
@@ -20,7 +21,7 @@ export function PageIntro({
         <p>{body}</p>
         <a className="button button--outline" href={phoneHref}>
           {copy[locale].nav.start}
-          <span aria-hidden="true">↗</span>
+          <ArrowIcon />
         </a>
       </div>
     </section>

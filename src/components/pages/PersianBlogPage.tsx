@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { BlogCard, BlogVisual } from "@/components/pages/BlogCard";
 import { persianBlogPosts } from "@/content/blog";
 import { persianSeoMetadata } from "@/content/seo";
@@ -62,7 +63,7 @@ export function PersianBlogPage() {
             <div className="blog-feature__footer">
               <span>{featuredPost.readingTime} دقیقه مطالعه</span>
               <Link className="button button--outline" href={localePath("fa", `/blog/${featuredPost.slug}`)}>
-                شروع مطالعه <span aria-hidden="true">↗</span>
+                شروع مطالعه <ArrowIcon />
               </Link>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { phoneHref } from "@/lib/contact";
 import type { BlogPost } from "@/content/blog";
 import { persianBlogPosts } from "@/content/blog";
@@ -15,7 +16,7 @@ export function PersianBlogPostPage({ post }: { post: BlogPost }) {
     <article className="blog-post">
       <header className="blog-post__header container-shell">
         <Link className="back-link" href={localePath("fa", "/blog")}>
-          <span aria-hidden="true">←</span> بازگشت به بلاگ
+          <ArrowIcon direction="left" /> بازگشت به بلاگ
         </Link>
         <p className="eyebrow">{post.category}</p>
         <h1>{post.title}</h1>
@@ -65,7 +66,7 @@ export function PersianBlogPostPage({ post }: { post: BlogPost }) {
             <h2 id="blog-sources-title">منابع و مطالعه بیشتر</h2>
             <ul>
               {post.sources.map((source) => (
-                <li key={source.href}><a href={source.href} target="_blank" rel="noreferrer">{source.label} ↗</a></li>
+                <li key={source.href}><a href={source.href} target="_blank" rel="noreferrer">{source.label} <ArrowIcon /></a></li>
               ))}
             </ul>
           </section>
@@ -76,11 +77,11 @@ export function PersianBlogPostPage({ post }: { post: BlogPost }) {
             <p className="eyebrow">قدم بعدی</p>
             <h2>می‌خواهید این موضوع را برای پروژه خودتان بررسی کنید؟</h2>
             <p>در یک تماس کوتاه، هدف سایت، محتوای موجود و مسیر مناسب اجرا را مشخص می‌کنیم.</p>
-            <a className="button" href={phoneHref}>تماس برای مشاوره <span aria-hidden="true">↗</span></a>
+            <a className="button" href={phoneHref}>تماس برای مشاوره <ArrowIcon /></a>
           </div>
           {post.relatedServicePath ? (
             <Link className="blog-post__service-link" href={localePath("fa", post.relatedServicePath)}>
-              مشاهده خدمت مرتبط <span aria-hidden="true">↗</span>
+              مشاهده خدمت مرتبط <ArrowIcon />
             </Link>
           ) : null}
           {relatedPosts.length > 0 ? (
@@ -88,7 +89,7 @@ export function PersianBlogPostPage({ post }: { post: BlogPost }) {
               <p className="eyebrow">مقاله‌های مرتبط</p>
               {relatedPosts.map((related) => (
                 <Link key={related.slug} href={localePath("fa", `/blog/${related.slug}`)}>
-                  {related.title} <span aria-hidden="true">↗</span>
+                  {related.title} <ArrowIcon />
                 </Link>
               ))}
             </div>
