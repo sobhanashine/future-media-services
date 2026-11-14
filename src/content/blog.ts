@@ -2298,6 +2298,7 @@ export const persianBlogSlugs = persianBlogPosts.map((post) => post.slug);
 export function relatedBlogPosts(servicePath: string, limit = 3) {
   return persianBlogPosts
     .filter((post) => post.relatedServicePath === servicePath)
+    .toSorted((a, b) => b.updatedAt.localeCompare(a.updatedAt) || b.publishedAt.localeCompare(a.publishedAt))
     .slice(0, limit);
 }
 
