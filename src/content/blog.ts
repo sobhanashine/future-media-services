@@ -1578,7 +1578,7 @@ export const persianBlogPosts: BlogPost[] = [
       "تولید ریلز",
     ],
     publishedAt: "2026-08-21",
-    updatedAt: "2026-10-23",
+    updatedAt: "2026-11-14",
     readingTime: 9,
     authorName,
     relatedServicePath: "/services/instagram-management",
