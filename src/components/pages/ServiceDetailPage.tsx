@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { JsonLd } from "@/components/layout/JsonLd";
 import { PricingPlans } from "@/components/pages/PricingPlans";
 import { relatedBlogPosts } from "@/content/blog";
@@ -29,7 +30,7 @@ export function ServiceDetailPage({ locale, service }: { locale: Locale; service
       />
       <article className="service-detail container-shell">
         <Link href={localePath(locale, "/services")} className="back-link" data-hero-reveal>
-          <span aria-hidden="true">←</span>
+          <ArrowIcon direction="left" />
           {content.common.allServices}
         </Link>
         <header className="service-detail__hero">
@@ -111,7 +112,7 @@ export function ServiceDetailPage({ locale, service }: { locale: Locale; service
             <nav aria-labelledby="service-related-guides-title">
               {relatedGuides.map((post) => (
                 <Link key={post.slug} href={localePath("fa", `/blog/${post.slug}`)}>
-                  {post.title} <span aria-hidden="true">↗</span>
+                  {post.title} <ArrowIcon />
                 </Link>
               ))}
             </nav>

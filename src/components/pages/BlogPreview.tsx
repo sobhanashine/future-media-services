@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { BlogCard } from "@/components/pages/BlogCard";
 import { persianBlogPosts } from "@/content/blog";
 import { localePath } from "@/content/site";
@@ -19,7 +20,7 @@ export function BlogPreview() {
             <h2 id="latest-blog-title">ایده‌هایی که قبل از اجرا، مسیر را روشن می‌کنند.</h2>
           </div>
           <Link className="text-link" href={localePath("fa", "/blog")}>
-            مشاهده همه‌ی نوشته‌ها <span aria-hidden="true">↗</span>
+            مشاهده همه‌ی نوشته‌ها <ArrowIcon />
           </Link>
         </header>
 

@@ -72,7 +72,7 @@ export function ProjectDetailPage({ project, locale }: { project: Project; local
     <article className="project-detail">
       <header className="project-detail__hero container-shell">
         <Link href={localePath(locale, "/work")} className="back-link" data-hero-reveal>
-          <span aria-hidden="true">←</span>
+          <ArrowIcon direction="left" />
           {text.back}
         </Link>
         <div className="project-detail__index" aria-hidden="true" data-hero-reveal>
