@@ -34,6 +34,9 @@ export function PersianBlogPostPage({ post }: { post: BlogPost }) {
             <section className="blog-post__section" key={section.heading}>
               <h2>{section.heading}</h2>
               {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              {section.links?.map((link) => (
+                <p key={link.href}><Link className="text-link" href={link.href}>{link.label}</Link></p>
+              ))}
               {section.bullets ? (
                 <ul>
                   {section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
