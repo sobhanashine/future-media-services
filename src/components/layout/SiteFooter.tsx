@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { BrandIdentity } from "@/components/layout/BrandIdentity";
 import { copy, localePath, type Locale } from "@/content/site";
 import { phoneHref } from "@/lib/contact";
@@ -20,7 +21,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
           <p>{content.common.footerLine}</p>
           <a href={phoneHref} className="button button--compact site-footer__call">
             {content.nav.start}
-            <span aria-hidden="true">↗</span>
+            <ArrowIcon />
           </a>
           <a
             href="https://www.instagram.com/future.m.services/"
@@ -35,7 +36,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
           >
             <span>Instagram</span>
             <span dir="ltr">@future.m.services</span>
-            <span aria-hidden="true">↗</span>
+            <ArrowIcon />
           </a>
         </div>
 

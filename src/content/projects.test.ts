@@ -58,7 +58,7 @@ describe("portfolio content", () => {
   });
 
   it("only puts project destinations with imagery in the direct-link card grid", () => {
-    expect(portfolioProjects).toHaveLength(10);
+    expect(portfolioProjects).toHaveLength(11);
     for (const project of portfolioProjects) {
       expect(project.available).toBe(true);
       expect(project.images?.desktop).toBeTruthy();
