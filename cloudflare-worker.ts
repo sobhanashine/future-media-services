@@ -1,8 +1,10 @@
+import { cloudCallback, clearExpiredReceipts, type CallbackBindings } from "./worker/callback";
+
 interface AssetsBinding {
   fetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response>;
 }
 
-interface CloudflareEnv {
+interface CloudflareEnv extends CallbackBindings {
   ASSETS: AssetsBinding;
 }
 
@@ -12,6 +14,19 @@ interface WorkerExecutionContext {
 }
 
 const PRERENDER_ASSET_PREFIX = "/__opennext_prerender";
+
+function protectResponse(response: Response, request: Request) {
+  const headers = new Headers(response.headers);
+  headers.set("X-Content-Type-Options", "nosniff");
+  headers.set("X-Frame-Options", "DENY");
+  headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+  headers.set("Content-Security-Policy", "base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'");
+  const url = new URL(request.url);
+  if (url.protocol === "https:") headers.set("Strict-Transport-Security", "max-age=31536000");
+  if (url.hostname.endsWith(".workers.dev")) headers.set("X-Robots-Tag", "noindex, nofollow");
+  return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
+}
 
 export function getCanonicalRedirectResponse(request: Request): Response | null {
   if (request.method !== "GET" && request.method !== "HEAD") return null;
@@ -63,8 +78,9 @@ function withPageHeaders(
   rsc: boolean,
 ): Response {
   const headers = new Headers(assetResponse.headers);
-  headers.set("cache-control", "public, max-age=0, s-maxage=31536000, must-revalidate");
-  headers.set("set-cookie", `NEXT_LOCALE=${locale}; Path=/; SameSite=lax`);
+  headers.set("cache-control", "public, max-age=0, must-revalidate");
+  headers.delete("x-robots-tag");
+  headers.set("set-cookie", `NEXT_LOCALE=${locale}; Path=/; Secure; SameSite=Lax`);
   headers.set(
     "vary",
     "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, accept-encoding",
@@ -122,7 +138,7 @@ async function getPrerenderedResponse(
   if (url.pathname === "/fa" || url.pathname.startsWith("/fa/")) {
     const targetPath = url.pathname.replace(/^\/fa(?=\/|$)/, "") || "/";
     const headers = new Headers({ location: `${targetPath}${url.search}` });
-    headers.append("set-cookie", "NEXT_LOCALE=fa; Path=/; SameSite=lax");
+    headers.append("set-cookie", "NEXT_LOCALE=fa; Path=/; Secure; SameSite=Lax");
     return new Response(null, { status: 307, headers });
   }
 
@@ -156,19 +172,24 @@ async function runOpenNext(
 }
 
 const cloudflareWorker = {
+  async scheduled(_event: unknown, env: CloudflareEnv) {
+    await clearExpiredReceipts(env);
+  },
   async fetch(
     request: Request,
     env: CloudflareEnv,
     ctx: WorkerExecutionContext,
   ): Promise<Response> {
-    const canonicalRedirect = getCanonicalRedirectResponse(request);
-    if (canonicalRedirect) return canonicalRedirect;
-
-    const staticAssetResponse = await getStaticAssetResponse(request, env);
-    if (staticAssetResponse) return staticAssetResponse;
-
-    const prerenderedResponse = await getPrerenderedResponse(request, env);
-    return prerenderedResponse ?? runOpenNext(request, env, ctx);
+    const path = new URL(request.url).pathname;
+    if (path === "/api/callback" || path === "/api/callback/") return protectResponse(await cloudCallback(request, env), request);
+    if (path.startsWith(PRERENDER_ASSET_PREFIX + "/")) {
+      return protectResponse(new Response(null, { status: 404, headers: { "X-Robots-Tag": "noindex" } }), request);
+    }
+    const response = getCanonicalRedirectResponse(request)
+      ?? await getStaticAssetResponse(request, env)
+      ?? await getPrerenderedResponse(request, env)
+      ?? await runOpenNext(request, env, ctx);
+    return protectResponse(response, request);
   },
 };
 

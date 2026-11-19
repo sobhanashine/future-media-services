@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { copy, findService, localePath, serviceSlugs, switchLocalePath } from "./site";
+import { readFileSync } from "node:fs";
+import { instagramRates, monthlyInstagramEstimate } from "./instagram-rates";
 
 describe("bilingual content model", () => {
   it("keeps service routes aligned across locales", () => {
@@ -44,6 +46,25 @@ describe("bilingual content model", () => {
     expect(faService?.sharedPlanFeatures).toHaveLength(15);
     expect(enService?.sharedPlanFeatures).toHaveLength(15);
     expect(faService?.plans?.map((plan) => plan.featured)).toEqual(enService?.plans?.map((plan) => plan.featured));
+    expect(faService?.plans?.map(plan => plan.name)).toEqual(["برنزی", "نقره‌ای", "طلایی"]);
+    expect(enService?.plans?.map(plan => plan.name)).toEqual(["Bronze", "Silver", "Gold"]);
+    for (const service of [faService, enService]) {
+      expect(service?.plans?.map(plan => plan.monthlyToman)).toEqual([11_900_000, 16_400_000, 23_800_000]);
+    }
+    for (const locale of ["en", "fa"] as const) {
+      const sheet = readFileSync(locale === "fa" ? "public/pricing-fa.md" : "public/pricing.md", "utf8");
+      for (const amount of Object.values(instagramRates.packages)) {
+        expect(sheet).toContain(amount.toLocaleString(locale === "fa" ? "fa-IR" : "en-US"));
+      }
+    }
+  });
+
+  it("prices the monthly Instagram estimate using quantity rates and each selected extra once", () => {
+    const blank = { stories: 0, motion: false, posts: 0, banners: 0, extras: [] };
+    expect(monthlyInstagramEstimate(blank)).toBe(0);
+    expect(monthlyInstagramEstimate({ ...blank, stories: 2, posts: 3, banners: 1 })).toBe(460_000);
+    expect(monthlyInstagramEstimate({ ...blank, stories: 2, motion: true, posts: 3, banners: 1, extras: [0, 0] })).toBe(720_000);
+    expect(monthlyInstagramEstimate({ ...blank, extras: instagramRates.extras.map((_, index) => index) })).toBe(2_000_000);
   });
 
   it("generates stable locale paths", () => {

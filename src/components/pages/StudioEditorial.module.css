@@ -1,0 +1,512 @@
+.page {
+  --rule: #353035;
+  --quiet: #bfb8be;
+  color: #f7f5f6;
+  padding-block-end: clamp(55px, 8vw, 110px);
+}
+
+.label {
+  composes: indicator from "../motion/Halos.module.css";
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 16px;
+  color: #d6cdd1;
+  font-size: .88rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.label::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  flex: none;
+  border-radius: 50%;
+  background: #e3183b;
+  box-shadow: inset 0 1px 2px #ff96a8;
+}
+
+.aboutHeader, .contactHero, .faqLayout {
+  display: grid;
+  align-items: center;
+  gap: clamp(30px,6vw,90px);
+  padding-block: clamp(40px,7vw,98px);
+}
+
+.lead {
+  min-width: 0;
+}
+
+.lead h1 {
+  margin: 0;
+  max-width: 19ch;
+  font-size: clamp(2.35rem, 4.3vw, 4.8rem);
+  font-weight: 600;
+  letter-spacing: -.05em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+:global([dir="rtl"]) .lead h1 {
+  letter-spacing: normal;
+  line-height: 1.31;
+}
+
+.dek {
+  max-width: 51ch;
+  margin-block: 17px 0;
+  color: var(--quiet);
+  font-size: clamp(1rem,1.3vw,1.175rem);
+  line-height: 1.85;
+}
+
+.lead :global(.button) {
+  margin-block-start: 24px;
+}
+
+.studioPrint {
+  min-width: 0;
+  margin: 0;
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  background: #121012;
+  overflow: hidden;
+}
+
+.studioBoard {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: radial-gradient(ellipse at 75% 4%, #504044, #251d21 49%, #171315);
+  direction: ltr;
+}
+
+.identitySheet, .webSheet, .campaignSheet {
+  position: absolute;
+  box-shadow: 0 12px 24px #08060773;
+}
+
+.identitySheet {
+  left: 7%;
+  top: 15%;
+  z-index: 1;
+  width: 46%;
+  height: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 6%;
+  transform: rotate(-8deg);
+  background: #e9e3de;
+  color: #1d191c;
+}
+
+.identitySheet img {
+  width: 65%;
+  height: auto;
+}
+
+.identitySheet b {
+  font: 750 clamp(12px, 2vw, 27px)/1 var(--studio-latin, Arial), Arial, sans-serif;
+  letter-spacing: -.05em;
+}
+
+.webSheet {
+  right: 6%;
+  top: -8%;
+  width: 54%;
+  height: 80%;
+  transform: rotate(9deg);
+  border: 5px solid #d2c9c2;
+}
+
+.campaignSheet {
+  right: 12%;
+  bottom: -5%;
+  z-index: 2;
+  width: 32%;
+  aspect-ratio: 4/5;
+  transform: rotate(-6deg);
+}
+
+.webSheet img, .campaignSheet img {
+  object-fit: cover;
+}
+
+.studioPrint figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 17px;
+  color: #c5bdc2;
+  font-size: .88rem;
+}
+
+.studioPrint figcaption a, .related a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: #f5f0f2;
+}
+
+.studioPrint a:hover, .related a:hover, .policyIndex a:hover {
+  color: #ff94a7;
+}
+
+.statement {
+  border-block-start: 1px solid var(--rule);
+  padding: clamp(35px,6vw,85px) clamp(4px,6vw,95px);
+}
+
+.statement blockquote {
+  margin: 0;
+  padding-inline-start: clamp(18px,3.5vw,55px);
+  border-inline-start: 3px solid #d90a2c;
+  max-width: 35ch;
+  font-size: clamp(1.55rem,3.15vw,3.75rem);
+  font-weight: 500;
+  line-height: 1.35;
+  text-wrap: pretty;
+}
+
+:global([dir="rtl"]) .statement blockquote {
+  line-height: 1.52;
+}
+
+.values, .guideItems {
+  display: grid;
+  gap: 0 clamp(22px,4vw,58px);
+}
+
+.values article, .guideItems article {
+  padding-block: 23px;
+  border-block-start: 1px solid var(--rule,#353035);
+}
+
+.values h2, .policyBody h2, .questions h2, .guideItems h3 {
+  margin: 0;
+  color: #f6f3f4;
+  font-size: clamp(1.3rem,2.2vw,2.1rem);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.values p, .policyBody p, .guide p, .questions details p, .related p:not(.label), .callGuide > div:last-child p {
+  color: var(--quiet,#bfb8be);
+  line-height: 1.88;
+  font-size: 1.025rem;
+  margin: 8px 0 0;
+}
+
+.callPanel {
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  overflow: hidden;
+  display: grid;
+  justify-items: start;
+  padding: clamp(23px,4.4vw,66px);
+  border: 1px solid #57333c;
+  border-radius: 18px;
+  background: linear-gradient(132deg,#201216,#140f11 55%,#36131d);
+}
+
+.callPanel::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  opacity: .43;
+  background: url("../landing/art/horizon.webp") center 120% / 150% auto no-repeat;
+}
+
+.callLabel {
+  color: #f7bec9;
+  font-size: .875rem;
+  margin: 0 0 20px;
+}
+
+.callPanel h2 {
+  margin: 0;
+  max-width: 30ch;
+  color: #eee6e9;
+  font-size: clamp(.95rem,1.5vw,1.2rem);
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.phoneNumber {
+  display: inline-block;
+  margin-block: 6px 20px;
+  white-space: nowrap;
+  font: 530 clamp(1.75rem,4vw,3.7rem)/1.2 var(--studio-latin, Arial), Arial, sans-serif;
+  letter-spacing: -.055em;
+}
+
+.callButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 9px 17px;
+  min-height: 45px;
+  background: #f7f2f4;
+  border-radius: 9px;
+  color: #201219;
+  font-weight: 650;
+}
+
+.callButton:hover {
+  background: #fff;
+}
+
+.callDisclaimer {
+  color: #d4c5ca;
+  margin: 18px 0 0;
+  max-width: 56ch;
+  line-height: 1.7;
+  font-size: .88rem;
+}
+
+.callGuide, .related, .faqCall {
+  border-block-start: 1px solid var(--rule);
+  padding-block: clamp(29px,5vw,70px);
+  display: grid;
+  align-items: start;
+  gap: clamp(18px,4.5vw,70px);
+}
+
+.callGuide h2, .related h2, .faqCall h2, .guide > header h2 {
+  margin: 0;
+  max-width: 23ch;
+  font-size: clamp(1.7rem,3vw,3rem);
+  line-height: 1.34;
+  font-weight: 570;
+  text-wrap: balance;
+}
+
+:global([dir="rtl"]) :is(.callGuide,.related,.faqCall,.guide) h2 {
+  line-height: 1.48;
+}
+
+.callGuide > div:last-child p:first-child {
+  margin: 0;
+}
+
+.callGuide > div:last-child p + p {
+  margin-top: 12px;
+}
+
+.related p {
+  max-width: 48ch;
+}
+
+.related nav {
+  display: grid;
+}
+
+.related a {
+  justify-content: space-between;
+  padding-block: 10px;
+  border-block-end: 1px solid var(--rule);
+  font-weight: 580;
+}
+
+.faqLayout {
+  align-items: start;
+}
+
+.questions {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.questions h2 {
+  margin-bottom: 9px;
+}
+
+.questions details {
+  background: #131113;
+  border: 1px solid #312c30;
+  border-radius: 12px;
+}
+
+.questions details[open] {
+  background: #191216;
+  border-color: #66404a;
+}
+
+.questions summary {
+  min-height: 60px;
+  padding: 14px 17px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  font-weight: 620;
+  line-height: 1.65;
+  cursor: pointer;
+  list-style: none;
+}
+
+.questions summary::-webkit-details-marker {
+  display: none;
+}
+
+.questions summary i, .questions summary i::after {
+  width: 13px;
+  height: 1.5px;
+  background: #ff8ba1;
+  flex: none;
+}
+
+.questions summary i {
+  display: grid;
+  align-items: center;
+}
+
+.questions summary i::after {
+  display: block;
+  content: "";
+  transform: rotate(90deg);
+}
+
+.questions details[open] summary i::after {
+  transform: scaleX(0);
+}
+
+.questions details p {
+  margin: 0;
+  padding: 0 17px 19px;
+  line-height: 1.8;
+}
+
+.faqCall {
+  align-items: center;
+}
+
+.faqCall :global(.button) {
+  justify-self: start;
+}
+
+.policy {
+  display: grid;
+  gap: 22px;
+  padding-top: clamp(12px,2vw,32px);
+}
+
+.policyIndex {
+  display: flex;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  flex-wrap: wrap;
+  padding: 8px 15px;
+  align-self: start;
+  gap: 0 15px;
+}
+
+.policyIndex a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  color: #d1c9ce;
+  font-size: .94rem;
+}
+
+.policyBody article {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(16px,2.6vw,40px);
+  border-block-start: 1px solid var(--rule);
+  padding-block: clamp(22px,3vw,40px);
+}
+
+.policyBody article > span {
+  color: #ff8fa2;
+  font-size: .94rem;
+  margin-top: 6px;
+}
+
+.policyBody p {
+  max-width: 64ch;
+}
+
+.guide {
+  padding-block: clamp(40px,6vw,85px);
+}
+
+.guide > header {
+  max-width: 70ch;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 790px) {
+  .aboutHeader, .contactHero {
+    grid-template-columns: minmax(0,1fr) minmax(0,.92fr);
+  }
+
+  .faqLayout {
+    grid-template-columns: minmax(0,.7fr) minmax(0,1.1fr);
+  }
+
+  .faqLayout > header, .policyIndex {
+    position: sticky;
+    top: calc(var(--header-height) + 25px);
+  }
+
+  .values, .guideItems {
+    grid-template-columns: repeat(3, minmax(0,1fr));
+  }
+
+  .callGuide, .related {
+    grid-template-columns: minmax(0,1fr) minmax(0,.92fr);
+  }
+
+  .faqCall {
+    grid-template-columns: minmax(0,1fr) auto;
+  }
+
+  .policy {
+    grid-template-columns: minmax(170px,.35fr) minmax(0,1fr);
+    gap: clamp(25px,6vw,96px);
+  }
+
+  .policyIndex {
+    flex-direction: column;
+    padding: 10px 18px;
+  }
+
+  .policyIndex a + a {
+    border-block-start: 1px solid #292629;
+  }
+}
+
+@media (max-width: 374px) {
+  .studioPrint figcaption {
+    padding-inline: 12px;
+  }
+
+  .phoneNumber {
+    font-size: 1.8rem;
+  }
+}
+
+.processList { padding-inline-start: 1.4em; margin: 0; }
+.processList li { padding: 0 4px 14px; }
+.processList h3 { color:#f3edf0; font-size:19px; margin: 0 0 6px; }
+
+.callbackPanel {
+  padding:clamp(22px,3.3vw,45px); border:1px solid #503b43; border-radius:17px;
+  background:radial-gradient(ellipse at 95% -20%,#400f21,transparent 60%), #171215;
+  color:#faf3f6;
+}
+.callbackPanel h2 { margin:0 0 22px; font-weight:570; font-size:clamp(22px,2.6vw,35px); }
+.directLine { display:flex; flex-wrap:wrap; align-items:center; gap:8px 15px; margin-top:22px; padding-top:16px; border-top:1px solid var(--rule); }
+.directLine span { font-size:14px; color:var(--quiet); }
+.directLine a { display:inline-flex; align-items:center; min-height:44px; color:#fff; font:560 18px/1.5 var(--studio-latin),Arial,sans-serif; }

@@ -1,57 +1,44 @@
+import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import type { BlogPost } from "@/content/blog";
-import { formatIndex, localePath, type Locale } from "@/content/site";
+import { formatNumber, localePath } from "@/content/site";
+import studioReel from "@/components/landing/art/studio-reel.webp";
+import campaign from "@/components/landing/art/simone-chess.webp";
+import catalog from "@/components/landing/art/simone-poster.webp";
+import s from "./StudioJournal.module.css";
 
-function formatDate(value: string) {
-  return new Intl.DateTimeFormat("fa-IR", { dateStyle: "long" }).format(
-    new Date(`${value}T12:00:00+03:30`),
-  );
+const categoryCovers: Record<string, StaticImageData | string> = {
+  "مدیریت محتوای اینستاگرام": campaign,
+  "طراحی سایت فروشگاهی": "/projects/simone-food-desktop.webp",
+  "طراحی سایت شرکتی": "/projects/ofoq-desktop.webp",
+  "وردپرس هدلس": "/projects/nafis-teb-desktop.webp",
+  "معماری وب": "/projects/ofoq-desktop.webp",
+  "طراحی سایت": "/projects/ermetes-desktop.webp",
+  "عملکرد و سئو فنی": "/projects/nafis-teb-desktop.webp",
+  "سئو فنی": "/projects/ofoq-desktop.webp",
+};
+const articleCovers: Record<string, StaticImageData> = {
+  "instagram-content-calendar-guide": catalog,
+  "instagram-management-outsourcing-access-handover-checklist": studioReel,
+};
+export function articleDate(value: string) {
+  return new Intl.DateTimeFormat("fa-IR", { dateStyle: "long" }).format(new Date(`${value}T12:00:00+03:30`));
 }
 
-export function BlogVisual({ post, index = 1 }: { post: BlogPost; index?: number }) {
-  return (
-    <div className={`blog-cover blog-cover--${((index - 1) % 3) + 1}`} aria-hidden="true">
-      <span className="blog-cover__grid" />
-      <span className="blog-cover__orb" />
-      <span className="blog-cover__eyebrow">FMS / FIELD NOTES</span>
-      <strong>{formatIndex(index, "fa")}</strong>
-      <span className="blog-cover__category">{post.category}</span>
-    </div>
-  );
+export function BlogVisual({ post }: { post: BlogPost }) {
+  const cover = articleCovers[post.slug] ?? categoryCovers[post.category] ?? studioReel;
+  return <div className={s.cover} data-screen={typeof cover === "string"} aria-hidden="true"><Image src={cover} fill sizes="(min-width: 900px) 37vw, 92vw" alt="" /></div>;
 }
 
-export function BlogCard({
-  post,
-  index,
-  locale = "fa",
-  featured = false,
-}: {
-  post: BlogPost;
-  index: number;
-  locale?: Locale;
-  featured?: boolean;
-}) {
+export function BlogCard({ post }: { post: BlogPost }) {
+  const url = localePath("fa", `/blog/${post.slug}`);
   return (
-    <article className={`blog-card-new${featured ? " blog-card-new--featured" : ""}`} data-reveal>
-      <BlogVisual post={post} index={index} />
-      <div className="blog-card-new__body">
-        <div className="blog-card-new__topline">
-          <span>{post.category}</span>
-          <span>{formatIndex(index, locale)}</span>
-        </div>
-        <h2>
-          <Link href={localePath(locale, `/blog/${post.slug}`)}>{post.title}</Link>
-        </h2>
-        <p>{post.excerpt}</p>
-        <div className="blog-card-new__footer">
-          <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
-          <span>{post.readingTime} دقیقه مطالعه</span>
-          <Link className="card-link" href={localePath(locale, `/blog/${post.slug}`)}>
-            مطالعه مقاله <ArrowIcon />
-          </Link>
-        </div>
-      </div>
+    <article className={s.card} data-reveal>
+      <div className={s.cardMeta}><time dateTime={post.publishedAt}>{articleDate(post.publishedAt)}</time><span>{formatNumber(post.readingTime, "fa")} دقیقه مطالعه</span></div>
+      <h3><Link href={url}>{post.title}</Link></h3>
+      <p>{post.excerpt}</p>
+      <Link className={s.cardLink} href={url} aria-label={`مطالعه مقاله — ${post.title}`}>مطالعه مقاله<ArrowIcon /></Link>
     </article>
   );
 }

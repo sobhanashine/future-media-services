@@ -38,8 +38,8 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "ofoq",
-    url: "https://ofoq-web.sobhan-ashineh1.workers.dev",
-    domain: "ofoq-web.sobhan-ashineh1.workers.dev",
+    url: "https://ofoqbuild.com",
+    domain: "ofoqbuild.com",
     available: true,
     featured: true,
     images: {

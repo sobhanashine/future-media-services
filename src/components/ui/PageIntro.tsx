@@ -1,6 +1,7 @@
-import { copy, type Locale } from "@/content/site";
+import Link from "next/link";
+import { localePath, type Locale } from "@/content/site";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
-import { phoneHref } from "@/lib/contact";
+import { callbackLabel } from "@/lib/contact";
 
 export function PageIntro({
   locale,
@@ -19,10 +20,10 @@ export function PageIntro({
       <h1 data-hero-reveal>{title}</h1>
       <div className="page-intro__footer" data-hero-reveal>
         <p>{body}</p>
-        <a className="button button--outline" href={phoneHref}>
-          {copy[locale].nav.start}
+        <Link className="button button--outline" href={localePath(locale, "/contact#callback")}>
+          {callbackLabel[locale]}
           <ArrowIcon />
-        </a>
+        </Link>
       </div>
     </section>
   );

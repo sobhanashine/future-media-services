@@ -1,6 +1,7 @@
+import Link from "next/link";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
-import { copy, formatIndex, type Locale, type PricingCopy, type PricingPlan } from "@/content/site";
-import { phoneHref } from "@/lib/contact";
+import { copy, localePath, type Locale, type PricingCopy, type PricingPlan } from "@/content/site";
+import { callbackLabel, phoneHref } from "@/lib/contact";
 
 export function PricingPlans({
   locale,
@@ -23,15 +24,12 @@ export function PricingPlans({
         {text.swipeHint}
       </p>
       <div className="pricing-plans" aria-labelledby={labelledBy} aria-describedby={hintId}>
-        {plans.map((plan, index) => (
+        {plans.map((plan) => (
           <article className="pricing-plan" data-featured={plan.featured || undefined} data-reveal key={plan.name}>
             <header>
-              <div>
-                <span>{formatIndex(index + 1, locale)}</span>
-                {plan.featured && <small>{text.featured}</small>}
-              </div>
-              <p>{plan.audience}</p>
+              {plan.featured && <small className="plan-recommendation">{text.featured}</small>}
               <h3>{plan.name}</h3>
+              <p>{plan.audience}</p>
             </header>
             <div className="pricing-plan__price">
               <small>{text.from}</small>
@@ -48,16 +46,16 @@ export function PricingPlans({
               <ul>
                 {plan.features.map((feature) => (
                   <li key={feature}>
-                    <span aria-hidden="true">+</span>
+                    <span aria-hidden="true">✓</span>
                     {feature}
                   </li>
                 ))}
               </ul>
             </div>
-            <a href={phoneHref} className="button pricing-plan__cta">
-              {copy[locale].nav.start}
+            <Link href={localePath(locale, "/contact#callback")} className="button pricing-plan__cta">
+              {callbackLabel[locale]}
               <ArrowIcon />
-            </a>
+            </Link>
           </article>
         ))}
       </div>

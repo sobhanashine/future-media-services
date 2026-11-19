@@ -2,37 +2,16 @@ import Link from "next/link";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { BlogCard } from "@/components/pages/BlogCard";
 import { persianBlogPosts } from "@/content/blog";
-import { localePath } from "@/content/site";
+import s from "./StudioJournal.module.css";
 
 export function BlogPreview() {
-  const latestPosts = [...persianBlogPosts]
-    .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
-    .slice(0, 3);
-
-  if (latestPosts.length === 0) return null;
-
-  return (
-    <section className="blog-preview section-block" aria-labelledby="latest-blog-title">
-      <div className="container-shell">
-        <header className="blog-preview__heading" data-reveal>
-          <div>
-            <p className="eyebrow">یادداشت‌های استودیو / FMS</p>
-            <h2 id="latest-blog-title">ایده‌هایی که قبل از اجرا، مسیر را روشن می‌کنند.</h2>
-          </div>
-          <Link className="text-link" href={localePath("fa", "/blog")}>
-            مشاهده همه‌ی نوشته‌ها <ArrowIcon />
-          </Link>
-        </header>
-
-        <div className="blog-preview__layout">
-          <BlogCard post={latestPosts[0]} index={1} locale="fa" featured />
-          <div className="blog-preview__rail">
-            {latestPosts.slice(1).map((post, index) => (
-              <BlogCard key={post.slug} post={post} index={index + 2} locale="fa" />
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+  const latest = [...persianBlogPosts].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)).slice(0,3);
+  if (!latest.length) return null;
+  return <section className={`container-shell ${s.archive}`} aria-labelledby="latest-blog-title">
+    <header className={s.archiveIntro} data-reveal>
+      <p className={s.label}>یادداشت‌های FMS</p><h2 id="latest-blog-title">ایده‌هایی که قبل از اجرا، مسیر را روشن می‌کنند.</h2>
+      <Link className={s.cardLink} href="/blog">مشاهده همه‌ی نوشته‌ها<ArrowIcon/></Link>
+    </header>
+    <div className={s.cardGrid}>{latest.map(post => <BlogCard post={post} key={post.slug}/>)}</div>
+  </section>;
 }

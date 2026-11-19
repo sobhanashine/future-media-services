@@ -17,7 +17,7 @@ export function ProjectDevice({
     return (
       <div className="device-mockup device-mockup--archive" role="img" aria-label={content.imageAlt}>
         <div>
-          <span>ARCHIVE / OFFLINE</span>
+          <span>{locale === "fa" ? "آرشیو پروژه" : "Project archive"}</span>
           <strong>{content.title}</strong>
           <small>{project.domain}</small>
         </div>
@@ -31,8 +31,8 @@ export function ProjectDevice({
         src={project.images.mockup}
         alt={content.imageAlt}
         fill
-        priority={priority}
-        sizes="(max-width: 780px) 92vw, (max-width: 1060px) 86vw, (max-width: 1440px) 76vw, 68rem"
+        preload={priority}
+        sizes="(max-width: 879px) 90vw, (max-width: 1420px) 48vw, 42rem"
       />
     </div>
   );

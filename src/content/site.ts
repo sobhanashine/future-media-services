@@ -1,3 +1,5 @@
+import { instagramRates } from "./instagram-rates";
+
 export type Locale = "fa" | "en";
 
 export function formatNumber(value: number, locale: Locale, options?: Intl.NumberFormatOptions) {
@@ -15,6 +17,7 @@ export type PricingPlan = {
   name: string;
   audience: string;
   price: string;
+  monthlyToman?: number;
   unit: string;
   timeline: string;
   description: string;
@@ -116,9 +119,7 @@ type Copy = {
     eyebrow: string;
     title: string;
     intro: string;
-    phoneOnlyLabel: string;
-    callPrompt: string;
-    callDisclaimer: string;
+    directLabel: string;
     beforeCallLabel: string;
     estimateNote: string;
     directTitle: string;
@@ -176,7 +177,7 @@ const sharedServiceSlugs = [
 ] as const;
 
 const faInstagramSharedFeatures = [
-  "افزایش آمار و بازدید در Insights",
+  "پایش Insights و کار روی افزایش بازدید",
   "تنظیم بیو متناسب با پیج",
   "طراحی گرافیکی هایلایت‌ها",
   "طراحی استوری موشن",
@@ -184,17 +185,17 @@ const faInstagramSharedFeatures = [
   "طراحی کاور و بک ریلز",
   "سناریونویسی اختصاصی و ترندمحور",
   "پشتیبانی از ساعت ۹ تا ۱۶",
-  "طراحی بنر تخفیف یا مسابقه در ماه",
+  "طراحی بنر ماهانه برای تخفیف و مسابقه",
   "قرارداد رسمی",
   "بازیابی اکانت در صورت فراموشی",
-  "ساخت حساب بیزینسی در صورت نیاز",
+  "ساخت حساب بیزینسی اگر هنوز پیج ندارید",
   "طراحی لوگوفونت",
   "صداگذاری واقعی برای برخی ریلزها بدون AI",
-  "محتوایابی و ادیت از منابع معتبر در صورت نیاز",
+  "در صورت نیاز، گردآوری عکس و ویدیو از وب و کانال‌های معتبر و تدوین برای برند",
 ];
 
 const enInstagramSharedFeatures = [
-  "Insights and view growth",
+  "Insights monitoring and work on view growth",
   "Profile-specific bio setup",
   "Graphic highlight design",
   "Motion story design",
@@ -202,13 +203,13 @@ const enInstagramSharedFeatures = [
   "Reel cover and back-cover design",
   "Original and trend-led scripting",
   "Support from 09:00 to 16:00",
-  "One monthly promotion or competition banner",
+  "Monthly promotion and competition banner design",
   "Formal contract",
   "Account recovery when credentials are forgotten",
-  "Business account setup when needed",
+  "Business account setup if you do not yet have a page",
   "Logotype design",
   "Human voice-over on selected reels without AI",
-  "Content research and editing from reputable sources when needed",
+  "Sourcing photos and videos from reputable sites and channels and editing them for your brand when needed",
 ];
 
 export const copy: Record<Locale, Copy> = {
@@ -227,12 +228,12 @@ export const copy: Record<Locale, Copy> = {
       close: "بستن منو",
     },
     hero: {
-      eyebrow: "دیزاین اختصاصی · برای برند شما",
-      title: "آینده‌ی برند شما،",
-      accent: "از همین‌جا ساخته می‌شود.",
-      body: "برای برند شما طراحی سایت اختصاصی انجام می‌دهیم؛ با هویت بصری منسجم، تجربه‌ای روان و جزئیاتی که ماندگار می‌شوند.",
-      primary: "تماس بگیرید",
-      secondary: "مشاهده خدمات",
+      eyebrow: "فیوچر مدیا سرویسز",
+      title: "طراحی وب‌سایت و محتوا",
+      accent: "از اولین طرح تا راه‌اندازی",
+      body: "برای کسب‌وکارها وب‌سایت شرکتی و فروشگاه آنلاین می‌سازیم و برای اینستاگرامشان پست، استوری و ریلز طراحی و تولید می‌کنیم.",
+      primary: "تماس برای مشاوره",
+      secondary: "دیدن نمونه‌کارها",
       canvasLabel: "مجسمه‌ی سه‌بعدی بال‌ها؛ نمادی از حرکت، بلندپروازی و حرکت رو به آینده.",
     },
     sections: {
@@ -249,10 +250,10 @@ export const copy: Record<Locale, Copy> = {
       whyEyebrow: "چرا FMS؟",
       whyTitle: "چهار زاویه، یک تیم، یک نتیجه منسجم.",
       whyBody: "استراتژی، طراحی، ساخت و رشد جدا از هم تصمیم نمی‌گیرند. هر چهار لنز از ابتدا روی یک مسئله متمرکزند.",
-      socialEyebrow: "از استودیو",
+      socialEyebrow: "از تیم FMS",
       socialTitle: "نگاهی کوتاه به فرایند و محتوای FMS.",
       finalTitle: "پروژه‌ی بعدی شما می‌تواند از امروز شروع شود.",
-      finalBody: "برای انتخاب پلن و برآورد دقیق پروژه، مستقیم تماس بگیرید. فرم یا پیام واسطی در کار نیست.",
+      finalBody: "برای انتخاب پلن تماس بگیرید یا شماره‌تان را بگذارید تا با شما تماس بگیریم.",
     },
     services: [
       {
@@ -338,10 +339,10 @@ export const copy: Record<Locale, Copy> = {
           alt: "میز برنامه‌ریزی محتوا با دوربین، قاب‌های پست و استوری و مسیر انتشار منظم",
         },
         problem: "تولید پراکنده و بدون تقویم، زبان بصری و گزارش منظم، زمان می‌گیرد اما الزاماً به رشد پایدار صفحه تبدیل نمی‌شود.",
-        deliverables: ["تقویم محتوایی", "پست، استوری و ریلز", "هویت بصری صفحه", "گزارش ماهانه"],
+        deliverables: ["تقویم محتوا، استراتژی هشتگ و زمان‌بندی انتشار", "طراحی پست و استوری، ساخت ریلز و ویدیو و کپشن‌نویسی", "تعامل با صفحات مرتبط و جذب مخاطب هدف", "طراحی و اجرای کمپین و پروموشن اینستاگرام", "قالب اختصاصی، هویت بصری و کاور هایلایت", "امنیت و بازیابی حساب، پشتیبانی فنی و گزارش ماهانه"],
         overview: "مدیریت محتوا با یک تقویم واقعی شروع می‌شود؛ سپس موضوع، فرمت، طراحی و زمان انتشار را در یک ریتم ثابت جلو می‌بریم تا صفحه هم برای مخاطب قابل‌تشخیص باشد و هم برای تیم شما قابل‌پیگیری.",
         workflow: [
-          { title: "شناخت صفحه", body: "هدف، مخاطب، لحن و وضعیت فعلی صفحه را مرور می‌کنیم تا تقویم متناسب با کسب‌وکار شما شکل بگیرد." },
+          { title: "شناخت صفحه", body: "در تماس اولیه، صفحه را رایگان بررسی می‌کنیم و دربارهٔ مخاطب، هدف و پلن مناسب صحبت می‌کنیم." },
           { title: "تولید و انتشار", body: "سناریو، طراحی و آماده‌سازی پست، استوری و ریلز مطابق پلن انتخابی پیش می‌رود." },
           { title: "گزارش و بهبود", body: "در پایان هر ماه، روند انتشار و داده‌های قابل‌دسترسی را مرور می‌کنیم و برای ماه بعد جهت می‌دهیم." },
         ],
@@ -349,7 +350,7 @@ export const copy: Record<Locale, Copy> = {
         pricing: {
           eyebrow: "پلن‌های مدیریت اینستاگرام",
           title: "سه سطح برای مدیریت منظم محتوا.",
-          body: "تفاوت پلن‌ها در تعداد پست و استوری ماهانه است؛ خدمات پایه مدیریت، طراحی، گزارش‌دهی و پشتیبانی در هر سه سطح ارائه می‌شوند.",
+          body: "پلن برنزی، نقره‌ای یا طلایی را بر اساس تعداد پست و استوری ماهانه انتخاب کنید. هر سه پلن ۱۵ خدمت مشترک دارند. ثبت مکان و انتشار ویدیو در کانال‌های دیگر در پلن طلایی ارائه می‌شود.",
           from: "هزینه ماهانه",
           includes: "حجم محتوای ماهانه",
           featured: "پیشنهادی",
@@ -360,9 +361,10 @@ export const copy: Record<Locale, Copy> = {
         sharedPlanFeatures: faInstagramSharedFeatures,
         plans: [
           {
-            name: "اقتصادی",
+            name: "برنزی",
             audience: "مناسب کسب‌وکارهای کوچک",
-            price: "۱۰",
+            monthlyToman: instagramRates.packages.bronze,
+            price: formatNumber(instagramRates.packages.bronze / 1_000_000, "fa"),
             unit: "میلیون تومان",
             timeline: "ماهانه",
             description: "حجم پایه برای حفظ انتشار منظم و ساخت یک زبان بصری یکپارچه.",
@@ -374,7 +376,8 @@ export const copy: Record<Locale, Copy> = {
           {
             name: "نقره‌ای",
             audience: "مناسب کسب‌وکارهای متوسط",
-            price: "۱۳",
+            monthlyToman: instagramRates.packages.silver,
+            price: formatNumber(instagramRates.packages.silver / 1_000_000, "fa"),
             unit: "میلیون تومان",
             timeline: "ماهانه",
             description: "انتشار پرتعدادتر برای کسب‌وکارهایی که به حضور محتوایی فعال‌تری نیاز دارند.",
@@ -386,13 +389,14 @@ export const copy: Record<Locale, Copy> = {
           {
             name: "طلایی",
             audience: "مناسب کسب‌وکارهای بزرگ",
-            price: "۱۷",
+            monthlyToman: instagramRates.packages.gold,
+            price: formatNumber(instagramRates.packages.gold / 1_000_000, "fa"),
             unit: "میلیون تومان",
             timeline: "ماهانه",
             description: "بیشترین حجم انتشار، همراه با توزیع محتوا در کانال‌های تکمیلی برند.",
             features: [
               "۱۶ پست در ماه؛ ریلز به انتخاب شما",
-              "۱۲۰ استوری در ماه",
+              "۱۲۰ استوری در ماه، بر اساس نیاز پیج",
               "ثبت مکان کسب‌وکار در گوگل‌مپ، بلد و نشان",
               "انتشار محتوا در کانال آپارات یا یوتیوب",
             ],
@@ -460,12 +464,10 @@ export const copy: Record<Locale, Copy> = {
       ],
     },
     contact: {
-      eyebrow: "تماس مستقیم",
-      title: "برای شروع پروژه، مستقیم تماس بگیرید.",
-      intro: "فرم شروع پروژه حذف شده است. برای بررسی نیاز، انتخاب پلن و برآورد دقیق فقط با شماره زیر تماس بگیرید.",
-      phoneOnlyLabel: "فقط تماس تلفنی",
-      callPrompt: "برای مشاوره و شروع پروژه تماس بگیرید",
-      callDisclaimer: "انتخاب شماره، تماس را در تلفن شما باز می‌کند. پیامک و فرم آنلاین برای شروع پروژه فعال نیست.",
+      eyebrow: "تماس با FMS",
+      title: "دربارهٔ پروژه‌تان صحبت کنیم.",
+      intro: "برای مشاورهٔ طراحی سایت یا مدیریت اینستاگرام، شماره‌تان را بگذارید. تیم FMS برای بررسی نیاز و هزینه با شما تماس می‌گیرد.",
+      directLabel: "تماس مستقیم با تیم",
       beforeCallLabel: "پیش از تماس",
       estimateNote: "اگر نوع سایت، تعداد زبان‌ها، محتوای آماده و زمان تقریبی مدنظرتان را بدانید، برآورد اولیه دقیق‌تر خواهد بود.",
       directTitle: "یک گفت‌وگوی کوتاه، قبل از هر تصمیم.",
@@ -473,11 +475,11 @@ export const copy: Record<Locale, Copy> = {
     },
     privacy: {
       eyebrow: "حریم خصوصی",
-      title: "این وب‌سایت فرم پروژه یا داده تماس ذخیره نمی‌کند.",
-      intro: "شروع همکاری فقط از طریق تماس تلفنی انجام می‌شود و هیچ فرم درخواست پروژه‌ای در سایت وجود ندارد.",
+      title: "شمارهٔ تماس شما چطور استفاده می‌شود؟",
+      intro: "وقتی درخواست تماس می‌دهید، شماره‌تان در اختیار تیم FMS قرار می‌گیرد تا دربارهٔ همان درخواست با شما صحبت کند.",
       items: [
-        { title: "فرم پروژه وجود ندارد", body: "نام، شماره، بودجه یا توضیحات پروژه از طریق این وب‌سایت دریافت و ذخیره نمی‌شود." },
-        { title: "لینک تماس چه می‌کند؟", body: "انتخاب شماره تلفن فقط شماره‌گیر دستگاه شما را باز می‌کند؛ خود سایت اطلاعات تماس را ثبت نمی‌کند." },
+        { title: "اطلاعات درخواست تماس", body: "شماره، زمان ثبت و زبان فرم به صندوق ایمیل تیم FMS فرستاده می‌شود. برای جلوگیری از ارسال تکراری، شناسه‌های رمزنگاری‌شدهٔ شماره و شبکه برای مدت کوتاه نگهداری می‌شوند. اگر می‌خواهید درخواستتان حذف شود، از راه تماس مستقیم به ما اطلاع دهید." },
+        { title: "لینک تماس چه می‌کند؟", body: "با انتخاب شمارهٔ FMS، شماره‌گیر دستگاهتان باز می‌شود. برای درخواست تماس از سوی تیم، شمارهٔ خود را در فرم ثبت کنید." },
         { title: "لینک‌های بیرونی", body: "لینک اینستاگرام یک سرویس مستقل است و استفاده از آن تابع سیاست حریم خصوصی همان سرویس است." },
       ],
     },
@@ -490,7 +492,7 @@ export const copy: Record<Locale, Copy> = {
       contactPrompt: "پاسخ موردنظر را پیدا نکردید؟",
       contactTitle: "برای بررسی دقیق شرایط پروژه، تماس بگیرید.",
       items: [
-        { question: "برای شروع پروژه چه کار کنیم؟", answer: "برای شروع، مستقیم تماس بگیرید. در همان گفت‌وگوی اولیه درباره نوع خدمت، محتوای موجود، زمان‌بندی و امکانات ضروری صحبت می‌کنیم." },
+        { question: "برای شروع پروژه چه کار کنیم؟", answer: "شماره‌تان را در صفحهٔ تماس بگذارید یا مستقیم با تیم تماس بگیرید. در همان گفت‌وگوی اولیه درباره نوع خدمت، محتوای موجود، زمان‌بندی و امکانات ضروری صحبت می‌کنیم." },
         { question: "طراحی سایت چقدر زمان می‌برد؟", answer: "بسته به گستره پروژه، زمان اجرای پلن‌های وب‌سایت از حدود ۲ تا ۱۲ هفته متغیر است. زمان‌بندی دقیق پس از مشخص‌شدن محتوا و امکانات پروژه تعیین می‌شود." },
         { question: "آیا برای تمام پلن‌های طراحی سایت امکان پرداخت قسطی وجود دارد؟", answer: "بله. برای هر سه پلن طراحی سایت امکان پرداخت قسطی وجود دارد. برای هماهنگی شرایط پرداخت، مستقیم با ما تماس بگیرید." },
         { question: "بعد از تحویل سایت، خودمان می‌توانیم محتوا را تغییر دهیم؟", answer: "بله. برای سایت‌های Headless WordPress، پنل مدیریت محتوا و آموزش استفاده از آن در محدوده هر پلن ارائه می‌شود." },
@@ -503,7 +505,7 @@ export const copy: Record<Locale, Copy> = {
       deliverables: "خروجی‌های قابل تعریف",
       approach: "رویکرد اجرا",
       idealFor: "این خدمت برای چه کسانی مناسب است؟",
-      ctaTitle: "برای انتخاب پلن مناسب، تماس بگیرید.",
+      ctaTitle: "برای انتخاب پلن مشاوره می‌خواهید؟",
     },
     common: {
       explore: "مشاهده جزئیات",
@@ -542,12 +544,12 @@ export const copy: Record<Locale, Copy> = {
       close: "Close menu",
     },
     hero: {
-      eyebrow: "Custom design · For your brand",
-      title: "Your brand’s future",
-      accent: "starts taking shape here.",
-      body: "We design a distinctive website for your brand—with a clear visual identity, an effortless experience, and details people remember.",
-      primary: "Call now",
-      secondary: "Explore services",
+      eyebrow: "Future Media Services",
+      title: "Web design & content",
+      accent: "From concept to launch",
+      body: "We design company websites and online stores. We also plan and produce content for Instagram.",
+      primary: "Call our team",
+      secondary: "View our work",
       canvasLabel: "A three-dimensional wing sculpture, representing motion, ambition, and forward momentum.",
     },
     sections: {
@@ -564,10 +566,10 @@ export const copy: Record<Locale, Copy> = {
       whyEyebrow: "Why FMS?",
       whyTitle: "Four lenses. One team. One coherent result.",
       whyBody: "Strategy, design, delivery and growth do not make isolated decisions. All four lenses stay focused on the same problem from day one.",
-      socialEyebrow: "From the studio",
+      socialEyebrow: "From our team",
       socialTitle: "A short look at the thinking and content behind FMS.",
       finalTitle: "Your next project can start today.",
-      finalBody: "Call directly to choose a plan and receive an exact project estimate. There is no form or message intermediary.",
+      finalBody: "Call us or leave your number to discuss a plan and receive a project estimate.",
     },
     services: [
       {
@@ -653,10 +655,10 @@ export const copy: Record<Locale, Copy> = {
           alt: "A content planning desk with a camera, post and story frames, and an organized publishing route",
         },
         problem: "Publishing without a calendar, visual language or regular reporting consumes time without necessarily creating durable growth.",
-        deliverables: ["Content calendar", "Posts, stories and reels", "Page visual identity", "Monthly reporting"],
+        deliverables: ["Content calendar, hashtag strategy and publishing schedule", "Post and story design, reels, video and caption writing", "Relevant account engagement and audience development", "Instagram campaign planning, execution and promotion", "Custom templates, visual identity and highlight covers", "Account security, recovery, technical support and monthly reporting"],
         overview: "Content management starts with a real calendar. We then move topic, format, design and publishing time through a steady rhythm, making the page recognizable to its audience and trackable for your team.",
         workflow: [
-          { title: "Understand the page", body: "We review the goal, audience, tone and current state of the account to shape a calendar that fits the business." },
+          { title: "Understand the page", body: "On the first call we review your account at no charge and discuss the audience, goals and suitable plan." },
           { title: "Create and publish", body: "Scripts, design and production for posts, stories and reels move forward according to the chosen plan." },
           { title: "Report and improve", body: "At the end of each month, we review the publishing rhythm and available data, then set direction for the next one." },
         ],
@@ -664,7 +666,7 @@ export const copy: Record<Locale, Copy> = {
         pricing: {
           eyebrow: "Instagram management plans",
           title: "Three levels for consistent content management.",
-          body: "Plans differ by monthly post and story volume. Core management, design, reporting and support services are included at every level.",
+          body: "Choose Bronze, Silver or Gold by monthly publishing volume. All three include 15 shared services. Gold adds map listings and distribution to an additional video channel.",
           from: "Monthly fee",
           includes: "Monthly content volume",
           featured: "Recommended",
@@ -675,9 +677,10 @@ export const copy: Record<Locale, Copy> = {
         sharedPlanFeatures: enInstagramSharedFeatures,
         plans: [
           {
-            name: "Economic",
+            name: "Bronze",
             audience: "For small businesses",
-            price: "10M",
+            monthlyToman: instagramRates.packages.bronze,
+            price: `${instagramRates.packages.bronze / 1_000_000}M`,
             unit: "toman",
             timeline: "monthly",
             description: "A foundational volume for consistent publishing and a coherent visual language.",
@@ -689,7 +692,8 @@ export const copy: Record<Locale, Copy> = {
           {
             name: "Silver",
             audience: "For medium-sized businesses",
-            price: "13M",
+            monthlyToman: instagramRates.packages.silver,
+            price: `${instagramRates.packages.silver / 1_000_000}M`,
             unit: "toman",
             timeline: "monthly",
             description: "A higher publishing cadence for businesses that need a more active content presence.",
@@ -701,13 +705,14 @@ export const copy: Record<Locale, Copy> = {
           {
             name: "Gold",
             audience: "For large businesses",
-            price: "17M",
+            monthlyToman: instagramRates.packages.gold,
+            price: `${instagramRates.packages.gold / 1_000_000}M`,
             unit: "toman",
             timeline: "monthly",
             description: "The highest publishing volume with distribution across additional brand channels.",
             features: [
               "16 posts per month; reels can be selected",
-              "120 stories per month",
+              "120 stories per month, based on page needs",
               "Business location registration on Google Maps, Balad and Neshan",
               "Content publishing to an Aparat or YouTube channel",
             ],
@@ -759,7 +764,7 @@ export const copy: Record<Locale, Copy> = {
       {
         tag: "Instagram",
         title: "@future.m.services",
-        body: "Follow the official profile for the latest published work and studio updates.",
+        body: "Follow the official profile for the latest published work and updates from FMS.",
         href: "https://www.instagram.com/future.m.services/",
       },
     ],
@@ -775,12 +780,10 @@ export const copy: Record<Locale, Copy> = {
       ],
     },
     contact: {
-      eyebrow: "Direct contact",
-      title: "To start a project, call directly.",
-      intro: "The project form has been removed. Call the number below to discuss the need, choose a plan and receive an exact estimate.",
-      phoneOnlyLabel: "Phone calls only",
-      callPrompt: "Call to discuss and start a project",
-      callDisclaimer: "Selecting the number opens a call on your device. SMS and online project forms are not used.",
+      eyebrow: "Contact FMS",
+      title: "Let’s talk about your project.",
+      intro: "Leave your number for a call about your website or Instagram page. We’ll discuss the scope, timing and cost together.",
+      directLabel: "Call the team directly",
       beforeCallLabel: "Before the call",
       estimateNote: "An initial estimate is more precise if you know the site type, languages, available content and preferred timing.",
       directTitle: "One short conversation before any decision.",
@@ -788,11 +791,11 @@ export const copy: Record<Locale, Copy> = {
     },
     privacy: {
       eyebrow: "Privacy",
-      title: "This website does not store project forms or contact details.",
-      intro: "New projects begin by phone only. There is no project enquiry form on the website.",
+      title: "How we use your phone number.",
+      intro: "When you request a callback, FMS receives your number so our team can follow up about your enquiry.",
       items: [
-        { title: "No project form", body: "The website does not collect or store names, phone numbers, budgets or project descriptions." },
-        { title: "What does the call link do?", body: "Selecting the phone number only opens your device dialler. The website does not record the call details." },
+        { title: "Callback requests", body: "Your number, request time and form language are emailed to FMS. We briefly retain keyed hashes of the number and network to limit repeat submissions. You can ask us to remove your request by calling the team." },
+        { title: "What does the call link do?", body: "Selecting the FMS number opens your device dialler. Use the callback form if you would like the team to call you." },
         { title: "External links", body: "Instagram is an independent service, and its own privacy policy applies when you visit it." },
       ],
     },
@@ -805,7 +808,7 @@ export const copy: Record<Locale, Copy> = {
       contactPrompt: "Did not find the answer you need?",
       contactTitle: "Call to discuss the project details precisely.",
       items: [
-        { question: "How do we start a project?", answer: "Call us directly. In the first conversation, we cover the service, available content, timing and essential capabilities." },
+        { question: "How do we start a project?", answer: "Leave your number on the contact page or call us directly. In the first conversation, we cover the service, available content, timing and essential capabilities." },
         { question: "How long does a website take?", answer: "Website plans typically take about 2 to 12 weeks, depending on scope. The final schedule is set once content and required capabilities are clear." },
         { question: "Is installment payment available for every website plan?", answer: "Yes. Installment payment is available for all three website plans. Call us directly to arrange the payment terms." },
         { question: "Can we update the website content after handover?", answer: "Yes. Headless WordPress websites include a content-management panel and training within the scope of each plan." },
@@ -818,7 +821,7 @@ export const copy: Record<Locale, Copy> = {
       deliverables: "Possible deliverables",
       approach: "How it comes together",
       idealFor: "Who this is for",
-      ctaTitle: "Call to choose the right plan.",
+      ctaTitle: "Need help choosing a plan?",
     },
     common: {
       explore: "Explore service",

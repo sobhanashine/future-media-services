@@ -1,0 +1,124 @@
+.finder {
+  margin-block-start: clamp(24px, 4vw, 48px);
+  color: #f6f2f3;
+}
+
+.finder fieldset { min-inline-size: 0; padding: 0; border: 0; margin: 0; }
+.visuallyHidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.finder input[type="radio"] {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.finder .serviceSwitch {
+  display: inline-flex;
+  max-width: 100%;
+  gap: 3px;
+  padding: 4px;
+  margin-block-end: 14px;
+  border: 1px solid #383236;
+  border-radius: 12px;
+  background: #100e10;
+}
+.serviceSwitch label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 6px clamp(9px, 2vw, 23px);
+  color: #c7bec1;
+  border-radius: 8px;
+  font-weight: 520;
+  cursor: pointer;
+}
+.serviceSwitch svg { width: 18px; height: 18px; flex: none; }
+.serviceSwitch label:has(:checked) { color: #181417; background: #f5f1f1; }
+.finder label:has(:focus-visible), .finder :is(a,summary):focus-visible { outline: 2px solid #ff99a8; outline-offset: 3px; }
+
+.finder .planGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 6px;
+  padding: clamp(8px, 1.5vw, 18px);
+  border: 1px solid #383236;
+  border-radius: 20px;
+  background: #0d0c0d;
+}
+.planChoice {
+  position: relative;
+  display: grid;
+  align-content: center;
+  gap: 3px;
+  padding: 9px 13px;
+  background: #181617;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.planChoice:hover { background: #201b1d; }
+.choiceName { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: clamp(16px, 1.8vw, 21px); font-weight: 600; }
+.choiceName i { width: 15px; height: 15px; border: 1px solid #797076; border-radius: 50%; flex: none; }
+.planChoice:has(:checked) { background: #321a20; border-color: #8d3e50; }
+.planChoice:has(:checked) i { border-color: #ff6b85; background: #ff6b85; box-shadow: inset 0 0 0 3px #321a20; }
+.choicePrice { color: #c9bfc2; font-size: 13px; }
+.planDetails { min-width: 0; padding: clamp(14px, 3vw, 40px); }
+.detailHeading { display: flex; align-items: start; justify-content: space-between; gap: 10px; }
+.detailHeading h3 { font-size: clamp(26px, 3.4vw, 43px); font-weight: 580; line-height: 1.4; }
+.detailHeading p { color: #c9c0c3; font-size: 14px; line-height: 1.65; }
+.recommended { color: #ff9baf; }
+.timeline { flex: none; color: #f4bcc5; font-size: 13px; background: #2a1b20; padding: 4px 10px; border-radius: 6px; }
+.finder .features { display: grid; align-content: start; gap: 8px 18px; list-style: none; margin: 18px 0; padding: 16px 0 0; border-top: 1px solid #332b2f; }
+.features li { display: flex; align-items: baseline; gap: 8px; color: #f0e9eb; line-height: 1.65; font-size: 15px; }
+.features svg { width: 15px; height: 15px; flex: none; align-self: start; margin-top: .35em; color: #ff7b91; }
+.planDetails .payment, .servicePanel .disclaimer { color: #c0b6ba; font-size: 13px; line-height: 1.8; }
+.actions { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 20px; margin-block-start: 16px; }
+.actions a { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; font-size: 14px; color: #ebe3e6; }
+.actions a:hover { text-decoration: underline; text-underline-offset: .25em; }
+.actions a.call { padding: 8px 16px; border: 1px solid #ec435f; border-radius: 8px; background: var(--studio-red); color: white; }
+.actions svg { width: 14px; height: 14px; }
+.shared { padding: 0 15px; margin-block-start: 10px; border: 1px solid #383236; border-radius: 12px; }
+.shared summary { display: flex; justify-content: space-between; align-items: center; gap: 15px; min-height: 48px; cursor: pointer; }
+.shared summary::-webkit-details-marker { display: none; }
+.shared summary i { width: 9px; height: 9px; border: solid #ff94a5; border-width: 0 1.5px 1.5px 0; transform: translateY(-2px) rotate(45deg); }
+.shared[open] summary i { transform: translateY(2px) rotate(225deg); }
+.shared .features { margin-top: 0; }
+.servicePanel .disclaimer { margin-block-start: 10px; }
+
+@supports selector(:has(input:checked)) {
+  .servicePanel, .planDetails { display: none; }
+  .finder:has(.serviceSwitch input[value="web-development"]:checked) .servicePanel[data-service="web-development"],
+  .finder:has(.serviceSwitch input[value="instagram-management"]:checked) .servicePanel[data-service="instagram-management"],
+  .planChoice:has(:checked) + .planDetails { display: block; }
+  .planDetails { grid-row: 4; }
+}
+
+@media (min-width: 740px) {
+  .finder .planGrid { grid-template-columns: minmax(210px, .65fr) minmax(0, 1.6fr); grid-template-rows: repeat(3, minmax(65px, 1fr)); }
+  .planChoice { grid-column: 1; padding: 12px 20px; }
+  .planDetails { grid-column: 2; grid-row: 1 / 4; align-self: center; }
+  .shared .features { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 739px) {
+  .planChoice { display: flex; align-items: center; justify-content: space-between; gap: 6px; min-height: 52px; }
+  .choiceName { flex-direction: row-reverse; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .planDetails { animation: appear .26s ease-out; }
+  .planChoice, .serviceSwitch label { transition: background-color .18s ease, color .18s ease, border-color .18s ease; }
+  @keyframes appear { from { opacity: .55; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+}

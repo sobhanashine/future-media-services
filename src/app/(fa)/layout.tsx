@@ -1,5 +1,7 @@
 import localFont from "next/font/local";
 import "../globals.css";
+import "../studio.css";
+import { studioLatin, studioLight } from "../fonts/studio";
 import { SiteFrame } from "@/components/layout/SiteFrame";
 import { persianSeoMetadata } from "@/content/seo";
 import { createMetadata } from "@/lib/metadata";
@@ -23,8 +25,8 @@ export const metadata = createMetadata(
 
 export default function PersianRootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fa" dir="rtl" className={yekanBakh.variable}>
-      <body className="font-fa"><SiteFrame locale="fa">{children}</SiteFrame></body>
+    <html lang="fa" dir="rtl" className={`${yekanBakh.variable} ${studioLatin.variable} ${studioLight.variable}`}>
+      <body className="font-fa studio-site"><SiteFrame locale="fa">{children}</SiteFrame></body>
     </html>
   );
 }

@@ -52,8 +52,9 @@ export function SiteFooter({ locale }: { locale: Locale }) {
           </section>
           <section>
             <h2>FMS</h2>
+            <Link href={localePath(locale, "/pricing")}>{locale === "fa" ? "تعرفه‌ها" : "Pricing"}</Link>
             <Link href={localePath(locale, "/work")}>{content.nav.work}</Link>
-            {locale === "fa" ? <Link href={localePath(locale, "/blog")}>{content.nav.blog}</Link> : null}
+            <Link href="/blog" hrefLang="fa">{locale === "fa" ? content.nav.blog : "Blog (FA)"}</Link>
             <Link href={localePath(locale, "/about")}>{content.nav.about}</Link>
             <Link href={localePath(locale, "/faq")}>{content.nav.faq}</Link>
             <Link href={localePath(locale, "/contact")}>{content.nav.contact}</Link>

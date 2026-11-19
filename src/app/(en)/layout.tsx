@@ -1,5 +1,7 @@
 import localFont from "next/font/local";
 import "../globals.css";
+import "../studio.css";
+import { studioLatin } from "../fonts/studio";
 import { SiteFrame } from "@/components/layout/SiteFrame";
 import { createMetadata } from "@/lib/metadata";
 
@@ -20,8 +22,8 @@ export const metadata = createMetadata(
 
 export default function EnglishRootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" dir="ltr" className={geistSans.variable}>
-      <body className="font-en"><SiteFrame locale="en">{children}</SiteFrame></body>
+    <html lang="en" dir="ltr" className={`${geistSans.variable} ${studioLatin.variable}`}>
+      <body className="font-en studio-site"><SiteFrame locale="en">{children}</SiteFrame></body>
     </html>
   );
 }

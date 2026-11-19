@@ -1,89 +1,71 @@
 import Link from "next/link";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { BlogCard, BlogVisual } from "@/components/pages/BlogCard";
-import { persianBlogPosts } from "@/content/blog";
+import { persianBlogPosts, type BlogPost } from "@/content/blog";
 import { persianSeoMetadata } from "@/content/seo";
-import { formatIndex, localePath } from "@/content/site";
+import { formatNumber, localePath } from "@/content/site";
 import { JsonLd } from "@/components/layout/JsonLd";
 import { siteUrl } from "@/lib/metadata";
+import s from "./StudioJournal.module.css";
 
 export function PersianBlogPage() {
   const posts = [...persianBlogPosts].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
   const [featuredPost, ...archivePosts] = posts;
+  const groups = new Map<string, BlogPost[]>();
+  for (const post of archivePosts) {
+    const group = groups.get(post.category);
+    if (group) group.push(post);
+    else groups.set(post.category, [post]);
+  }
 
   return (
-    <>
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "CollectionPage",
-          name: persianSeoMetadata.blog.title,
-          description: persianSeoMetadata.blog.description,
-          inLanguage: "fa-IR",
-          mainEntity: {
-            "@type": "ItemList",
-            itemListElement: persianBlogPosts.map((post, index) => ({
-              "@type": "ListItem",
-              position: index + 1,
-              url: new URL(`/blog/${post.slug}`, siteUrl).toString(),
-              name: post.title,
-            })),
-          },
-        }}
-      />
-      <section className="blog-archive-hero" aria-labelledby="blog-page-title">
-        <div className="container-shell blog-archive-hero__inner">
-          <div className="blog-archive-hero__copy" data-hero-reveal>
-            <p className="eyebrow eyebrow--light">FMS / FIELD NOTES / ۱۴۰۵</p>
-            <h1 id="blog-page-title">راهنماهایی برای تصمیم‌های بهتر در وب و محتوا.</h1>
-            <p>مقاله‌های فارسی FMS برای وقتی که قبل از اجرا، به یک نگاه روشن‌تر درباره طراحی سایت، معماری وب، SEO و محتوا نیاز دارید.</p>
-          </div>
-          <div className="blog-archive-hero__signal" data-hero-reveal>
-            <span className="blog-archive-hero__signal-line" />
-            <strong>{formatIndex(posts.length, "fa")}</strong>
-            <span>یادداشت منتشرشده</span>
-          </div>
-        </div>
-      </section>
-
-      {featuredPost ? (
-        <section className="blog-feature container-shell" aria-labelledby="featured-blog-title">
-          <div className="blog-feature__visual" data-reveal>
-            <BlogVisual post={featuredPost} index={1} />
-          </div>
-          <div className="blog-feature__content" data-reveal>
-            <div className="blog-feature__meta">
-              <span>یادداشت منتخب</span>
-              <span>{featuredPost.category}</span>
-            </div>
-            <h2 id="featured-blog-title">
-              <Link href={localePath("fa", `/blog/${featuredPost.slug}`)}>{featuredPost.title}</Link>
-            </h2>
+    <div className={s.journal}>
+      <JsonLd data={{
+        "@context": "https://schema.org", "@type": "CollectionPage",
+        name: persianSeoMetadata.blog.title, description: persianSeoMetadata.blog.description, inLanguage: "fa-IR",
+        mainEntity: {
+          "@type": "ItemList",
+          itemListElement: persianBlogPosts.map((post, index) => ({
+            "@type": "ListItem", position: index + 1,
+            url: new URL(`/blog/${post.slug}`, siteUrl).toString(), name: post.title,
+          })),
+        },
+      }}/>
+      <div className={`container-shell ${s.archiveHero}`}>
+        <header className={s.masthead} data-hero-reveal>
+          <p className={s.label}>مجلهٔ FMS</p>
+          <h1 id="blog-page-title">راهنماهایی برای تصمیم‌های بهتر در وب و محتوا.</h1>
+          <p>مقاله‌های فارسی FMS برای وقتی که قبل از اجرا، به یک نگاه روشن‌تر درباره طراحی سایت، معماری وب، SEO و محتوا نیاز دارید.</p>
+          <a className={s.textAction} href="#blog-archive-title">{formatNumber(posts.length, "fa")} یادداشت منتشرشده<ArrowIcon direction="down" /></a>
+        </header>
+        {featuredPost && <article className={s.feature} aria-labelledby="featured-blog-title" data-hero-reveal>
+          <BlogVisual post={featuredPost} />
+          <div className={s.featureText}>
+            <div className={s.cardMeta}><span>یادداشت منتخب</span><span>{featuredPost.category}</span></div>
+            <h2 id="featured-blog-title"><Link href={localePath("fa", `/blog/${featuredPost.slug}`)}>{featuredPost.title}</Link></h2>
             <p>{featuredPost.excerpt}</p>
-            <div className="blog-feature__footer">
-              <span>{featuredPost.readingTime} دقیقه مطالعه</span>
-              <Link className="button button--outline" href={localePath("fa", `/blog/${featuredPost.slug}`)}>
-                شروع مطالعه <ArrowIcon />
-              </Link>
+            <div className={s.featureFoot}>
+              <Link className={s.cardLink} href={localePath("fa", `/blog/${featuredPost.slug}`)}>شروع مطالعه<ArrowIcon/></Link>
+              <span>{formatNumber(featuredPost.readingTime, "fa")} دقیقه مطالعه</span>
             </div>
           </div>
-        </section>
-      ) : null}
-
-      <section className="blog-archive container-shell" aria-labelledby="blog-archive-title">
-        <header className="blog-archive__heading" data-reveal>
-          <div>
-            <p className="eyebrow">آرشیو نوشته‌ها</p>
-            <h2 id="blog-archive-title">موضوع را انتخاب کنید، بعد عمیق‌تر بخوانید.</h2>
-          </div>
+        </article>}
+      </div>
+      <section className={`container-shell ${s.archive}`} aria-labelledby="blog-archive-title">
+        <header className={s.archiveIntro} data-reveal>
+          <p className={s.label}>آرشیو نوشته‌ها</p><h2 id="blog-archive-title">موضوع را انتخاب کنید، بعد عمیق‌تر بخوانید.</h2>
           <p>هر نوشته با مثال، چک‌لیست و منابع قابل بررسی نوشته شده تا یک قدم واقعی از آن بردارید.</p>
         </header>
-        <div className="blog-archive__grid">
-          {archivePosts.map((post, index) => (
-            <BlogCard key={post.slug} post={post} index={index + 2} locale="fa" />
-          ))}
-        </div>
+        <nav className={s.topics} aria-label="موضوع نوشته‌ها">
+          {[...groups.keys()].map((category, index) => <a href={`#topic-${index+1}`} key={category}>{category}</a>)}
+        </nav>
+        {[...groups.entries()].map(([category, items], index) => (
+          <section className={s.category} key={category} aria-labelledby={`topic-${index+1}`}>
+            <h2 id={`topic-${index+1}`} data-reveal>{category}</h2>
+            <div className={s.cardGrid}>{items.map(post => <BlogCard post={post} key={post.slug}/>)}</div>
+          </section>
+        ))}
       </section>
-    </>
+    </div>
   );
 }

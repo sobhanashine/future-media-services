@@ -2,11 +2,12 @@ import type { MetadataRoute } from "next";
 import { persianBlogPosts } from "@/content/blog";
 import { projectSlugs } from "@/content/projects";
 import { localePath, serviceSlugs, type Locale } from "@/content/site";
+import { serviceSpecialties, specialtyPath } from "@/content/service-specialties";
 import { siteUrl } from "@/lib/metadata";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const locales: Locale[] = ["fa", "en"];
-  const staticPaths = ["", "/services", "/work", "/about", "/faq", "/contact", "/privacy"];
+  const staticPaths = ["", "/services", "/pricing", "/work", "/about", "/faq", "/contact", "/privacy"];
 
   const entries = [
     ...locales.flatMap((locale) => [
@@ -19,6 +20,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
         url: new URL(localePath(locale, `/services/${slug}`), siteUrl).toString(),
         changeFrequency: "monthly" as const,
         priority: 0.8,
+      })),
+      ...serviceSpecialties.map(item => ({
+        url: new URL(localePath(locale, specialtyPath(item)), siteUrl).toString(),
+        changeFrequency: "monthly" as const,
+        priority: 0.75,
       })),
       ...projectSlugs.map((slug) => ({
         url: new URL(localePath(locale, `/work/${slug}`), siteUrl).toString(),

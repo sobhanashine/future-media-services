@@ -12,7 +12,7 @@ export function createMetadata(
 ): Metadata {
   const canonicalPath = localePath(locale, path);
   const canonical = new URL(canonicalPath, siteUrl).toString();
-  const socialImage = new URL(localePath(locale, "/opengraph-image"), siteUrl).toString();
+  const socialImage = new URL("/images/fms-social.png", siteUrl).toString();
 
   return {
     title,
@@ -46,7 +46,7 @@ export function createMetadata(
 
 export function createPersianOnlyMetadata(title: string, description: string, path = ""): Metadata {
   const canonical = new URL(path || "/", siteUrl).toString();
-  const socialImage = new URL("/opengraph-image", siteUrl).toString();
+  const socialImage = new URL("/images/fms-social.png", siteUrl).toString();
 
   return {
     title,

@@ -1,0 +1,29 @@
+@media screen and (prefers-reduced-motion: no-preference) {
+  .enabled .paused { animation-play-state: paused; }
+
+  @supports (animation-timeline: view()) {
+    .hero { view-timeline-name: --hero; }
+    .backdrop {
+      animation: recede linear both;
+      animation-timeline: --hero;
+      animation-range: exit 0% exit 100%;
+    }
+
+    .photoScene, .galleryMedia { view-timeline-name: --photograph; }
+    .frame > img, .galleryMedia img {
+      animation: photograph linear both;
+      animation-timeline: --photograph;
+      animation-range: entry 0% exit 100%;
+    }
+  }
+}
+
+@keyframes recede {
+  from { translate: 0 0; }
+  to { translate: 0 7%; }
+}
+
+@keyframes photograph {
+  from { scale: 1.06; translate: 0 -1.7%; }
+  to { scale: 1.06; translate: 0 1.7%; }
+}

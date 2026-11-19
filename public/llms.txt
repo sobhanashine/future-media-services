@@ -1,6 +1,6 @@
 # Future Media Services
 
-> Future Media Services (FMS) is a bilingual digital studio that designs and develops custom websites and manages Instagram content for brands and businesses. The official website is https://futuremservices.ir.
+> Future Media Services (FMS) is a bilingual digital agency that designs and develops custom websites and manages Instagram content for brands and businesses. The official website is https://futuremservices.ir.
 
 ## Official pages
 
@@ -8,6 +8,7 @@
 - [English home](https://futuremservices.ir/en): English, left-to-right
 - [Persian services](https://futuremservices.ir/services): Website design/development and Instagram content management
 - [Persian blog](https://futuremservices.ir/blog): Persian guides about website design, SEO and content
+- [Persian blog: WordPress Headless content updates and cache diagnosis guide](https://futuremservices.ir/blog/wordpress-headless-content-update-cache-guide)
 - [Persian blog: outsourcing Instagram management, access and handover checklist](https://futuremservices.ir/blog/instagram-management-outsourcing-access-handover-checklist)
 - [Persian blog: ecommerce category page structure and SEO guide](https://futuremservices.ir/blog/ecommerce-category-page-structure-seo-guide)
 - [Persian blog: Instagram visual identity and content design system guide](https://futuremservices.ir/blog/instagram-visual-identity-content-system-guide)
@@ -33,7 +34,7 @@
 - [English FAQs](https://futuremservices.ir/en/faq): English project, timing, payment and service answers
 - [Persian pricing](https://futuremservices.ir/pricing-fa.md): Machine-readable Persian starting scopes and monthly plans
 - [Pricing](https://futuremservices.ir/pricing.md): Machine-readable English starting scopes and monthly plans
-- [Phone contact](https://futuremservices.ir/contact): Project consultation is phone-only
+- [Contact and callback requests](https://futuremservices.ir/contact): Leave a phone number for FMS to call back or call directly.
 
 ## What FMS offers
 
@@ -46,7 +47,7 @@ FMS designs and develops custom personal, corporate and commerce websites with r
 
 ### Instagram content management
 
-FMS provides content calendars, post and story design, reel production, page visual identity and monthly reporting through Economic, Silver and Gold monthly plans. Publishing volume and production details are confirmed during the initial call.
+FMS provides content calendars, post and story design, reel production, page visual identity and monthly reporting through Bronze, Silver and Gold monthly plans. Publishing volume and production details are confirmed during the initial call.
 
 - [Instagram service details in Persian](https://futuremservices.ir/services/instagram-management)
 - [Instagram service details in English](https://futuremservices.ir/en/services/instagram-management)
@@ -54,7 +55,7 @@ FMS provides content calendars, post and story design, reel production, page vis
 ## Pricing summary
 
 - Website: Personal 45 million toman starting scope, Corporate 85 million toman starting scope, Commerce 165 million toman starting scope.
-- Instagram management: Economic 10 million toman/month, Silver 13 million toman/month, Gold 17 million toman/month.
+- Instagram management: Bronze 11.9 million, Silver 16.4 million and Gold 23.8 million toman per month. The plans include 8, 12 and 16 posts and 30–52, 60–80 and 120 stories respectively. Separate commissions include a 7.5-million-toman three-month audience campaign, posts/reels from 800,000 toman, and photo or motion stories. See the official pricing sheets and Instagram service calculator for individual and monthly unit rates.
 - Installment payment is available for website plans by arrangement during a phone call.
 - Domain, hosting, paid services and out-of-scope features are estimated separately.
 
