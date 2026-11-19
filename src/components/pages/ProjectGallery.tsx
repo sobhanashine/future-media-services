@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { featuredProjects, portfolioProjects, projectCopy, type Project } from "@/content/projects";
-import { formatIndex, localePath, type Locale } from "@/content/site";
+import { localePath, type Locale } from "@/content/site";
 
 const labels = {
   fa: {
@@ -17,14 +17,14 @@ const labels = {
   },
 } satisfies Record<Locale, Record<string, string>>;
 
-function ProjectCard({ project, locale, index }: { project: Project; locale: Locale; index: number }) {
+function ProjectCard({ project, locale }: { project: Project; locale: Locale }) {
   const content = projectCopy(project, locale);
   const text = labels[locale];
 
   if (!project.images) return null;
 
   return (
-    <article className="project-card" data-reveal>
+    <article className="project-card" data-reveal id={`case-${project.slug}`}>
       <a
         href={project.url}
         target="_blank"
@@ -38,17 +38,14 @@ function ProjectCard({ project, locale, index }: { project: Project; locale: Loc
             src={project.images.mockup}
             alt={content.imageAlt}
             fill
-            sizes="(max-width: 780px) 76vw, (max-width: 1200px) 46vw, 76rem"
+            sizes="(max-width: 700px) 90vw, (min-width: 1320px) 37rem, 46vw"
           />
         </span>
 
         <span className="project-card__footer">
-          <span className="project-card__index" aria-hidden="true">
-            {formatIndex(index + 1, locale)}
-          </span>
           <span className="project-card__identity">
             <strong>{content.title}</strong>
-            <small>{project.domain}</small>
+            <small><bdi dir="ltr">{project.domain}</bdi></small>
           </span>
           <span className="project-card__visit" aria-hidden="true">
             {text.visit}
@@ -71,8 +68,8 @@ export function ProjectGallery({ locale, showAllLink = false }: { locale: Locale
   return (
     <>
       <div className={`project-gallery${showAllLink ? " project-gallery--featured" : ""}`}>
-        {displayedProjects.map((project, index) => (
-          <ProjectCard project={project} locale={locale} index={index} key={project.slug} />
+        {displayedProjects.map((project) => (
+          <ProjectCard project={project} locale={locale} key={project.slug} />
         ))}
       </div>
       {showAllLink ? (

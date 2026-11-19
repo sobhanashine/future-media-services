@@ -1,8 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ProjectDevice } from "@/components/pages/ProjectDevice";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { projects, type Project } from "@/content/projects";
 import { formatIndex, localePath, type Locale } from "@/content/site";
+import s from "./ServicePortfolio.module.css";
 
 const labels = {
   fa: {
@@ -69,40 +71,32 @@ export function ProjectDetailPage({ project, locale }: { project: Project; local
   }[statusKey];
 
   return (
-    <article className="project-detail">
+    <article className={`project-detail ${s.project}`}>
       <header className="project-detail__hero container-shell">
         <Link href={localePath(locale, "/work")} className="back-link" data-hero-reveal>
           <ArrowIcon direction="left" />
           {text.back}
         </Link>
-        <div className="project-detail__index" aria-hidden="true" data-hero-reveal>
-          <span>CASE / {formatIndex(projectIndex + 1, locale)}</span>
-          <span>{project.domain}</span>
+        <div className={s.caseIntro}>
+          <p className={s.descriptor} data-hero-reveal>{content.descriptor}</p>
+          <h1 data-hero-reveal>{content.title}</h1>
+          <div className="project-detail__lead" data-hero-reveal>
+            <p>{content.summary}</p>
+            {project.available ? (
+              <a className="button" href={project.url} target="_blank" rel="noreferrer">
+                {actionLabel}
+                <ArrowIcon />
+              </a>
+            ) : (
+              <span className="status-pill">{text.unavailable}</span>
+            )}
+          </div>
         </div>
-        <p className="eyebrow" data-hero-reveal>{content.descriptor}</p>
-        <h1 data-hero-reveal>{content.title}</h1>
-        <div className="project-detail__lead" data-hero-reveal>
-          <p>{content.summary}</p>
-          {project.available ? (
-            <a className="button" href={project.url} target="_blank" rel="noreferrer">
-              {actionLabel}
-              <ArrowIcon />
-            </a>
-          ) : (
-            <span className="status-pill">{text.unavailable}</span>
-          )}
-        </div>
-      </header>
-
-      <section
-        className={`project-detail__device-stage${project.images ? " project-detail__device-stage--composite" : ""}`}
-        aria-label={text.responsive}
-      >
-        <div className="container-shell">
+        <figure className={s.caseHeroArt} data-fms-reveal="media">
           <ProjectDevice project={project} locale={locale} priority />
-          <p>{text.responsive}</p>
-        </div>
-      </section>
+          <figcaption><bdi dir="ltr">{project.domain}</bdi><span>{project.images ? text.responsive : statusLabel}</span></figcaption>
+        </figure>
+      </header>
 
       <section className="project-detail__body container-shell">
         <aside data-reveal>
@@ -121,28 +115,25 @@ export function ProjectDetailPage({ project, locale }: { project: Project; local
             </div>
             <div>
               <dt>{text.domain}</dt>
-              <dd>{project.domain}</dd>
+              <dd><bdi dir="ltr">{project.domain}</bdi></dd>
             </div>
           </dl>
         </aside>
 
         <div className="project-detail__story">
           <section data-reveal>
-            <p className="eyebrow">{formatIndex(1, locale)} / {text.overview}</p>
+            <p className="eyebrow">{text.overview}</p>
             <h2>{content.summary}</h2>
           </section>
           <section data-reveal>
-            <p className="eyebrow">{formatIndex(2, locale)} / {text.challenge}</p>
             <h2>{text.challenge}</h2>
             <p>{content.challenge}</p>
           </section>
           <section data-reveal>
-            <p className="eyebrow">{formatIndex(3, locale)} / {text.approach}</p>
             <h2>{text.approach}</h2>
             <p>{content.approach}</p>
           </section>
           <section data-reveal>
-            <p className="eyebrow">{formatIndex(4, locale)} / {text.highlights}</p>
             <h2>{text.highlights}</h2>
             <ul>
               {content.highlights.map((highlight, index) => (
@@ -160,9 +151,9 @@ export function ProjectDetailPage({ project, locale }: { project: Project; local
         </div>
       </section>
 
-      <Link href={localePath(locale, `/work/${nextProject.slug}`)} className="project-next">
-        <span>{text.next}</span>
-        <strong>{nextContent.title}</strong>
+      <Link href={localePath(locale, `/work/${nextProject.slug}`)} className={`project-next container-shell ${s.next}`} data-reveal>
+        {nextProject.images && <Image className={s.nextImage} src={nextProject.images.desktop} width={240} height={150} sizes="(max-width: 679px) 76px, 150px" alt="" />}
+        <div><small>{text.next}</small><strong>{nextContent.title}</strong></div>
         <ArrowIcon />
       </Link>
     </article>

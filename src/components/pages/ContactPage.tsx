@@ -1,69 +1,37 @@
 import Link from "next/link";
-import { PageIntro } from "@/components/ui/PageIntro";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
-import { copy, formatIndex, localePath, type Locale } from "@/content/site";
-import { phoneDisplay, phoneHref } from "@/lib/contact";
+import { copy, localePath, type Locale } from "@/content/site";
+import { callbackLabel, phoneDisplay, phoneHref } from "@/lib/contact";
+import s from "./StudioEditorial.module.css";
+import { CallbackForm } from "./CallbackForm";
 
 export function ContactPage({ locale }: { locale: Locale }) {
-  const content = copy[locale];
-
+  const { contact, nav, sections } = copy[locale];
   return (
-    <>
-      <PageIntro
-        locale={locale}
-        eyebrow={content.contact.eyebrow}
-        title={content.contact.title}
-        body={content.contact.intro}
-      />
-      <section className="contact-section contact-section--call container-shell" id="call">
-        <div className="call-panel" data-reveal>
-          <div className="call-panel__top">
-            <span>{content.contact.phoneOnlyLabel}</span>
-            <span>FMS / DIRECT</span>
+    <div className={s.page}>
+      <div className={`container-shell ${s.contactHero}`}>
+        <header className={s.lead} data-hero-reveal>
+          <p className={s.label}>{contact.eyebrow}</p>
+          <h1>{contact.title}</h1><p className={s.dek}>{contact.intro}</p>
+          <div id="call" className={s.directLine}>
+            <span>{contact.directLabel}</span><a href={phoneHref} dir="ltr">{phoneDisplay}</a>
           </div>
-          <p>{content.contact.callPrompt}</p>
-          <a href={phoneHref} className="button button--light call-panel__button">
-            {content.nav.start}
-            <ArrowIcon />
-          </a>
-          <a href={phoneHref} className="call-panel__phone" dir="ltr">
-            {phoneDisplay}
-          </a>
-          <small>
-            {content.contact.callDisclaimer}
-          </small>
-        </div>
-        <aside data-reveal>
-          <p className="eyebrow">{content.contact.beforeCallLabel}</p>
-          <h2>{content.contact.directTitle}</h2>
-          <p>{content.contact.directBody}</p>
-          <div className="contact-note">
-            <span>NOTE / {formatIndex(1, locale)}</span>
-            <p>{content.contact.estimateNote}</p>
-          </div>
-        </aside>
+        </header>
+        <section id="callback" className={s.callbackPanel} data-hero-reveal aria-labelledby="callback-title">
+          <h2 id="callback-title">{callbackLabel[locale]}</h2>
+          <CallbackForm locale={locale} showRedirectStatus />
+        </section>
+      </div>
+      <section className={`container-shell ${s.callGuide}`} data-reveal>
+        <div><p className={s.label}>{contact.beforeCallLabel}</p><h2>{contact.directTitle}</h2></div>
+        <div><p>{contact.directBody}</p><p>{contact.estimateNote}</p></div>
       </section>
-      <section className="contact-related container-shell" aria-labelledby="contact-related-title">
-        <div>
-          <p className="eyebrow">{content.nav.services}</p>
-          <h2 id="contact-related-title">{content.sections.servicesTitle}</h2>
-          <p>{content.sections.servicesPageIntro}</p>
-        </div>
-        <nav className="contact-related__links" aria-label={content.nav.services}>
-          <Link href={localePath(locale, "/services")}>
-            {content.nav.services}
-            <ArrowIcon />
-          </Link>
-          <Link href={localePath(locale, "/work")}>
-            {content.nav.work}
-            <ArrowIcon />
-          </Link>
-          <Link href={localePath(locale, "/faq")}>
-            {content.nav.faq}
-            <ArrowIcon />
-          </Link>
-        </nav>
+      <section className={`container-shell ${s.related}`} aria-labelledby="contact-related-title" data-reveal>
+        <div><p className={s.label}>{nav.services}</p><h2 id="contact-related-title">{sections.servicesTitle}</h2><p>{sections.servicesPageIntro}</p></div>
+        <nav aria-label={nav.services}>{[[nav.services, "/services"], [nav.work, "/work"], [nav.faq, "/faq"]].map(([label,path]) => (
+          <Link key={path} href={localePath(locale, path)}>{label}<ArrowIcon /></Link>
+        ))}</nav>
       </section>
-    </>
+    </div>
   );
 }

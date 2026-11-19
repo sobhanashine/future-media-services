@@ -1,0 +1,73 @@
+.document {
+  margin: 0;
+  background: #080809;
+  color: #f7f4f5;
+  font-family: Arial, sans-serif;
+}
+
+.state {
+  box-sizing: border-box;
+  min-height: 72svh;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  padding: 48px 24px;
+  background: radial-gradient(ellipse at 50% 110%, #3c0c17, transparent 58%), #080809;
+  color: #f7f4f5;
+  text-align: center;
+}
+
+.document .state {
+  min-height: 100svh;
+}
+
+.code {
+  color: #ff758f;
+  font: 550 clamp(50px, 11vw, 145px)/1.15 var(--studio-latin, Arial), sans-serif;
+}
+
+.state h1 {
+  margin: 20px 0 0;
+  font-size: clamp(30px, 4.5vw, 65px);
+  line-height: 1.3;
+  font-weight: 550;
+}
+
+.state p {
+  max-width: 48ch;
+  margin: 18px auto 24px;
+  color: #c4bcbf;
+  line-height: 1.8;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.actions :is(a, button) {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  padding: 0 20px;
+  border: 1px solid #504449;
+  border-radius: 10px;
+  background: #171417;
+  color: #fff;
+  font: inherit;
+  font-weight: 550;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.actions :first-child {
+  background: #d90a2c;
+  border-color: #ec435f;
+}
+
+.actions :focus-visible {
+  outline: 2px solid #ff99ab;
+  outline-offset: 4px;
+}

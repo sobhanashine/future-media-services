@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "callback:mail": "node --env-file=.env.local scripts/callback-mailer.mjs",
     "build": "opennextjs-cloudflare build && npm run prepare:cloudflare-assets",
     "build:next": "next build --webpack",
     "build:cloudflare": "npm run build",
@@ -26,15 +27,16 @@
     "@fontsource-variable/vazirmatn": "^5.2.8",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
+    "framer-motion": "14.14.0",
     "geist": "^1.7.2",
-    "gsap": "^3.15.0",
-    "next": "16.2.11",
+    "next": "16.4.6",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "three": "^0.185.1"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.12.1",
+    "@opennextjs/cloudflare": "1.20.17",
     "@playwright/test": "^1.61.1",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.9.1",
@@ -42,13 +44,18 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@opennextjs/cloudflare": "1.20.2",
+    "esbuild": "0.28.2",
     "eslint": "^9",
-    "eslint-config-next": "16.2.11",
+    "eslint-config-next": "16.4.6",
     "jsdom": "^29.1.1",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^4.1.10",
-    "wrangler": "4.118.0"
+    "wrangler": "4.165.0"
+  },
+  "overrides": {
+    "@opennextjs/cloudflare": {
+      "glob": "14.0.6"
+    }
   }
 }

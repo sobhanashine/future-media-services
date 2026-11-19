@@ -1,0 +1,30 @@
+.rates { margin-block: clamp(45px, 8vw, 100px); }
+.rates section { scroll-margin-block-start: 95px; }
+.rates h2 { margin: 0 0 8px; font-size: clamp(1.6rem, 4vw, 2.8rem); line-height: 1.3; }
+.rates h3 { font-size: 1.12rem; line-height: 1.6; }
+.rates p { color: #c6bdc1; line-height: 1.8; }
+.items, .controls, .extras { display: grid; gap: 12px; }
+.items { margin-block: 22px; }
+.items article, .estimator { border: 1px solid #3c3338; border-radius: 16px; padding: clamp(16px, 3vw, 34px); background: #151214; }
+.items strong { display: block; margin-block: 12px; color: #ff9daf; }
+.items dl { margin: 10px 0; }
+.items dt, .controls small { color: #ccbfc5; font-size: .85rem; }
+.items dd { margin: 0; color: #ffd4dc; }
+.estimator { margin-block-start: clamp(30px, 5vw, 70px); }
+.estimator fieldset { min-width: 0; border: 0; padding: 0; margin: 0; }
+.estimator legend { padding: 0; margin-bottom: 10px; font-weight: 600; }
+.format { display: grid; max-width: 360px; gap: 6px; margin: 20px 0; }
+.format select, .controls input { color-scheme: dark; min-height: 44px; width: 100%; min-width: 0; border: 1px solid #675760; border-radius: 8px; background: #090809; color: #fff; padding: 6px 11px; }
+.format select { font: inherit; }
+.controls label { display: grid; align-content: start; gap: 5px; }
+.estimator .extras { margin-block: 24px; }
+.extras label { display: flex; align-items: center; min-height: 44px; gap: 9px; padding: 6px 0; border-bottom: 1px solid #3b3338; cursor: pointer; }
+.extras input { width: 19px; height: 19px; flex: none; accent-color: #d90a2c; }
+.extras small { margin-inline-start: auto; color: #dbcfd4; white-space: nowrap; }
+.total { display: flex; gap: 18px; align-items: center; justify-content: space-between; flex-wrap: wrap; border-top: 1px solid #5c454e; padding-block-start: 16px; }
+.total span,.total output { display: block; }
+.total output { font-size: clamp(20px, 3vw, 32px); color: #ffa9b8; overflow-wrap: anywhere; }
+@media (min-width: 700px) {
+  .items, .controls { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .extras { grid-template-columns: 1fr 1fr; column-gap: 24px; }
+}

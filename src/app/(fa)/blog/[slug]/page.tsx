@@ -13,7 +13,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = findPersianBlogPost(slug);
   if (!post) return {};
-  return createPersianOnlyMetadata(`${post.title} | FMS`, post.excerpt, `/blog/${post.slug}`);
+  const metadata = createPersianOnlyMetadata(`${post.title} | FMS`, post.excerpt, `/blog/${post.slug}`);
+  return {
+    ...metadata,
+    openGraph: {
+      ...metadata.openGraph, type: "article",
+      publishedTime: post.publishedAt, modifiedTime: post.updatedAt,
+      authors: [post.authorName], section: post.category,
+    },
+  };
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {

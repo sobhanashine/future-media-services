@@ -1,32 +1,33 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
+import { enablePageMotion, observeReveals } from "./viewportReveals";
+import motion from "../landing/LandingMotion.module.css";
 
-const MotionOrchestrator = dynamic(
-  () => import("./MotionOrchestrator").then((module) => module.MotionOrchestrator),
-  { ssr: false },
-);
+const reveals = {
+  title: "h1, h2",
+  copy: "[data-hero-reveal]",
+  row: "details[data-reveal]",
+  card: "article[data-reveal], a[data-reveal], .pricing-plan",
+  panel: "[data-reveal]",
+};
 
 export function MotionEnhancements() {
-  const [enabled, setEnabled] = useState(false);
-
+  const pathname = usePathname();
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const enableMotion = () => setEnabled(true);
-    const options = { passive: true, once: true } as const;
-
-    window.addEventListener("scroll", enableMotion, options);
-    window.addEventListener("pointerdown", enableMotion, options);
-    window.addEventListener("keydown", enableMotion, { once: true });
-
-    return () => {
-      window.removeEventListener("scroll", enableMotion);
-      window.removeEventListener("pointerdown", enableMotion);
-      window.removeEventListener("keydown", enableMotion);
-    };
-  }, []);
-
-  return enabled ? <MotionOrchestrator /> : null;
+    if (pathname === "/" || pathname === "/en") return;
+    const main = document.getElementById("main-content");
+    if (!main) return;
+    return enablePageMotion(main, () => {
+      const clearReveals = observeReveals(main, reveals);
+      const media = main.querySelectorAll("[data-project-media]");
+      media.forEach(item => item.classList.add(motion.galleryMedia));
+      return () => {
+        clearReveals();
+        media.forEach(item => item.classList.remove(motion.galleryMedia));
+      };
+    });
+  }, [pathname]);
+  return null;
 }

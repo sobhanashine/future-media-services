@@ -1,8 +1,8 @@
 # Future Media Services pricing
 
-Last reviewed: 2026-10-23
+Instagram rates reviewed: 2026-11-19
 
-These are starting scopes, not fixed quotations. Final scope, timing, domain, hosting, paid services and out-of-scope features are confirmed during a phone call. Installment payment is available for website plans by arrangement.
+Website fees are starting prices. Final scope, timing, domain, hosting, paid services and out-of-scope features are confirmed during a phone call. Installment payment is available for website plans by arrangement.
 
 ## Website design and development
 
@@ -33,27 +33,82 @@ Service page: https://futuremservices.ir/en/services/web-development/
 
 Service page: https://futuremservices.ir/en/services/instagram-management/
 
-All plans include content planning, page-specific visual direction, design, reporting and support. Reel formats, production details and required inputs are confirmed before contract signing.
+Choose Bronze, Silver or Gold by monthly publishing volume. All three include 15 shared services. Gold adds map listings and distribution to an additional video channel.
 
-### Economic
+The initial Instagram account review is free.
 
-- Monthly price: 10 million toman
-- Audience: Small businesses
-- Volume: 8 posts per month; 30–52 stories per month based on page needs.
+### Bronze
+
+- Monthly fee: 11,900,000 toman
+- For small businesses
+- 8 posts per month; reels can be selected
+- 30–52 stories per month, based on page needs
 
 ### Silver
 
-- Monthly price: 13 million toman
-- Audience: Medium-sized businesses
-- Volume: 12 posts per month; 60–80 stories per month based on page needs.
+- Monthly fee: 16,400,000 toman
+- For medium-sized businesses
+- 12 posts per month; reels can be selected
+- 60–80 stories per month, based on page needs
 
 ### Gold
 
-- Monthly price: 17 million toman
-- Audience: Large businesses
-- Volume: 16 posts per month; 120 stories per month.
-- Additional scope: Business location registration on Google Maps, Balad and Neshan; publishing to an Aparat or YouTube channel.
+- Monthly fee: 23,800,000 toman
+- For large businesses
+- 16 posts per month; reels can be selected
+- 120 stories per month, based on page needs
+- Business location registration on Google Maps, Balad and Neshan
+- Content publishing to an Aparat or YouTube channel
+
+### Included in all three plans
+
+- Insights monitoring and work on view growth
+- Profile-specific bio setup
+- Graphic highlight design
+- Motion story design
+- Monthly report
+- Reel cover and back-cover design
+- Original and trend-led scripting
+- Support from 09:00 to 16:00
+- Monthly promotion and competition banner design
+- Formal contract
+- Account recovery when credentials are forgotten
+- Business account setup if you do not yet have a page
+- Logotype design
+- Human voice-over on selected reels without AI
+- Sourcing photos and videos from reputable sites and channels and editing them for your brand when needed
+
+### Individual Instagram services
+
+- Audience outreach campaign — 7,500,000 toman for three months. Customer acquisition through targeted engagement, direct-message and comment marketing on relevant accounts, content likes and story views.
+- Post or reel with front and back covers — From 800,000 toman. For videos from 10 seconds to 3 minutes, with up to 48 hours for design. Call for a custom edit or a video longer than 3 minutes.
+- Photo story — 250,000 to 1,000,000 toman
+- Motion story — 450,000 to 1,500,000 toman
+Call for bespoke story pricing. Story video editing takes up to 5 hours.
+
+### Build a monthly estimate
+
+Choose monthly content quantities and optional services. Individual design commissions have their own rates above.
+
+- Stories (Standard) — 50,000 toman
+- Stories (Motion) — 80,000 toman
+- Posts — 100,000 toman
+- Promotion or competition banners — 60,000 toman
+
+Optional services
+
+- Reel cover and back cover — 200,000 toman
+- Saved story and cover — 150,000 toman
+- Logotype design — 100,000 toman
+- Profile bio setup — 50,000 toman
+- Account recovery — 500,000 toman
+- Content calendar — 300,000 toman
+- Scriptwriting — 400,000 toman
+- Account security — 200,000 toman
+- Support — 100,000 toman
+
+https://futuremservices.ir/en/services/instagram-management/#instagram-estimator
 
 ## Contact
 
-Projects start by phone only: https://futuremservices.ir/en/contact/
+Call FMS or request a callback: https://futuremservices.ir/en/contact/

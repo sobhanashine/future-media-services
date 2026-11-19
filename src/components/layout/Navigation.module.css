@@ -1,0 +1,65 @@
+.menu {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  color-scheme: dark;
+  color: #f4f3f4;
+  background: #0b0a0c;
+  font: inherit;
+}
+.menu::backdrop { background: #0b0a0c; }
+.menu:not([open]), .staticLinks { display: none; }
+.sheet {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: max(16px, env(safe-area-inset-top)) max(24px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(24px,env(safe-area-inset-left));
+}
+.bar, .links a, .callback { display: flex; justify-content: space-between; align-items: center; }
+.bar { padding-bottom: 18px; border-bottom: 1px solid #373335; }
+.wordmark { font: 650 19px/1.25 var(--studio-latin),Arial,sans-serif; letter-spacing: -.055em; }
+.wordmark span { color: #ff4868; }
+.close {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid #51484c;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.links { display: grid; padding: clamp(12px,4dvh,40px) 0; }
+.links a {
+  min-height: 47px;
+  padding-block: clamp(4px,1.25dvh,12px);
+  border-bottom: 1px solid #302b2e;
+  font-size: clamp(23px,4dvh,38px);
+  line-height: 1.35;
+  font-weight: 500;
+}
+.links a[aria-current], .links a:hover, .utilities a:hover { color: #ff8095; }
+.links :global(.arrow-icon) { color: #8e868c; font-size: 18px; }
+.menu:dir(rtl) :global(.arrow-icon) { transform: scaleX(-1); }
+.utilities { display:flex; flex-wrap:wrap; gap: 4px 22px; padding: 6px 0 18px; margin-top: auto; color: #c1bac0; font-size: 15px; }
+.utilities a { display: inline-flex; align-items: center; min-height: 44px; }
+.callback { min-height: 54px; padding: 12px 22px; border-radius: 10px; font-weight: 650; background: #c80831; color: white; }
+@media (prefers-reduced-motion:no-preference) {
+  .menu[open] { animation: open-sheet 230ms cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes open-sheet { from { opacity: .15; transform: translateY(-16px); } to { opacity: 1; transform: none; } }
+}
+@media (max-width:809px) and (scripting:none) {
+  .staticLinks { display:flex; gap: 4px 16px; justify-content:center; flex-wrap:wrap; padding:8px 14px; background:#101012; font-size:14px; }
+  :global(.site-header):has(.staticLinks) { height:auto; }
+}

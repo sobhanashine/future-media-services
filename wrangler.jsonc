@@ -6,7 +6,10 @@
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
     "directory": ".open-next/assets",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
+    "html_handling": "none",
+    "not_found_handling": "none",
+    "run_worker_first": ["/api/*", "/__opennext_prerender/*"]
   },
   "services": [
     {
@@ -17,6 +20,18 @@
   "images": {
     "binding": "IMAGES"
   },
+  "d1_databases": [{
+    "binding": "CALLBACK_DB",
+    "database_name": "fms-callback-receipts",
+    "database_id": "99682861-f725-4f18-8d73-57cc5d62abe0"
+  }],
+  "ratelimits": [{
+    "name": "CALLBACK_LIMIT",
+    "namespace_id": "14191107",
+    "simple": { "limit": 6, "period": 60 }
+  }],
+  "send_email": [{ "name": "CALLBACK_EMAIL", "allowed_sender_addresses": ["callbacks@notify.futuremservices.ir"] }],
+  "triggers": { "crons": ["17 2 * * *"] },
   "observability": {
     "enabled": true
   }
