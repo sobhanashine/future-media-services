@@ -123,10 +123,10 @@ test("Instagram management stays local and exposes all three monthly plans", asy
   await expect(page.locator('a[href*="faratar.agency"]')).toHaveCount(0);
 });
 
-test("mobile pricing plans use a readable horizontal snap rail", async ({ page }) => {
+test("mobile website pricing plans use a readable horizontal snap rail", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
 
-  for (const path of ["/services/web-development", "/en/services/instagram-management"]) {
+  for (const path of ["/services/web-development", "/en/services/web-development"]) {
     await page.goto(path);
     await expect(page.locator(".pricing-plans__hint")).toBeVisible();
     const rail = page.locator(".pricing-plans");
@@ -154,6 +154,42 @@ test("mobile pricing plans use a readable horizontal snap rail", async ({ page }
     });
     await page.waitForTimeout(100);
     expect(Math.abs(await rail.evaluate((element) => element.scrollLeft))).toBeGreaterThan(0);
+  }
+});
+
+test("Instagram plans stack in reading order on mobile and share a row on desktop", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  for (const locale of ["fa", "en"]) {
+    const prefix = locale === "fa" ? "" : "/en";
+    const names = locale === "fa" ? ["برنزی", "نقره‌ای", "طلایی"] : ["Bronze", "Silver", "Gold"];
+    await page.goto(`${prefix}/services/instagram-management#service-pricing-title`);
+    const plans = page.locator(".pricing-plans");
+    const cards = plans.getByRole("article");
+    await expect(cards.getByRole("heading")).toHaveText(names);
+    await expect(page.locator(".pricing-plans__hint")).toHaveCount(0);
+
+    for (const width of [320, 390, 768]) {
+      await page.setViewportSize({ width, height: 844 });
+      const layout = await plans.evaluate(group => ({
+        width: group.clientWidth,
+        scrollWidth: group.scrollWidth,
+        cards: Array.from(group.children, card => {
+          const { left, right, top, bottom, width } = card.getBoundingClientRect();
+          return { left, right, top, bottom, width };
+        }),
+      }));
+      expect(layout.scrollWidth).toBe(layout.width);
+      for (const [index, card] of layout.cards.entries()) {
+        expect(Math.abs(card.width - layout.width)).toBeLessThan(1);
+        expect(card.left).toBeGreaterThanOrEqual(0);
+        expect(card.right).toBeLessThanOrEqual(width);
+        if (index > 0) expect(card.top).toBeGreaterThan(layout.cards[index - 1].bottom);
+      }
+    }
+
+    await page.setViewportSize({ width: 1440, height: 900 });
+    const tops = await cards.evaluateAll(items => items.map(card => card.getBoundingClientRect().top));
+    expect(new Set(tops).size).toBe(1);
   }
 });
 

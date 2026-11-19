@@ -3628,10 +3628,14 @@ a {
   }
 
   .pricing-plans {
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
+    grid-template-columns: minmax(0, 1fr);
     border: 0;
     gap: 0.75rem;
+  }
+
+  .pricing-plans--carousel {
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
     grid-auto-columns: calc(100% - 2rem);
     grid-auto-flow: column;
     grid-template-columns: none;
@@ -3645,6 +3649,9 @@ a {
   .pricing-plan {
     border-block-start: 1px solid var(--line);
     border-inline-start: 1px solid var(--line);
+  }
+
+  .pricing-plans--carousel > .pricing-plan {
     scroll-snap-align: start;
     scroll-snap-stop: always;
   }
