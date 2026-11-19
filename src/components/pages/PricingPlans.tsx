@@ -15,15 +15,22 @@ export function PricingPlans({
   labels?: PricingCopy;
 }) {
   const text = labels ?? copy[locale].pricing;
-  const hintId = `${labelledBy ?? "pricing-plans"}-swipe-hint`;
+  const carousel = text.mobileCarousel;
+  const hintId = carousel && `${labelledBy ?? "pricing-plans"}-swipe-hint`;
 
   return (
     <>
-      <p className="pricing-plans__hint" id={hintId}>
-        <span aria-hidden="true">↔</span>
-        {text.swipeHint}
-      </p>
-      <div className="pricing-plans" aria-labelledby={labelledBy} aria-describedby={hintId}>
+      {carousel && (
+        <p className="pricing-plans__hint" id={hintId}>
+          <span aria-hidden="true">↔</span>
+          {carousel.hint}
+        </p>
+      )}
+      <div
+        className={carousel ? "pricing-plans pricing-plans--carousel" : "pricing-plans"}
+        aria-labelledby={labelledBy}
+        aria-describedby={hintId}
+      >
         {plans.map((plan) => (
           <article className="pricing-plan" data-featured={plan.featured || undefined} data-reveal key={plan.name}>
             <header>

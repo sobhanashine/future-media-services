@@ -34,7 +34,7 @@ export type PricingCopy = {
   includes: string;
   featured: string;
   disclaimer: string;
-  swipeHint: string;
+  mobileCarousel?: { hint: string };
 };
 
 export type Service = {
@@ -355,7 +355,6 @@ export const copy: Record<Locale, Copy> = {
           includes: "حجم محتوای ماهانه",
           featured: "پیشنهادی",
           disclaimer: "مبالغ ماهانه‌اند. نوع ریلز، جزئیات تولید و اطلاعات لازم برای اجرا پیش از عقد قرارداد در تماس اولیه مشخص می‌شوند.",
-          swipeHint: "برای مقایسه پلن‌ها افقی ورق بزنید",
         },
         sharedPlanTitle: "خدمات مشترک در هر سه پلن",
         sharedPlanFeatures: faInstagramSharedFeatures,
@@ -413,7 +412,7 @@ export const copy: Record<Locale, Copy> = {
       includes: "شامل",
       featured: "پیشنهاد FMS",
       disclaimer: "قیمت‌ها شروع پروژه را نشان می‌دهند. هزینه دامنه، هاست، سرویس‌های پولی و امکانات خارج از محدوده پس از تماس جداگانه برآورد می‌شود.",
-      swipeHint: "برای مقایسه پلن‌ها افقی ورق بزنید",
+      mobileCarousel: { hint: "برای مقایسه پلن‌ها افقی ورق بزنید" },
     },
     process: [
       { title: "کشف", body: "کسب‌وکار، مخاطب، مسئله و معیار موفقیت را دقیق می‌کنیم.", output: "خلاصه مسئله" },
@@ -671,7 +670,6 @@ export const copy: Record<Locale, Copy> = {
           includes: "Monthly content volume",
           featured: "Recommended",
           disclaimer: "Fees are monthly. Reel formats, production details and required inputs are confirmed during the initial call before the contract is signed.",
-          swipeHint: "Swipe horizontally to compare plans",
         },
         sharedPlanTitle: "Included in all three plans",
         sharedPlanFeatures: enInstagramSharedFeatures,
@@ -729,7 +727,7 @@ export const copy: Record<Locale, Copy> = {
       includes: "Included",
       featured: "FMS recommendation",
       disclaimer: "Prices indicate the starting project scope. Domain, hosting, paid services and out-of-scope features are estimated separately after a call.",
-      swipeHint: "Swipe horizontally to compare plans",
+      mobileCarousel: { hint: "Swipe horizontally to compare plans" },
     },
     process: [
       { title: "Discover", body: "We clarify the business, audience, problem and measure of success.", output: "Problem brief" },
