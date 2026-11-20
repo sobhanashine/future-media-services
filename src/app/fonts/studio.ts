@@ -1,11 +1,14 @@
 import localFont from "next/font/local";
 
-export const studioLatin = localFont({
-  src: "./dm-sans/DM-Sans-Latin.woff2",
-  weight: "100 1000",
-  variable: "--studio-latin",
+export const yekanBakh = localFont({
+  src: [
+    { path: "./yekan-bakh/YekanBakh-Regular.woff2", weight: "400", style: "normal" },
+    { path: "./yekan-bakh/YekanBakh-Bold.woff2", weight: "700", style: "normal" },
+  ],
+  variable: "--font-yekan-bakh",
   display: "swap",
-  preload: false,
+  preload: true,
+  fallback: ["Arial", "sans-serif"],
 });
 
 export const studioLight = localFont({

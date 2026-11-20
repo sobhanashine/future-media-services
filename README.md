@@ -43,7 +43,7 @@ Project status and attribution follow the [content inventory](docs/content-inven
 | Layer | Technology |
 | --- | --- |
 | Application | Next.js 16 App Router, React 19, TypeScript |
-| Interface | Tailwind CSS 4, Vazirmatn and Geist |
+| Interface | Tailwind CSS 4, Yekan Bakh |
 | Motion | Framer Motion, Three.js, React Three Fiber, Drei |
 | Runtime | Cloudflare Workers, OpenNext, Wrangler |
 | Verification | Vitest, Testing Library, Playwright, axe, ESLint |

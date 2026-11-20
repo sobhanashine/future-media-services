@@ -96,7 +96,7 @@ body.studio-site .brand-mark small {
   border-inline-start: 1px solid #ffffff38;
   padding-inline-start: 9px;
   color: #f9f9f9;
-  font: 720 11px/1.15 var(--font-geist-sans, Arial), sans-serif;
+  font: 720 11px/1.15 var(--font-app);
   letter-spacing: -.015em;
 }
 
@@ -190,7 +190,6 @@ body.studio-site .site-footer__top {
 
 body.studio-site .footer-brand {
   gap: 9px;
-  font-family: var(--studio-latin, Arial),Arial,sans-serif;
   font-size: 23px;
 }
 
@@ -264,7 +263,7 @@ body.studio-site .site-footer a:hover {
     display: block;
     border-inline-start: 1px solid #ffffff38;
     padding-inline-start: 9px;
-    font: 700 17px var(--studio-latin, Arial),Arial,sans-serif;
+    font: 700 17px var(--font-app);
   }
 
   body.studio-site .desktop-nav {
@@ -299,10 +298,6 @@ body.studio-site .site-footer a:hover {
   html:has(.studio-site) {
     scroll-behavior: auto;
   }
-}
-
-.studio-site.font-en {
-  --font-app: var(--studio-latin), Arial, sans-serif;
 }
 
 .studio-site .skip-link {

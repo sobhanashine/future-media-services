@@ -1,10 +1,11 @@
 "use client";
 
+import { yekanBakh } from "./fonts/studio";
 import s from "@/components/layout/SiteState.module.css";
 
 export default function GlobalError({ reset }: { error: Error & { digest?: string }; reset: () => void }) {
   return (
-    <html lang="en">
+    <html lang="en" className={yekanBakh.variable}>
       <body className={s.document}>
         <title>Future Media Services</title>
         <main className={s.state}>
