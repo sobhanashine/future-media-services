@@ -26,7 +26,7 @@
 }
 .bar, .links a, .callback { display: flex; justify-content: space-between; align-items: center; }
 .bar { padding-bottom: 18px; border-bottom: 1px solid #373335; }
-.wordmark { font: 650 19px/1.25 var(--studio-latin),Arial,sans-serif; letter-spacing: -.055em; }
+.wordmark { font: 650 19px/1.25 var(--font-app); letter-spacing: -.055em; }
 .wordmark span { color: #ff4868; }
 .close {
   display: grid;

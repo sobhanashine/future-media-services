@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --font-app: var(--font-geist-sans), system-ui, sans-serif;
+  --font-app: var(--font-yekan-bakh, Arial, sans-serif);
   --signal: #d90a2c;
   --signal-dark: #b80021;
   --ink: #161519;
@@ -46,7 +46,6 @@ body {
 }
 
 body.font-fa {
-  --font-app: var(--font-yekan-bakh), Arial, sans-serif;
   --weight-body: 400;
   --weight-ui: 600;
   --weight-label: 600;
