@@ -17,6 +17,8 @@ const labels = {
     challenge: "مسئله",
     approach: "رویکرد",
     highlights: "نکات کلیدی تجربه",
+    callback: "درخواست تماس برای پروژه مشابه",
+    webDevelopment: "خدمات طراحی و توسعه وب",
     role: "نقش پروژه",
     status: "وضعیت",
     statusLive: "فعال",
@@ -39,6 +41,8 @@ const labels = {
     challenge: "The challenge",
     approach: "The approach",
     highlights: "Experience highlights",
+    callback: "Request a callback for a similar project",
+    webDevelopment: "Web design and development services",
     role: "Project role",
     status: "Status",
     statusLive: "Live",
@@ -143,6 +147,18 @@ export function ProjectDetailPage({ project, locale }: { project: Project; local
                 </li>
               ))}
             </ul>
+            {project.slug === "ermetes" && (
+              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
+                <Link href={localePath(locale, "/contact")} className="button">
+                  {text.callback}
+                  <ArrowIcon />
+                </Link>
+                <Link href={localePath(locale, "/services/web-development")} className="text-link">
+                  {text.webDevelopment}
+                  <ArrowIcon />
+                </Link>
+              </div>
+            )}
           </section>
           <aside className="project-detail__source" data-reveal>
             <span>{text.evidence}</span>
