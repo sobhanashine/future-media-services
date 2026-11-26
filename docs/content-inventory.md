@@ -18,12 +18,11 @@ Portfolio records and captures refreshed: 2026-11-05.
 | Portfolio detail pages | Maintained with Future Media Services records | Twelve case-study records in Persian, English and Italian cover overview, challenge, approach, experience highlights and role. Ermetes links to its main public website and retains identified review-demo captures. Karats is labelled as a demo, Nafis Teb as a design preview, and Mehrshad Store as an archive. DigiMoragheb retains its screenshots and links to the case study while the public domain is unavailable | Owner approval for any added performance result or attribution |
 | Portfolio index cards | Maintained in the existing template | Eleven responsive three-device mockup cards link to project destinations. Seven appear on the homepage | Replace screenshots after material redesigns |
 | Team members | Missing | Clearly labelled pending state | Approved names, roles and portraits |
-| Phone | Owner-provided | Shown on contact pages and direct call links | Reconfirm before production promotion |
 | Email and address | Missing | Not displayed | Verified details if they are ever added |
-| Contact destination | Owner-directed | Direct calls and a phone-number callback form | Delivery destination is configured server-side |
+| Contact destination | Owner-directed | Email enquiry forms in Persian, English and Italian | Delivery destination is configured server-side |
 | Iran/UK operating claim | Inferred, unapproved | Not shown as a factual claim | Owner confirmation |
 | Favicon | Generated for this site | Abstract wing/signal mark in the FMS palette | Owner visual approval |
-| Privacy policy | Updated for callback requests | Explains that phone, language and time are emailed to the team | Legal/owner review |
+| Privacy policy | Updated for email enquiries | Explains message delivery, reply address and limited retention of receipt hashes | Legal/owner review |
 | Persian blog | Published | Two answer-led articles with dates, author, FAQs, official sources and internal service links | Human review and two-post weekly publishing cadence |
 
 No client, award, office, team member, testimonial, metric or project result has been fabricated in the interface. Project roles and technology details are limited to the owner-provided CV, Future Media Services project records and confirmable public website behavior.

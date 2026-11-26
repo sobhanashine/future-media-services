@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { copy, localePath, type Locale } from "@/content/site";
-import { callbackLabel, phoneDisplay, phoneHref } from "@/lib/contact";
+import { contactLabel } from "@/lib/contact";
 import s from "./StudioEditorial.module.css";
-import { CallbackForm } from "./CallbackForm";
+import { ContactForm } from "./ContactForm";
 
 export function ContactPage({ locale }: { locale: Locale }) {
   const { contact, nav, sections } = copy[locale];
@@ -13,17 +13,15 @@ export function ContactPage({ locale }: { locale: Locale }) {
         <header className={s.lead} data-hero-reveal>
           <p className={s.label}>{contact.eyebrow}</p>
           <h1>{contact.title}</h1><p className={s.dek}>{contact.intro}</p>
-          <div id="call" className={s.directLine}>
-            <span>{contact.directLabel}</span><a href={phoneHref} dir="ltr">{phoneDisplay}</a>
-          </div>
         </header>
-        <section id="callback" className={s.callbackPanel} data-hero-reveal aria-labelledby="callback-title">
-          <h2 id="callback-title">{callbackLabel[locale]}</h2>
-          <CallbackForm locale={locale} showRedirectStatus />
+        <section id="message" className={s.callbackPanel} data-hero-reveal aria-labelledby="message-title">
+          <span id="callback" aria-hidden="true" />
+          <h2 id="message-title">{contactLabel[locale]}</h2>
+          <ContactForm locale={locale} showRedirectStatus />
         </section>
       </div>
       <section className={`container-shell ${s.callGuide}`} data-reveal>
-        <div><p className={s.label}>{contact.beforeCallLabel}</p><h2>{contact.directTitle}</h2></div>
+        <div><p className={s.label}>{contact.briefLabel}</p><h2>{contact.directTitle}</h2></div>
         <div><p>{contact.directBody}</p><p>{contact.estimateNote}</p></div>
       </section>
       <section className={`container-shell ${s.related}`} aria-labelledby="contact-related-title" data-reveal>

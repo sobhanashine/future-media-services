@@ -8,7 +8,7 @@ import { BrandIdentity } from "@/components/layout/BrandIdentity";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import type { SiteCopy } from "@/content/site";
 import { languageNames, localePath, locales, switchLocalePath, type Locale } from "@/content/locales";
-import { callbackLabel } from "@/lib/contact";
+import { contactLabel } from "@/lib/contact";
 import s from "./Navigation.module.css";
 
 export function SiteHeader({ locale, common, nav }: { locale: Locale; common: SiteCopy["common"]; nav: SiteCopy["nav"] }) {
@@ -59,7 +59,7 @@ export function SiteHeader({ locale, common, nav }: { locale: Locale; common: Si
         <div className="header-actions">
           {alternatives.map(target => <a key={target} className="language-switch" href={switchLocalePath(target, pathname)}
             hrefLang={target} lang={target} aria-label={languageLabel[target]}>{target === "fa" ? "فا" : target.toUpperCase()}</a>)}
-          <Link href={contact + "#callback"} className="button button--compact header-cta">{callbackLabel[locale]}</Link>
+          <Link href={contact + "#message"} className="button button--compact header-cta">{contactLabel[locale]}</Link>
           <button type="button" className="menu-toggle" aria-label={nav.menu} aria-haspopup="dialog"
             aria-expanded={open} aria-controls="mobile-menu"
             onClick={() => { dialog.current?.showModal(); setOpen(true); }}>
@@ -87,7 +87,7 @@ export function SiteHeader({ locale, common, nav }: { locale: Locale; common: Si
             <Link href={localePath(locale, "/faq")} onClick={close}>{nav.faq}</Link>
             {alternatives.map(target => <a key={target} href={switchLocalePath(target, pathname)} hrefLang={target} lang={target} onClick={close}>{languageNames[target]}</a>)}
           </div>
-          <Link href={contact + "#callback"} className={s.callback} onClick={close}>{callbackLabel[locale]}<ArrowIcon /></Link>
+          <Link href={contact + "#message"} className={s.callback} onClick={close}>{contactLabel[locale]}<ArrowIcon /></Link>
         </div>
       </dialog>
       <noscript><nav className={s.staticLinks} aria-label={common.mobileNavAria}>

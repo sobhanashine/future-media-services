@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { copy, localePath, type Locale, type PricingCopy, type PricingPlan } from "@/content/site";
-import { callbackLabel, phoneHref } from "@/lib/contact";
+import { contactLabel } from "@/lib/contact";
 
 export function PricingPlans({
   locale,
@@ -44,7 +44,7 @@ export function PricingPlans({
               <span>{plan.unit}</span>
             </div>
             <p className="pricing-plan__description">{plan.description}</p>
-            {plan.paymentNote && <a href={phoneHref} className="pricing-plan__payment-note">{plan.paymentNote}</a>}
+            {plan.paymentNote && <Link href={localePath(locale, "/contact#message")} className="pricing-plan__payment-note">{plan.paymentNote}</Link>}
             <div className="pricing-plan__scope">
               <div>
                 <span>{text.includes}</span>
@@ -59,8 +59,8 @@ export function PricingPlans({
                 ))}
               </ul>
             </div>
-            <Link href={localePath(locale, "/contact#callback")} className="button pricing-plan__cta">
-              {callbackLabel[locale]}
+            <Link href={localePath(locale, "/contact#message")} className="button pricing-plan__cta">
+              {contactLabel[locale]}
               <ArrowIcon />
             </Link>
           </article>

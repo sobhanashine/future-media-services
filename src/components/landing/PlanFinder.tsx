@@ -3,7 +3,7 @@ import Link from "next/link";
 import { instagramRateCopy } from "@/content/instagram-rates";
 import { landingCopy } from "@/content/landing";
 import { copy, localePath, type Locale } from "@/content/site";
-import { callbackLabel } from "@/lib/contact";
+import { contactLabel } from "@/lib/contact";
 import { Icon } from "./StudioVisuals";
 import s from "./PlanFinder.module.css";
 
@@ -52,7 +52,7 @@ export function PlanFinder({ locale }: { locale: Locale }) {
                       ))}</ul>
                       {plan.paymentNote && <p className={s.payment}>{plan.paymentNote}</p>}
                       <div className={s.actions}>
-                        <Link className={s.call} href={localePath(locale, "/contact#callback")}>{callbackLabel[locale]}</Link>
+                        <Link className={s.call} href={localePath(locale, "/contact#message")}>{contactLabel[locale]}</Link>
                         <Link href={localePath(locale, `/services/${service.slug}#service-pricing-title`)}>{t.fullPricing}<Icon name="share" /></Link>
                       </div>
                     </article>

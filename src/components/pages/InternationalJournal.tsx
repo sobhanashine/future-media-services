@@ -5,7 +5,7 @@ import { findPersianBlogPost } from "@/content/blog";
 import { guideEditions } from "@/content/guide-editions";
 import { guideSlugs, type GuideSlug } from "@/content/guide-slugs";
 import { localePath, type InternationalLocale } from "@/content/locales";
-import { callbackLabel } from "@/lib/contact";
+import { contactLabel } from "@/lib/contact";
 import { createMetadata, siteUrl } from "@/lib/metadata";
 import { BlogVisual } from "./BlogCard";
 import s from "./StudioJournal.module.css";
@@ -117,7 +117,7 @@ export function InternationalGuidePage({ locale, slug }: { locale: International
       </div>
       <aside className={s.readNext}>
         <div className={s.nextCard} data-reveal><p className={s.label}>{t.next}</p><h2>{t.discuss}</h2>
-          <Link className="button" href={localePath(locale, "/contact#callback")}>{callbackLabel[locale]}<ArrowIcon /></Link>
+          <Link className="button" href={localePath(locale, "/contact#message")}>{contactLabel[locale]}<ArrowIcon /></Link>
         </div>
         <div className={s.moreReads}>
           <Link className={s.cardLink} href={localePath(locale, servicePaths[category])}>{t.related}<ArrowIcon /></Link>

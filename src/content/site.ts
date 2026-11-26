@@ -120,8 +120,7 @@ export type SiteCopy = {
     eyebrow: string;
     title: string;
     intro: string;
-    directLabel: string;
-    beforeCallLabel: string;
+    briefLabel: string;
     estimateNote: string;
     directTitle: string;
     directBody: string;
@@ -223,7 +222,7 @@ export const copy: Record<Locale, SiteCopy> = {
       about: "درباره ما",
       contact: "تماس",
       faq: "سوالات متداول",
-      start: "تماس تلفنی",
+      start: "ارتباط ایمیلی",
       menu: "بازکردن منو",
       close: "بستن منو",
     },
@@ -232,7 +231,7 @@ export const copy: Record<Locale, SiteCopy> = {
       title: "طراحی وب‌سایت و محتوا",
       accent: "از اولین طرح تا راه‌اندازی",
       body: "برای کسب‌وکارها وب‌سایت شرکتی و فروشگاه آنلاین می‌سازیم و برای اینستاگرامشان پست، استوری و ریلز طراحی و تولید می‌کنیم.",
-      primary: "تماس برای مشاوره",
+      primary: "مشاوره از طریق ایمیل",
       secondary: "دیدن نمونه‌کارها",
       canvasLabel: "مجسمه‌ی سه‌بعدی بال‌ها؛ نمادی از حرکت، بلندپروازی و حرکت رو به آینده.",
     },
@@ -253,7 +252,7 @@ export const copy: Record<Locale, SiteCopy> = {
       socialEyebrow: "از تیم FMS",
       socialTitle: "نگاهی کوتاه به فرایند و محتوای FMS.",
       finalTitle: "پروژه‌ی بعدی شما می‌تواند از امروز شروع شود.",
-      finalBody: "برای انتخاب پلن تماس بگیرید یا شماره‌تان را بگذارید تا با شما تماس بگیریم.",
+      finalBody: "برای انتخاب پلن یا برآورد هزینه، نیازتان را بنویسید. تیم FMS با ایمیل پاسخ می‌دهد.",
     },
     services: [
       {
@@ -282,7 +281,7 @@ export const copy: Record<Locale, SiteCopy> = {
             unit: "میلیون تومان",
             timeline: "۲ تا ۴ هفته",
             description: "یک حضور حرفه‌ای و مستقل برای معرفی شما، خدمات و نمونه‌کارها.",
-            paymentNote: "امکان پرداخت قسطی؛ برای هماهنگی با ما تماس بگیرید.",
+            paymentNote: "امکان پرداخت قسطی وجود دارد. برای هماهنگی به ما پیام بدهید.",
             features: [
               "طراحی اختصاصی تا ۵ صفحه",
               "Next.js سریع و واکنش‌گرا",
@@ -299,7 +298,7 @@ export const copy: Record<Locale, SiteCopy> = {
             unit: "میلیون تومان",
             timeline: "۴ تا ۷ هفته",
             description: "وب‌سایتی چندبخشی برای معرفی خدمات، اعتبار برند و تبدیل بازدیدکننده به تماس.",
-            paymentNote: "امکان پرداخت قسطی؛ برای هماهنگی با ما تماس بگیرید.",
+            paymentNote: "امکان پرداخت قسطی وجود دارد. برای هماهنگی به ما پیام بدهید.",
             features: [
               "طراحی UI/UX اختصاصی تا ۱۰ صفحه",
               "Next.js + WordPress Headless",
@@ -317,7 +316,7 @@ export const copy: Record<Locale, SiteCopy> = {
             unit: "میلیون تومان",
             timeline: "۸ تا ۱۲ هفته",
             description: "فروشگاه Headless اختصاصی با تجربه خرید سریع و مدیریت کامل محصولات در وردپرس.",
-            paymentNote: "امکان پرداخت قسطی؛ برای هماهنگی با ما تماس بگیرید.",
+            paymentNote: "امکان پرداخت قسطی وجود دارد. برای هماهنگی به ما پیام بدهید.",
             features: [
               "طراحی اختصاصی مسیر خرید و صفحات محصول",
               "Next.js + WooCommerce Headless",
@@ -342,7 +341,7 @@ export const copy: Record<Locale, SiteCopy> = {
         deliverables: ["تقویم محتوا، استراتژی هشتگ و زمان‌بندی انتشار", "طراحی پست و استوری، ساخت ریلز و ویدیو و کپشن‌نویسی", "تعامل با صفحات مرتبط و جذب مخاطب هدف", "طراحی و اجرای کمپین و پروموشن اینستاگرام", "قالب اختصاصی، هویت بصری و کاور هایلایت", "امنیت و بازیابی حساب، پشتیبانی فنی و گزارش ماهانه"],
         overview: "مدیریت محتوا با یک تقویم واقعی شروع می‌شود؛ سپس موضوع، فرمت، طراحی و زمان انتشار را در یک ریتم ثابت جلو می‌بریم تا صفحه هم برای مخاطب قابل‌تشخیص باشد و هم برای تیم شما قابل‌پیگیری.",
         workflow: [
-          { title: "شناخت صفحه", body: "در تماس اولیه، صفحه را رایگان بررسی می‌کنیم و دربارهٔ مخاطب، هدف و پلن مناسب صحبت می‌کنیم." },
+          { title: "شناخت صفحه", body: "در شروع همکاری، صفحه را رایگان بررسی می‌کنیم و دربارهٔ مخاطب، هدف و پلن مناسب صحبت می‌کنیم." },
           { title: "تولید و انتشار", body: "سناریو، طراحی و آماده‌سازی پست، استوری و ریلز مطابق پلن انتخابی پیش می‌رود." },
           { title: "گزارش و بهبود", body: "در پایان هر ماه، روند انتشار و داده‌های قابل‌دسترسی را مرور می‌کنیم و برای ماه بعد جهت می‌دهیم." },
         ],
@@ -354,7 +353,7 @@ export const copy: Record<Locale, SiteCopy> = {
           from: "هزینه ماهانه",
           includes: "حجم محتوای ماهانه",
           featured: "پیشنهادی",
-          disclaimer: "مبالغ ماهانه‌اند. نوع ریلز، جزئیات تولید و اطلاعات لازم برای اجرا پیش از عقد قرارداد در تماس اولیه مشخص می‌شوند.",
+          disclaimer: "مبالغ ماهانه‌اند. نوع ریلز، جزئیات تولید و اطلاعات لازم برای اجرا پیش از عقد قرارداد با شما هماهنگ می‌شوند.",
         },
         sharedPlanTitle: "خدمات مشترک در هر سه پلن",
         sharedPlanFeatures: faInstagramSharedFeatures,
@@ -465,20 +464,19 @@ export const copy: Record<Locale, SiteCopy> = {
     contact: {
       eyebrow: "تماس با FMS",
       title: "دربارهٔ پروژه‌تان صحبت کنیم.",
-      intro: "برای مشاورهٔ طراحی سایت یا مدیریت اینستاگرام، شماره‌تان را بگذارید. تیم FMS برای بررسی نیاز و هزینه با شما تماس می‌گیرد.",
-      directLabel: "تماس مستقیم با تیم",
-      beforeCallLabel: "پیش از تماس",
+      intro: "دربارهٔ سایت یا محتوای اینستاگرامی که نیاز دارید بنویسید. تیم FMS برای بررسی زمان و هزینه از طریق ایمیل پاسخ می‌دهد.",
+      briefLabel: "پیش از ارسال پیام",
       estimateNote: "اگر نوع سایت، تعداد زبان‌ها، محتوای آماده و زمان تقریبی مدنظرتان را بدانید، برآورد اولیه دقیق‌تر خواهد بود.",
-      directTitle: "یک گفت‌وگوی کوتاه، قبل از هر تصمیم.",
-      directBody: "در تماس اولیه درباره نوع سایت، محتوای موجود، زمان‌بندی و امکانات ضروری صحبت می‌کنیم.",
+      directTitle: "در پیامتان چه بنویسید؟",
+      directBody: "نشانی سایت یا صفحهٔ فعلی، هدف پروژه و امکاناتی را که نیاز دارید بنویسید.",
     },
     privacy: {
       eyebrow: "حریم خصوصی",
-      title: "شمارهٔ تماس شما چطور استفاده می‌شود؟",
-      intro: "وقتی درخواست تماس می‌دهید، شماره‌تان در اختیار تیم FMS قرار می‌گیرد تا دربارهٔ همان درخواست با شما صحبت کند.",
+      title: "چطور از ایمیل و پیام شما استفاده می‌کنیم؟",
+      intro: "وقتی فرم را می‌فرستید، تیم FMS ایمیل و پیام شما را دریافت می‌کند تا به همان درخواست پاسخ دهد.",
       items: [
-        { title: "اطلاعات درخواست تماس", body: "شماره، زمان ثبت و زبان فرم به صندوق ایمیل تیم FMS فرستاده می‌شود. برای جلوگیری از ارسال تکراری، شناسه‌های رمزنگاری‌شدهٔ شماره و شبکه برای مدت کوتاه نگهداری می‌شوند. اگر می‌خواهید درخواستتان حذف شود، از راه تماس مستقیم به ما اطلاع دهید." },
-        { title: "لینک تماس چه می‌کند؟", body: "با انتخاب شمارهٔ FMS، شماره‌گیر دستگاهتان باز می‌شود. برای درخواست تماس از سوی تیم، شمارهٔ خود را در فرم ثبت کنید." },
+        { title: "اطلاعاتی که دریافت می‌کنیم", body: "آدرس ایمیل، متن پیام، زبان فرم و زمان ارسال به صندوق ایمیل FMS می‌رسد. برای درخواست حذف پیام می‌توانید به پاسخ ما ایمیل بزنید یا از همین فرم استفاده کنید." },
+        { title: "جلوگیری از ارسال تکراری", body: "برای تشخیص پیام‌های تکراری، رسیدی شامل شناسه‌های رمزنگاری‌شدهٔ درخواست و شبکه ثبت می‌شود. رسید پس از ۲۴ ساعت منقضی و در پاک‌سازی بعدی حذف می‌شود." },
         { title: "لینک‌های بیرونی", body: "لینک اینستاگرام یک سرویس مستقل است و استفاده از آن تابع سیاست حریم خصوصی همان سرویس است." },
       ],
     },
@@ -491,12 +489,12 @@ export const copy: Record<Locale, SiteCopy> = {
       contactPrompt: "پاسخ موردنظر را پیدا نکردید؟",
       contactTitle: "برای بررسی دقیق شرایط پروژه، تماس بگیرید.",
       items: [
-        { question: "برای شروع پروژه چه کار کنیم؟", answer: "شماره‌تان را در صفحهٔ تماس بگذارید یا مستقیم با تیم تماس بگیرید. در همان گفت‌وگوی اولیه درباره نوع خدمت، محتوای موجود، زمان‌بندی و امکانات ضروری صحبت می‌کنیم." },
+        { question: "برای شروع پروژه چه کار کنیم؟", answer: "در فرم ارتباط، خدمت موردنیاز، محتوای آماده و زمان‌بندی پروژه را بنویسید. تیم FMS قدم بعدی را با ایمیل به شما اطلاع می‌دهد." },
         { question: "طراحی سایت چقدر زمان می‌برد؟", answer: "بسته به گستره پروژه، زمان اجرای پلن‌های وب‌سایت از حدود ۲ تا ۱۲ هفته متغیر است. زمان‌بندی دقیق پس از مشخص‌شدن محتوا و امکانات پروژه تعیین می‌شود." },
-        { question: "آیا برای تمام پلن‌های طراحی سایت امکان پرداخت قسطی وجود دارد؟", answer: "بله. برای هر سه پلن طراحی سایت امکان پرداخت قسطی وجود دارد. برای هماهنگی شرایط پرداخت، مستقیم با ما تماس بگیرید." },
+        { question: "آیا برای تمام پلن‌های طراحی سایت امکان پرداخت قسطی وجود دارد؟", answer: "بله. برای هر سه پلن طراحی سایت امکان پرداخت قسطی وجود دارد. برای هماهنگی شرایط پرداخت به ما پیام بدهید." },
         { question: "بعد از تحویل سایت، خودمان می‌توانیم محتوا را تغییر دهیم؟", answer: "بله. برای سایت‌های Headless WordPress، پنل مدیریت محتوا و آموزش استفاده از آن در محدوده هر پلن ارائه می‌شود." },
         { question: "مدیریت اینستاگرام شامل چه چیزهایی است؟", answer: "تقویم محتوایی، طراحی پست و استوری، ساخت ریلز، هویت بصری صفحه و گزارش ماهانه؛ حجم انتشار بر اساس پلن انتخابی شما تعیین می‌شود." },
-        { question: "هزینه نهایی چه زمانی مشخص می‌شود؟", answer: "قیمت‌های سایت نقطه شروع هستند. پس از تماس و مشخص‌شدن محدوده، محتوا و امکانات لازم، برآورد نهایی و شفاف ارائه می‌شود." },
+        { question: "هزینه نهایی چه زمانی مشخص می‌شود؟", answer: "قیمت‌های سایت نقطه شروع هستند. پس از مشخص‌شدن محدوده، محتوا و امکانات لازم، برآورد نهایی را با ایمیل می‌فرستیم." },
       ],
     },
     serviceDetail: {
@@ -511,7 +509,7 @@ export const copy: Record<Locale, SiteCopy> = {
       allServices: "همه خدمات",
       viewWork: "نمونه‌کارها",
       pending: "در انتظار محتوای تأییدشده",
-      projectPrompt: "تماس بگیرید",
+      projectPrompt: "ایمیل بفرستید",
       back: "بازگشت",
       notFound: "این صفحه پیدا نشد.",
       notFoundBody: "ممکن است آدرس تغییر کرده باشد یا محتوا هنوز منتشر نشده باشد.",
@@ -537,7 +535,7 @@ export const copy: Record<Locale, SiteCopy> = {
       about: "About",
       contact: "Contact",
       faq: "FAQs",
-      start: "Call to discuss",
+      start: "Email us",
       menu: "Open menu",
       close: "Close menu",
     },
@@ -546,7 +544,7 @@ export const copy: Record<Locale, SiteCopy> = {
       title: "Web design & content",
       accent: "From concept to launch",
       body: "We design company websites and online stores. We also plan and produce content for Instagram.",
-      primary: "Call our team",
+      primary: "Email our team",
       secondary: "View our work",
       canvasLabel: "A three-dimensional wing sculpture, representing motion, ambition, and forward momentum.",
     },
@@ -567,7 +565,7 @@ export const copy: Record<Locale, SiteCopy> = {
       socialEyebrow: "From our team",
       socialTitle: "A short look at the thinking and content behind FMS.",
       finalTitle: "Your next project can start today.",
-      finalBody: "Call us or leave your number to discuss a plan and receive a project estimate.",
+      finalBody: "Send us your project details and we’ll reply by email with the next steps.",
     },
     services: [
       {
@@ -596,7 +594,7 @@ export const copy: Record<Locale, SiteCopy> = {
             unit: "toman",
             timeline: "2–4 weeks",
             description: "A polished, independent home for your profile, services and selected work.",
-            paymentNote: "You can pay in instalments. Call us to agree a schedule.",
+            paymentNote: "You can pay in instalments. Email us to agree a schedule.",
             features: [
               "Custom design for up to 5 pages",
               "Fast, responsive Next.js frontend",
@@ -612,8 +610,8 @@ export const copy: Record<Locale, SiteCopy> = {
             price: "85M",
             unit: "toman",
             timeline: "4–7 weeks",
-            description: "A multi-section website built to explain services, strengthen credibility and turn visits into calls.",
-            paymentNote: "You can pay in instalments. Call us to agree a schedule.",
+            description: "A multi-section website built to explain services, strengthen credibility and turn visits into enquiries.",
+            paymentNote: "You can pay in instalments. Email us to agree a schedule.",
             features: [
               "Custom UI/UX for up to 10 pages",
               "Next.js + headless WordPress",
@@ -631,7 +629,7 @@ export const copy: Record<Locale, SiteCopy> = {
             unit: "toman",
             timeline: "8–12 weeks",
             description: "A custom headless shop with a fast buying experience and complete product control in WordPress.",
-            paymentNote: "You can pay in instalments. Call us to agree a schedule.",
+            paymentNote: "You can pay in instalments. Email us to agree a schedule.",
             features: [
               "Custom purchase journey and product pages",
               "Next.js + headless WooCommerce",
@@ -656,7 +654,7 @@ export const copy: Record<Locale, SiteCopy> = {
         deliverables: ["Content calendar, hashtag strategy and publishing schedule", "Post and story design, reels, video and caption writing", "Relevant account engagement and audience development", "Instagram campaign planning, execution and promotion", "Custom templates, visual identity and highlight covers", "Account security, recovery, technical support and monthly reporting"],
         overview: "Content management starts with a real calendar. We then move topic, format, design and publishing time through a steady rhythm, making the page recognizable to its audience and trackable for your team.",
         workflow: [
-          { title: "Understand the page", body: "On the first call we review your account at no charge and discuss the audience, goals and suitable plan." },
+          { title: "Understand the page", body: "We review your account at no charge and email you about your audience, goals and a suitable plan." },
           { title: "Create and publish", body: "Scripts, design and production for posts, stories and reels move forward according to the chosen plan." },
           { title: "Report and improve", body: "At the end of each month, we review the publishing rhythm and available data, then set direction for the next one." },
         ],
@@ -779,38 +777,37 @@ export const copy: Record<Locale, SiteCopy> = {
     contact: {
       eyebrow: "Contact FMS",
       title: "Let’s talk about your project.",
-      intro: "Leave your number for a call about your website or Instagram page. We’ll discuss the scope, timing and cost together.",
-      directLabel: "Call the team directly",
-      beforeCallLabel: "Before the call",
+      intro: "Tell us about your website or Instagram project. Our team will reply by email about the scope, timing and cost.",
+      briefLabel: "Before you write",
       estimateNote: "An initial estimate is more precise if you know the site type, languages, available content and preferred timing.",
-      directTitle: "What to bring to the first call",
-      directBody: "The first call covers the type of site, available content, timing and essential capabilities.",
+      directTitle: "What to include in your message",
+      directBody: "Include your current website or profile, the content you already have and the features you need.",
     },
     privacy: {
       eyebrow: "Privacy",
-      title: "How we use your phone number.",
-      intro: "When you request a callback, FMS receives your number so our team can follow up about your enquiry.",
+      title: "How we use your email and message",
+      intro: "When you submit the form, FMS receives your email address and message so our team can reply to your enquiry.",
       items: [
-        { title: "Callback requests", body: "Your number, request time and form language are emailed to FMS. We briefly retain keyed hashes of the number and network to limit repeat submissions. You can ask us to remove your request by calling the team." },
-        { title: "What does the call link do?", body: "Selecting the FMS number opens your device dialler. Use the callback form if you would like the team to call you." },
+        { title: "What we receive", body: "Your email address, message, form language and submission time go to the FMS inbox. To ask us to delete your enquiry, reply to our email or use the contact form." },
+        { title: "Preventing duplicate messages", body: "To prevent duplicate submissions, delivery receipts contain keyed identifiers for the enquiry and network. Receipts expire after 24 hours and are removed during the next cleanup." },
         { title: "External links", body: "Instagram is an independent service, and its own privacy policy applies when you visit it." },
       ],
     },
     faq: {
       eyebrow: "Clear, short answers",
       title: "What to know before we begin.",
-      intro: "If your question is not answered here, we can discuss the project details in a short call.",
+      intro: "If you have another question about your project, send us a message and we’ll reply by email.",
       allLabel: "Frequently asked questions",
       moreLabel: "View all questions",
       contactPrompt: "Did not find the answer you need?",
       contactTitle: "Talk to us about your project.",
       items: [
-        { question: "How do we start a project?", answer: "Leave your number on the contact page or call us directly. In the first conversation, we cover the service, available content, timing and essential capabilities." },
+        { question: "How do we start a project?", answer: "Use the contact form to tell us which service you need, what content you have and when you want to launch. We’ll send you the next steps by email." },
         { question: "How long does a website take?", answer: "Website plans typically take about 2 to 12 weeks, depending on scope. The final schedule is set once content and required capabilities are clear." },
         { question: "Can I pay for my website in instalments?", answer: "Yes. All three website plans offer instalments. We agree the payment schedule with you before work starts." },
         { question: "Can we update the website content after handover?", answer: "Yes. Headless WordPress websites include a content-management panel and training within the scope of each plan." },
         { question: "What does Instagram management include?", answer: "A content calendar, post and story design, reel production, page visual identity and monthly reporting. Publishing volume is based on the selected plan." },
-        { question: "When is the final cost confirmed?", answer: "Website prices are starting points. Once the scope, content and required capabilities are clear in a call, we provide a transparent final estimate." },
+        { question: "When is the final cost confirmed?", answer: "Website prices are starting points. Once we agree on the scope, content and features, we email you a final estimate." },
       ],
     },
     serviceDetail: {
@@ -825,7 +822,7 @@ export const copy: Record<Locale, SiteCopy> = {
       allServices: "All services",
       viewWork: "View work",
       pending: "Awaiting verified content",
-      projectPrompt: "Call now",
+      projectPrompt: "Email us",
       back: "Back",
       notFound: "This page could not be found.",
       notFoundBody: "The address may have changed, or the content may not be published yet.",

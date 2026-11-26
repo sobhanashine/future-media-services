@@ -3,7 +3,6 @@ import Link from "next/link";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { BrandIdentity } from "@/components/layout/BrandIdentity";
 import { copy, localePath, type Locale } from "@/content/site";
-import { phoneHref } from "@/lib/contact";
 
 export function SiteFooter({ locale }: { locale: Locale }) {
   const content = copy[locale];
@@ -20,10 +19,10 @@ export function SiteFooter({ locale }: { locale: Locale }) {
             <BrandIdentity />
           </Link>
           <p>{content.common.footerLine}</p>
-          <a href={phoneHref} className="button button--compact site-footer__call">
+          <Link href={localePath(locale, "/contact#message")} className="button button--compact site-footer__call">
             {content.nav.start}
             <ArrowIcon />
-          </a>
+          </Link>
           <a
             href="https://www.instagram.com/future.m.services/"
             className="site-footer__social"

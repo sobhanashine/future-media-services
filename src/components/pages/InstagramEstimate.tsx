@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { instagramRateCopy, instagramRates, monthlyInstagramEstimate } from "@/content/instagram-rates";
-import { numberLocales, type Locale } from "@/content/locales";
-import { phoneHref } from "@/lib/contact";
+import { localePath, numberLocales, type Locale } from "@/content/locales";
+import Link from "next/link";
 import s from "./InstagramRates.module.css";
 
 type Quantity = "stories" | "posts" | "banners";
@@ -58,7 +58,7 @@ export function InstagramEstimate({ locale }: { locale: Locale }) {
       </fieldset>
       <div className={s.total}>
         <div><span>{t.total}</span><output aria-live="polite" aria-atomic="true">{valid ? money(total) : t.invalid}</output></div>
-        <a className="button" href={phoneHref}>{t.call}</a>
+        <Link className="button" href={localePath(locale, "/contact#message")}>{t.call}</Link>
       </div>
       <noscript><style>{`#instagram-estimator output { display: none; }`}</style><p>{t.noScript}</p></noscript>
     </section>

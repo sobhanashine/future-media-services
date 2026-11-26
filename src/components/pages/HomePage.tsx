@@ -6,12 +6,12 @@ import { LandingMotion } from "@/components/landing/LandingMotion";
 import { BrandReel, Horizon, Icon, Orbit } from "@/components/landing/StudioVisuals";
 import { FmsServiceArt } from "@/components/landing/FmsArtwork";
 import { WorkEdition } from "@/components/landing/WorkEdition";
-import { CallbackForm } from "./CallbackForm";
+import { ContactForm } from "./ContactForm";
 import { guideEditions } from "@/content/guide-editions";
 import { findPersianBlogPost } from "@/content/blog";
 import { landingCopy } from "@/content/landing";
 import { copy, formatNumber, localePath, type Locale } from "@/content/site";
-import { callbackLabel, phoneDisplay, phoneHref } from "@/lib/contact";
+import { contactLabel } from "@/lib/contact";
 import s from "@/components/landing/Landing.module.css";
 import lightRays from "@/components/landing/art/light-rays.webp";
 
@@ -52,7 +52,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         <h1 id="home-title"><span>{content.hero.title}</span>{" "}<strong>{content.hero.accent}</strong></h1>
         <p>{content.hero.body}</p>
         <div className={s.heroActions}>
-          <a className={s.whiteButton} href="#contact">{callbackLabel[locale]}</a>
+          <a className={s.whiteButton} href="#contact">{contactLabel[locale]}</a>
           <Link className={s.glassButton} href={prices}>{t.comparePlans}</Link>
         </div>
         <BrandReel locale={locale} />
@@ -123,9 +123,8 @@ export function HomePage({ locale }: { locale: Locale }) {
     <section id="contact" className={s.contact} aria-labelledby="contact-title" data-fms-halo="wash">
       <Intro words={t.contact} id="contact-title" body={t.contactBody} />
       <div className={s.homeCallback}>
-        <CallbackForm locale={locale} />
+        <ContactForm locale={locale} />
         <Link href={localePath(locale, "/contact")} className={s.contactPageLink}>{content.nav.contact}<Icon name="share" /></Link>
-        <a className={s.directPhone} href={phoneHref}><bdi dir="ltr">{phoneDisplay}</bdi></a>
       </div>
     </section>
   </div>;

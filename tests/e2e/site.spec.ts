@@ -47,7 +47,8 @@ test("the landing ends with direct contact and site navigation", async ({ page }
   await page.goto("/");
   const footer = page.locator(".site-footer");
 
-  await expect(page.locator('#contact a[href^="tel:"]')).toHaveAttribute("href", "tel:+989116004866");
+  await expect(page.locator('a[href^="tel:"], input[type="tel"]')).toHaveCount(0);
+  await expect(page.locator('#contact form[action="/api/contact"]')).toBeAttached();
   await expect(footer.getByRole("link", { name: /اینستاگرام Future Media Services/ })).toHaveAttribute("href", "https://www.instagram.com/future.m.services/");
   await expect(footer.getByRole("link", { name: "همه خدمات" })).toHaveAttribute("href", "/services");
   await expect(footer.getByRole("link", { name: "نمونه‌کارها" })).toHaveAttribute("href", "/work");
@@ -87,7 +88,7 @@ test("each featured project has a working detail link, a live destination and lo
   await expect(page).toHaveURL(/\/en\/work\/simone-food$/);
 });
 
-test("website service exposes three plans and links to callback requests", async ({ page }) => {
+test("website service exposes three plans and links to email enquiries", async ({ page }) => {
   await page.goto("/en/services");
   await page.locator(".service-list").getByRole("link", { name: /Website design & development/ }).click();
   await expect(page).toHaveURL(/\/en\/services\/web-development/);
@@ -99,7 +100,7 @@ test("website service exposes three plans and links to callback requests", async
   await expect(page.getByRole("heading", { name: "Personal" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Corporate" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Commerce", exact: true })).toBeVisible();
-  await expect(page.locator(".pricing-plan__cta").first()).toHaveAttribute("href", "/en/contact#callback");
+  await expect(page.locator(".pricing-plan__cta").first()).toHaveAttribute("href", "/en/contact#message");
 });
 
 test("Instagram management stays local and exposes all three monthly plans", async ({ page }) => {
@@ -219,7 +220,7 @@ test("the landing offer, portfolio and contact are available without JavaScript"
     await page.goto("/", { waitUntil: "domcontentloaded" });
     await expect(page.getByRole("heading", { level: 1 })).toContainText("وب‌سایت و محتوا");
     const hero = page.getByRole("region", { name: /طراحی وب‌سایت و محتوا/ });
-    await expect(hero.getByRole("link", { name: "درخواست تماس" })).toHaveAttribute("href", "#contact");
+    await expect(hero.getByRole("link", { name: "ارسال ایمیل" })).toHaveAttribute("href", "#contact");
     await expect(page.getByRole("link", { name: "جزئیات پروژه — سیمون فود" })).toHaveAttribute("href", "/work/simone-food");
     await hero.getByRole("link", { name: "مقایسه پلن‌ها" }).click();
     await expect(page).toHaveURL(/\/pricing$/);
@@ -259,7 +260,7 @@ for (const locale of ["fa", "en"] as const) {
         await expect(article).toHaveCount(1);
         await expect(choice).toContainText(await article.getByRole("heading").innerText());
         expect(await article.getByRole("listitem").count()).toBeGreaterThan(0);
-        await expect(article.getByRole("link", { name: locale === "fa" ? "درخواست تماس" : "Request a callback" })).toHaveAttribute("href", `${prefix}/contact#callback`);
+        await expect(article.getByRole("link", { name: locale === "fa" ? "ارسال ایمیل" : "Email us" })).toHaveAttribute("href", `${prefix}/contact#message`);
         await expect(article.locator('a[href*="/services/"]')).toHaveAttribute("href", `${prefix}/services/${service}#service-pricing-title`);
       }
     }
@@ -318,7 +319,7 @@ test("the first mobile screen presents the offer and both primary actions", asyn
   await page.goto("/");
   const hero = page.getByRole("region", { name: /طراحی وب‌سایت و محتوا/ });
   await expect(hero.getByRole("heading", { level: 1 })).toBeInViewport();
-  await expect(hero.getByRole("link", { name: "درخواست تماس" })).toBeInViewport();
+  await expect(hero.getByRole("link", { name: "ارسال ایمیل" })).toBeInViewport();
   const compare = hero.getByRole("link", { name: "مقایسه پلن‌ها" });
   await expect(compare).toBeInViewport();
   await compare.click();
@@ -431,30 +432,35 @@ test("every portfolio entry has a Persian and English detail page", async ({ req
   expect((await request.get("/work/sakkou-cowork")).status()).toBe(404);
 });
 
-test("callback form validates input, preserves it on failure, and acknowledges confirmed delivery", async ({ page }) => {
+test("email contact validates both fields, preserves a failed enquiry and confirms a successful send", async ({ page }) => {
   await page.goto("/en/contact");
-  const input = page.getByRole("textbox", { name: "Your phone number" });
-  const submit = page.getByRole("button", { name: "Request a callback" });
-  const status = page.locator("#callback-status");
-  await expect(page.locator('#call a')).toHaveAttribute("href", "tel:+989116004866");
-  await input.fill("۱۲۳");
+  const email = page.getByRole("textbox", { name: "Your email" });
+  const message = page.getByRole("textbox", { name: "Your message" });
+  const submit = page.getByRole("button", { name: "Send message" });
+  const status = page.getByRole("status");
+  await expect(page.locator('a[href^="tel:"], input[type="tel"]')).toHaveCount(0);
+  await email.fill("reader@example.test");
+  await message.fill("   ");
   await submit.click();
-  await expect(input).toHaveAttribute("aria-invalid", "true");
-  await expect(input).toBeFocused();
-  await input.fill("+۱ ۲۰۲ ۵۵۵ ۰۱۴۶");
+  await expect(message).toHaveAttribute("aria-invalid", "true");
+  await expect(message).toBeFocused();
+  await message.fill("A website for my studio.");
   let attempts = 0;
-  await page.route("**/api/callback", route => {
+  await page.route("**/api/contact", route => {
     const data = new URLSearchParams(route.request().postData() ?? "");
-    expect(data.get("phone")).toBe("+۱ ۲۰۲ ۵۵۵ ۰۱۴۶");
+    expect(data.get("email")).toBe("reader@example.test");
+    expect(data.get("message")).toBe("A website for my studio.");
+    expect(data.has("phone")).toBe(false);
     attempts++;
-    return route.fulfill({ status: attempts === 1 ? 503 : 200, json: { status: attempts === 1 ? "unavailable" : "sent" } });
+    return route.fulfill({status: attempts === 1 ? 503 : 200, json:{status: attempts === 1 ? "unavailable" : "sent"}});
   });
   await submit.click();
-  await expect(status).toContainText("Try again");
-  await expect(input).toHaveValue("+۱ ۲۰۲ ۵۵۵ ۰۱۴۶");
+  await expect(status).toContainText("try again later");
+  await expect(message).toHaveValue("A website for my studio.");
   await submit.click();
-  await expect(status).toContainText("Your request reached FMS");
-  await expect(input).toHaveValue("");
+  await expect(status).toContainText("Your message reached FMS");
+  await expect(email).toHaveValue("");
+  await expect(message).toHaveValue("");
 });
 
 test("service directory exposes each individual offering in both languages", async ({ page }) => {
@@ -564,12 +570,12 @@ test("Italian visitors can switch a case study, compare plans and request contac
   const plan = panel.locator("article:visible");
   await expect(plan.getByRole("heading")).toHaveText("Argento");
   await expect(panel.locator("label").filter({ hasText: "Argento" })).toContainText("16,4 mln");
-  await plan.getByRole("link", { name: "Richiedi una chiamata" }).click();
-  await expect(page).toHaveURL(/\/it\/contact#callback$/);
-  const input = page.getByRole("textbox", { name: "Il tuo numero di telefono" });
-  await input.fill("123");
+  await plan.getByRole("link", { name: "Scrivici" }).click();
+  await expect(page).toHaveURL(/\/it\/contact#message$/);
+  await page.getByRole("textbox", { name: "La tua email" }).fill("reader@example.test");
+  await page.getByRole("textbox", { name: "Il tuo messaggio" }).fill("   ");
   await page.locator('button[type="submit"]').click();
-  await expect(page.getByRole("status")).toContainText("Inserisci un numero");
+  await expect(page.getByRole("status")).toContainText("Inserisci un indirizzo email valido");
   await page.goto("/it/services/instagram-management");
   await page.locator("#estimate-stories").fill("2");
   await page.locator("#estimate-format").selectOption("motion");

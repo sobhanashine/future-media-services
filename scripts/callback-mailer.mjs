@@ -6,7 +6,8 @@ import { createServer } from "node:http";
 import { homedir } from "node:os";
 import { join } from "node:path";
 import { DatabaseSync } from "node:sqlite";
-import { callbackEmail } from "./callback-email.mjs";
+import { contactNotification } from "./callback-email.mjs";
+import { contactEmailAddress, contactMessage } from "../src/lib/contact-fields.mjs";
 
 const token = process.env.FMS_CALLBACK_MAIL_TOKEN;
 const recipient = process.env.FMS_CALLBACK_RECIPIENT;
@@ -53,7 +54,7 @@ function confirm(digest, messageId) {
   return 200;
 }
 
-async function deliver(phone, locale, digest) {
+async function deliver(enquiry, digest) {
   const now = Date.now();
   db.prepare("DELETE FROM receipts WHERE created < ?").run(now - 24 * 60 * minute);
   const prior = db.prepare("SELECT reference, status, created FROM receipts WHERE digest = ?").get(digest);
@@ -68,7 +69,7 @@ async function deliver(phone, locale, digest) {
   if (volume.count >= 12) return 429;
   const reference = randomBytes(8).toString("hex").toUpperCase();
   db.prepare("INSERT OR REPLACE INTO receipts (digest, reference, status, created) VALUES (?, ?, 'pending', ?)").run(digest, reference, now);
-  const { subject, html } = callbackEmail({ phone, locale, created: now, reference, subjectPrefix });
+  const { subject, html } = contactNotification({ ...enquiry, created: now, reference, subjectPrefix });
   const { code, result } = await runCli(["execute", "GMAIL_SEND_EMAIL", "--account", account, "-d", "-"], {
     recipient_email: recipient, subject, body: html, is_html: true, include_signature: false,
   });
@@ -80,11 +81,11 @@ async function deliver(phone, locale, digest) {
   return 503;
 }
 
-function sendOnce(phone, locale) {
-  const digest = createHmac("sha256", token).update(phone).digest("hex");
+function sendOnce(enquiry) {
+  const digest = createHmac("sha256", token).update(JSON.stringify(["email", enquiry.email, enquiry.message, enquiry.locale])).digest("hex");
   const existing = pending.get(digest);
   if (existing) return existing;
-  const task = deliver(phone, locale, digest).finally(() => pending.delete(digest));
+  const task = deliver(enquiry, digest).finally(() => pending.delete(digest));
   pending.set(digest, task);
   return task;
 }
@@ -99,14 +100,19 @@ const server = createServer(async (req, res) => {
   const expected = Buffer.from("Bearer " + token);
   if (auth.length !== expected.length || !timingSafeEqual(auth, expected)) return reply(403);
   try {
-    let buffer = "";
+    const chunks = [];
+    let bytes = 0;
     for await (const chunk of req) {
-      buffer += chunk;
-      if (buffer.length > 1024) return reply(413);
+      bytes += chunk.length;
+      if (bytes > 16 * 1024) return reply(413);
+      chunks.push(chunk);
     }
-    const { phone, locale } = JSON.parse(buffer);
-    if (typeof phone !== "string" || !/^\+[1-9]\d{7,14}$/.test(phone) || !["fa", "en", "it"].includes(locale)) return reply(400);
-    return reply(await sendOnce(phone, locale));
+    const data = JSON.parse(Buffer.concat(chunks).toString("utf8"));
+    const email = contactEmailAddress(data?.email);
+    const message = contactMessage(data?.message);
+    const locale = data?.locale;
+    if (!email || !message || !["fa", "en", "it"].includes(locale)) return reply(400);
+    return reply(await sendOnce({ email, message, locale }));
   } catch {
     return reply(503);
   }

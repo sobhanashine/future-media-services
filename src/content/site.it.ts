@@ -8,7 +8,7 @@ export const italianCopy: SiteCopy = {
   localeName: "Italiano",
   nav: {
     services: "Servizi", work: "Progetti", blog: "Guide", about: "Chi siamo", contact: "Contatti",
-    faq: "Domande frequenti", start: "Chiama lo studio", menu: "Apri il menu", close: "Chiudi il menu",
+    faq: "Domande frequenti", start: "Scrivi allo studio", menu: "Apri il menu", close: "Chiudi il menu",
   },
   hero: {
     eyebrow: "Future Media Services", title: "Siti web e contenuti", accent: "Dall’idea al lancio",
@@ -25,7 +25,7 @@ export const italianCopy: SiteCopy = {
     servicesPageIntro: "Progettiamo e sviluppiamo siti web e curiamo i contenuti per Instagram. Scegli il servizio per vedere esempi, attività incluse e tariffe.",
     whyEyebrow: "Lo studio", whyTitle: "Un unico gruppo di lavoro", whyBody: "Chi progetta, sviluppa e cura i contenuti lavora sullo stesso obiettivo.",
     socialEyebrow: "Dallo studio", socialTitle: "Dietro le quinte di FMS", finalTitle: "Raccontaci il tuo progetto",
-    finalBody: "Chiamaci o lasciaci il tuo numero per discutere tempi, costi e prossimi passi.",
+    finalBody: "Scrivici per concordare tempi e costi. Ti risponderemo via email.",
   },
   services: [
     {
@@ -67,7 +67,7 @@ export const italianCopy: SiteCopy = {
       deliverables: ["Calendario editoriale, hashtag e programmazione", "Post, storie, reel, video e didascalie", "Interazioni con il pubblico e gli account pertinenti", "Pianificazione e gestione delle campagne Instagram", "Modelli grafici, identità visiva e copertine delle storie in evidenza", "Sicurezza del profilo, assistenza al recupero e report mensile"],
       overview: "Per ogni contenuto definiamo argomento, formato e data. Il tuo team può controllare il programma e usare il report mensile per decidere cosa cambiare.",
       workflow: [
-        { title: "Analisi del profilo", body: "Nel primo colloquio esaminiamo gratuitamente il profilo e parliamo di pubblico, obiettivi e piano adatto." },
+        { title: "Analisi del profilo", body: "Esaminiamo gratuitamente il profilo e ti scriviamo per definire pubblico, obiettivi e piano adatto." },
         { title: "Produzione e pubblicazione", body: "Prepariamo testi, grafiche e video secondo il calendario e il volume concordati." },
         { title: "Report e revisioni", body: "A fine mese rivediamo quanto è stato pubblicato e i dati disponibili per preparare il mese successivo." },
       ],
@@ -137,17 +137,17 @@ export const italianCopy: SiteCopy = {
   },
   contact: {
     eyebrow: "Contatti", title: "Parliamo del tuo progetto",
-    intro: "Lasciaci il tuo numero per parlare del sito o del profilo Instagram. Insieme definiamo le attività, i tempi e il preventivo.",
-    directLabel: "Chiama lo studio", beforeCallLabel: "Prima della chiamata",
+    intro: "Raccontaci di cosa hai bisogno per il sito o per Instagram. Ti risponderemo via email per definire attività, tempi e preventivo.",
+    briefLabel: "Prima di scriverci",
     estimateNote: "Sapere quali lingue ti servono e quando vuoi pubblicare ci aiuta a preparare un preventivo più preciso.",
-    directTitle: "Cosa ci serve per il primo confronto", directBody: "Tieni a portata di mano l’indirizzo del sito o del profilo, un esempio di ciò che vuoi realizzare e i contenuti già disponibili.",
+    directTitle: "Cosa includere nel messaggio", directBody: "Indica il sito o il profilo attuale, cosa vuoi realizzare e quali contenuti hai già a disposizione.",
   },
   privacy: {
-    eyebrow: "Privacy", title: "Come usiamo il tuo numero di telefono",
-    intro: "Quando chiedi di essere richiamato, FMS riceve il numero per contattarti in merito alla tua richiesta.",
+    eyebrow: "Privacy", title: "Come usiamo la tua email e il tuo messaggio",
+    intro: "Quando invii il modulo, FMS riceve il tuo indirizzo email e il messaggio per rispondere alla tua richiesta.",
     items: [
-      { title: "Richieste di contatto", body: "FMS riceve via email il numero, l’orario della richiesta e la lingua del modulo. Per un breve periodo conserviamo impronte crittografiche del numero e della rete per limitare gli invii ripetuti. Puoi chiamarci per chiedere la cancellazione della richiesta." },
-      { title: "Chiamata diretta", body: "Il link con il numero di FMS apre il tastierino del tuo dispositivo. Se preferisci ricevere una chiamata, puoi usare il modulo." },
+      { title: "Dati ricevuti", body: "La casella di posta di FMS riceve il tuo indirizzo email, il testo del messaggio, la lingua del modulo e l’orario di invio. Per chiederne la cancellazione puoi rispondere alla nostra email o usare il modulo." },
+      { title: "Prevenzione degli invii duplicati", body: "Per limitare gli invii ripetuti, le ricevute contengono identificatori crittografici della richiesta e della rete. Scadono dopo 24 ore e vengono eliminate alla pulizia successiva." },
       { title: "Link esterni", body: "Instagram è un servizio indipendente. Quando apri il suo sito si applica la relativa informativa sulla privacy." },
     ],
   },
@@ -156,7 +156,7 @@ export const italianCopy: SiteCopy = {
     intro: "Qui trovi le risposte su tempi, pagamenti, assistenza e avvio del progetto.",
     allLabel: "Domande frequenti", moreLabel: "Tutte le domande", contactPrompt: "Hai un’altra domanda?", contactTitle: "Parliamone insieme.",
     items: [
-      { question: "Come avviamo il progetto?", answer: "Lasciaci il tuo numero nella pagina Contatti oppure chiamaci. Parleremo del servizio, dei contenuti disponibili, dei tempi e delle funzioni indispensabili." },
+      { question: "Come avviamo il progetto?", answer: "Scrivici dal modulo Contatti indicando il servizio, i materiali disponibili e le tempistiche. Ti risponderemo via email con i prossimi passi." },
       { question: "Quanto tempo serve per realizzare un sito?", answer: "I piani prevedono in genere da 2 a 12 settimane. Confermiamo il calendario quando abbiamo definito i contenuti e le funzioni richieste." },
       { question: "Posso pagare il sito a rate?", answer: "Sì. Il pagamento a rate è disponibile per tutti e tre i piani web. Concordiamo insieme le scadenze." },
       { question: "Posso aggiornare il sito dopo la consegna?", answer: "Sì. I siti con WordPress headless includono il pannello per gestire i contenuti e la formazione prevista dal piano scelto." },
@@ -167,7 +167,7 @@ export const italianCopy: SiteCopy = {
   serviceDetail: { problem: "L’esigenza", deliverables: "Cosa comprende il servizio", approach: "Come lavoriamo", idealFor: "A chi si rivolge", ctaTitle: "Ti aiutiamo a scegliere il piano?" },
   common: {
     explore: "Scopri il servizio", allServices: "Tutti i servizi", viewWork: "Guarda i progetti", pending: "Documentazione in preparazione",
-    projectPrompt: "Chiama lo studio", back: "Indietro", notFound: "Pagina non trovata", notFoundBody: "L’indirizzo potrebbe essere cambiato. Puoi proseguire dalla pagina iniziale.",
+    projectPrompt: "Scrivi allo studio", back: "Indietro", notFound: "Pagina non trovata", notFoundBody: "L’indirizzo potrebbe essere cambiato. Puoi proseguire dalla pagina iniziale.",
     home: "Torna alla home", skipToContent: "Vai al contenuto", privacy: "Privacy", homeAria: "Pagina iniziale di FMS", mainNavAria: "Navigazione principale",
     mobileNavAria: "Menu di navigazione", footerNavAria: "Navigazione a piè di pagina", switchToEnglishAria: "Switch to English", switchToPersianAria: "تغییر زبان به فارسی",
     footerLine: "Siti web su misura e contenuti per Instagram.", rights: "Tutti i diritti riservati.",

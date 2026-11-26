@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { copy, localePath, type Locale } from "@/content/site";
-import { callbackLabel } from "@/lib/contact";
+import { contactLabel } from "@/lib/contact";
 import symbol from "@/components/landing/art/studio-symbol.webp";
 import webPhoto from "@/components/landing/art/studio-reel.webp";
 import campaign from "@/components/landing/art/simone-chess.webp";
@@ -18,7 +18,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
           <p className={s.label}>{about.eyebrow}</p>
           <h1>{about.title}</h1>
           <p className={s.dek}>{about.intro}</p>
-          <Link className="button" href={localePath(locale, "/contact#callback")}>{callbackLabel[locale]}<ArrowIcon /></Link>
+          <Link className="button" href={localePath(locale, "/contact#message")}>{contactLabel[locale]}<ArrowIcon /></Link>
         </div>
         <figure className={s.studioPrint} data-hero-reveal>
           <div className={s.studioBoard} aria-hidden="true">

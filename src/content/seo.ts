@@ -5,7 +5,7 @@ export const persianSeoMetadata = {
   },
   services: {
     title: "خدمات طراحی سایت و مدیریت محتوای اینستاگرام | FMS",
-    description: "خدمات طراحی UI/UX و توسعه سایت با Next.js و WordPress Headless، به‌همراه مدیریت محتوای اینستاگرام، پلن‌های شفاف و مشاوره تلفنی.",
+    description: "خدمات طراحی UI/UX و توسعه سایت با Next.js و WordPress Headless، به‌همراه مدیریت محتوای اینستاگرام، پلن‌های شفاف و مشاوره از طریق ایمیل.",
     heading: "خدمات طراحی سایت و مدیریت محتوای اینستاگرام",
   },
   work: {
@@ -22,11 +22,11 @@ export const persianSeoMetadata = {
   },
   contact: {
     title: "تماس برای طراحی سایت و مدیریت اینستاگرام | FMS",
-    description: "برای مشاوره طراحی سایت شخصی، شرکتی یا فروشگاهی و انتخاب پلن مدیریت محتوای اینستاگرام، شماره‌تان را برای تماس تیم FMS ثبت کنید یا مستقیم تماس بگیرید.",
+    description: "برای مشاوره طراحی سایت شخصی، شرکتی یا فروشگاهی و انتخاب پلن مدیریت محتوای اینستاگرام، از طریق فرم به تیم FMS پیام بدهید و پاسخ را با ایمیل بگیرید.",
   },
   privacy: {
     title: "حریم خصوصی | Future Media Services",
-    description: "سیاست حریم خصوصی Future Media Services درباره تماس تلفنی، فرم پروژه و لینک‌های خارجی.",
+    description: "سیاست حریم خصوصی Future Media Services درباره ایمیل و پیام‌های فرم پروژه و لینک‌های خارجی.",
   },
   blog: {
     title: "بلاگ فارسی طراحی سایت و SEO | Future Media Services",

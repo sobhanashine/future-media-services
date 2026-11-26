@@ -17,7 +17,7 @@ const labels = {
     challenge: "مسئله",
     approach: "رویکرد",
     highlights: "نکات کلیدی تجربه",
-    callback: "درخواست تماس برای پروژه مشابه",
+    enquiry: "برای پروژه‌ای مشابه پیام بدهید",
     webDevelopment: "خدمات طراحی و توسعه وب",
     role: "نقش پروژه",
     status: "وضعیت",
@@ -41,7 +41,7 @@ const labels = {
     challenge: "The challenge",
     approach: "The approach",
     highlights: "Experience highlights",
-    callback: "Request a callback for a similar project",
+    enquiry: "Email us about a similar project",
     webDevelopment: "Web design and development services",
     role: "Project role",
     status: "Status",
@@ -58,7 +58,7 @@ const labels = {
   it: {
     back: "Tutti i progetti", live: "Visita il sito ufficiale", demo: "Apri la demo", website: "Visita il sito",
     unavailable: "Sito pubblico al momento non disponibile", overview: "Il progetto", challenge: "L’esigenza", approach: "Come abbiamo lavorato",
-    highlights: "Funzionalità principali", callback: "Parliamo di un progetto simile", webDevelopment: "Progettazione e sviluppo web",
+    highlights: "Funzionalità principali", enquiry: "Scrivici per un progetto simile", webDevelopment: "Progettazione e sviluppo web",
     role: "Il nostro ruolo", status: "Stato", statusLive: "Online", statusDemo: "Demo online", statusPreview: "Anteprima del design",
     statusArchive: "Archiviato o non disponibile", focus: "Tecnologie e ambiti", domain: "Dominio",
     responsive: "Lo stesso sito su computer, tablet e telefono.", evidence: "Documentazione del progetto", next: "Progetto successivo",
@@ -157,8 +157,8 @@ export function ProjectDetailPage({ project, locale }: { project: Project; local
             </ul>
             {project.slug === "ermetes" && (
               <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
-                <Link href={localePath(locale, "/contact")} className="button">
-                  {text.callback}
+                <Link href={localePath(locale, "/contact#message")} className="button">
+                  {text.enquiry}
                   <ArrowIcon />
                 </Link>
                 <Link href={localePath(locale, "/services/web-development")} className="text-link">

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
-import { phoneHref } from "@/lib/contact";
 import { persianBlogPosts, type BlogPost } from "@/content/blog";
 import { formatNumber, localePath } from "@/content/site";
 import { articleDate, BlogVisual } from "./BlogCard";
@@ -61,7 +60,7 @@ export function PersianBlogPostPage({ post }: { post: BlogPost }) {
             <p className={s.label}>قدم بعدی</p>
             <h2>می‌خواهید این موضوع را برای پروژه خودتان بررسی کنید؟</h2>
             <p>در یک تماس کوتاه، هدف سایت، محتوای موجود و مسیر مناسب اجرا را مشخص می‌کنیم.</p>
-            <a className="button" href={phoneHref}>تماس برای مشاوره<ArrowIcon /></a>
+            <Link className="button" href="/contact#message">مشاوره از طریق ایمیل<ArrowIcon /></Link>
           </div>
           <div className={s.moreReads} data-reveal>
             {post.relatedServicePath && <Link className={s.cardLink} href={localePath("fa", post.relatedServicePath)}>مشاهده خدمت مرتبط<ArrowIcon /></Link>}

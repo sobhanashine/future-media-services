@@ -1,16 +1,17 @@
-import { normalizeCallbackPhone, type CallbackStatus } from "./callback";
+import type { ContactStatus } from "./contact";
+import { contactEmailAddress, contactMessage } from "./contact-fields.mjs";
 import { localePath, type Locale } from "../content/locales";
 
 const httpStatus = { sent: 200, invalid: 400, busy: 429, unavailable: 503 } as const;
-const maxBytes = 2048;
+const maxBytes = 32 * 1024;
 
-function respond(request: Request, status: CallbackStatus, locale: Locale) {
+function respond(request: Request, status: ContactStatus, locale: Locale) {
   const headers = { "Cache-Control": "no-store", "X-Robots-Tag": "noindex", ...(status === "busy" ? { "Retry-After": "60" } : {}) };
   if (request.headers.get("accept")?.includes("application/json")) {
     return Response.json({ status }, { status: httpStatus[status], headers });
   }
   return new Response(null, { status: 303, headers: {
-    ...headers, Location: localePath(locale, "/contact") + "#callback-" + status,
+    ...headers, Location: localePath(locale, "/contact") + "#message-" + status,
   } });
 }
 
@@ -37,9 +38,10 @@ async function readForm(request: Request) {
 }
 
 
-type Deliver = (phone: string, locale: Locale) => Promise<CallbackStatus>;
+export interface Enquiry { email: string; message: string; locale: Locale }
+type Deliver = (enquiry: Enquiry) => Promise<ContactStatus>;
 
-export async function handleCallback(request: Request, deliver: Deliver, allowAttempt?: () => Promise<boolean>) {
+export async function handleContact(request: Request, deliver: Deliver, allowAttempt?: () => Promise<boolean>) {
   const privateHeaders = { "Cache-Control": "no-store", "X-Robots-Tag": "noindex" };
   if (request.method !== "POST") return new Response(null, { status: 405, headers: { ...privateHeaders, Allow: "POST" } });
   const url = new URL(request.url);
@@ -62,9 +64,12 @@ export async function handleCallback(request: Request, deliver: Deliver, allowAt
     const requestedLocale = form?.get("locale");
     if (requestedLocale === "en" || requestedLocale === "it") locale = requestedLocale;
     if (allowAttempt && !await allowAttempt()) return respond(request, "busy", locale);
-    const phone = normalizeCallbackPhone(form?.get("phone") ?? "", locale);
-    if (!phone || form?.getAll("phone").length !== 1 || form.get("website")) return respond(request, "invalid", locale);
-    return respond(request, await deliver(phone, locale), locale);
+    const email = contactEmailAddress(form?.get("email"));
+    const message = contactMessage(form?.get("message"));
+    if (!email || !message || form?.getAll("email").length !== 1 || form.getAll("message").length !== 1 || form.has("phone") || form.get("website")) {
+      return respond(request, "invalid", locale);
+    }
+    return respond(request, await deliver({ email, message, locale }), locale);
   } catch {
     return respond(request, "unavailable", locale);
   }

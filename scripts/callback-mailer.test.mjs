@@ -26,7 +26,7 @@ if (action === "GMAIL_FETCH_EMAILS") {
   console.log(JSON.stringify({successful:true,data:{messages:[{messageId:"found-id"}]}}));
 } else if (action === "GMAIL_SEND_EMAIL") {
   await setTimeout(45);
-  if (data.body.includes("+12025550142")) {
+  if (data.body.includes("interrupted@example.test")) {
     console.log(JSON.stringify({successful:false,retry:"check-first"}));
     process.exitCode = 1;
   } else {
@@ -63,10 +63,10 @@ afterAll(async () => {
   if (dir) await rm(dir, {recursive:true, force:true});
 });
 
-async function submit(phone, locale) {
+async function submit(email, locale) {
   const result = await fetch(endpoint, {
     method: "POST", headers: {Authorization: "Bearer " + token, "Content-Type": "application/json"},
-    body: JSON.stringify({phone, locale}),
+    body: JSON.stringify({email, message:"Project <brief> & details", locale}),
   });
   return result.status;
 }
@@ -75,26 +75,24 @@ async function calls() {
   return (await readFile(join(dir, "calls.jsonl"), "utf8")).trim().split("\n").map(line => JSON.parse(line));
 }
 
-it("sends one branded HTML email for duplicate submissions, with a dialable number and Tehran time", async () => {
-  expect(await Promise.all([submit("+989121234567", "fa"), submit("+989121234567", "fa")])).toEqual([200, 200]);
-  expect(await submit("+989121234567", "fa")).toBe(200);
-  const sent = (await calls()).filter(call => call.action === "GMAIL_SEND_EMAIL" && call.data.body.includes("+989121234567"));
+it("sends one branded email for duplicate enquiries with a reply address, brief and Tehran time", async () => {
+  expect(await Promise.all([submit("reader@example.test", "fa"), submit("reader@example.test", "fa")])).toEqual([200,200]);
+  const sent = (await calls()).filter(c => c.action === "GMAIL_SEND_EMAIL" && c.data.body.includes("reader@example.test"));
   expect(sent).toHaveLength(1);
   expect(sent[0].data).toMatchObject({ recipient_email: "team@example.test", is_html: true, include_signature: false });
   const { subject, body } = sent[0].data;
-  expect(subject).toContain("درخواست تماس جدید");
-  expect(subject).not.toContain("912");
+  expect(subject).toContain("پیام سایت FMS");
   expect(body).toContain('lang="fa" dir="rtl"');
-  expect(body.match(/href="tel:\+989121234567"/g)).toHaveLength(2);
-  expect(body).toContain("+98 912 123 4567");
+  expect(body).toContain('href="mailto:reader@example.test"');
+  expect(body).toContain("Project &lt;brief&gt; &amp; details");
   expect(body).toContain("زمان ثبت (تهران)");
 });
 
 it("checks the reference in the email before acknowledging an interrupted send", async () => {
-  expect(await submit("+12025550142", "en")).toBe(503);
-  expect(await submit("+12025550142", "en")).toBe(200);
+  expect(await submit("interrupted@example.test", "en")).toBe(503);
+  expect(await submit("interrupted@example.test", "en")).toBe(200);
   const entries = await calls();
-  const sends = entries.filter(e => e.action === "GMAIL_SEND_EMAIL" && e.data.body.includes("+12025550142"));
+  const sends = entries.filter(e => e.action === "GMAIL_SEND_EMAIL" && e.data.body.includes("interrupted@example.test"));
   expect(sends).toHaveLength(1);
   expect(sends[0].data.body).toContain("انگلیسی");
   const lookup = entries.find(e => e.action === "GMAIL_FETCH_EMAILS");

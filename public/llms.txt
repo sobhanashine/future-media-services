@@ -12,7 +12,7 @@
 - [Italian services](https://futuremservices.ir/it/services)
 - [Italian plans and pricing](https://futuremservices.ir/it/pricing)
 - [Italian portfolio](https://futuremservices.ir/it/work)
-- [Italian contact and callback requests](https://futuremservices.ir/it/contact)
+- [Italian email contact](https://futuremservices.ir/it/contact)
 - [Persian services](https://futuremservices.ir/services): Website design/development and Instagram content management
 - [Persian blog](https://futuremservices.ir/blog): Persian guides about website design, SEO and content
 - [Persian blog: tracking Instagram Story links with UTM and Google Analytics](https://futuremservices.ir/blog/instagram-story-link-tracking-utm-ga4)
@@ -43,13 +43,13 @@
 - [English FAQs](https://futuremservices.ir/en/faq): English project, timing, payment and service answers
 - [Persian pricing](https://futuremservices.ir/pricing-fa.md): Machine-readable Persian starting scopes and monthly plans
 - [Pricing](https://futuremservices.ir/pricing.md): Machine-readable English starting scopes and monthly plans
-- [Contact and callback requests](https://futuremservices.ir/contact): Leave a phone number for FMS to call back or call directly.
+- [Persian email contact](https://futuremservices.ir/contact) and [English email contact](https://futuremservices.ir/en/contact). Send the project brief and a reply address through the form.
 
 ## What FMS offers
 
 ### Custom website design and development
 
-FMS designs and develops custom personal, corporate and commerce websites with responsive UI/UX, Next.js, headless WordPress, technical SEO and quality assurance. Website plans include personal, corporate and commerce starting scopes; final scope and estimate are confirmed by phone.
+FMS designs and develops custom personal, corporate and commerce websites with responsive UI/UX, Next.js, headless WordPress, technical SEO and quality assurance. Website plans include personal, corporate and commerce starting scopes; final scope and estimate are confirmed by email.
 
 - [Website service details in Persian](https://futuremservices.ir/services/web-development)
 - [Website service details in English](https://futuremservices.ir/en/services/web-development)
@@ -65,7 +65,7 @@ FMS provides content calendars, post and story design, reel production, page vis
 
 - Website: Personal 45 million toman starting scope, Corporate 85 million toman starting scope, Commerce 165 million toman starting scope.
 - Instagram management: Bronze 11.9 million, Silver 16.4 million and Gold 23.8 million toman per month. The plans include 8, 12 and 16 posts and 30–52, 60–80 and 120 stories respectively. Separate commissions include a 7.5-million-toman three-month audience campaign, posts/reels from 800,000 toman, and photo or motion stories. See the official pricing sheets and Instagram service calculator for individual and monthly unit rates.
-- Installment payment is available for website plans by arrangement during a phone call.
+- Installment payment is available for website plans by arrangement by email.
 - Domain, hosting, paid services and out-of-scope features are estimated separately.
 
 ## Evidence and source boundaries

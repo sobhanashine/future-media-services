@@ -10,7 +10,7 @@ import { hasGuideEdition } from "@/content/guide-slugs";
 import { landingCopy } from "@/content/landing";
 import { relatedBlogPosts } from "@/content/blog";
 import { copy, formatIndex, localePath, type Locale, type Service } from "@/content/site";
-import { callbackLabel } from "@/lib/contact";
+import { contactLabel } from "@/lib/contact";
 import { ServiceSpecialtyLinks } from "./ServiceSpecialtyLinks";
 import { siteUrl } from "@/lib/metadata";
 import { FmsServiceArt } from "@/components/landing/FmsArtwork";
@@ -158,8 +158,8 @@ export function ServiceDetailPage({ locale, service }: { locale: Locale; service
           <h2 id="service-cta-title">
             {content.serviceDetail.ctaTitle}
           </h2>
-          <Link href={localePath(locale, "/contact#callback")} className="button button--light">
-            {callbackLabel[locale]}
+          <Link href={localePath(locale, "/contact#message")} className="button button--light">
+            {contactLabel[locale]}
           </Link>
         </aside>
       </article>

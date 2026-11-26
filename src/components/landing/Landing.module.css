@@ -310,7 +310,6 @@
 .ratePreview strong { font-size:clamp(20px,2.4vw,32px); font-weight:570; color:#f7f3f4; }
 .ratePreview svg { position:absolute; inset-inline-end:4px; align-self:center; width:21px; color:#de8b9b; }
 .homeCallback { max-width:510px; margin:24px auto 0; color:#e8e3e6; }
-.contactPageLink, .directPhone { display:inline-flex; align-items:center; gap:9px; margin-top:18px; min-height:44px; font-size:14px; }
+.contactPageLink { display:inline-flex; align-items:center; gap:9px; margin-top:18px; min-height:44px; font-size:14px; }
 .contactPageLink svg { width:15px; }
-.directPhone { margin-inline-start:18px; color:#ccc4c9; }
 @media (min-width:690px) { .servicePreviews { grid-template-columns:repeat(2,minmax(0,1fr)); } }

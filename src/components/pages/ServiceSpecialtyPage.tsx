@@ -6,7 +6,7 @@ import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { instagramRateCopy, instagramRates } from "@/content/instagram-rates";
 import { specialtyPath, type Specialty } from "@/content/service-specialties";
 import { copy, findService, formatNumber, localePath, type Locale } from "@/content/site";
-import { callbackLabel } from "@/lib/contact";
+import { contactLabel } from "@/lib/contact";
 import { siteUrl } from "@/lib/metadata";
 import s from "./ServicePortfolio.module.css";
 
@@ -35,7 +35,7 @@ export function ServiceSpecialtyPage({ locale, specialty }: { locale: Locale; sp
           <p className="eyebrow" data-hero-reveal>{parent.label}</p>
           <h1 data-hero-reveal>{t.title}</h1>
           <p className={s.heroSummary} data-hero-reveal>{t.summary}</p>
-          <Link className="button" href={localePath(locale, "/contact#callback")} data-hero-reveal>{callbackLabel[locale]}<ArrowIcon /></Link>
+          <Link className="button" href={localePath(locale, "/contact#message")} data-hero-reveal>{contactLabel[locale]}<ArrowIcon /></Link>
         </div>
         <div className={s.specialtyArt} aria-hidden="true" data-fms-reveal="media"><FmsServiceArt index={specialty.art} locale={locale}/></div>
       </header>

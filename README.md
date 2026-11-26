@@ -15,7 +15,7 @@ Persian lives at `/` with RTL layouts. English and Italian use `/en` and `/it` w
 - **Persian editorial content:** repository articles with metadata, source links, and contextual service links.
 - **Technical SEO:** localized canonicals and `hreflang`, JSON-LD, sitemap, robots, and Open Graph images.
 - **Motion and 3D:** Framer Motion and React Three Fiber, with static fallbacks and reduced-motion/data-saver handling.
-- **Contact:** direct calls and a bilingual phone-number form that sends callback requests to the team inbox.
+- **Contact:** Persian, English and Italian forms send the visitor’s email address and project enquiry to the team inbox.
 
 ## Portfolio
 
@@ -62,13 +62,13 @@ npm run dev
 
 Open [localhost:3000](http://localhost:3000) for Persian or [localhost:3000/en](http://localhost:3000/en) for English. `NEXT_PUBLIC_SITE_URL` controls canonical and social URLs; set it to the intended deployment origin. No database is required for the portfolio site.
 
-### Callback mail on the local preview
+### Contact email on the local preview
 
 Configure the four `FMS_CALLBACK_*` values from `.env.example` in an ignored `.env.local`. Use a random token of at least 32 characters, the private destination inbox, and its connected Composio Gmail account. Optionally set `FMS_COMPOSIO_BIN` to the absolute path to the signed-in CLI. Run `npm run callback:mail` alongside Next.js. The relay listens only on loopback and stores delivery receipts under the current user’s Application Support directory. The website acknowledges delivery after Gmail accepts the message.
 
-In production, the Cloudflare Worker sends through its email binding to the private `FMS_CALLBACK_RECIPIENT` destination. Store that address and a separate random `FMS_CALLBACK_HASH_KEY` as Worker secrets. Apply `wrangler d1 migrations apply fms-callback-receipts --remote` when a database migration is added. The edge limits attempts to six per minute per network per location. D1 enforces three new requests per network per ten minutes, twelve site-wide per minute and sixty per hour. Repeat submissions of a delivered number within fifteen minutes share its receipt. Only keyed hashes and delivery state are stored in D1. Old receipts are cleared after 24 hours during use and by a daily cleanup.
+In production, the Cloudflare Worker sends through its email binding to the private `FMS_CALLBACK_RECIPIENT` destination. Store that address and a separate random `FMS_CALLBACK_HASH_KEY` as Worker secrets. Apply `wrangler d1 migrations apply fms-callback-receipts --remote` when a database migration is added. The edge limits attempts to six per minute per network per location. D1 enforces three new requests per network per ten minutes, twelve site-wide per minute and sixty per hour. An identical message from the same address and language within fifteen minutes shares its receipt. Only keyed hashes and delivery state are stored in D1. Old receipts are cleared after 24 hours during use and by a daily cleanup.
 
-The Persian email template in `scripts/callback-email.mjs` includes a tap-to-call number, Tehran time, form language and request reference. Set `FMS_CALLBACK_SUBJECT_PREFIX` to label mail from a test installation.
+The Persian email template in `scripts/callback-email.mjs` includes the visitor’s reply address, message, Tehran time, form language and request reference. Production email also sets Reply-To to the visitor’s address. Set `FMS_CALLBACK_SUBJECT_PREFIX` to label mail from a test installation.
 
 ## Commands
 

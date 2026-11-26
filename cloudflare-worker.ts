@@ -1,6 +1,6 @@
 import { notFoundResponse } from "./src/lib/not-found-response";
 import type { Locale } from "./src/content/locales";
-import { cloudCallback, clearExpiredReceipts, type CallbackBindings } from "./worker/callback";
+import { cloudContact, clearExpiredReceipts, type CallbackBindings } from "./worker/callback";
 
 interface AssetsBinding {
   fetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response>;
@@ -183,7 +183,7 @@ const cloudflareWorker = {
     ctx: WorkerExecutionContext,
   ): Promise<Response> {
     const path = new URL(request.url).pathname;
-    if (path === "/api/callback" || path === "/api/callback/") return protectResponse(await cloudCallback(request, env), request);
+    if (/^\/api\/(?:contact|callback)\/?$/.test(path)) return protectResponse(await cloudContact(request, env), request);
     if (path.startsWith(PRERENDER_ASSET_PREFIX + "/")) {
       return protectResponse(new Response(null, { status: 404, headers: { "X-Robots-Tag": "noindex" } }), request);
     }

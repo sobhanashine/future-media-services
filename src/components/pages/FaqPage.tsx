@@ -3,12 +3,12 @@ import { JsonLd } from "@/components/layout/JsonLd";
 import { FaqSection } from "@/components/pages/FaqSection";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { copy, localePath, type Locale } from "@/content/site";
-import { callbackLabel } from "@/lib/contact";
+import { contactLabel } from "@/lib/contact";
 import s from "./StudioEditorial.module.css";
 
 export function FaqPage({ locale }: { locale: Locale }) {
   const { faq } = copy[locale];
-  const contact = localePath(locale, "/contact") + "#callback";
+  const contact = localePath(locale, "/contact") + "#message";
   return (
     <div className={s.page}>
       <JsonLd data={{
@@ -22,13 +22,13 @@ export function FaqPage({ locale }: { locale: Locale }) {
         <header className={s.lead} data-hero-reveal>
           <p className={s.label}>{faq.eyebrow}</p><h1>{faq.allLabel}</h1>
           <p className={s.dek}>{faq.intro}</p>
-          <Link className="button" href={contact}>{callbackLabel[locale]}<ArrowIcon /></Link>
+          <Link className="button" href={contact}>{contactLabel[locale]}<ArrowIcon /></Link>
         </header>
         <FaqSection locale={locale}/>
       </div>
       <section className={`container-shell ${s.faqCall}`} data-reveal>
         <div><p className={s.label}>{faq.contactPrompt}</p><h2>{faq.contactTitle}</h2></div>
-        <Link className="button" href={contact}>{callbackLabel[locale]}<ArrowIcon /></Link>
+        <Link className="button" href={contact}>{contactLabel[locale]}<ArrowIcon /></Link>
       </section>
     </div>
   );

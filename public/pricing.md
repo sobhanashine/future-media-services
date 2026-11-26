@@ -2,7 +2,7 @@
 
 Instagram rates reviewed: 2026-11-19
 
-Website fees are starting prices. Final scope, timing, domain, hosting, paid services and out-of-scope features are confirmed during a phone call. Installment payment is available for website plans by arrangement.
+Website fees are starting prices. Final scope, timing, domain, hosting, paid services and out-of-scope features are confirmed by email. Installment payment is available for website plans by arrangement.
 
 ## Website design and development
 
@@ -81,10 +81,10 @@ The initial Instagram account review is free.
 ### Individual Instagram services
 
 - Audience outreach campaign — 7,500,000 toman for three months. Customer acquisition through targeted engagement, direct-message and comment marketing on relevant accounts, content likes and story views.
-- Post or reel with front and back covers — From 800,000 toman. For videos from 10 seconds to 3 minutes, with up to 48 hours for design. Call for a custom edit or a video longer than 3 minutes.
+- Post or reel with front and back covers — From 800,000 toman. For videos from 10 seconds to 3 minutes, with up to 48 hours for design. Email us for a custom edit or a video longer than 3 minutes.
 - Photo story — 250,000 to 1,000,000 toman
 - Motion story — 450,000 to 1,500,000 toman
-Call for bespoke story pricing. Story video editing takes up to 5 hours.
+Email us for custom story pricing. Story video editing takes up to 5 hours.
 
 ### Build a monthly estimate
 
@@ -111,4 +111,4 @@ https://futuremservices.ir/en/services/instagram-management/#instagram-estimator
 
 ## Contact
 
-Call FMS or request a callback: https://futuremservices.ir/en/contact/
+Send your enquiry through the [English contact form](https://futuremservices.ir/en/contact#message).
