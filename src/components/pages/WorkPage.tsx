@@ -1,3 +1,4 @@
+import { interfaceCopy } from "@/content/interface";
 import { ProjectGallery } from "@/components/pages/ProjectGallery";
 import Image from "next/image";
 import { PageIntro } from "@/components/ui/PageIntro";
@@ -21,7 +22,7 @@ export function WorkPage({ locale }: { locale: Locale }) {
     <div className={s.portfolio}>
       <div className={`container-shell ${s.archiveHero}`}>
         <PageIntro locale={locale} eyebrow={content.nav.work} title={content.work.title} body={content.work.intro} />
-        <nav className={s.covers} aria-label={locale === "fa" ? "پروژه‌های منتخب" : "Selected projects"} data-fms-reveal="media">
+        <nav className={s.covers} aria-label={interfaceCopy[locale].selected} data-fms-reveal="media">
           {covers.map(({ slug, image }) => {
             const project = findProject(slug);
             if (!project) return null;

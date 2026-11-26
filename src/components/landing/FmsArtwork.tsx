@@ -1,3 +1,4 @@
+import { interfaceCopy } from "@/content/interface";
 import Image from "next/image";
 import type { Locale } from "@/content/site";
 import chess from "./art/simone-chess.webp";
@@ -15,6 +16,7 @@ import art from "./Artwork.module.css";
 const cardSize = "(min-width: 1000px) 27vw, (min-width: 680px) 42vw, 84vw";
 const weeklyPlan = {
   fa: [["شنبه", "ریلز آموزشی"], ["دوشنبه", "پست ورقه‌ای"], ["چهارشنبه", "ریلز آموزشی"], ["جمعه", "نمونه‌کار"]],
+  it: [["Sabato", "Reel didattico"], ["Lunedì", "Carosello"], ["Mercoledì", "Reel di design"], ["Venerdì", "Un progetto"]],
   en: [["Saturday", "Explainer reel"], ["Monday", "Carousel"], ["Wednesday", "Design reel"], ["Friday", "Project reel"]],
 };
 
@@ -38,7 +40,7 @@ export function FmsServiceArt({ index, locale }: { index: number; locale: Locale
     <Image src={stillLife} alt="" className={art.profilePrint} sizes="(min-width: 1000px) 9vw, 28vw"/>
   </span>;
   if (index === 3) return <span className={art.schedule} aria-hidden="true">
-    <span className={art.planHeading}><em dir="ltr">FMS</em>{locale === "fa" ? "تقویم محتوا" : "Content calendar"}</span>
+    <span className={art.planHeading}><em dir="ltr">FMS</em>{interfaceCopy[locale].calendar}</span>
     <span className={art.week}>{weeklyPlan[locale].map(([day,format]) => <span key={day}><small>{day}</small><b>{format}</b></span>)}</span>
   </span>;
   if (index === 4) return <CampaignPrints/>;
@@ -55,7 +57,7 @@ export function FmsStudioArt({ locale }: {locale: Locale}) {
       <span className={art.catalogPrint}><Image src="/projects/nafis-teb-desktop.webp" width={1600} height={1000} sizes="(min-width: 820px) 25vw, 62vw" alt=""/></span>
       <span className={art.bookingPrint}><Image src={booking} alt="" sizes="(min-width: 820px) 14vw, 33vw"/></span>
     </div>
-    <figcaption>{locale === "fa" ? "از پروژه‌های FMS" : "From our portfolio"}<span>{locale === "fa" ? "مدل تأسیسات افق، فروشگاه نفیس‌طب و رزرو خدمات ERMETES" : "OFOQ’s building model, the Nafis Teb store and ERMETES booking"}</span></figcaption>
+    <figcaption>{interfaceCopy[locale].fromWork}<span>{interfaceCopy[locale].artCaption}</span></figcaption>
   </figure>;
 }
 
@@ -71,7 +73,7 @@ export function FeatureArt({ index, locale }: { index: number; locale: Locale })
     <span className={art.swatches}><i/><i/><i/></span>
   </div>;
   if (index === 1) return <div className={art.feature} aria-hidden="true">
-    <div className={art.editor}><div className={art.editorTools} dir="ltr"><b>B</b><i>I</i><span>H₂</span></div><div className={art.editorLine}><span>{locale === "fa" ? "معرفی پروژه" : "Project overview"}</span></div><div className={art.typedLines}/></div>
+    <div className={art.editor}><div className={art.editorTools} dir="ltr"><b>B</b><i>I</i><span>H₂</span></div><div className={art.editorLine}><span>{interfaceCopy[locale].overview}</span></div><div className={art.typedLines}/></div>
   </div>;
   return <div className={art.feature} aria-hidden="true">
     <span className={art.featureDevice}><Image src="/projects/simone-food-mobile.webp" alt="" width={390} height={844} sizes="115px"/></span>

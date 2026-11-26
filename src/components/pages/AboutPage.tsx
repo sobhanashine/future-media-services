@@ -1,3 +1,4 @@
+import { interfaceCopy } from "@/content/interface";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
@@ -26,7 +27,7 @@ export function AboutPage({ locale }: { locale: Locale }) {
             <div className={s.campaignSheet}><Image src={campaign} alt="" fill sizes="(min-width: 850px) 14vw, 30vw" /></div>
           </div>
           <figcaption>
-            <span>{locale === "fa" ? "روی میز تیم FMS" : "On our desks"}</span>
+            <span>{interfaceCopy[locale].desk}</span>
             <Link href={localePath(locale, "/work")}>{nav.work}<ArrowIcon /></Link>
           </figcaption>
         </figure>

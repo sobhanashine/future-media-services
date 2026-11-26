@@ -1,14 +1,27 @@
 import { describe, expect, it } from "vitest";
-import { copy, findService, localePath, serviceSlugs, switchLocalePath } from "./site";
+import { copy, findService, localePath, serviceSlugs } from "./site";
+import { locales, switchLocalePath } from "./locales";
 import { readFileSync } from "node:fs";
 import { instagramRates, monthlyInstagramEstimate } from "./instagram-rates";
 
-describe("bilingual content model", () => {
+describe("localised content model", () => {
   it("keeps service routes aligned across locales", () => {
     expect(copy.fa.services.map((service) => service.slug)).toEqual(serviceSlugs);
     expect(copy.en.services.map((service) => service.slug)).toEqual(serviceSlugs);
   });
 
+  it("keeps Italian services, plans and prices aligned with the published offer", () => {
+    expect(copy.it.services.map(service => service.slug)).toEqual(serviceSlugs);
+    for (const slug of serviceSlugs) {
+      const original = findService("en", slug)!;
+      const italian = findService("it", slug)!;
+      expect(italian.plans?.map(plan => [plan.monthlyToman, plan.featured, plan.features.length]))
+        .toEqual(original.plans?.map(plan => [plan.monthlyToman, plan.featured, plan.features.length]));
+      expect(italian.heroImage.src).toBe(original.heroImage.src);
+      expect(italian.workflow).toHaveLength(original.workflow.length);
+      expect(italian.sharedPlanFeatures?.length).toBe(original.sharedPlanFeatures?.length);
+    }
+  });
   it("resolves every service in both languages", () => {
     for (const slug of serviceSlugs) {
       expect(findService("fa", slug)?.title).toBeTruthy();
@@ -76,16 +89,15 @@ describe("bilingual content model", () => {
     expect(localePath("en")).toBe("/en");
   });
 
-  it("switches between equivalent Persian and English routes", () => {
-    for (const path of ["/", "/services", "/services/web-development", "/work/ofoq", "/about", "/faq", "/contact", "/privacy"]) {
-      expect(switchLocalePath("fa", path)).toBe(path === "/" ? "/en" : `/en${path}`);
+  it("switches between equivalent pages in all three languages", () => {
+    for (const source of locales) {
+      for (const target of locales) {
+        for (const path of ["", "/work/ermetes", "/services/web-development/corporate-website", "/pricing", "/blog", "/blog/nextjs-or-wordpress-headless"]) {
+          expect(switchLocalePath(target, localePath(source, path))).toBe(localePath(target, path));
+        }
+      }
     }
-    expect(switchLocalePath("fa", "/blog")).toBe("/en");
-    expect(switchLocalePath("fa", "/blog/nextjs-or-wordpress-headless")).toBe("/en");
-
-    for (const path of ["/en", "/en/services", "/en/services/web-development", "/en/work/ofoq", "/en/about", "/en/faq", "/en/contact", "/en/privacy"]) {
-      expect(switchLocalePath("en", path)).toBe(path.replace(/^\/en/, "") || "/");
-    }
+    expect(switchLocalePath("it", "/blog/persian-only-guide")).toBe("/it/blog");
   });
 
   it("keeps all localized page sections structurally aligned", () => {

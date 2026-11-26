@@ -249,7 +249,7 @@ body.studio-site .site-footer a:hover {
   }
 }
 
-@media(min-width:810px) and (max-width:1023px) {
+@media(min-width:810px) and (max-width:1099px) {
   body.studio-site .site-header__inner {
     grid-template-columns: auto minmax(0,1fr) auto;
     column-gap: 16px;

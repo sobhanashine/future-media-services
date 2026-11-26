@@ -1,3 +1,4 @@
+import { interfaceCopy } from "@/content/interface";
 import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
 import { JsonLd } from "@/components/layout/JsonLd";
@@ -6,6 +7,7 @@ import { BrandReel, Horizon, Icon, Orbit } from "@/components/landing/StudioVisu
 import { FmsServiceArt } from "@/components/landing/FmsArtwork";
 import { WorkEdition } from "@/components/landing/WorkEdition";
 import { CallbackForm } from "./CallbackForm";
+import { guideEditions } from "@/content/guide-editions";
 import { findPersianBlogPost } from "@/content/blog";
 import { landingCopy } from "@/content/landing";
 import { copy, formatNumber, localePath, type Locale } from "@/content/site";
@@ -14,9 +16,9 @@ import s from "@/components/landing/Landing.module.css";
 import lightRays from "@/components/landing/art/light-rays.webp";
 
 const journalGuides = [
-  { slug: "corporate-website-handover-checklist", icon: "web", englishTitle: "What to check when your company website is handed over" },
-  { slug: "custom-ecommerce-website-or-ready-made-template", icon: "store", englishTitle: "A custom online store or a ready-made theme?" },
-  { slug: "instagram-management-outsourcing-access-handover-checklist", icon: "layers", englishTitle: "Outsourcing Instagram management: access and handover" },
+  { slug: "corporate-website-handover-checklist", icon: "web" },
+  { slug: "custom-ecommerce-website-or-ready-made-template", icon: "store" },
+  { slug: "instagram-management-outsourcing-access-handover-checklist", icon: "layers" },
 ] as const;
 
 function Tag({ children }: { children: ReactNode }) {
@@ -99,16 +101,16 @@ export function HomePage({ locale }: { locale: Locale }) {
 
     <section id="process" className={s.orbitSection} aria-labelledby="approach-title">
       <Orbit />
-      <Intro words={t.features} id="approach-title" body={t.featuresBody}><Link className={s.redButton} href={localePath(locale, "/about#process")}>{locale === "fa" ? "روش کار تیم" : "How our team works"}</Link></Intro>
+      <Intro words={t.features} id="approach-title" body={t.featuresBody}><Link className={s.redButton} href={localePath(locale, "/about#process")}>{interfaceCopy[locale].how}</Link></Intro>
     </section>
     <section className={s.journal} aria-labelledby="journal-title">
-      <Intro words={t.journal} id="journal-title"><Link className={s.redButton} href="/blog" hrefLang="fa">{t.journalLink}</Link></Intro>
-      <div className={s.threeGrid}>{journalGuides.map(({ slug, icon, englishTitle }) => {
+      <Intro words={t.journal} id="journal-title"><Link className={s.redButton} href={localePath(locale, "/blog")}>{t.journalLink}</Link></Intro>
+      <div className={s.threeGrid}>{journalGuides.map(({ slug, icon }) => {
         const post = findPersianBlogPost(slug);
         if (!post) return null;
-        return <Link key={slug} href={"/blog/"+slug} hrefLang="fa" className={s.story}>
-          <div className={s.cardTop}><span className={s.smallIcon}><Icon name={icon}/></span><small>{formatNumber(post.readingTime, locale)} {t.readingTime}</small></div>
-          <h3>{locale === "fa" ? post.title : englishTitle}</h3>
+        return <Link key={slug} href={localePath(locale, "/blog/" + slug)} className={s.story}>
+          <div className={s.cardTop}><span className={s.smallIcon}><Icon name={icon}/></span>{locale === "fa" && <small>{formatNumber(post.readingTime, locale)} {t.readingTime}</small>}</div>
+          <h3>{locale === "fa" ? post.title : guideEditions[slug][locale].title}</h3>
           <span>{t.read}<Icon name="share" /></span>
         </Link>;
       })}</div>

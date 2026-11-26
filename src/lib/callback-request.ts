@@ -1,5 +1,5 @@
 import { normalizeCallbackPhone, type CallbackStatus } from "./callback";
-import type { Locale } from "@/content/site";
+import { localePath, type Locale } from "../content/locales";
 
 const httpStatus = { sent: 200, invalid: 400, busy: 429, unavailable: 503 } as const;
 const maxBytes = 2048;
@@ -10,7 +10,7 @@ function respond(request: Request, status: CallbackStatus, locale: Locale) {
     return Response.json({ status }, { status: httpStatus[status], headers });
   }
   return new Response(null, { status: 303, headers: {
-    ...headers, Location: (locale === "fa" ? "/contact" : "/en/contact") + "#callback-" + status,
+    ...headers, Location: localePath(locale, "/contact") + "#callback-" + status,
   } });
 }
 
@@ -59,9 +59,10 @@ export async function handleCallback(request: Request, deliver: Deliver, allowAt
   let locale: Locale = "fa";
   try {
     const form = await readForm(request);
-    locale = form?.get("locale") === "en" ? "en" : "fa";
+    const requestedLocale = form?.get("locale");
+    if (requestedLocale === "en" || requestedLocale === "it") locale = requestedLocale;
     if (allowAttempt && !await allowAttempt()) return respond(request, "busy", locale);
-    const phone = normalizeCallbackPhone(form?.get("phone") ?? "");
+    const phone = normalizeCallbackPhone(form?.get("phone") ?? "", locale);
     if (!phone || form?.getAll("phone").length !== 1 || form.get("website")) return respond(request, "invalid", locale);
     return respond(request, await deliver(phone, locale), locale);
   } catch {

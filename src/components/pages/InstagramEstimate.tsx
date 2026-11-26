@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { instagramRateCopy, instagramRates, monthlyInstagramEstimate } from "@/content/instagram-rates";
-import type { Locale } from "@/content/site";
+import { numberLocales, type Locale } from "@/content/locales";
 import { phoneHref } from "@/lib/contact";
 import s from "./InstagramRates.module.css";
 
@@ -13,7 +13,7 @@ export function InstagramEstimate({ locale }: { locale: Locale }) {
   const [quantities, setQuantities] = useState({ stories: "", posts: "", banners: "" });
   const [motion, setMotion] = useState(false);
   const [extras, setExtras] = useState<number[]>([]);
-  const money = (amount: number) => amount.toLocaleString(locale === "fa" ? "fa-IR" : "en-US") + " " + t.currency;
+  const money = (amount: number) => amount.toLocaleString(numberLocales[locale]) + " " + t.currency;
   const counts = { stories: Number(quantities.stories), posts: Number(quantities.posts), banners: Number(quantities.banners) };
   const total = monthlyInstagramEstimate({ ...counts, motion, extras });
   const valid = Object.values(counts).every(count => Number.isSafeInteger(count) && count >= 0) && Number.isSafeInteger(total);

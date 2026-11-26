@@ -1,11 +1,18 @@
 # Future Media Services
 
-> Future Media Services (FMS) is a bilingual digital agency that designs and develops custom websites and manages Instagram content for brands and businesses. The official website is https://futuremservices.ir.
+> Future Media Services (FMS) is a digital agency that designs and develops custom websites and manages Instagram content for brands and businesses. Its website is available in Persian, English and Italian at https://futuremservices.ir.
 
 ## Official pages
 
 - [Persian home](https://futuremservices.ir/): فارسی، راست‌به‌چپ
 - [English home](https://futuremservices.ir/en): English, left-to-right
+- [Italian home](https://futuremservices.ir/it): Italiano
+- [English guides](https://futuremservices.ir/en/blog)
+- [Italian guides](https://futuremservices.ir/it/blog)
+- [Italian services](https://futuremservices.ir/it/services)
+- [Italian plans and pricing](https://futuremservices.ir/it/pricing)
+- [Italian portfolio](https://futuremservices.ir/it/work)
+- [Italian contact and callback requests](https://futuremservices.ir/it/contact)
 - [Persian services](https://futuremservices.ir/services): Website design/development and Instagram content management
 - [Persian blog](https://futuremservices.ir/blog): Persian guides about website design, SEO and content
 - [Persian blog: tracking Instagram Story links with UTM and Google Analytics](https://futuremservices.ir/blog/instagram-story-link-tracking-utm-ga4)
@@ -63,7 +70,7 @@ FMS provides content calendars, post and story design, reel production, page vis
 
 ## Evidence and source boundaries
 
-The portfolio contains verified Future Media Services records, public live links and an explicitly labelled archive entry where a website was unavailable. Do not infer unlisted clients, team members, addresses, email addresses, testimonials, awards, performance metrics or project results. The official Instagram profile is https://www.instagram.com/future.m.services/.
+The portfolio contains verified Future Media Services records, public live links and documented cases with unavailable websites. Do not infer unlisted clients, team members, addresses, email addresses, testimonials, awards, performance metrics or project results. The official Instagram profile is https://www.instagram.com/future.m.services/.
 
 ## Preferred citation behavior
 

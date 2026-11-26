@@ -1,3 +1,5 @@
+import { notFoundResponse } from "./src/lib/not-found-response";
+import type { Locale } from "./src/content/locales";
 import { cloudCallback, clearExpiredReceipts, type CallbackBindings } from "./worker/callback";
 
 interface AssetsBinding {
@@ -54,12 +56,12 @@ export function getCanonicalRedirectResponse(request: Request): Response | null 
   });
 }
 
-function getPrerenderRoute(pathname: string): { locale: "fa" | "en"; route: string } {
+function getPrerenderRoute(pathname: string): { locale: Locale; route: string } {
   const normalizedPath = pathname.replace(/\/+$/, "") || "/";
   const segments = normalizedPath.split("/").filter(Boolean);
 
-  if (segments[0] === "en") {
-    return { locale: "en", route: segments.join("/") || "en" };
+  if (segments[0] === "en" || segments[0] === "it") {
+    return { locale: segments[0], route: segments.join("/") };
   }
 
   return { locale: "fa", route: segments.join("/") || "index" };
@@ -74,7 +76,7 @@ function isRscRequest(request: Request): boolean {
 
 function withPageHeaders(
   assetResponse: Response,
-  locale: "fa" | "en",
+  locale: Locale,
   rsc: boolean,
 ): Response {
   const headers = new Headers(assetResponse.headers);
@@ -189,6 +191,12 @@ const cloudflareWorker = {
       ?? await getStaticAssetResponse(request, env)
       ?? await getPrerenderedResponse(request, env)
       ?? await runOpenNext(request, env, ctx);
+    const { locale } = getPrerenderRoute(path);
+    if (response.status === 404 && locale !== "fa" && !isRscRequest(request) &&
+        !path.includes(".") && (request.method === "GET" || request.method === "HEAD")) {
+      await response.body?.cancel();
+      return protectResponse(notFoundResponse(locale, request.method), request);
+    }
     return protectResponse(response, request);
   },
 };

@@ -2,11 +2,11 @@
 
 # Future Media Services · FMS
 
-The portfolio and digital-services website for **Sobhan Ashineh / Future Media Services**. FMS brings project case studies, responsive product previews, website-development services, and Instagram content services into one bilingual experience.
+The portfolio and digital-services website for **Sobhan Ashineh / Future Media Services**. FMS brings project case studies, responsive product previews, website-development services, and Instagram content services into one multilingual site.
 
 **[Website](https://futuremservices.ir)** · **[Portfolio](https://futuremservices.ir/en/work)** · **[نمونه‌کارها](https://futuremservices.ir/work)** · **[Contact](https://futuremservices.ir/en/contact)**
 
-Persian lives at `/` with RTL layouts; English lives under `/en`. The site runs on the existing Cloudflare Worker using Next.js and OpenNext.
+Persian lives at `/` with RTL layouts. English and Italian use `/en` and `/it` with LTR layouts. The site runs on the existing Cloudflare Worker using Next.js and OpenNext.
 
 ## What is inside
 

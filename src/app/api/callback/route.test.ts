@@ -18,6 +18,19 @@ describe("callback delivery", () => {
       expect(normalizeCallbackPhone(invalid)).toBeNull();
     }
   });
+  it("preserves Italian mobile and landline numbers and the form language", async () => {
+    expect(normalizeCallbackPhone("320 000 0000", "it")).toBe("+393200000000");
+    expect(normalizeCallbackPhone("02 0000 0000", "it")).toBe("+390200000000");
+    expect(normalizeCallbackPhone("0039 02 0000 0000", "it")).toBe("+390200000000");
+    expect(normalizeCallbackPhone("+1 202 555 0146", "it")).toBe("+12025550146");
+    vi.stubEnv("FMS_CALLBACK_MAIL_URL", "http://127.0.0.1:39481/callback");
+    vi.stubEnv("FMS_CALLBACK_MAIL_TOKEN", "test-auth-token");
+    const send = vi.fn().mockResolvedValue(Response.json({ delivered: true }));
+    vi.stubGlobal("fetch", send);
+    const response = await submit({ locale: "it", phone: "02 0000 0000" }, { Accept: "text/html" });
+    expect(response.headers.get("location")).toBe("/it/contact#callback-sent");
+    expect(JSON.parse(send.mock.calls[0][1].body)).toEqual({ phone: "+390200000000", locale: "it" });
+  });
   it("rejects another origin and invalid or oversized inputs before delivery", async () => {
     const fetch = vi.fn(); vi.stubGlobal("fetch", fetch);
     expect((await submit({ phone: "+12025550146" }, { Origin: "https://example.org" })).status).toBe(403);

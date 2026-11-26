@@ -1,9 +1,13 @@
+import { interfaceCopy } from "@/content/interface";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { JsonLd } from "@/components/layout/JsonLd";
 import { PricingPlans } from "@/components/pages/PricingPlans";
 import { InstagramRates } from "@/components/pages/InstagramRates";
+import { guideEditions } from "@/content/guide-editions";
+import { hasGuideEdition } from "@/content/guide-slugs";
+import { landingCopy } from "@/content/landing";
 import { relatedBlogPosts } from "@/content/blog";
 import { copy, formatIndex, localePath, type Locale, type Service } from "@/content/site";
 import { callbackLabel } from "@/lib/contact";
@@ -30,9 +34,10 @@ export function ServiceDetailPage({ locale, service }: { locale: Locale; service
       },
     }];
   });
-  const relatedGuides = locale === "fa"
-    ? relatedBlogPosts(`/services/${service.slug}`)
-    : [];
+  const relatedGuides = relatedBlogPosts(`/services/${service.slug}`).flatMap(post => {
+    if (locale === "fa") return [{ slug: post.slug, title: post.title }];
+    return hasGuideEdition(post.slug) ? [{ slug: post.slug, title: guideEditions[post.slug][locale].title }] : [];
+  });
 
   return (
     <>
@@ -59,7 +64,7 @@ export function ServiceDetailPage({ locale, service }: { locale: Locale; service
             <p className={s.heroSummary} data-hero-reveal>{service.summary}</p>
             {service.plans && (
               <a href="#service-pricing-title" className="button" data-hero-reveal>
-                {locale === "fa" ? "مقایسهٔ پلن‌ها" : "Compare plans"}<ArrowIcon direction="down" />
+                {landingCopy[locale].comparePlans}<ArrowIcon direction="down" />
               </a>
             )}
           </div>
@@ -75,8 +80,8 @@ export function ServiceDetailPage({ locale, service }: { locale: Locale; service
             </figure>
           </div>
         </header>
-        <section className={s.scopeNav} aria-label={locale === "fa" ? "خدمات این بخش" : "Services in this category"}>
-          <h2>{locale === "fa" ? "کدام خدمت را می‌خواهید؟" : "Which service do you need?"}</h2>
+        <section className={s.scopeNav} aria-label={interfaceCopy[locale].category}>
+          <h2>{interfaceCopy[locale].choose}</h2>
           <ServiceSpecialtyLinks service={service} locale={locale} />
         </section>
         <div className="service-detail__body">
@@ -138,11 +143,11 @@ export function ServiceDetailPage({ locale, service }: { locale: Locale; service
         {service.slug === "instagram-management" && <InstagramRates locale={locale} />}
         {relatedGuides.length > 0 && (
           <section className="service-detail__fit blog-post__related" aria-labelledby="service-related-guides-title" data-reveal>
-            <p className="eyebrow">دانش‌نامه</p>
-            <h2 id="service-related-guides-title">راهنماهای مرتبط</h2>
+            <p className="eyebrow">{content.nav.blog}</p>
+            <h2 id="service-related-guides-title">{{ fa: "راهنماهای مرتبط", en: "Related guides", it: "Guide correlate" }[locale]}</h2>
             <nav aria-labelledby="service-related-guides-title">
               {relatedGuides.map((post) => (
-                <Link key={post.slug} href={localePath("fa", `/blog/${post.slug}`)}>
+                <Link key={post.slug} href={localePath(locale, `/blog/${post.slug}`)}>
                   {post.title} <ArrowIcon />
                 </Link>
               ))}

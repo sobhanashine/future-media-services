@@ -35,10 +35,10 @@ function setup(send = vi.fn(async () => ({ messageId: "fixture" }))) {
     CALLBACK_LIMIT: { limit: vi.fn(async () => ({ success: true })) },
     CALLBACK_EMAIL: { send }, FMS_CALLBACK_HASH_KEY: "for-automated-tests-only-000000000000", FMS_CALLBACK_RECIPIENT: "team@example.test",
   };
-  function post(phone, ip = "192.0.2.7") {
+  function post(phone, ip = "192.0.2.7", locale = "fa") {
     return cloudCallback(new Request("https://example.test/api/callback", {
       method: "POST", headers: { Accept: "application/json", Origin: "https://example.test", "CF-Connecting-IP": ip },
-      body: new URLSearchParams({ phone, locale: "fa" }),
+      body: new URLSearchParams({ phone, locale }),
     }), env);
   }
   return { send, post, env };
@@ -54,6 +54,14 @@ it("delivers the HTML from the public form once and stores only keyed identifier
   expect(row.phone_key).toMatch(/^[a-f0-9]{64}$/);
   expect(row.client_key).toMatch(/^[a-f0-9]{64}$/);
   expect(row.state).toBe("sent");
+});
+
+it("marks an Italian callback for the receiving team and keeps the landline prefix", async () => {
+  const { post, send } = setup();
+  expect((await post("02 0000 0000", "192.0.2.7", "it")).status).toBe(200);
+  const message = send.mock.calls[0][0];
+  expect(message.html).toContain('href="tel:+390200000000"');
+  expect(message.html).toContain("ایتالیایی");
 });
 
 it("enforces the network and shared hourly budgets on separate submissions", async () => {

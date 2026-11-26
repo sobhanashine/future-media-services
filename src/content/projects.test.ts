@@ -23,9 +23,9 @@ describe("portfolio content", () => {
     }
   });
 
-  it("gives every project a complete bilingual case-study record", () => {
+  it("gives every project a complete case study in every language", () => {
     for (const project of projects) {
-      for (const locale of ["fa", "en"] as const) {
+      for (const locale of ["fa", "en", "it"] as const) {
         const copy = projectCopy(project, locale);
         expect(copy.summary).toBeTruthy();
         expect(copy.challenge).toBeTruthy();
@@ -57,10 +57,10 @@ describe("portfolio content", () => {
     }
   });
 
-  it("only puts project destinations with imagery in the direct-link card grid", () => {
+  it("keeps project imagery accessible even when a live site is unavailable", () => {
     expect(portfolioProjects).toHaveLength(11);
+    expect(findProject("digimoragheb")?.available).toBe(false);
     for (const project of portfolioProjects) {
-      expect(project.available).toBe(true);
       expect(project.images?.desktop).toBeTruthy();
       expect(project.images?.mobile).toBeTruthy();
       expect(project.images?.mockup).toBeTruthy();

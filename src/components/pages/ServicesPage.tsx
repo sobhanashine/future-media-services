@@ -1,3 +1,4 @@
+import { interfaceCopy } from "@/content/interface";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { FmsServiceArt } from "@/components/landing/FmsArtwork";
 import { persianSeoMetadata } from "@/content/seo";
@@ -31,7 +32,7 @@ export function ServicesPage({ locale }: { locale: Locale }) {
                   <p>{service.summary}</p>
                 </div>
                 <div className={s.offerFoot}>
-                  <span>{locale === "fa" ? "مراحل اجرا و تعرفه‌ها" : "Process & pricing"}</span><ArrowIcon />
+                  <span>{interfaceCopy[locale].processPricing}</span><ArrowIcon />
                 </div>
               </ServiceLink>
               <ServiceSpecialtyLinks service={service} locale={locale} />

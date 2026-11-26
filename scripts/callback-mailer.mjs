@@ -105,7 +105,7 @@ const server = createServer(async (req, res) => {
       if (buffer.length > 1024) return reply(413);
     }
     const { phone, locale } = JSON.parse(buffer);
-    if (typeof phone !== "string" || !/^\+[1-9]\d{7,14}$/.test(phone) || !["fa", "en"].includes(locale)) return reply(400);
+    if (typeof phone !== "string" || !/^\+[1-9]\d{7,14}$/.test(phone) || !["fa", "en", "it"].includes(locale)) return reply(400);
     return reply(await sendOnce(phone, locale));
   } catch {
     return reply(503);

@@ -1,9 +1,11 @@
 import { instagramRates } from "./instagram-rates";
 
-export type Locale = "fa" | "en";
+import { italianCopy } from "./site.it";
+import { numberLocales, type Locale } from "./locales";
+export { localePath, type Locale } from "./locales";
 
 export function formatNumber(value: number, locale: Locale, options?: Intl.NumberFormatOptions) {
-  return new Intl.NumberFormat(locale === "fa" ? "fa-IR" : "en-US", {
+  return new Intl.NumberFormat(numberLocales[locale], {
     useGrouping: false,
     ...options,
   }).format(value);
@@ -57,9 +59,8 @@ export type Service = {
   sharedPlanFeatures?: string[];
 };
 
-type Copy = {
+export type SiteCopy = {
   localeName: string;
-  languageSwitch: string;
   nav: {
     services: string;
     work: string;
@@ -195,14 +196,14 @@ const faInstagramSharedFeatures = [
 ];
 
 const enInstagramSharedFeatures = [
-  "Insights monitoring and work on view growth",
+  "Instagram Insights and audience reach reviews",
   "Profile-specific bio setup",
-  "Graphic highlight design",
-  "Motion story design",
+  "Highlight cover design",
+  "Animated story design",
   "Monthly report",
   "Reel cover and back-cover design",
   "Original and trend-led scripting",
-  "Support from 09:00 to 16:00",
+  "Support from 09:00 to 16:00 Tehran time",
   "Monthly promotion and competition banner design",
   "Formal contract",
   "Account recovery when credentials are forgotten",
@@ -212,10 +213,9 @@ const enInstagramSharedFeatures = [
   "Sourcing photos and videos from reputable sites and channels and editing them for your brand when needed",
 ];
 
-export const copy: Record<Locale, Copy> = {
+export const copy: Record<Locale, SiteCopy> = {
   fa: {
     localeName: "فارسی",
-    languageSwitch: "EN",
     nav: {
       services: "خدمات",
       work: "نمونه‌کارها",
@@ -530,7 +530,6 @@ export const copy: Record<Locale, Copy> = {
   },
   en: {
     localeName: "English",
-    languageSwitch: "فا",
     nav: {
       services: "Services",
       work: "Work",
@@ -553,13 +552,13 @@ export const copy: Record<Locale, Copy> = {
     },
     sections: {
       servicesEyebrow: "What we build",
-      servicesTitle: "Two focused services, each with a clear route.",
+      servicesTitle: "Web design and Instagram content management",
       servicesBody: "Website design, development and Instagram content management each have a clear plan and delivery path.",
       workEyebrow: "Selected work",
       workTitle: "Work that does more than look the part.",
       workBody: "Visual previews of real websites. Select any card to visit the live experience.",
       processEyebrow: "How we work",
-      processTitle: "A clear route from problem to growth.",
+      processTitle: "From our first conversation to launch",
       processBody: "Every stop produces a concrete decision and a reviewable output, so the project never disappears into a black box.",
       servicesPageIntro: "We design and develop websites, and create and manage Instagram content. Choose a service to explore its details, process and plans.",
       whyEyebrow: "Why FMS?",
@@ -575,7 +574,7 @@ export const copy: Record<Locale, Copy> = {
         slug: sharedServiceSlugs[0],
         label: "Design + build",
         title: "Website design & development",
-        summary: "Custom UI/UX and fast development with Next.js and headless WordPress, for personal, corporate and commerce websites.",
+        summary: "We design and build websites for professionals, companies and online shops, with Next.js for the public site and WordPress for day-to-day editing.",
         heroImage: {
           src: "/images/services/web-development-hero.webp",
           alt: "A modular glass-and-metal structure representing a headless website architecture",
@@ -597,7 +596,7 @@ export const copy: Record<Locale, Copy> = {
             unit: "toman",
             timeline: "2–4 weeks",
             description: "A polished, independent home for your profile, services and selected work.",
-            paymentNote: "Installment payment is available; call us to arrange it.",
+            paymentNote: "You can pay in instalments. Call us to agree a schedule.",
             features: [
               "Custom design for up to 5 pages",
               "Fast, responsive Next.js frontend",
@@ -614,7 +613,7 @@ export const copy: Record<Locale, Copy> = {
             unit: "toman",
             timeline: "4–7 weeks",
             description: "A multi-section website built to explain services, strengthen credibility and turn visits into calls.",
-            paymentNote: "Installment payment is available; call us to arrange it.",
+            paymentNote: "You can pay in instalments. Call us to agree a schedule.",
             features: [
               "Custom UI/UX for up to 10 pages",
               "Next.js + headless WordPress",
@@ -632,7 +631,7 @@ export const copy: Record<Locale, Copy> = {
             unit: "toman",
             timeline: "8–12 weeks",
             description: "A custom headless shop with a fast buying experience and complete product control in WordPress.",
-            paymentNote: "Installment payment is available; call us to arrange it.",
+            paymentNote: "You can pay in instalments. Call us to agree a schedule.",
             features: [
               "Custom purchase journey and product pages",
               "Next.js + headless WooCommerce",
@@ -648,7 +647,7 @@ export const copy: Record<Locale, Copy> = {
         slug: sharedServiceSlugs[1],
         label: "Content + management",
         title: "Instagram content management",
-        summary: "Planning, post and story design, reel production and consistent page management across three monthly plans.",
+        summary: "We plan your publishing calendar, design posts and stories, and produce reels. Choose from three monthly plans.",
         heroImage: {
           src: "/images/services/instagram-management-hero.webp",
           alt: "A content planning desk with a camera, post and story frames, and an organized publishing route",
@@ -669,7 +668,7 @@ export const copy: Record<Locale, Copy> = {
           from: "Monthly fee",
           includes: "Monthly content volume",
           featured: "Recommended",
-          disclaimer: "Fees are monthly. Reel formats, production details and required inputs are confirmed during the initial call before the contract is signed.",
+          disclaimer: "Monthly fees are in Iranian toman. We agree on reel formats, production details and the materials you’ll supply before you sign.",
         },
         sharedPlanTitle: "Included in all three plans",
         sharedPlanFeatures: enInstagramSharedFeatures,
@@ -721,17 +720,17 @@ export const copy: Record<Locale, Copy> = {
     ],
     pricing: {
       eyebrow: "Website plans",
-      title: "One foundation. Three scales to begin.",
+      title: "Compare our three website plans",
       body: "Every plan combines custom design, Next.js and content management through headless WordPress. Scope, capabilities and delivery time change with each tier.",
       from: "Starting from",
       includes: "Included",
       featured: "FMS recommendation",
-      disclaimer: "Prices indicate the starting project scope. Domain, hosting, paid services and out-of-scope features are estimated separately after a call.",
+      disclaimer: "Starting prices are in Iranian toman. We quote separately for domain registration, hosting, paid services and additional features.",
       mobileCarousel: { hint: "Swipe horizontally to compare plans" },
     },
     process: [
       { title: "Discover", body: "We clarify the business, audience, problem and measure of success.", output: "Problem brief" },
-      { title: "Direct", body: "The content architecture, priorities and visual language take shape.", output: "Experience map" },
+      { title: "Plan the site", body: "We agree on the pages, content priorities and visual direction.", output: "Experience map" },
       { title: "Build", body: "Design, development and motion progress in short, visible cycles.", output: "Reviewable release" },
       { title: "Validate", body: "Mobile, accessibility, performance, content and SEO are tested.", output: "Quality report" },
       { title: "Launch & grow", body: "Release, handover and the next improvement path are documented.", output: "Launch & growth plan" },
@@ -743,8 +742,8 @@ export const copy: Record<Locale, Copy> = {
       { title: "Clear communication", body: "Decisions, status and the next step stay visible and traceable throughout the work.", tag: "Grow" },
     ],
     work: {
-      title: "Selected work from live digital products.",
-      intro: "Each card is a real website preview and takes you directly to its live experience.",
+      title: "Websites and digital products we’ve worked on",
+      intro: "Explore the designs, our role and the technology behind each project. The case studies include screenshots and links to the sites or demos.",
     },
     social: [
       {
@@ -768,13 +767,13 @@ export const copy: Record<Locale, Copy> = {
     ],
     about: {
       eyebrow: "About FMS",
-      title: "For businesses that want to be seen one step ahead.",
-      intro: "Future Media Services brings strategic thinking, design, technology and digital content into one connected path.",
-      statement: "The goal is not a beautiful surface. It is an experience that clarifies the brand, works properly and stays ready for what comes next.",
+      title: "The team behind your website and content",
+      intro: "Future Media Services brings web designers, developers and content creators together to build websites and manage Instagram for businesses.",
+      statement: "At handover, your customers should be able to find what they need and your team should know how to update the site.",
       values: [
-        { title: "Clarity before velocity", body: "We define the problem and priorities before production begins." },
-        { title: "Details with a job", body: "Every visual and technical decision should earn its place." },
-        { title: "Honest presentation", body: "Unverified results, people and case studies are never presented as facts." },
+        { title: "A clear brief", body: "We define the problem and priorities before production begins." },
+        { title: "Design with a purpose", body: "Every visual and technical decision should earn its place." },
+        { title: "Documented work", body: "Our case studies describe our role, the tools we used and what the screenshots show." },
       ],
     },
     contact: {
@@ -784,7 +783,7 @@ export const copy: Record<Locale, Copy> = {
       directLabel: "Call the team directly",
       beforeCallLabel: "Before the call",
       estimateNote: "An initial estimate is more precise if you know the site type, languages, available content and preferred timing.",
-      directTitle: "One short conversation before any decision.",
+      directTitle: "What to bring to the first call",
       directBody: "The first call covers the type of site, available content, timing and essential capabilities.",
     },
     privacy: {
@@ -804,11 +803,11 @@ export const copy: Record<Locale, Copy> = {
       allLabel: "Frequently asked questions",
       moreLabel: "View all questions",
       contactPrompt: "Did not find the answer you need?",
-      contactTitle: "Call to discuss the project details precisely.",
+      contactTitle: "Talk to us about your project.",
       items: [
         { question: "How do we start a project?", answer: "Leave your number on the contact page or call us directly. In the first conversation, we cover the service, available content, timing and essential capabilities." },
         { question: "How long does a website take?", answer: "Website plans typically take about 2 to 12 weeks, depending on scope. The final schedule is set once content and required capabilities are clear." },
-        { question: "Is installment payment available for every website plan?", answer: "Yes. Installment payment is available for all three website plans. Call us directly to arrange the payment terms." },
+        { question: "Can I pay for my website in instalments?", answer: "Yes. All three website plans offer instalments. We agree the payment schedule with you before work starts." },
         { question: "Can we update the website content after handover?", answer: "Yes. Headless WordPress websites include a content-management panel and training within the scope of each plan." },
         { question: "What does Instagram management include?", answer: "A content calendar, post and story design, reel production, page visual identity and monthly reporting. Publishing volume is based on the selected plan." },
         { question: "When is the final cost confirmed?", answer: "Website prices are starting points. Once the scope, content and required capabilities are clear in a call, we provide a transparent final estimate." },
@@ -839,25 +838,12 @@ export const copy: Record<Locale, Copy> = {
       footerNavAria: "Footer navigation",
       switchToEnglishAria: "Switch to English",
       switchToPersianAria: "تغییر زبان به فارسی",
-      footerLine: "Custom websites for brands that want to be seen differently.",
+      footerLine: "Custom websites and Instagram content for businesses.",
       rights: "All rights reserved.",
     },
   },
+  it: italianCopy,
 };
-
-export function localePath(locale: Locale, path = "") {
-  const cleanPath = !path || path === "/" ? "" : path.startsWith("/") ? path : `/${path}`;
-  return locale === "en" ? `/en${cleanPath}` : cleanPath || "/";
-}
-
-export function switchLocalePath(locale: Locale, pathname: string) {
-  if (locale === "fa") {
-    return pathname === "/" || pathname.startsWith("/blog") ? "/en" : `/en${pathname}`;
-  }
-
-  const withoutLocale = pathname.replace(/^\/en(?=\/|$)/, "");
-  return withoutLocale || "/";
-}
 
 export function findService(locale: Locale, slug: string) {
   return copy[locale].services.find((service) => service.slug === slug);

@@ -71,7 +71,7 @@ export function callbackEmail({ phone, locale, created, reference, subjectPrefix
             </tr>
             <tr>
               <th scope="row" align="right" style="padding:5px 0 0 10px;color:#665b61;font-weight:normal;">زبان فرم</th>
-              <td align="left" style="padding:5px 0 0;color:#292127;">${locale === "en" ? "انگلیسی" : "فارسی"}</td>
+              <td align="left" style="padding:5px 0 0;color:#292127;">${({ en: "انگلیسی", it: "ایتالیایی" })[locale] ?? "فارسی"}</td>
             </tr>
           </table>
         </td></tr>

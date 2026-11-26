@@ -12,7 +12,7 @@ export function SiteFrame({ children, locale }: { children: React.ReactNode; loc
       <a className="skip-link" href="#main-content">
         {copy[locale].common.skipToContent}
       </a>
-      <SiteHeader locale={locale} />
+      <SiteHeader locale={locale} common={copy[locale].common} nav={copy[locale].nav} />
       <main id="main-content" className="studio-interior">{children}</main>
       <SiteFooter locale={locale} />
       <MotionEnhancements />

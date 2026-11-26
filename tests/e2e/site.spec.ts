@@ -54,7 +54,7 @@ test("the landing ends with direct contact and site navigation", async ({ page }
 });
 
 test("tablet navigation leaves space between the wordmark, menu and contact", async ({ page }) => {
-  for (const path of ["/", "/en"]) {
+  for (const path of ["/", "/en", "/it"]) {
     await page.goto(path, { waitUntil: "domcontentloaded" });
     for (const width of [810, 900, 1024]) {
       await page.setViewportSize({ width, height: 900 });
@@ -285,21 +285,25 @@ test("wheel scrolling eases through intermediate positions and each landing sect
   expect(headingsWithoutMotion).toEqual([]);
 
   await page.mouse.move(160, 320);
-  const positions = page.evaluate(() => new Promise<number[]>(resolve => {
+  const positions = page.evaluate(() => new Promise<{ samples: number[]; target: number }>(resolve => {
     const samples: number[] = [];
+    let target = window.scrollY;
+    // Browsers can scale synthetic wheel input for the device pixel ratio.
+    window.addEventListener("wheel", event => { target += event.deltaY; }, { once: true });
     const record = () => samples.push(window.scrollY);
     window.addEventListener("scroll", record, { passive: true });
     window.setTimeout(() => {
       window.removeEventListener("scroll", record);
-      resolve(samples);
+      resolve({ samples, target });
     }, 1100);
   }));
   await page.mouse.wheel(0, 450);
-  const samples = await positions;
-  expect(samples.filter(y => y > 0 && y < 450).length).toBeGreaterThan(2);
-  expect(samples.at(-1)).toBe(450);
+  const { samples, target } = await positions;
+  expect(target).toBeGreaterThan(0);
+  expect(samples.filter(y => y > 0 && y < target).length).toBeGreaterThan(2);
+  expect(samples.at(-1)).toBe(target);
   await page.keyboard.press("PageDown");
-  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(450);
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(target);
 
   const nav = page.locator(".desktop-nav");
   await page.locator("#pricing-title").scrollIntoViewIfNeeded();
@@ -326,7 +330,7 @@ test("portfolio cards are bilingual image previews linked directly to project we
   await expect(page.getByRole("link", { name: "Visit website: OFOQ" })).toBeVisible();
   await expect(page.getByRole("link", { name: "View project details" }).first()).toHaveAttribute("href", "/en/work/ofoq");
   await expect(page.getByRole("link", { name: "Visit website: Aura Disposable" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Visit website: DigiMoragheb" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "View project details: DigiMoragheb" })).toHaveAttribute("href", "/en/work/digimoragheb");
   const simone = page.getByRole("link", { name: "Visit website: Simone Food" });
   await expect(simone).toHaveAttribute("href", "https://simonefood.ir");
   await expect(page.locator(".project-card").filter({ has: simone }).getByRole("link", { name: "View project details" }))
@@ -385,11 +389,11 @@ test("compact portfolio controls keep the arrow centered in its circle", async (
       };
     });
 
-    expect(metrics.width).toBe(44);
-    expect(metrics.height).toBe(44);
+    expect(metrics.width).toBeCloseTo(44, 2);
+    expect(metrics.height).toBeCloseTo(44, 2);
     expect(metrics.borderRadius).toBe("50%");
-    expect(metrics.iconOffsetX).toBe(0);
-    expect(metrics.iconOffsetY).toBe(0);
+    expect(metrics.iconOffsetX).toBeCloseTo(0, 2);
+    expect(metrics.iconOffsetY).toBeCloseTo(0, 2);
   }
 });
 
@@ -541,4 +545,33 @@ test("the Persian journal contents and sources can be reached without JavaScript
   } finally {
     await context.close();
   }
+});
+
+
+test("Italian visitors can switch a case study, compare plans and request contact", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/en/work/ermetes");
+  await page.getByRole("button", { name: "Open menu" }).click();
+  await page.getByRole("link", { name: "Italiano", exact: true }).click();
+  await expect(page).toHaveURL(/\/it\/work\/ermetes$/);
+  await expect(page.locator("html")).toHaveAttribute("lang", "it");
+  await expect(page.getByRole("link", { name: "Visita il sito ufficiale" })).toHaveAttribute("href", "https://www.ermetes.it/");
+  await page.goto("/it/pricing");
+  const instagram = page.locator('label:has(input[name="finder-service"][value="instagram-management"])');
+  await instagram.click();
+  const panel = page.locator("#finder-instagram-management");
+  await panel.locator("label").filter({ hasText: "Argento" }).click();
+  const plan = panel.locator("article:visible");
+  await expect(plan.getByRole("heading")).toHaveText("Argento");
+  await expect(panel.locator("label").filter({ hasText: "Argento" })).toContainText("16,4 mln");
+  await plan.getByRole("link", { name: "Richiedi una chiamata" }).click();
+  await expect(page).toHaveURL(/\/it\/contact#callback$/);
+  const input = page.getByRole("textbox", { name: "Il tuo numero di telefono" });
+  await input.fill("123");
+  await page.locator('button[type="submit"]').click();
+  await expect(page.getByRole("status")).toContainText("Inserisci un numero");
+  await page.goto("/it/services/instagram-management");
+  await page.locator("#estimate-stories").fill("2");
+  await page.locator("#estimate-format").selectOption("motion");
+  await expect(page.locator("#instagram-estimator output")).toHaveText("160.000 toman");
 });

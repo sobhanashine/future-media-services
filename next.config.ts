@@ -3,8 +3,8 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["127.0.0.1"],
   async redirects() {
-    return ["/opengraph-image", "/en/opengraph-image"].map(source => ({
-      source, destination: "/images/fms-social.png", permanent: true,
+    return ["", "/en", "/it"].map(prefix => ({
+      source: prefix + "/opengraph-image", destination: "/images/fms-social" + prefix.replace("/", "-") + ".png", permanent: true,
     }));
   },
   experimental: {

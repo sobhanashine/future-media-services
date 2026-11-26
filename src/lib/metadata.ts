@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import type { Locale } from "@/content/site";
-import { localePath } from "@/content/site";
+import { localePath, type Locale } from "@/content/locales";
 
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://futuremservices.ir";
 
@@ -12,7 +11,7 @@ export function createMetadata(
 ): Metadata {
   const canonicalPath = localePath(locale, path);
   const canonical = new URL(canonicalPath, siteUrl).toString();
-  const socialImage = new URL("/images/fms-social.png", siteUrl).toString();
+  const socialImage = new URL(locale === "fa" ? "/images/fms-social.png" : "/images/fms-social-" + locale + ".png", siteUrl).toString();
 
   return {
     title,
@@ -23,12 +22,13 @@ export function createMetadata(
       languages: {
         fa: new URL(localePath("fa", path), siteUrl).toString(),
         en: new URL(localePath("en", path), siteUrl).toString(),
+        it: new URL(localePath("it", path), siteUrl).toString(),
         "x-default": new URL(localePath("fa", path), siteUrl).toString(),
       },
     },
     openGraph: {
       type: "website",
-      locale: locale === "fa" ? "fa_IR" : "en_GB",
+      locale: { fa: "fa_IR", en: "en_GB", it: "it_IT" }[locale],
       title,
       description,
       url: canonical,
@@ -97,7 +97,7 @@ export function siteJsonLd(locale: Locale) {
         "@id": `${siteUrl}/#website`,
         name: "Future Media Services",
         url: siteUrl,
-        inLanguage: locale === "fa" ? "fa-IR" : "en",
+        inLanguage: locale === "fa" ? "fa-IR" : locale,
         publisher: { "@id": `${siteUrl}/#organization` },
       },
     ],

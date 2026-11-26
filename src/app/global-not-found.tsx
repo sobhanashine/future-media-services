@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "صفحه پیدا نشد | Future Me
 export default function GlobalNotFound() {
   return <html lang="fa" dir="rtl">
     <body className={`${s.document} ${studioLight.className}`}>
-      <main><NotFoundView locale="fa" bilingual /></main>
+      <main><NotFoundView locale="fa" showLanguageLinks /></main>
     </body>
   </html>;
 }

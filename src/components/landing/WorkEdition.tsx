@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { landingCopy } from "@/content/landing";
-import { findProject } from "@/content/projects";
+import { findProject, projectTechnologies } from "@/content/projects";
 import { localePath, type Locale } from "@/content/site";
 import { Icon } from "./StudioVisuals";
 import ofoqPhoto from "./art/ofoq-ductwork.webp";
@@ -9,16 +9,16 @@ import simonePhoto from "./art/simone-still-life.webp";
 import ermetesPhoto from "./art/ermetes-trento.webp";
 import s from "./Landing.module.css";
 
-const selections = [
-  ["ofoq", ofoqPhoto],
-  ["simone-food", simonePhoto],
-  ["ermetes", ermetesPhoto],
-] as const;
+const photos = { ofoq: ofoqPhoto, "simone-food": simonePhoto, ermetes: ermetesPhoto };
+const defaultOrder = ["ofoq", "simone-food", "ermetes"] as const;
+const italianOrder = ["ermetes", "ofoq", "simone-food"] as const;
 
 export function WorkEdition({ locale }: { locale: Locale }) {
   const t = landingCopy[locale];
+  const order = locale === "it" ? italianOrder : defaultOrder;
   return <div className={s.cases}>
-    {selections.map(([slug, art]) => {
+    {order.map(slug => {
+      const art = photos[slug];
       const project = findProject(slug);
       if (!project?.images) return null;
       const { title } = project.copy[locale];
@@ -27,7 +27,7 @@ export function WorkEdition({ locale }: { locale: Locale }) {
         <div className={s.caseText}>
           <span className={s.caseCategory}>{t.workNames[slug]}</span>
           <h3><Link href={url}>{title}</Link></h3>
-          <ul>{project.technologies.slice(0,3).map(item => <li key={item}><span aria-hidden="true">✓</span><bdi>{item}</bdi></li>)}</ul>
+          <ul>{projectTechnologies(project, locale).slice(0,3).map(item => <li key={item}><span aria-hidden="true">✓</span><bdi>{item}</bdi></li>)}</ul>
           <div className={s.caseLinks}>
             <Link href={url} aria-label={t.detail + " — " + title}>{t.detail}</Link>
             <a href={project.url} target="_blank" rel="noreferrer" aria-label={t.visit + " — " + title}>{t.visit}<Icon name="share" /></a>

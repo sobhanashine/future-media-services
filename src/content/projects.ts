@@ -82,6 +82,22 @@ export const projects: Project[] = [
         ],
         sourceNote: "This project is documented and maintained in Future Media Services project records.",
       },
+      it: {
+        title: "OFOQ",
+        descriptor: "Una piattaforma editoriale in tre lingue",
+        summary: "Un sito di ingegneria in persiano, inglese e arabo. La redazione pubblica da WordPress e Next.js presenta i contenuti con il verso di lettura corretto per ogni lingua.",
+        role: "Architettura headless e sviluppo dell’interfaccia",
+        imageAlt: "La home di OFOQ su computer, tablet e telefono",
+        challenge: "La redazione voleva continuare a usare WordPress, con più controllo sulla velocità, sull’HTML e sulla struttura multilingue del sito pubblico.",
+        approach: "Abbiamo collegato WordPress a Next.js tramite WPGraphQL. Quando la redazione pubblica una modifica, un webhook aggiorna le pagine interessate.",
+        highlights: [
+          "Generazione statica e aggiornamento mirato delle pagine",
+          "Percorsi in persiano, inglese e arabo con supporto RTL",
+          "Metadati Yoast integrati nella Metadata API e nei dati JSON-LD",
+          "Interfaccia indipendente per gestire prestazioni e HTML",
+        ],
+        sourceNote: "Il progetto è documentato negli archivi di Future Media Services.",
+      },
     },
   },
   {
@@ -130,13 +146,29 @@ export const projects: Project[] = [
         ],
         sourceNote: "This project is documented and maintained in Future Media Services project records.",
       },
+      it: {
+        title: "Aura Disposable",
+        descriptor: "Negozio online e verifica di autenticità",
+        summary: "Una vetrina digitale con portale per i rivenditori e verifica dei prodotti tramite un codice univoco.",
+        role: "Responsabilità dello sviluppo web",
+        imageAlt: "Il negozio Aura Disposable su tre dimensioni di schermo",
+        challenge: "Il marchio aveva bisogno di presentare il catalogo al pubblico, gestire i rivenditori e permettere al cliente di verificare un prodotto.",
+        approach: "L’interfaccia usa Next.js. Supabase gestisce dati e archiviazione. Il cliente può inserire il codice del prodotto direttamente sul sito.",
+        highlights: [
+          "Vetrina responsive per consultare il catalogo",
+          "Pannello amministrativo basato su Supabase",
+          "Verifica di autenticità tramite codice univoco",
+          "Navigazione per linee di prodotto Indica, Sativa e Hybrid",
+        ],
+        sourceNote: "Il progetto è documentato negli archivi di Future Media Services.",
+      },
     },
   },
   {
     slug: "digimoragheb",
     url: "https://digimoragheb.com",
     domain: "digimoragheb.com",
-    available: true,
+    available: false,
     featured: true,
     images: {
       desktop: "/projects/digimoragheb-desktop.webp",
@@ -178,6 +210,22 @@ export const projects: Project[] = [
         ],
         sourceNote: "This project is documented and maintained in Future Media Services project records.",
       },
+      it: {
+        title: "DigiMoragheb",
+        descriptor: "Prenotazione di visite e consulti online",
+        summary: "Piattaforma sanitaria con prenotazione di appuntamenti, gestione dei profili e chat in tempo reale tra paziente e medico.",
+        role: "Sviluppo full stack e comunicazioni in tempo reale",
+        imageAlt: "La piattaforma DigiMoragheb su desktop, tablet e mobile",
+        challenge: "Il paziente doveva poter trovare un medico, fissare una visita e avviare una conversazione nello stesso percorso.",
+        approach: "L’interfaccia in Vue.js comunica con servizi Node.js ed Express. La chat usa WebSocket e PostgreSQL conserva i dati di utenti e appuntamenti.",
+        highlights: [
+          "Chat in tempo reale tra paziente e medico",
+          "API per registrazione, profili e appuntamenti",
+          "Modello dati per utenti e prenotazioni",
+          "Percorsi per ricerca, pacchetti di assistenza e supporto",
+        ],
+        sourceNote: "Il progetto è documentato negli archivi di Future Media Services.",
+      },
     },
   },
   {
@@ -195,7 +243,7 @@ export const projects: Project[] = [
     technologies: ["TypeScript", "Responsive UI", "CMS", "Service calendar"],
     copy: {
       fa: {
-        title: "Ermetes",
+        title: "ERMETES",
         descriptor: "وب‌سایت خدماتی و پنل‌های مدیریت عملیات",
         summary: "طراحی و توسعه تجربه وب Ermetes برای معرفی خدمات، دریافت درخواست و مدیریت کارها؛ همراه با تقویم خدمات، پنل تعاونی و مدیریت پرسنل.",
         role: "طراحی تجربه کاربر و توسعه سایت و پنل‌ها",
@@ -211,9 +259,9 @@ export const projects: Project[] = [
         sourceNote: "این پروژه با تأیید مالک در رکورد Future Media Services قرار گرفته است. تصاویر از دموی عمومی بازبینی ثبت شده‌اند؛ لینک پروژه به وب‌سایت اصلی هدایت می‌کند.",
       },
       en: {
-        title: "Ermetes",
+        title: "ERMETES",
         descriptor: "A service website and operations dashboards",
-        summary: "A web experience for presenting Ermetes services, receiving enquiries and managing work, with a service calendar and cooperative and personnel dashboards.",
+        summary: "We designed the public website for ERMETES and built dashboards for the cooperative to manage enquiries, schedule building services and organise personnel records.",
         role: "User experience design, website and dashboard development",
         imageAlt: "Three responsive views of the Ermetes service website review demo",
         challenge: "Service information and customer enquiries needed a clear public experience, while the internal team needed consistent tools for jobs, scheduling and personnel information.",
@@ -224,7 +272,23 @@ export const projects: Project[] = [
           "Services, jobs and calendar management dashboard",
           "Cooperative, personnel and document dashboard with editable CMS content",
         ],
-        sourceNote: "This project is included in Future Media Services records with owner approval. Captures show the public review demo; the project link opens the main website.",
+        sourceNote: "This project is included in Future Media Services records with owner approval. The screenshots show the review demo. The link opens the official ERMETES website.",
+      },
+      it: {
+        title: "ERMETES",
+        descriptor: "Sito e strumenti operativi per i servizi edili",
+        summary: "Per ERMETES abbiamo progettato il sito di presentazione dei servizi e sviluppato i pannelli che aiutano la cooperativa a gestire richieste, interventi e personale.",
+        role: "Progettazione dell’esperienza utente e sviluppo di sito e pannelli",
+        imageAlt: "La demo di revisione del sito ERMETES su computer, tablet e telefono",
+        challenge: "I clienti dovevano trovare il servizio e il contatto giusto. La cooperativa aveva bisogno di organizzare interventi, scadenze e documenti del personale.",
+        approach: "Il sito pubblico presenta attività e zone servite. I pannelli riservati riuniscono calendario, attività della cooperativa e informazioni sul personale.",
+        highlights: [
+          "Presentazione dei servizi e delle zone coperte",
+          "Moduli di richiesta e contatti diretti",
+          "Calendario per servizi e interventi",
+          "Gestione di personale, documenti e contenuti modificabili dal CMS",
+        ],
+        sourceNote: "Pubblicato con l’autorizzazione del titolare. Le immagini mostrano la demo di revisione. Il pulsante apre il sito ufficiale di ERMETES.",
       },
     },
   },
@@ -275,6 +339,22 @@ export const projects: Project[] = [
         ],
         sourceNote: "This project is included in Future Media Services records with owner approval. Captures show a local preview of the storefront code with sample data, not actual prices or stock. HTTPS access to the public website could not be verified when the images were captured.",
       },
+      it: {
+        title: "Nafis Teb",
+        descriptor: "E-commerce persiano di attrezzature mediche",
+        summary: "Un catalogo di dispositivi medici con ricerca, categorie e carrello persistente, collegato agli strumenti di gestione di prodotti, ordini e pagamenti.",
+        role: "Design e sviluppo del negozio e degli strumenti di gestione",
+        imageAlt: "Il catalogo persiano di Nafis Teb su computer, tablet e telefono",
+        challenge: "Il cliente doveva poter trovare e confrontare le attrezzature, mentre il negozio doveva mantenere prezzi e disponibilità aggiornati.",
+        approach: "L’interfaccia RTL in Next.js usa Drizzle per collegarsi a PostgreSQL. Catalogo, flusso d’acquisto e strumenti di gestione sono stati sviluppati insieme.",
+        highlights: [
+          "Ricerca, categorie e schede prodotto in persiano",
+          "Carrello persistente con verifica di prezzi e scorte sul server",
+          "Gestione di prodotti e ordini con integrazione ZarinPal",
+          "Design responsive e dati strutturati per prodotti e attività",
+        ],
+        sourceNote: "Scheda pubblicata con l’autorizzazione del titolare. Le schermate provengono da un’anteprima locale con dati di esempio. Per prezzi e disponibilità aggiornati consulta il negozio.",
+      },
     },
   },
   {
@@ -323,6 +403,22 @@ export const projects: Project[] = [
           "Supabase persistence and recoverable deletion through Trash",
         ],
         sourceNote: "This project is included in Future Media Services records with owner approval. The public catalogue is a demo; dashboard data persists in Supabase, and the checkout preview does not place an order or take payment.",
+      },
+      it: {
+        title: "Karats Diamond",
+        descriptor: "Gioielleria online e gestione del catalogo",
+        summary: "Una vetrina essenziale per esplorare i gioielli, confrontare le caratteristiche e scegliere le varianti. Il catalogo pubblico è dimostrativo.",
+        role: "Design e sviluppo del negozio e del pannello prodotti",
+        imageAlt: "La vetrina di Karats Diamond su tre dispositivi",
+        challenge: "La cura delle immagini doveva convivere con scelte di misura chiare e con una gestione del catalogo che permettesse di recuperare i prodotti rimossi.",
+        approach: "La vetrina in Next.js usa un catalogo dimostrativo. Un pannello separato in Supabase gestisce prodotti, immagini, modifiche e ripristino dal cestino.",
+        highlights: [
+          "Vetrina responsive per la gioielleria",
+          "Varianti dei prodotti e carrello persistente",
+          "Pannello prodotti con ricerca, filtri e caricamento immagini",
+          "Archiviazione su Supabase e ripristino dal cestino",
+        ],
+        sourceNote: "Scheda pubblicata con l’autorizzazione del titolare. Il checkout pubblico è dimostrativo. I dati del pannello di gestione sono conservati in Supabase.",
       },
     },
   },
@@ -376,6 +472,22 @@ export const projects: Project[] = [
         ],
         sourceNote: "This project is documented in Future Media Services project records. The three device captures show the public Simone Food homepage.",
       },
+      it: {
+        title: "Simone Food",
+        descriptor: "Negozio di biscotti in persiano",
+        summary: "Sito e catalogo per presentare il marchio Simone Food, i gusti e le confezioni da sei biscotti, con informazioni su ordini e consegne.",
+        role: "Design e sviluppo del sito e del catalogo",
+        imageAlt: "La home di Simone Food su computer, tablet e telefono",
+        challenge: "Da telefono, il cliente doveva poter confrontare i gusti, vedere cosa contiene ogni confezione e trovare le informazioni sulla consegna.",
+        approach: "La palette gialla del marchio e le fotografie dei biscotti guidano l’esplorazione. Next.js e TypeScript collegano il catalogo alle schede delle confezioni e alle domande frequenti.",
+        highlights: [
+          "Tipografia persiana e impaginazione da destra a sinistra",
+          "Catalogo delle confezioni da sei con gusti e contenuto",
+          "Informazioni su ordini, consegna e conservazione",
+          "Dati strutturati per il sito e il catalogo",
+        ],
+        sourceNote: "Progetto documentato da Future Media Services. Le tre schermate mostrano la home pubblica di Simone Food.",
+      },
     },
   },
   {
@@ -424,6 +536,22 @@ export const projects: Project[] = [
         ],
         sourceNote: "This project is listed in the Future Media Services archive; its domain and public website experience were reviewed to maintain this record.",
       },
+      it: {
+        title: "Kashiland",
+        descriptor: "E-commerce di finiture e materiali edili",
+        summary: "Cataloghi di piastrelle, gres, sanitari e finiture con percorsi per marchio, consulenza e acquisto online.",
+        role: "Progetto in archivio. Il dettaglio del contributo non è pubblicato.",
+        imageAlt: "Il negozio specializzato Kashiland su più dispositivi",
+        challenge: "La scelta dei materiali richiede confronto fra specifiche e marchi, consigli tecnici e informazioni sullo showroom.",
+        approach: "Il sito affianca ai cataloghi le pagine dei marchi, le guide e le informazioni sulla consulenza, accompagnando il visitatore fino all’acquisto.",
+        highlights: [
+          "Categorie per piastrelle, gres, accessori e sanitari",
+          "Cataloghi per marchio e prodotti più venduti",
+          "Guide per gli acquisti tecnici",
+          "Consulenza e informazioni sullo showroom",
+        ],
+        sourceNote: "Scheda dell’archivio Future Media Services, basata sul sito pubblico e sulla documentazione disponibile.",
+      },
     },
   },
   {
@@ -465,6 +593,22 @@ export const projects: Project[] = [
           "Ready to expand when verified documentation is supplied",
         ],
         sourceNote: "This project remains in the Future Media Services archive; the live site was unavailable during review, so the record shows only confirmable information.",
+      },
+      it: {
+        title: "Mehrshad Store",
+        descriptor: "Un negozio conservato in archivio",
+        summary: "L’archivio FMS conserva il nome e il dominio del negozio. Il sito pubblico non era disponibile al momento della verifica.",
+        role: "Scheda d’archivio. Ruolo e tecnologie non pubblicati.",
+        imageAlt: "Scheda d’archivio di Mehrshad Store",
+        challenge: "Il sito non era raggiungibile durante la raccolta delle schermate.",
+        approach: "La scheda conserva solo i dati disponibili nell’archivio originale.",
+        highlights: [
+          "Nome e dominio conservati",
+          "Disponibilità del sito segnalata",
+          "Immagini e dettagli tecnici non disponibili",
+          "Scheda aggiornabile se viene fornita documentazione verificabile",
+        ],
+        sourceNote: "L’archivio di Future Media Services conserva il progetto con le informazioni verificabili.",
       },
     },
   },
@@ -518,6 +662,22 @@ export const projects: Project[] = [
         ],
         sourceNote: "This project is listed in the Future Media Services archive; its domain and public website experience were reviewed to maintain this record.",
       },
+      it: {
+        title: "Paytakhte Ketab",
+        descriptor: "Libreria online e materiali didattici",
+        summary: "Libreria per testi scolastici, universitari, di preparazione agli esami e di interesse generale. Offre ricerca, acquisto come ospite e tracciamento dell’ordine.",
+        role: "Progetto in archivio. Il dettaglio del contributo non è pubblicato.",
+        imageAlt: "La libreria Paytakhte Ketab su tre dispositivi",
+        challenge: "Studenti e famiglie devono orientarsi tra classe, materia, editore ed edizione e capire quale libro è disponibile.",
+        approach: "Ricerca, filtri e pagine per classe si collegano ai consigli di lettura, al carrello e al monitoraggio dell’ordine.",
+        highlights: [
+          "Ricerca trasversale nel catalogo",
+          "Percorsi per classe, materia ed editore",
+          "Acquisto come ospite e tracciamento ordini",
+          "Schede di approfondimento e informazioni sulla consegna",
+        ],
+        sourceNote: "Scheda dell’archivio Future Media Services, basata sul sito pubblico e sulla documentazione disponibile.",
+      },
     },
   },
   {
@@ -565,6 +725,22 @@ export const projects: Project[] = [
           "Commerce connected to educational and specialist guidance",
         ],
         sourceNote: "This project is listed in the Future Media Services archive; its domain and public website experience were reviewed to maintain this record.",
+      },
+      it: {
+        title: "Noornegar",
+        descriptor: "Negozio specializzato in foto e video",
+        summary: "E-commerce di fotocamere, obiettivi, luci, audio e accessori, con ricerca, carrello e contenuti di approfondimento.",
+        role: "Progetto in archivio. Il dettaglio del contributo non è pubblicato.",
+        imageAlt: "Il negozio Noornegar su desktop, tablet e mobile",
+        challenge: "Un ampio catalogo tecnico deve consentire sia ai professionisti sia a chi inizia di confrontare modelli e trovare accessori compatibili.",
+        approach: "Il sito organizza i prodotti per tipo di attrezzatura, utilizzo e marchio. Al catalogo affianca materiale usato e contenuti formativi.",
+        highlights: [
+          "Categorie per foto, video, luci, audio e accessori",
+          "Navigazione per marchio e utilizzo",
+          "Ricerca, varianti, disponibilità e carrello",
+          "Guide specialistiche collegate ai prodotti",
+        ],
+        sourceNote: "Scheda dell’archivio Future Media Services, basata sul sito pubblico e sulla documentazione disponibile.",
       },
     },
   },
@@ -618,13 +794,29 @@ export const projects: Project[] = [
         ],
         sourceNote: "This project is listed in the Future Media Services archive; its domain and public website experience were reviewed to maintain this record.",
       },
+      it: {
+        title: "Jaheshino",
+        descriptor: "Piattaforma di corsi di fisica",
+        summary: "Un portale didattico con corsi selezionati, acquisto online, area studenti e informazioni su accesso offline, test e rate.",
+        role: "Progetto in archivio. Il dettaglio del contributo non è pubblicato.",
+        imageAlt: "La piattaforma didattica Jaheshino su più dispositivi",
+        challenge: "Gli studenti devono confrontare corsi, modalità di accesso, programmi e pagamenti prima di iniziare le lezioni.",
+        approach: "Le pagine dei corsi collegano gli obiettivi didattici alle modalità di acquisto, all’area studenti e ai contenuti di approfondimento.",
+        highlights: [
+          "Corsi organizzati per obiettivi didattici",
+          "Indicazioni per accesso offline, test online e pagamenti a rate",
+          "Acquisto del corso collegato all’area studenti",
+          "Materiali didattici e guide per la scelta",
+        ],
+        sourceNote: "Scheda dell’archivio Future Media Services, basata sul sito pubblico e sulla documentazione disponibile.",
+      },
     },
   },
 ];
 
 export const featuredProjects = projects.filter((project) => project.featured);
 export const additionalProjects = projects.filter((project) => !project.featured);
-export const portfolioProjects = projects.filter((project) => project.available && project.images);
+export const portfolioProjects = projects.filter((project) => project.images);
 export const projectSlugs = projects.map((project) => project.slug);
 
 export function projectCopy(project: Project, locale: Locale) {
@@ -633,4 +825,15 @@ export function projectCopy(project: Project, locale: Locale) {
 
 export function findProject(slug: string) {
   return projects.find((project) => project.slug === slug);
+}
+
+const italianTechnologyLabels: Record<string, string> = {
+  "Responsive UI": "Interfaccia responsive", "Service calendar": "Calendario interventi", Commerce: "E-commerce",
+  "Product catalogue": "Catalogo prodotti", "Editorial content": "Contenuti editoriali", "Archive record": "Archivio",
+  "Search & filtering": "Ricerca e filtri", "Order tracking": "Tracciamento ordini", "Large catalogue": "Catalogo esteso",
+  "Course commerce": "Vendita di corsi", "Student panel": "Area studenti", "Educational content": "Contenuti didattici",
+};
+
+export function projectTechnologies(project: Project, locale: Locale) {
+  return locale === "it" ? project.technologies.map(item => italianTechnologyLabels[item] ?? item) : project.technologies;
 }

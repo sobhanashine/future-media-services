@@ -1,3 +1,4 @@
+import { interfaceCopy } from "@/content/interface";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
 import { BrandIdentity } from "@/components/layout/BrandIdentity";
@@ -29,9 +30,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={
-              locale === "fa"
-                ? "صفحه اینستاگرام Future Media Services"
-                : "Future Media Services on Instagram"
+              interfaceCopy[locale].instagram
             }
           >
             <span>Instagram</span>
@@ -52,9 +51,9 @@ export function SiteFooter({ locale }: { locale: Locale }) {
           </section>
           <section>
             <h2>FMS</h2>
-            <Link href={localePath(locale, "/pricing")}>{locale === "fa" ? "تعرفه‌ها" : "Pricing"}</Link>
+            <Link href={localePath(locale, "/pricing")}>{interfaceCopy[locale].pricing}</Link>
             <Link href={localePath(locale, "/work")}>{content.nav.work}</Link>
-            <Link href="/blog" hrefLang="fa">{locale === "fa" ? content.nav.blog : "Blog (FA)"}</Link>
+            <Link href={localePath(locale, "/blog")}>{content.nav.blog}</Link>
             <Link href={localePath(locale, "/about")}>{content.nav.about}</Link>
             <Link href={localePath(locale, "/faq")}>{content.nav.faq}</Link>
             <Link href={localePath(locale, "/contact")}>{content.nav.contact}</Link>

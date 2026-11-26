@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ProjectDevice } from "@/components/pages/ProjectDevice";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
-import { projects, type Project } from "@/content/projects";
+import { projects, projectTechnologies, type Project } from "@/content/projects";
 import { formatIndex, localePath, type Locale } from "@/content/site";
 import s from "./ServicePortfolio.module.css";
 
@@ -54,6 +54,14 @@ const labels = {
     responsive: "Three real views of the same website: laptop, tablet and mobile.",
     evidence: "Future Media Services record",
     next: "Next project",
+  },
+  it: {
+    back: "Tutti i progetti", live: "Visita il sito ufficiale", demo: "Apri la demo", website: "Visita il sito",
+    unavailable: "Sito pubblico al momento non disponibile", overview: "Il progetto", challenge: "L’esigenza", approach: "Come abbiamo lavorato",
+    highlights: "Funzionalità principali", callback: "Parliamo di un progetto simile", webDevelopment: "Progettazione e sviluppo web",
+    role: "Il nostro ruolo", status: "Stato", statusLive: "Online", statusDemo: "Demo online", statusPreview: "Anteprima del design",
+    statusArchive: "Archiviato o non disponibile", focus: "Tecnologie e ambiti", domain: "Dominio",
+    responsive: "Lo stesso sito su computer, tablet e telefono.", evidence: "Documentazione del progetto", next: "Progetto successivo",
   },
 } satisfies Record<Locale, Record<string, string>>;
 
@@ -115,7 +123,7 @@ export function ProjectDetailPage({ project, locale }: { project: Project; local
             </div>
             <div>
               <dt>{text.focus}</dt>
-              <dd>{project.technologies.join(" · ")}</dd>
+              <dd>{projectTechnologies(project, locale).join(" · ")}</dd>
             </div>
             <div>
               <dt>{text.domain}</dt>

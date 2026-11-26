@@ -1,5 +1,6 @@
 "use client";
 
+import { locales, localePath } from "@/content/locales";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { enablePageMotion, observeReveals } from "./viewportReveals";
@@ -16,7 +17,7 @@ const reveals = {
 export function MotionEnhancements() {
   const pathname = usePathname();
   useEffect(() => {
-    if (pathname === "/" || pathname === "/en") return;
+    if (locales.some(locale => localePath(locale) === pathname)) return;
     const main = document.getElementById("main-content");
     if (!main) return;
     return enablePageMotion(main, () => {

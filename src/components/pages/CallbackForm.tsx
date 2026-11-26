@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRef, useState, type FormEvent } from "react";
 import { callbackCopy, normalizeCallbackPhone, type CallbackStatus } from "@/lib/callback";
-import { localePath, type Locale } from "@/content/site";
+import { localePath, type Locale } from "@/content/locales";
 import s from "./CallbackForm.module.css";
 
 export function CallbackForm({ locale, showRedirectStatus = false }: { locale: Locale; showRedirectStatus?: boolean }) {
@@ -17,7 +17,7 @@ export function CallbackForm({ locale, showRedirectStatus = false }: { locale: L
     if (submitting.current) return;
     const form = event.currentTarget;
     const data = new FormData(form);
-    if (!normalizeCallbackPhone(String(data.get("phone") ?? ""))) {
+    if (!normalizeCallbackPhone(String(data.get("phone") ?? ""), locale)) {
       setStatus("invalid");
       phoneInput.current?.focus();
       return;

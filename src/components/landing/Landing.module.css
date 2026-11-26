@@ -118,7 +118,7 @@
 .caseLinks { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 14px; }
 .caseLinks a,.story > span { display: inline-flex; min-height: 40px; align-items: center; gap: 6px; color: #e9e5e7; font-size: 13px; }.caseLinks a:hover,.textButton:hover,.story:hover > span{text-decoration:underline;text-underline-offset:.3em;}
 .caseArt,.caseScreen { position: relative; display: grid; min-width: 0; min-height: 140px; place-items: center; overflow: hidden; border-radius: 9px; background:#17171a; }
-.caseArt img { object-fit: cover; }.caseScreen { padding: 12px; background:#192126; }.case:nth-child(2) .caseScreen {background:#e9ba45;}.case:nth-child(3) .caseScreen {background:#d7d5ce;}
+.caseArt img { object-fit: cover; }.caseScreen { padding: 12px; background:#192126; }.case[data-project="simone-food"] .caseScreen {background:#e9ba45;}.case[data-project="ermetes"] .caseScreen {background:#d7d5ce;}
 .caseScreen img { display:block; width:100%;height:auto;border-radius:3px;box-shadow:0 5px 22px #0004; }
 .support { border-top: 1px solid #161616; }
 .fan { direction: ltr; display: flex; justify-content: center; align-items:center; width: min(740px,88%); min-height: clamp(110px,17vw,225px); margin: 38px auto 18px; }

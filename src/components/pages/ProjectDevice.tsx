@@ -1,3 +1,4 @@
+import { interfaceCopy } from "@/content/interface";
 import Image from "next/image";
 import type { Project } from "@/content/projects";
 import type { Locale } from "@/content/site";
@@ -17,7 +18,7 @@ export function ProjectDevice({
     return (
       <div className="device-mockup device-mockup--archive" role="img" aria-label={content.imageAlt}>
         <div>
-          <span>{locale === "fa" ? "آرشیو پروژه" : "Project archive"}</span>
+          <span>{interfaceCopy[locale].archive}</span>
           <strong>{content.title}</strong>
           <small>{project.domain}</small>
         </div>

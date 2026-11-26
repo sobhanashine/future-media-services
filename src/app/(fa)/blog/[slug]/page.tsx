@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/layout/JsonLd";
 import { PersianBlogPostPage } from "@/components/pages/PersianBlogPostPage";
 import { findPersianBlogPost, persianBlogSlugs } from "@/content/blog";
-import { createPersianOnlyMetadata, siteUrl } from "@/lib/metadata";
+import { hasGuideEdition } from "@/content/guide-slugs";
+import { createMetadata, createPersianOnlyMetadata, siteUrl } from "@/lib/metadata";
 
 export function generateStaticParams() {
   return persianBlogSlugs.map((slug) => ({ slug }));
@@ -13,7 +14,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = findPersianBlogPost(slug);
   if (!post) return {};
-  const metadata = createPersianOnlyMetadata(`${post.title} | FMS`, post.excerpt, `/blog/${post.slug}`);
+  const metadata = hasGuideEdition(post.slug)
+    ? createMetadata("fa", post.title + " | FMS", post.excerpt, "/blog/" + post.slug)
+    : createPersianOnlyMetadata(`${post.title} | FMS`, post.excerpt, `/blog/${post.slug}`);
   return {
     ...metadata,
     openGraph: {

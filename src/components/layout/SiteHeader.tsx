@@ -1,32 +1,33 @@
 "use client";
 
+import { interfaceCopy } from "@/content/interface";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { BrandIdentity } from "@/components/layout/BrandIdentity";
 import { ArrowIcon } from "@/components/ui/ArrowIcon";
-import { copy, localePath, switchLocalePath, type Locale } from "@/content/site";
+import type { SiteCopy } from "@/content/site";
+import { languageNames, localePath, locales, switchLocalePath, type Locale } from "@/content/locales";
 import { callbackLabel } from "@/lib/contact";
 import s from "./Navigation.module.css";
 
-export function SiteHeader({ locale }: { locale: Locale }) {
-  const { common, nav, languageSwitch } = copy[locale];
+export function SiteHeader({ locale, common, nav }: { locale: Locale; common: SiteCopy["common"]; nav: SiteCopy["nav"] }) {
   const pathname = usePathname();
   const dialog = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
-  const fa = locale === "fa";
   const home = localePath(locale);
   const contact = localePath(locale, "/contact");
-  const alternate = switchLocalePath(locale, pathname);
+  const alternatives = locales.filter(target => target !== locale);
+  const languageLabel = { fa: common.switchToPersianAria, en: common.switchToEnglishAria, it: "Passa all’italiano" };
   const pages = [
     { label: nav.services, href: localePath(locale, "/services") },
     { label: nav.work, href: localePath(locale, "/work") },
-    { label: fa ? nav.blog : "Blog (FA)", href: "/blog", language: "fa" },
-    { label: fa ? "تعرفه‌ها" : "Pricing", href: localePath(locale, "/pricing") },
+    { label: nav.blog, href: localePath(locale, "/blog"), language: locale },
+    { label: interfaceCopy[locale].pricing, href: localePath(locale, "/pricing") },
     { label: nav.about, href: localePath(locale, "/about") },
     { label: nav.contact, href: contact },
   ];
-  const mobilePages = [{ label: fa ? "خانه" : "Home", href: home, language: undefined }, ...pages];
+  const mobilePages = [{ label: interfaceCopy[locale].home, href: home, language: undefined }, ...pages];
   const isCurrent = (href: string) => pathname === href || (href !== home && pathname.startsWith(href + "/"));
   const close = () => dialog.current?.close();
 
@@ -56,8 +57,8 @@ export function SiteHeader({ locale }: { locale: Locale }) {
           ))}
         </nav>
         <div className="header-actions">
-          <a href={alternate} className="language-switch" hrefLang={fa ? "en" : "fa"}
-            aria-label={fa ? common.switchToEnglishAria : common.switchToPersianAria}>{languageSwitch}</a>
+          {alternatives.map(target => <a key={target} className="language-switch" href={switchLocalePath(target, pathname)}
+            hrefLang={target} lang={target} aria-label={languageLabel[target]}>{target === "fa" ? "فا" : target.toUpperCase()}</a>)}
           <Link href={contact + "#callback"} className="button button--compact header-cta">{callbackLabel[locale]}</Link>
           <button type="button" className="menu-toggle" aria-label={nav.menu} aria-haspopup="dialog"
             aria-expanded={open} aria-controls="mobile-menu"
@@ -84,7 +85,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
           </nav>
           <div className={s.utilities}>
             <Link href={localePath(locale, "/faq")} onClick={close}>{nav.faq}</Link>
-            <a href={alternate} hrefLang={fa ? "en" : "fa"} onClick={close}>{fa ? "English" : "فارسی"}</a>
+            {alternatives.map(target => <a key={target} href={switchLocalePath(target, pathname)} hrefLang={target} lang={target} onClick={close}>{languageNames[target]}</a>)}
           </div>
           <Link href={contact + "#callback"} className={s.callback} onClick={close}>{callbackLabel[locale]}<ArrowIcon /></Link>
         </div>

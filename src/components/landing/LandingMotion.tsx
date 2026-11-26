@@ -14,7 +14,7 @@ const revealGroups = {
     `.${layout.callout} > div:first-child > :not(h2)`,
   ].join(", "),
   card: [
-    layout.featureCard, layout.microCard, layout.serviceCard, layout.story, layout.caseText,
+    layout.featureCard, layout.microCard, layout.serviceCard, layout.story,
   ].map(name => `.${name}`).concat([
     `.${layout.stepGrid} > article`, `.${layout.socialRail} > a`,
   ]).join(", "),
