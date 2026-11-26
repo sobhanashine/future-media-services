@@ -260,8 +260,8 @@ export const projects: Project[] = [
       },
       en: {
         title: "ERMETES",
-        descriptor: "A service website and operations dashboards",
-        summary: "We designed the public website for ERMETES and built dashboards for the cooperative to manage enquiries, schedule building services and organise personnel records.",
+        descriptor: "A website and staff dashboards for a cooperative in Trento",
+        summary: "ERMETES provides cleaning, property maintenance and car wash services in Trento, Italy. We designed its public website and built dashboards for service requests, scheduling and personnel records.",
         role: "User experience design, website and dashboard development",
         imageAlt: "Three responsive views of the Ermetes service website review demo",
         challenge: "Service information and customer enquiries needed a clear public experience, while the internal team needed consistent tools for jobs, scheduling and personnel information.",
@@ -276,8 +276,8 @@ export const projects: Project[] = [
       },
       it: {
         title: "ERMETES",
-        descriptor: "Sito e strumenti operativi per i servizi edili",
-        summary: "Per ERMETES abbiamo progettato il sito di presentazione dei servizi e sviluppato i pannelli che aiutano la cooperativa a gestire richieste, interventi e personale.",
+        descriptor: "Sito e pannelli di gestione per una cooperativa di Trento",
+        summary: "ERMETES si occupa di pulizie, manutenzioni e autolavaggio a Trento. Abbiamo progettato il sito pubblico della cooperativa e sviluppato i pannelli per gestire richieste, interventi e personale.",
         role: "Progettazione dell’esperienza utente e sviluppo di sito e pannelli",
         imageAlt: "La demo di revisione del sito ERMETES su computer, tablet e telefono",
         challenge: "I clienti dovevano trovare il servizio e il contatto giusto. La cooperativa aveva bisogno di organizzare interventi, scadenze e documenti del personale.",
