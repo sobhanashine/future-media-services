@@ -8,6 +8,7 @@
 - [English home](https://futuremservices.ir/en): English, left-to-right
 - [Persian services](https://futuremservices.ir/services): Website design/development and Instagram content management
 - [Persian blog](https://futuremservices.ir/blog): Persian guides about website design, SEO and content
+- [Persian blog: tracking Instagram Story links with UTM and Google Analytics](https://futuremservices.ir/blog/instagram-story-link-tracking-utm-ga4)
 - [Persian blog: troubleshooting Google indexing with Search Console URL Inspection](https://futuremservices.ir/blog/google-indexing-troubleshooting-url-inspection)
 - [Persian blog: WordPress Headless content updates and cache diagnosis guide](https://futuremservices.ir/blog/wordpress-headless-content-update-cache-guide)
 - [Persian blog: outsourcing Instagram management, access and handover checklist](https://futuremservices.ir/blog/instagram-management-outsourcing-access-handover-checklist)
