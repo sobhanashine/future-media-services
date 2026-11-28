@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { interfaceCopy } from "@/content/interface";
 import { PlanFinder } from "@/components/landing/PlanFinder";
 import { PageIntro } from "@/components/ui/PageIntro";
@@ -13,5 +14,15 @@ export function PlansPage({ locale }: { locale: Locale }) {
     <section id="pricing" aria-label={landingCopy[locale].comparePlans} className={`container-shell ${s.offers}`}>
       <PlanFinder locale={locale}/>
     </section>
+    {locale === "fa" && (
+      <section className="container-shell service-detail__content" aria-labelledby="website-budget">
+        <h2 id="website-budget">برای طراحی وب‌سایت ارزان از کجا شروع کنیم؟</h2>
+        <div>
+          <p>برای شروع با بودجهٔ محدود، صفحه‌ها و امکانات ضروری را مشخص کنید. برای یک سایت معرفی، معرفی خدمات، نمونه‌کارها و راه تماس نقطهٔ شروع خوبی‌اند. اگر فروش آنلاین، رزرو یا زبان دوم فعلاً ضروری نیست، آن را برای مرحلهٔ بعد بگذارید.</p>
+          <p>در مقایسهٔ پیشنهادها، هزینهٔ دامنه، هاست، امکانات اضافه و شرایط تمدید پشتیبانی را هم بررسی کنید.</p>
+          <Link className="text-link" href="/services/web-development/personal-website">جزئیات پلن طراحی سایت شخصی</Link>
+        </div>
+      </section>
+    )}
   </div>;
 }
