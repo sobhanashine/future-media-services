@@ -46,9 +46,13 @@ export function ServiceSpecialtyPage({ locale, specialty }: { locale: Locale; sp
         </section>
         <section data-reveal><h2>{interfaceCopy[locale].before}</h2>
           <p>{t.preparation}</p>
+          {t.orderComparison && <p>{t.orderComparison}</p>}
           {plan?.paymentNote && <p>{plan.paymentNote}</p>}
           <div className={s.relatedLinks}>
             <Link href={parentPath + (plan ? "#service-pricing-title" : "#instagram-individual-rates")}>{interfaceCopy[locale].fullRates}<ArrowIcon /></Link>
+            {t.preparationLinks?.map(({ href, label }) => (
+              <Link key={href} href={localePath(locale, href)}>{label}<ArrowIcon /></Link>
+            ))}
             {specialty.project && <Link href={localePath(locale, "/work/" + specialty.project.slug)}>{interfaceCopy[locale].viewProject} · {specialty.project.name}<ArrowIcon /></Link>}
           </div>
         </section>
