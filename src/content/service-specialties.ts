@@ -2,6 +2,8 @@ type SpecialtyCopy = {
   title: string;
   summary: string;
   preparation: string;
+  orderComparison?: string;
+  preparationLinks?: readonly { href: string; label: string }[];
   deliverables?: readonly string[];
 };
 
@@ -19,7 +21,15 @@ type Specialty = {
 export const serviceSpecialties: readonly Specialty[] = [
   {
     parent: "web-development", slug: "corporate-website", art: 0, websitePlan: 1, project: { slug: "ofoq", name: "OFOQ" },
-    fa: { title: "طراحی سایت شرکتی", summary: "مشتری بتواند شرکتتان را بشناسد، خدمت موردنیازش را پیدا کند و نمونه‌ای از کارتان را ببیند. صفحه‌های معرفی، خدمات و نمونه‌کار را حول همین مسیر طراحی می‌کنیم.", preparation: "فهرست خدمات، چند پروژهٔ قابل‌نمایش و زبان‌هایی که مشتریانتان استفاده می‌کنند، نقطهٔ شروع طراحی‌اند." },
+    fa: {
+      title: "طراحی سایت شرکتی",
+      summary: "مشتری بتواند شرکتتان را بشناسد، خدمت موردنیازش را پیدا کند و نمونه‌ای از کارتان را ببیند. صفحه‌های معرفی، خدمات و نمونه‌کار را حول همین مسیر طراحی می‌کنیم.",
+      preparation: "فهرست خدمات، چند پروژهٔ قابل‌نمایش و زبان‌هایی که مشتریانتان استفاده می‌کنند، نقطهٔ شروع طراحی‌اند.",
+      preparationLinks: [
+        { href: "/blog/multilingual-corporate-website-guide", label: "راهنمای طراحی سایت شرکتی چندزبانه" },
+        { href: "/blog/corporate-website-contact-form-guide", label: "راهنمای فرم تماس سایت شرکتی" },
+      ],
+    },
     en: { title: "Corporate website design", summary: "Give prospective clients a way to understand your company, find the right service and see your work. We design your company profile, service pages and case studies around that journey.", preparation: "Bring your service list, a few projects you can show and the languages your customers use." },
     it: { title: "Siti web aziendali", summary: "Aiuta chi visita il sito a conoscere l’azienda, trovare il servizio giusto e vedere un progetto simile al suo. Organizziamo presentazione, servizi e casi studio intorno a queste domande.", preparation: "Prepara l’elenco dei servizi, qualche progetto da mostrare e le lingue dei tuoi clienti." },
   },
@@ -37,8 +47,26 @@ export const serviceSpecialties: readonly Specialty[] = [
   },
   {
     parent: "instagram-management", slug: "posts-and-stories", art: 4,
-    fa: { title: "طراحی پست و استوری", summary: "برای معرفی محصول، اطلاع‌رسانی یا کمپین، پست و استوری هماهنگ با رنگ‌ها و لحن برندتان می‌سازیم. استوری را می‌توانید به‌صورت تصویر ثابت یا موشن سفارش دهید.", preparation: "موضوع انتشار، متن و عکس‌های آماده را مشخص کنید. تعداد طرح‌ها و ثابت یا متحرک بودن هر استوری مبنای برآورد است.", deliverables: ["طراحی پست متناسب با محتوای صفحه", "استوری تصویری یا موشن", "خروجی آمادهٔ انتشار در اینستاگرام"] },
-    en: { title: "Instagram posts and stories", summary: "Product launches, announcements and campaigns need a consistent visual language. Commission branded feed posts, still stories or motion stories in the formats your page uses.", preparation: "Share the topic, available copy and imagery. The estimate follows the number of designs and the mix of still and motion stories.", deliverables: ["Feed graphics for your content", "Still or animated stories", "Files prepared for Instagram publishing"] },
+    fa: {
+      title: "طراحی پست و استوری",
+      summary: "برای معرفی محصول، اطلاع‌رسانی یا کمپین، پست و استوری هماهنگ با رنگ‌ها و لحن برندتان می‌سازیم. استوری را می‌توانید به‌صورت تصویر ثابت یا موشن سفارش دهید.",
+      preparation: "موضوع انتشار، متن و عکس‌های آماده را مشخص کنید. تعداد طرح‌ها و ثابت یا متحرک بودن هر استوری مبنای برآورد است.",
+      orderComparison: "برای یک کمپین یا مناسبت، با سفارش تکی طرح‌های آمادهٔ انتشار را تحویل می‌گیرید. اگر انتشار منظم می‌خواهید، پلن ماهانه شامل تقویم محتوا، انتشار طبق برنامه و گزارش ماهانه است.",
+      preparationLinks: [
+        { href: "/services/instagram-management#service-pricing-title", label: "مقایسهٔ پلن‌های ماهانهٔ مدیریت اینستاگرام" },
+      ],
+      deliverables: ["طراحی پست متناسب با محتوای صفحه", "استوری تصویری یا موشن", "خروجی آمادهٔ انتشار در اینستاگرام"],
+    },
+    en: {
+      title: "Instagram posts and stories",
+      summary: "Product launches, announcements and campaigns need a consistent visual language. Commission branded feed posts, still stories or motion stories in the formats your page uses.",
+      preparation: "Share the topic, available copy and imagery. The estimate follows the number of designs and the mix of still and motion stories.",
+      orderComparison: "For a campaign or special occasion, a one-off order gives you ready-to-publish designs. If you need regular publishing, a monthly plan includes a content calendar, scheduled publishing and a monthly report.",
+      preparationLinks: [
+        { href: "/services/instagram-management#service-pricing-title", label: "Compare monthly Instagram management plans" },
+      ],
+      deliverables: ["Feed graphics for your content", "Still or animated stories", "Files prepared for Instagram publishing"],
+    },
     it: { title: "Post e storie per Instagram", summary: "Creiamo post e storie coordinati con il tuo marchio per lanci di prodotto, annunci e campagne. Puoi scegliere tra grafiche statiche e storie animate.", preparation: "Condividi l’argomento, i testi e le foto disponibili. Il preventivo dipende dal numero di grafiche e dai formati.", deliverables: ["Grafiche per il feed coerenti con il profilo", "Storie statiche o animate", "File pronti per la pubblicazione su Instagram"] },
   },
   {
