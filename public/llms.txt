@@ -51,14 +51,15 @@
 
 FMS designs and develops custom personal, corporate and commerce websites with responsive UI/UX, Next.js, headless WordPress, technical SEO and quality assurance. Website plans include personal, corporate and commerce starting scopes; final scope and estimate are confirmed by email.
 
-- [Website service details in Persian](https://futuremservices.ir/services/web-development)
+- [طراحی وب‌سایت اختصاصی](https://futuremservices.ir/services/web-development)
+- [راهنمای طراحی وب‌سایت با بودجهٔ محدود](https://futuremservices.ir/pricing#website-budget): Essential initial scope and costs to compare.
 - [Website service details in English](https://futuremservices.ir/en/services/web-development)
 
 ### Instagram content management
 
 FMS provides content calendars, post and story design, reel production, page visual identity and monthly reporting through Bronze, Silver and Gold monthly plans. Publishing volume and production details are confirmed during the initial call.
 
-- [Instagram service details in Persian](https://futuremservices.ir/services/instagram-management)
+- [ادمینی اینستاگرام و مدیریت محتوا](https://futuremservices.ir/services/instagram-management): Monthly content planning, production, publishing and reporting.
 - [Instagram service details in English](https://futuremservices.ir/en/services/instagram-management)
 
 ## Pricing summary
