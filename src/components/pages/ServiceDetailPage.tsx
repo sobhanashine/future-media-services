@@ -138,6 +138,9 @@ export function ServiceDetailPage({ locale, service }: { locale: Locale; service
               </div>
             )}
             <p className="pricing-disclaimer" data-reveal>{pricingCopy.disclaimer}</p>
+            {locale === "fa" && service.slug === "web-development" && (
+              <Link className="text-link" href="/pricing#website-budget">طراحی وب‌سایت با بودجهٔ محدود</Link>
+            )}
           </section>
         )}
         {service.slug === "instagram-management" && <InstagramRates locale={locale} />}
